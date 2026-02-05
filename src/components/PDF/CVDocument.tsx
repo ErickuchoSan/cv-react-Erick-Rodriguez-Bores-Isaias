@@ -1,4 +1,3 @@
-import React from 'react';
 import { Page, Text, View, Document, StyleSheet, Image, Font, Link, Svg, Path } from '@react-pdf/renderer';
 import { EXPERIENCE_DATA } from '../Sections/Experience';
 import { PROJECTS } from '../Sections/Projects';

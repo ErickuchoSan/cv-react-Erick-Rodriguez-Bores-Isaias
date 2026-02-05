@@ -1,7 +1,7 @@
 import React from 'react';
 import { SectionTitle } from '../UI/SectionTitle';
-import { FaMicrosoft, FaJs, FaReact, FaDatabase, FaServer, FaDesktop, FaCloud, FaRobot, FaLightbulb, FaHandshake, FaSyncAlt, FaChalkboardTeacher, FaComments, FaPython, FaNodeJs, FaDocker, FaGitAlt, FaAws, FaBrain, FaGraduationCap, FaRocket } from 'react-icons/fa';
-import { SiTypescript, SiTailwindcss, SiNextdotjs, SiPostgresql, SiNestjs, SiVuedotjs, SiExpress, SiNginx, SiDocker } from 'react-icons/si';
+import { FaMicrosoft, FaJs, FaReact, FaDatabase, FaServer, FaDesktop, FaCloud, FaRobot, FaLightbulb, FaSyncAlt, FaChalkboardTeacher, FaComments, FaPython, FaNodeJs, FaDocker, FaGitAlt, FaAws, FaBrain, FaGraduationCap, FaRocket } from 'react-icons/fa';
+import { SiTypescript, SiTailwindcss, SiNextdotjs, SiPostgresql, SiVuedotjs, SiNginx } from 'react-icons/si';
 
 export const Skills: React.FC = () => {
     return (

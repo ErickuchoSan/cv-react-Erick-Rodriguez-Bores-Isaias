@@ -1,6 +1,6 @@
 import React from 'react';
 import { SectionTitle } from '../UI/SectionTitle';
-import { FaGraduationCap, FaMapMarkerAlt, FaCertificate, FaBriefcase, FaRobot } from 'react-icons/fa';
+import { FaGraduationCap, FaMapMarkerAlt, FaBriefcase, FaRobot } from 'react-icons/fa';
 
 export const About: React.FC = () => {
     return (

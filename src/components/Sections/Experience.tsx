@@ -1,6 +1,6 @@
 import React from 'react';
 import { SectionTitle } from '../UI/SectionTitle';
-import { FaCheck, FaMicrosoft, FaJs, FaReact, FaCode, FaCube, FaDatabase, FaNetworkWired, FaLayerGroup, FaPython, FaDocker, FaAws, FaGitAlt, FaNodeJs } from 'react-icons/fa';
+import { FaCheck, FaMicrosoft, FaJs, FaReact, FaCode, FaDatabase, FaLayerGroup, FaPython, FaDocker, FaGitAlt, FaNodeJs } from 'react-icons/fa';
 import { SiTypescript, SiTailwindcss, SiNextdotjs, SiPostgresql, SiNestjs, SiVuedotjs } from 'react-icons/si';
 
 export const EXPERIENCE_DATA = [

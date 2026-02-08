@@ -1,6 +1,6 @@
 import React from 'react';
 import { SectionTitle } from '../UI/SectionTitle';
-import { FaMicrosoft, FaJs, FaReact, FaDatabase, FaServer, FaDesktop, FaCloud, FaRobot, FaLightbulb, FaSyncAlt, FaChalkboardTeacher, FaComments, FaPython, FaNodeJs, FaDocker, FaGitAlt, FaAws, FaBrain, FaGraduationCap, FaRocket } from 'react-icons/fa';
+import { FaMicrosoft, FaJs, FaReact, FaDatabase, FaServer, FaDesktop, FaCloud, FaRobot, FaLightbulb, FaSyncAlt, FaPython, FaNodeJs, FaDocker, FaGitAlt, FaAws, FaBrain, FaGraduationCap, FaRocket } from 'react-icons/fa';
 import { SiTypescript, SiTailwindcss, SiNextdotjs, SiPostgresql, SiVuedotjs, SiNginx } from 'react-icons/si';
 
 export const Skills: React.FC = () => {
@@ -107,8 +107,11 @@ export const Skills: React.FC = () => {
                             { icon: FaLightbulb, title: 'Resolución de Problemas', desc: 'Pensamiento analítico y sistemático para optimización de sistemas' },
                             { icon: FaSyncAlt, title: 'Adaptabilidad Tecnológica', desc: 'Rápida adopción de nuevas herramientas y frameworks' },
                             { icon: FaRocket, title: 'Ownership', desc: 'Proactividad en identificación y solución de problemas no asignados' },
-                            { icon: FaChalkboardTeacher, title: 'Mentoría Técnica', desc: 'Guía y desarrollo de equipos junior' },
-                            { icon: FaComments, title: 'Comunicación Técnica', desc: 'Explicar conceptos complejos a audiencias no técnicas' }
+                            { icon: FaBrain, title: 'Resiliencia', desc: 'Persistencia y enfoque bajo presión en proyectos complejos' },
+                            { icon: FaRobot, title: 'Desarrollo Asistido por IA', desc: 'Programación con Claude y Gemini para maximizar eficiencia' },
+                            { icon: FaDatabase, title: 'Optimización de Rendimiento', desc: 'Mejora de tiempos de respuesta y queries SQL' },
+                            { icon: FaServer, title: 'Pensamiento End-to-End', desc: 'Visión completa del ciclo de desarrollo fullstack' },
+                            { icon: FaSyncAlt, title: 'Automatización de Procesos', desc: 'Scripts y pipelines para eficiencia operativa' }
                         ].map((skill, index) => (
                             <div key={index} className="soft-skill-card glass-card tech-hover-effect p-4 sm:p-6 text-center">
                                 <skill.icon className="text-2xl sm:text-3xl text-blue-600 mb-3 sm:mb-4 mx-auto" />

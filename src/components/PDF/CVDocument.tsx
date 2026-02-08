@@ -181,6 +181,20 @@ const styles = StyleSheet.create({
         color: COLORS.accent,
         fontWeight: 700,
     },
+    competencyChip: {
+        fontSize: 6,
+        color: COLORS.white,
+        backgroundColor: COLORS.primary,
+        paddingHorizontal: 5,
+        paddingVertical: 2,
+        borderRadius: 6,
+        marginRight: 3,
+        marginBottom: 3,
+    },
+    competencyRow: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+    },
     main: {
         width: '65%',
     },
@@ -542,6 +556,22 @@ export const CVDocument = () => (
                         <View style={styles.languageRow}>
                             <Text style={styles.languageName}>Inglés</Text>
                             <Text style={styles.languageLevel}>A2-B1 Intermedio</Text>
+                        </View>
+                    </View>
+
+                    <View style={styles.sidebarSection}>
+                        <Text style={[styles.sidebarTitle, { marginBottom: 8 }]}>Competencias</Text>
+                        <View style={styles.competencyRow}>
+                            {[
+                                'Aprendizaje Autodidacta',
+                                'Resolución de Problemas',
+                                'Resiliencia',
+                                'Desarrollo con IA',
+                                'Optimización SQL',
+                                'Automatización',
+                            ].map((comp, i) => (
+                                <Text key={i} style={styles.competencyChip}>{comp}</Text>
+                            ))}
                         </View>
                     </View>
                 </View>

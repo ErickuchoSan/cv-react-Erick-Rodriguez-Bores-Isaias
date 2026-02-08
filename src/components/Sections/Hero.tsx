@@ -58,7 +58,7 @@ export const Hero: React.FC = () => {
                         <FaEnvelope className="mr-2" />
                         Contáctame
                     </a>
-                    <a href="#proyectos" className="btn-tech-secondary">
+                    <a href="#proyectos" className="btn-tech-secondary !text-white !border-white/40 !bg-white/10 hover:!bg-white/20 hover:!text-white">
                         <FaCode className="mr-2" />
                         Ver Proyectos
                     </a>

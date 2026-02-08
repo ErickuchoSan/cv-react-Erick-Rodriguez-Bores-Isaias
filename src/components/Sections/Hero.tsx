@@ -6,7 +6,7 @@ import { CVDocument } from '../PDF/CVDocument';
 
 export const Hero: React.FC = () => {
     return (
-        <section id="inicio" className="min-h-screen flex items-center justify-center hero-tech-bg text-white relative overflow-hidden pt-20 md:pt-0">
+        <section id="inicio" className="min-h-screen flex items-center justify-center hero-tech-bg text-white relative overflow-hidden pt-24 md:pt-20">
             {/* ... existing background effects ... */}
             <div className="circuit-nodes opacity-30">
                 {[...Array(8)].map((_, i) => (

@@ -62,6 +62,7 @@ export const About: React.FC = () => {
                                 </div>
                                 <div className="pt-2 border-t border-gray-200 dark:border-gray-700">
                                     <p className="font-semibold text-gray-800 dark:text-gray-200">Maestría en Inteligencia Artificial</p>
+                                    <p className="text-gray-600 dark:text-gray-400 text-sm">UNIR (Universidad Internacional de La Rioja)</p>
                                     <p className="text-blue-600 text-sm font-medium">En curso • 2025 - Actual</p>
                                 </div>
                             </div>

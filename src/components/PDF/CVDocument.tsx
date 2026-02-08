@@ -208,6 +208,8 @@ const styles = StyleSheet.create({
     titleRow: {
         flexDirection: 'row',
         alignItems: 'center',
+        flexWrap: 'wrap',
+        gap: 4,
     },
     jobTitle: {
         fontSize: 10,
@@ -510,8 +512,8 @@ export const CVDocument = () => (
                         </View>
                         <View style={styles.educationItem}>
                             <Text style={styles.degree}>Maestría en Inteligencia Artificial</Text>
-                            <Text style={styles.school}>En curso</Text>
-                            <Text style={styles.eduDate}>2025 - Actual</Text>
+                            <Text style={styles.school}>UNIR (Universidad Internacional de La Rioja)</Text>
+                            <Text style={styles.eduDate}>En curso • 2025 - Actual</Text>
                         </View>
                     </View>
 

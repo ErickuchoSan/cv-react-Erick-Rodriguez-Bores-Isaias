@@ -30,7 +30,7 @@ export const Hero: React.FC = () => {
 
             <div className="hero-overlay absolute inset-0 bg-black/20 z-0"></div>
 
-            <div className="relative z-10 text-center max-w-4xl mx-auto px-4 sm:px-6">
+            <div className="relative z-10 text-center max-w-4xl mx-auto px-4 sm:px-6 pb-4 sm:pb-16">
                 <div className="mb-6 sm:mb-8 relative inline-block">
                     <div className="profile-glow"></div>
                     <img
@@ -79,7 +79,7 @@ export const Hero: React.FC = () => {
                 </div>
             </div>
 
-            <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <div className="absolute bottom-2 sm:bottom-4 left-1/2 transform -translate-x-1/2 animate-bounce hidden sm:block">
                 <FaChevronDown className="text-2xl" />
             </div>
         </section>

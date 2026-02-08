@@ -14,7 +14,7 @@ export const Footer: React.FC = () => {
                             Erick Rodríguez
                         </h3>
                         <p className="text-gray-400 mb-3 sm:mb-4 text-sm sm:text-base">
-                            Desarrollador Full Stack Senior especializado en arquitecturas empresariales escalables con .NET y React.
+                            Desarrollador Full Stack Senior especializado en arquitecturas empresariales escalables con .NET/C# y React. +5 años de experiencia.
                         </p>
                         <div className="flex space-x-4">
                             <a
@@ -85,7 +85,7 @@ export const Footer: React.FC = () => {
                             </li>
                             <li className="flex items-center text-gray-400 text-sm sm:text-base">
                                 <FaMapMarkerAlt className="mr-2 sm:mr-3 text-blue-500 flex-shrink-0" />
-                                <span>Cuajimalpa, CDMX, México</span>
+                                <span>Cuajimalpa de Morelos, CDMX, México</span>
                             </li>
                         </ul>
                     </div>

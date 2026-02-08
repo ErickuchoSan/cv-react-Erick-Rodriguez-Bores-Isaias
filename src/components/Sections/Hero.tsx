@@ -45,12 +45,12 @@ export const Hero: React.FC = () => {
                 </h1>
 
                 <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-light mb-6 sm:mb-8 opacity-90 animate-fade-in-delay">
-                    Desarrollador Full Stack Senior | +5 años de experiencia
+                    Desarrollador Full Stack Senior | Arquitecto de Soluciones Empresariales
                 </h2>
 
                 <p className="text-base sm:text-lg md:text-xl mb-8 sm:mb-12 max-w-2xl mx-auto leading-relaxed animate-fade-in-delay-2">
-                    Especializado en arquitecturas empresariales escalables, optimización de sistemas legacy
-                    y migración de tecnologías. Experto en .NET/C#, React y SQL Server.
+                    +5 años diseñando arquitecturas empresariales escalables con .NET/C# y React.
+                    Especialista en optimización de rendimiento, migración de sistemas legacy y seguridad de datos.
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center animate-fade-in-delay-3">

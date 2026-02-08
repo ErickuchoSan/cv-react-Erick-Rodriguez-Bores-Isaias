@@ -4,20 +4,20 @@ import { FaShieldAlt, FaUsers, FaLock } from 'react-icons/fa';
 
 export const PROJECTS = [
     {
-        title: "Sistema de Auditoría Interna",
-        description: "Sistema para manejo de denuncias internas de las empresas del grupo Ricardo Salinas. Migración completa de .NET Framework a .NET Core con microfrontends.",
+        title: "Sistema de Auditoría Interna (ADA/HONESTEL)",
+        description: "Plataforma crítica para gestión de denuncias internas de todas las empresas del Grupo Salinas. Lideré la migración de .NET Framework a .NET Core con arquitectura de microfrontends, mejorando el rendimiento un 40%.",
         tech: [".NET Core", "Next.js", "React", "TypeScript", "Turbo Repo", "AWS"],
         icon: FaShieldAlt
     },
     {
-        title: "Sistema de Reclutamiento",
-        description: "Plataforma completa para administración de candidatos con carga masiva de datos. Integración de servicios y gestión completa del proceso de reclutamiento.",
+        title: "Sistema de Reclutamiento Empresarial",
+        description: "Plataforma end-to-end para gestión del ciclo completo de reclutamiento con carga masiva de candidatos desde Excel/TXT, procesando miles de registros simultáneamente.",
         tech: [".NET Framework", "JavaScript", "Bootstrap", "SQL Server"],
         icon: FaUsers
     },
     {
-        title: "Sistema de Encriptación",
-        description: "Implementación de algoritmos de encriptación avanzada (AES, RSA, SHA-256). Sistema completo para protección de datos sensibles y seguridad informática.",
+        title: "Sistema de Encriptación de Datos",
+        description: "Solución de seguridad empresarial con implementación de algoritmos de encriptación avanzada (AES-256, RSA, SHA-256) para protección de datos sensibles y cumplimiento normativo.",
         tech: ["C#", ".NET Core", "Criptografía", "Seguridad"],
         icon: FaLock
     }

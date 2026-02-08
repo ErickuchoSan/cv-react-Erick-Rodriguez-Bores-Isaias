@@ -14,7 +14,7 @@ export const About: React.FC = () => {
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <SectionTitle
                     title="Sobre Mí"
-                    subtitle="Desarrollador Full Stack Senior | +5 años de experiencia"
+                    subtitle="Transformando ideas en soluciones empresariales de alto impacto"
                 />
 
                 <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
@@ -23,14 +23,15 @@ export const About: React.FC = () => {
                             Especialista en Arquitecturas Empresariales
                         </h3>
                         <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300 mb-4 sm:mb-6 leading-relaxed">
-                            Con <strong className="text-blue-600">+5 años de experiencia</strong> en desarrollo de software, me especializo en
-                            arquitecturas empresariales escalables, optimización de sistemas legacy y migración de tecnologías.
-                            Experto en <strong>.NET/C#</strong> y <strong>React</strong>, con fuerte experiencia en SQL Server.
+                            Con <strong className="text-blue-600">+5 años de experiencia</strong> en desarrollo de software empresarial, diseño e implemento
+                            arquitecturas escalables que resuelven problemas reales de negocio. He logrado <strong>reducir tiempos de consulta en un 40%</strong>,
+                            automatizar procesos críticos y migrar sistemas legacy a tecnologías modernas con <strong>.NET/C#</strong>, <strong>React</strong> y <strong>SQL Server</strong>.
                         </p>
                         <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300 mb-6 sm:mb-8 leading-relaxed">
-                            Actualmente trabajo como <strong className="text-blue-600">Programador de Auditoría Senior</strong> en Grupo Salinas,
-                            donde desarrollo sistemas críticos de auditoría interna utilizando .NET Core, React, Next.js y arquitecturas
-                            de microservicios. Destaco por mi capacidad autodidacta y uso estratégico de herramientas de IA.
+                            Actualmente como <strong className="text-blue-600">Programador de Auditoría Senior</strong> en Grupo Salinas,
+                            lidero el desarrollo de sistemas críticos de auditoría interna que dan servicio a todas las empresas del grupo,
+                            utilizando .NET Core, React, Next.js y arquitecturas de microservicios. Me distingo por mi capacidad autodidacta,
+                            pensamiento orientado a resultados y uso estratégico de herramientas de IA para maximizar productividad.
                         </p>
 
                         <div className="grid grid-cols-2 gap-3 sm:gap-4">
@@ -38,7 +39,7 @@ export const About: React.FC = () => {
                                 { value: '5+', label: 'Años de Experiencia' },
                                 { value: '20+', label: 'Tecnologías Dominadas' },
                                 { value: '15+', label: 'Proyectos Completados' },
-                                { value: '100%', label: 'Compromiso' }
+                                { value: '40%', label: 'Optimización SQL' }
                             ].map((stat, index) => (
                                 <div key={index} className="stat-item glass-card tech-hover-effect p-3 sm:p-4">
                                     <div className="text-2xl sm:text-3xl font-bold text-blue-600">{stat.value}</div>
@@ -83,7 +84,7 @@ export const About: React.FC = () => {
                                 <h4 className="text-lg font-semibold text-gray-800 dark:text-gray-200">Ubicación</h4>
                             </div>
                             <p className="text-gray-600 dark:text-gray-300">
-                                Cuajimalpa, CDMX, México
+                                Cuajimalpa de Morelos, CDMX, México
                             </p>
                         </div>
 
@@ -93,10 +94,10 @@ export const About: React.FC = () => {
                                 <h4 className="text-lg font-semibold text-gray-800 dark:text-gray-200">Intereses Profesionales</h4>
                             </div>
                             <ul className="text-gray-600 dark:text-gray-300 space-y-1 text-sm">
-                                <li>• Inteligencia Artificial aplicada</li>
-                                <li>• Arquitecturas cloud-native</li>
-                                <li>• Desarrollo de productos escalables</li>
-                                <li>• Posiciones remotas internacionales</li>
+                                <li>• Inteligencia Artificial aplicada al desarrollo</li>
+                                <li>• Arquitecturas cloud-native y microservicios</li>
+                                <li>• Productos SaaS escalables de alto rendimiento</li>
+                                <li>• Oportunidades remotas e internacionales</li>
                             </ul>
                         </div>
                     </div>

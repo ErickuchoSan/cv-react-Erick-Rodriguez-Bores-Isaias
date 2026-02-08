@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { SectionTitle } from '../UI/SectionTitle';
-import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaLinkedin, FaGithub, FaTwitter } from 'react-icons/fa';
+import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaLinkedin, FaGithub } from 'react-icons/fa';
 
 export const Contact: React.FC = () => {
     const [formData, setFormData] = useState({
@@ -71,7 +71,7 @@ export const Contact: React.FC = () => {
                                 <div>
                                     <h4 className="font-semibold text-gray-800 dark:text-gray-200 text-sm sm:text-base">Ubicación</h4>
                                     <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base">
-                                        Cuajimalpa de Morelos, CDMX
+                                        Cuajimalpa de Morelos, CDMX, México
                                     </p>
                                 </div>
                             </div>
@@ -81,11 +81,10 @@ export const Contact: React.FC = () => {
                             <h4 className="font-semibold mb-3 sm:mb-4 text-gray-800 dark:text-gray-200">Sígueme</h4>
                             <div className="flex space-x-3 sm:space-x-4">
                                 {[
-                                    { icon: FaLinkedin, href: "#" },
-                                    { icon: FaGithub, href: "#" },
-                                    { icon: FaTwitter, href: "#" }
+                                    { icon: FaLinkedin, href: "https://linkedin.com/in/erickrodriguezbores" },
+                                    { icon: FaGithub, href: "https://github.com/erickrodriguez" }
                                 ].map((social, i) => (
-                                    <a key={i} href={social.href} className="social-link w-11 h-11 sm:w-12 sm:h-12 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center text-gray-600 dark:text-gray-400 hover:bg-blue-600 hover:text-white transition-all duration-300 shadow-md">
+                                    <a key={i} href={social.href} target="_blank" rel="noopener noreferrer" className="social-link w-11 h-11 sm:w-12 sm:h-12 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center text-gray-600 dark:text-gray-400 hover:bg-blue-600 hover:text-white transition-all duration-300 shadow-md">
                                         <social.icon className="text-lg sm:text-xl" />
                                     </a>
                                 ))}

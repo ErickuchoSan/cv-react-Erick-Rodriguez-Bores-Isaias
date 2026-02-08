@@ -8,13 +8,13 @@ export const Languages: React.FC = () => {
             name: 'Español',
             level: 'Nativo',
             percentage: 100,
-            details: ['Lengua materna', 'Comunicación profesional']
+            details: ['Lengua materna', 'Comunicación profesional escrita y oral', 'Redacción de documentación técnica']
         },
         {
             name: 'Inglés',
             level: 'A2-B1 Intermedio',
             percentage: 55,
-            details: ['Lectura técnica avanzada', 'Comprensión técnica avanzada', 'Escritura intermedia', 'Conversación en desarrollo']
+            details: ['Lectura y comprensión de documentación técnica', 'Escritura técnica intermedia', 'Conversación básica-intermedia', 'En constante mejora']
         }
     ];
 

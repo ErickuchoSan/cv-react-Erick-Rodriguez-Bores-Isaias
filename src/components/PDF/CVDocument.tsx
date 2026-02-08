@@ -482,7 +482,7 @@ export const CVDocument = () => (
                         </View>
                         <View style={styles.contactRow}>
                             <LocationIcon />
-                            <Text style={styles.contactText}>Cuajimalpa, CDMX</Text>
+                            <Text style={styles.contactText}>Cuajimalpa de Morelos, CDMX, México</Text>
                         </View>
                         <View style={styles.contactRow}>
                             <LinkedInIcon />
@@ -509,8 +509,8 @@ export const CVDocument = () => (
                             <Text style={styles.eduDate}>2019 - 2023</Text>
                         </View>
                         <View style={styles.educationItem}>
-                            <Text style={styles.degree}>Maestría en IA (En curso)</Text>
-                            <Text style={styles.school}>Universidad</Text>
+                            <Text style={styles.degree}>Maestría en Inteligencia Artificial</Text>
+                            <Text style={styles.school}>En curso</Text>
                             <Text style={styles.eduDate}>2025 - Actual</Text>
                         </View>
                     </View>
@@ -553,7 +553,7 @@ export const CVDocument = () => (
                     <View style={styles.header}>
                         <Text style={styles.name}>Erick Rodríguez Bores Isaías</Text>
                         <View style={styles.titleRow}>
-                            <Text style={styles.jobTitle}>Desarrollador Full Stack Senior</Text>
+                            <Text style={styles.jobTitle}>Desarrollador Full Stack Senior | Arquitecto de Soluciones</Text>
                             <View style={styles.expBadge}>
                                 <Text style={styles.expBadgeText}>+5 años</Text>
                             </View>
@@ -561,9 +561,10 @@ export const CVDocument = () => (
                     </View>
 
                     <Text style={styles.summary}>
-                        Desarrollador Full Stack con +5 años de experiencia especializado en arquitecturas empresariales escalables,
-                        optimización de sistemas legacy y migración de tecnologías. Experto en .NET/C# y React, con fuerte experiencia
-                        en SQL Server. Destaco por mi capacidad autodidacta y uso estratégico de herramientas de IA.
+                        Desarrollador Full Stack Senior con +5 años de experiencia diseñando arquitecturas empresariales escalables.
+                        He logrado reducir tiempos de consulta en un 40%, automatizar procesos críticos y migrar sistemas legacy a tecnologías
+                        modernas con .NET/C#, React y SQL Server. Me distingo por mi capacidad autodidacta, pensamiento orientado a resultados
+                        y uso estratégico de herramientas de IA para maximizar productividad.
                     </Text>
 
                     <View style={styles.mainSection}>
@@ -583,7 +584,7 @@ export const CVDocument = () => (
                                         <Text style={styles.expDateBadge}>{exp.period}</Text>
                                     </View>
                                     <Text style={styles.expDesc}>{exp.description}</Text>
-                                    {exp.functions.slice(0, 2).map((func, i) => (
+                                    {exp.functions.slice(0, 3).map((func, i) => (
                                         <Text key={i} style={styles.bulletPoint}>• {func}</Text>
                                     ))}
                                 </View>

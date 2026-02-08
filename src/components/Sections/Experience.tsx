@@ -8,21 +8,21 @@ export const EXPERIENCE_DATA = [
         role: "Programador de Auditoría Senior",
         company: "Grupo Salinas",
         period: "Mayo 2024 - Actual",
-        duration: "2 años",
-        description: "Desarrollador principal responsable del mantenimiento, evolución y arquitectura de sistemas críticos de auditoría interna (ADA/HONESTEL) que manejan denuncias de todas las empresas del grupo.",
+        duration: "~2 años",
+        description: "Líder técnico responsable de la arquitectura, desarrollo y evolución de los sistemas críticos de auditoría interna (ADA/HONESTEL) que procesan denuncias de todas las empresas del grupo corporativo.",
         functions: [
-            "Desarrollo y mantenimiento de la API v2 del sistema de auditoría interna",
-            "Optimización de stored procedures SQL Server, mejorando rendimiento hasta 40%",
-            "Implementación de encriptación end-to-end con AES-256, RSA y SHA-256",
-            "Migración progresiva de .NET Framework a .NET Core con microservicios",
-            "Refactorización de frontend vanilla a React + Next.js + TypeScript + Tailwind",
-            "Liderazgo técnico en juntas interdepartamentales",
-            "Automatización de procesos con scripts Python"
+            "Diseño y desarrollo de la API v2 del sistema de auditoría con arquitectura de microservicios",
+            "Optimización de stored procedures en SQL Server, logrando mejoras de rendimiento de hasta 40%",
+            "Implementación de encriptación end-to-end con AES-256, RSA y SHA-256 para protección de datos sensibles",
+            "Liderazgo de la migración progresiva de .NET Framework a .NET Core",
+            "Modernización del frontend: de vanilla JS a React + Next.js + TypeScript + Tailwind CSS",
+            "Representación técnica del equipo en juntas interdepartamentales con stakeholders",
+            "Automatización de procesos operativos mediante scripts Python, eliminando tareas manuales repetitivas"
         ],
         achievements: [
-            "Reducción de 40% en tiempo de consultas críticas",
-            "Automatización de tareas de 30 min a segundos con Python",
-            "Documentación técnica de sistemas indocumentados"
+            "Reducción de 40% en tiempo de ejecución de consultas críticas de base de datos",
+            "Automatización de procesos que tomaban 30 minutos a solo segundos con Python",
+            "Creación de documentación técnica completa para sistemas que carecían de ella"
         ],
         technologies: [
             { name: ".NET Core", icon: FaMicrosoft, color: "text-blue-600 dark:text-blue-400" },
@@ -43,18 +43,18 @@ export const EXPERIENCE_DATA = [
         company: "Digital (Empresa de Tecnología)",
         period: "Mayo 2023 - Mayo 2024",
         duration: "1 año",
-        description: "Desarrollo de sistemas empresariales completos, enfocado en aplicaciones de reclutamiento y gestión de recursos humanos con énfasis en procesamiento masivo de datos.",
+        description: "Desarrollo integral de sistemas empresariales para gestión de recursos humanos y reclutamiento, con enfoque en procesamiento masivo de datos y automatización de flujos operativos.",
         functions: [
-            "Diseño e implementación de sistema completo de reclutamiento",
-            "Desarrollo de funcionalidad de carga masiva desde Excel y TXT",
-            "Integración de servicios backend con .NET Framework y Entity Framework",
-            "Diseño de interfaces responsivas con JavaScript y Bootstrap",
-            "Optimización de consultas SQL Server para grandes volúmenes"
+            "Diseño e implementación end-to-end del sistema de reclutamiento y gestión de candidatos",
+            "Desarrollo de módulo de carga masiva desde Excel y TXT, procesando miles de registros simultáneamente",
+            "Arquitectura e integración de servicios backend con .NET Framework y Entity Framework",
+            "Diseño de interfaces responsivas y accesibles con JavaScript y Bootstrap",
+            "Optimización de consultas SQL Server para manejo eficiente de grandes volúmenes de datos"
         ],
         achievements: [
-            "Sistema end-to-end de gestión de reclutamiento",
-            "Módulo de carga masiva procesando miles de registros",
-            "Reducción de tiempo de onboarding mediante automatización"
+            "Entrega de sistema completo de gestión de reclutamiento desde cero",
+            "Módulo de carga masiva capaz de procesar miles de registros en segundos",
+            "Reducción significativa del tiempo de onboarding mediante automatización de procesos"
         ],
         technologies: [
             { name: ".NET Framework", icon: FaMicrosoft, color: "text-blue-600 dark:text-blue-400" },
@@ -68,22 +68,22 @@ export const EXPERIENCE_DATA = [
         badgeType: 'secondary'
     },
     {
-        role: "Desarrollador Independiente",
-        company: "Proyectos Personales",
+        role: "Desarrollador Full Stack",
+        company: "Freelance / Proyectos Propios",
         period: "2020 - 2023",
         duration: "3 años",
-        description: "Desarrollo autodidacta de aplicaciones web completas, sistemas de gestión y herramientas de automatización. Experimentación con múltiples stacks tecnológicos.",
+        description: "Desarrollo profesional autodidacta construyendo aplicaciones web completas, sistemas de gestión empresarial y herramientas de automatización con múltiples stacks tecnológicos.",
         functions: [
-            "Aplicaciones CRUD completas con .NET y bases de datos relacionales",
-            "Sistemas de administración con Entity Framework y SQL Server",
-            "Experimentación con NestJS, PostgreSQL y Vue.js",
-            "Implementación de algoritmos de seguridad y criptografía",
-            "Desarrollo de APIs RESTful y microservicios"
+            "Desarrollo de aplicaciones web completas con .NET, Entity Framework y bases de datos relacionales",
+            "Diseño e implementación de sistemas de administración con SQL Server",
+            "Construcción de APIs RESTful y exploración de arquitecturas de microservicios",
+            "Implementación de algoritmos de seguridad y criptografía (AES, RSA, SHA-256)",
+            "Desarrollo con stacks modernos: NestJS, PostgreSQL, Vue.js y Node.js"
         ],
         achievements: [
-            "Dominio autodidacta de múltiples tecnologías",
-            "Portfolio de proyectos funcionales",
-            "Base sólida en arquitecturas escalables"
+            "Dominio autodidacta de +20 tecnologías en backend, frontend y DevOps",
+            "Portfolio de proyectos funcionales desplegados en producción",
+            "Base sólida en patrones de diseño y arquitecturas escalables"
         ],
         technologies: [
             { name: ".NET", icon: FaMicrosoft, color: "text-blue-600 dark:text-blue-400" },

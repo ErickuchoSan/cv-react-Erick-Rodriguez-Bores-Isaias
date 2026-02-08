@@ -106,10 +106,10 @@ export const Skills: React.FC = () => {
                             { icon: FaGraduationCap, title: 'Aprendizaje Autodidacta', desc: 'Capacidad demostrada para dominar nuevas tecnologías de forma independiente' },
                             { icon: FaLightbulb, title: 'Resolución de Problemas', desc: 'Pensamiento analítico y sistemático para optimización de sistemas' },
                             { icon: FaSyncAlt, title: 'Adaptabilidad Tecnológica', desc: 'Rápida adopción de nuevas herramientas y frameworks' },
-                            { icon: FaRocket, title: 'Ownership', desc: 'Proactividad en identificación y solución de problemas no asignados' },
+                            { icon: FaRocket, title: 'Políglota Tecnológico', desc: 'Con IA me adapto a cualquier lenguaje o stack que el proyecto requiera' },
                             { icon: FaBrain, title: 'Resiliencia', desc: 'Persistencia y enfoque bajo presión en proyectos complejos' },
-                            { icon: FaDatabase, title: 'Optimización de Rendimiento', desc: 'Mejora de tiempos de respuesta y queries SQL' },
-                            { icon: FaServer, title: 'Pensamiento End-to-End', desc: 'Visión completa del ciclo de desarrollo fullstack' },
+                            { icon: FaDatabase, title: 'Optimización de Rendimiento', desc: 'Mejora de tiempos de respuesta y queries SQL hasta 40%' },
+                            { icon: FaServer, title: 'Refactorización de Código', desc: 'Modularización, eliminación de redundancia y mejora de mantenibilidad' },
                             { icon: FaSyncAlt, title: 'Automatización de Procesos', desc: 'Scripts y pipelines para eficiencia operativa' }
                         ].map((skill, index) => (
                             <div key={index} className="soft-skill-card glass-card tech-hover-effect p-4 sm:p-6 text-center">

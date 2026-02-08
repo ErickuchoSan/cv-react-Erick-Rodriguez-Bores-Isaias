@@ -13,10 +13,11 @@ export const EXPERIENCE_DATA = [
         functions: [
             "Diseño y desarrollo de la API v2 del sistema de auditoría con arquitectura de microservicios",
             "Optimización de stored procedures en SQL Server, logrando mejoras de rendimiento de hasta 40%",
+            "Refactorización de código legacy: modularización de métodos extensos, eliminación de código redundante y mejora de mantenibilidad",
+            "Actualización de librerías/packages y migración del código a nuevas versiones con buenas prácticas",
             "Implementación de encriptación end-to-end con AES-256, RSA y SHA-256 para protección de datos sensibles",
             "Liderazgo de la migración progresiva de .NET Framework a .NET Core",
             "Modernización del frontend: de vanilla JS a React + Next.js + TypeScript + Tailwind CSS",
-            "Representación técnica del equipo en juntas interdepartamentales con stakeholders",
             "Automatización de procesos operativos mediante scripts Python, eliminando tareas manuales repetitivas"
         ],
         achievements: [

@@ -564,11 +564,11 @@ export const CVDocument = () => (
                         <View style={styles.competencyRow}>
                             {[
                                 'Desarrollo con IA',
-                                'Aprendizaje Autodidacta',
-                                'Resolución de Problemas',
-                                'Resiliencia',
+                                'Políglota Tech',
+                                'Refactorización',
                                 'Optimización SQL',
                                 'Automatización',
+                                'Resiliencia',
                             ].map((comp, i) => (
                                 <Text key={i} style={styles.competencyChip}>{comp}</Text>
                             ))}

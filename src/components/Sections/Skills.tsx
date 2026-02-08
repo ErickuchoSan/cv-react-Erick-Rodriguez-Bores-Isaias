@@ -102,7 +102,7 @@ export const Skills: React.FC = () => {
                     <h3 className="text-xl sm:text-2xl font-bold text-center mb-8 sm:mb-12 text-gray-800 dark:text-gray-200">Competencias Clave</h3>
                     <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                         {[
-                            { icon: FaRobot, title: 'Desarrollo Asistido por IA', desc: 'Programo con Claude, Claude CLI, Gemini y Antigravity para maximizar productividad' },
+                            { icon: FaRobot, title: 'Desarrollo Asistido por IA', desc: 'Programo con Claude, Gemini y Antigravity - entiendo, reviso y optimizo cada línea aplicando buenas prácticas' },
                             { icon: FaGraduationCap, title: 'Aprendizaje Autodidacta', desc: 'Capacidad demostrada para dominar nuevas tecnologías de forma independiente' },
                             { icon: FaLightbulb, title: 'Resolución de Problemas', desc: 'Pensamiento analítico y sistemático para optimización de sistemas' },
                             { icon: FaSyncAlt, title: 'Adaptabilidad Tecnológica', desc: 'Rápida adopción de nuevas herramientas y frameworks' },

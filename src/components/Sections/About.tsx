@@ -31,7 +31,7 @@ export const About: React.FC = () => {
                             Actualmente como <strong className="text-blue-600">Programador de Auditoría Senior</strong> en Grupo Salinas,
                             lidero el desarrollo de sistemas críticos de auditoría interna que dan servicio a todas las empresas del grupo,
                             utilizando .NET Core, React, Next.js y arquitecturas de microservicios. Me distingo por mi capacidad autodidacta,
-                            pensamiento orientado a resultados y uso estratégico de herramientas de IA para maximizar productividad.
+                            pensamiento orientado a resultados y programación asistida por IA (Claude, Gemini, Antigravity) sin sacrificar la calidad del código.
                         </p>
 
                         <div className="grid grid-cols-2 gap-3 sm:gap-4">

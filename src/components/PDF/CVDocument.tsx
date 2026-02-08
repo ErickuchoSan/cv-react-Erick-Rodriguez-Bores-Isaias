@@ -595,8 +595,8 @@ export const CVDocument = () => (
                     <Text style={styles.summary}>
                         Desarrollador Full Stack Senior con +5 años de experiencia diseñando arquitecturas empresariales escalables.
                         He logrado reducir tiempos de consulta en un 40%, automatizar procesos críticos y migrar sistemas legacy a tecnologías
-                        modernas con .NET/C#, React y SQL Server. Me distingo por mi capacidad autodidacta, pensamiento orientado a resultados
-                        y uso estratégico de herramientas de IA para maximizar productividad.
+                        modernas con .NET/C#, React y SQL Server. Programo asistido por IA (Claude, Gemini, Antigravity) entendiendo cada línea
+                        de código, aplicando buenas prácticas y patrones de diseño profesionales.
                     </Text>
 
                     <View style={styles.mainSection}>

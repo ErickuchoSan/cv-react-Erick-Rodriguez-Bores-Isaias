@@ -520,14 +520,14 @@ export const CVDocument = () => (
                             <Text style={styles.sidebarTitle}>Educación</Text>
                         </View>
                         <View style={styles.educationItem}>
-                            <Text style={styles.degree}>Ing. Sistemas Computacionales</Text>
-                            <Text style={styles.school}>UTEL Universidad</Text>
-                            <Text style={styles.eduDate}>2019 - 2023</Text>
-                        </View>
-                        <View style={styles.educationItem}>
                             <Text style={styles.degree}>Maestría en Inteligencia Artificial</Text>
                             <Text style={styles.school}>UNIR (Universidad Internacional de La Rioja)</Text>
                             <Text style={styles.eduDate}>En curso • 2025 - Actual</Text>
+                        </View>
+                        <View style={styles.educationItem}>
+                            <Text style={styles.degree}>Ing. Sistemas Computacionales</Text>
+                            <Text style={styles.school}>UTEL Universidad</Text>
+                            <Text style={styles.eduDate}>2019 - 2023</Text>
                         </View>
                     </View>
 
@@ -563,10 +563,10 @@ export const CVDocument = () => (
                         <Text style={[styles.sidebarTitle, { marginBottom: 8 }]}>Competencias</Text>
                         <View style={styles.competencyRow}>
                             {[
+                                'Desarrollo con IA',
                                 'Aprendizaje Autodidacta',
                                 'Resolución de Problemas',
                                 'Resiliencia',
-                                'Desarrollo con IA',
                                 'Optimización SQL',
                                 'Automatización',
                             ].map((comp, i) => (

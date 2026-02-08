@@ -89,10 +89,9 @@ export const Skills: React.FC = () => {
                         title="IA & Productividad"
                         icon={FaRobot}
                         items={[
-                            { name: 'Claude / ChatGPT', icon: FaBrain, color: 'text-purple-600' },
-                            { name: 'Gemini CLI', icon: FaRobot, color: 'text-blue-500' },
-                            { name: 'GitHub Copilot', icon: FaGitAlt, color: 'text-gray-700' },
-                            { name: 'Pair Programming con IA', icon: FaRocket, color: 'text-orange-500' },
+                            { name: 'Claude / Claude CLI', icon: FaBrain, color: 'text-purple-600' },
+                            { name: 'Gemini / Antigravity', icon: FaRobot, color: 'text-blue-500' },
+                            { name: 'Programación Asistida por IA', icon: FaRocket, color: 'text-orange-500' },
                             { name: 'Automatización de Flujos', icon: FaSyncAlt, color: 'text-green-600' }
                         ]}
                     />
@@ -103,12 +102,12 @@ export const Skills: React.FC = () => {
                     <h3 className="text-xl sm:text-2xl font-bold text-center mb-8 sm:mb-12 text-gray-800 dark:text-gray-200">Competencias Clave</h3>
                     <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                         {[
+                            { icon: FaRobot, title: 'Desarrollo Asistido por IA', desc: 'Programo con Claude, Claude CLI, Gemini y Antigravity para maximizar productividad' },
                             { icon: FaGraduationCap, title: 'Aprendizaje Autodidacta', desc: 'Capacidad demostrada para dominar nuevas tecnologías de forma independiente' },
                             { icon: FaLightbulb, title: 'Resolución de Problemas', desc: 'Pensamiento analítico y sistemático para optimización de sistemas' },
                             { icon: FaSyncAlt, title: 'Adaptabilidad Tecnológica', desc: 'Rápida adopción de nuevas herramientas y frameworks' },
                             { icon: FaRocket, title: 'Ownership', desc: 'Proactividad en identificación y solución de problemas no asignados' },
                             { icon: FaBrain, title: 'Resiliencia', desc: 'Persistencia y enfoque bajo presión en proyectos complejos' },
-                            { icon: FaRobot, title: 'Desarrollo Asistido por IA', desc: 'Programación con Claude y Gemini para maximizar eficiencia' },
                             { icon: FaDatabase, title: 'Optimización de Rendimiento', desc: 'Mejora de tiempos de respuesta y queries SQL' },
                             { icon: FaServer, title: 'Pensamiento End-to-End', desc: 'Visión completa del ciclo de desarrollo fullstack' },
                             { icon: FaSyncAlt, title: 'Automatización de Procesos', desc: 'Scripts y pipelines para eficiencia operativa' }

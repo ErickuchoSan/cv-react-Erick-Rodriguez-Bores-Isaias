@@ -40,7 +40,7 @@ export const EXPERIENCE_DATA = [
     },
     {
         role: "Desarrollador Full Stack",
-        company: "Digital (Empresa de Tecnología)",
+        company: "Digital Solutions",
         period: "Mayo 2023 - Mayo 2024",
         duration: "1 año",
         description: "Desarrollo integral de sistemas empresariales para gestión de recursos humanos y reclutamiento, con enfoque en procesamiento masivo de datos y automatización de flujos operativos.",

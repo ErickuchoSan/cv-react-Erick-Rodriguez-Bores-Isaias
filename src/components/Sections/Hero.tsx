@@ -30,30 +30,30 @@ export const Hero: React.FC = () => {
 
             <div className="hero-overlay absolute inset-0 bg-black/20 z-0"></div>
 
-            <div className="relative z-10 text-center max-w-4xl mx-auto px-4">
-                <div className="mb-8 relative inline-block">
+            <div className="relative z-10 text-center max-w-4xl mx-auto px-4 sm:px-6">
+                <div className="mb-6 sm:mb-8 relative inline-block">
                     <div className="profile-glow"></div>
                     <img
                         src="/assets/images/profile.jpg"
                         alt="Erick Rodríguez Bores Isaías"
-                        className="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-white/30 shadow-2xl relative z-10 hover:scale-110 transition-all duration-500 hover:border-white/60 object-cover"
+                        className="w-24 h-24 sm:w-32 sm:h-32 rounded-full mx-auto mb-4 sm:mb-6 border-4 border-white/30 shadow-2xl relative z-10 hover:scale-110 transition-all duration-500 hover:border-white/60 object-cover"
                     />
                 </div>
 
-                <h1 className="text-5xl md:text-7xl font-bold mb-6 animate-fade-in">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-4 sm:mb-6 animate-fade-in">
                     Erick Rodríguez Bores Isaías
                 </h1>
 
-                <h2 className="text-2xl md:text-3xl font-light mb-8 opacity-90 animate-fade-in-delay">
+                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-light mb-6 sm:mb-8 opacity-90 animate-fade-in-delay">
                     Desarrollador Full Stack Senior | +5 años de experiencia
                 </h2>
 
-                <p className="text-xl mb-12 max-w-2xl mx-auto leading-relaxed animate-fade-in-delay-2">
+                <p className="text-base sm:text-lg md:text-xl mb-8 sm:mb-12 max-w-2xl mx-auto leading-relaxed animate-fade-in-delay-2">
                     Especializado en arquitecturas empresariales escalables, optimización de sistemas legacy
                     y migración de tecnologías. Experto en .NET/C#, React y SQL Server.
                 </p>
 
-                <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-delay-3">
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center animate-fade-in-delay-3">
                     <a href="#contacto" className="btn-tech-primary">
                         <FaEnvelope className="mr-2" />
                         Contáctame
@@ -67,7 +67,7 @@ export const Hero: React.FC = () => {
                         document={<CVDocument />}
                         fileName="CV_Erick_Rodriguez_Bores_Isaias.pdf"
                         className="btn-tech-primary"
-                        style={{ display: 'inline-flex', alignItems: 'center', textDecoration: 'none' }}
+                        style={{ display: 'inline-flex', alignItems: 'center', textDecoration: 'none', justifyContent: 'center' }}
                     >
                         {({ loading }) => (
                             <span style={{ display: 'flex', alignItems: 'center' }}>

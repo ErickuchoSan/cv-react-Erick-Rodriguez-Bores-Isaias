@@ -19,27 +19,27 @@ export const Languages: React.FC = () => {
     ];
 
     return (
-        <section id="idiomas" className="enhanced-section section-tech-bg py-16 bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
-            <div className="max-w-6xl mx-auto px-4 relative z-10">
+        <section id="idiomas" className="enhanced-section section-tech-bg py-12 sm:py-16 bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <SectionTitle
                     title="Idiomas"
                     subtitle="Competencias Lingüísticas"
                 />
 
-                <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div className="grid sm:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 max-w-4xl mx-auto">
                     {languages.map((lang, index) => (
-                        <div key={index} className="glass-card tech-hover-effect p-6">
-                            <div className="flex items-center justify-between mb-4">
+                        <div key={index} className="glass-card tech-hover-effect p-4 sm:p-6">
+                            <div className="flex items-center justify-between mb-3 sm:mb-4">
                                 <div className="flex items-center">
-                                    <FaLanguage className="text-blue-600 text-2xl mr-3" />
+                                    <FaLanguage className="text-blue-600 text-xl sm:text-2xl mr-2 sm:mr-3 flex-shrink-0" />
                                     <div>
-                                        <h3 className="text-xl font-bold text-gray-800 dark:text-gray-200">{lang.name}</h3>
-                                        <span className={`text-sm font-semibold ${lang.percentage === 100 ? 'text-green-600' : 'text-blue-600'}`}>
+                                        <h3 className="text-lg sm:text-xl font-bold text-gray-800 dark:text-gray-200">{lang.name}</h3>
+                                        <span className={`text-xs sm:text-sm font-semibold ${lang.percentage === 100 ? 'text-green-600' : 'text-blue-600'}`}>
                                             {lang.level}
                                         </span>
                                     </div>
                                 </div>
-                                <div className="text-3xl font-bold text-blue-600">
+                                <div className="text-2xl sm:text-3xl font-bold text-blue-600">
                                     {lang.percentage}%
                                 </div>
                             </div>

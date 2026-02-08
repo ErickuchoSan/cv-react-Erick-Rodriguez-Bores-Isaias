@@ -5,15 +5,15 @@ export const Footer: React.FC = () => {
     const currentYear = new Date().getFullYear();
 
     return (
-        <footer className="bg-gray-900 text-gray-300 py-12">
-            <div className="max-w-6xl mx-auto px-4">
-                <div className="grid md:grid-cols-3 gap-8 mb-8">
+        <footer className="bg-gray-900 text-gray-300 py-8 sm:py-12">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 mb-6 sm:mb-8">
                     {/* Brand */}
-                    <div>
-                        <h3 className="text-2xl font-bold text-white mb-4">
+                    <div className="sm:col-span-2 md:col-span-1">
+                        <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">
                             Erick Rodríguez
                         </h3>
-                        <p className="text-gray-400 mb-4">
+                        <p className="text-gray-400 mb-3 sm:mb-4 text-sm sm:text-base">
                             Desarrollador Full Stack Senior especializado en arquitecturas empresariales escalables con .NET y React.
                         </p>
                         <div className="flex space-x-4">
@@ -71,20 +71,20 @@ export const Footer: React.FC = () => {
 
                     {/* Contact Info */}
                     <div>
-                        <h4 className="text-lg font-semibold text-white mb-4">Contacto</h4>
-                        <ul className="space-y-3">
-                            <li className="flex items-center text-gray-400">
-                                <FaEnvelope className="mr-3 text-blue-500" />
-                                <a href="mailto:erickisaiasbores@gmail.com" className="hover:text-white transition-colors">
+                        <h4 className="text-base sm:text-lg font-semibold text-white mb-3 sm:mb-4">Contacto</h4>
+                        <ul className="space-y-2 sm:space-y-3">
+                            <li className="flex items-center text-gray-400 text-sm sm:text-base">
+                                <FaEnvelope className="mr-2 sm:mr-3 text-blue-500 flex-shrink-0" />
+                                <a href="mailto:erickisaiasbores@gmail.com" className="hover:text-white transition-colors break-all">
                                     erickisaiasbores@gmail.com
                                 </a>
                             </li>
-                            <li className="flex items-center text-gray-400">
-                                <FaPhone className="mr-3 text-blue-500" />
+                            <li className="flex items-center text-gray-400 text-sm sm:text-base">
+                                <FaPhone className="mr-2 sm:mr-3 text-blue-500 flex-shrink-0" />
                                 <span>55 7110 4581</span>
                             </li>
-                            <li className="flex items-center text-gray-400">
-                                <FaMapMarkerAlt className="mr-3 text-blue-500" />
+                            <li className="flex items-center text-gray-400 text-sm sm:text-base">
+                                <FaMapMarkerAlt className="mr-2 sm:mr-3 text-blue-500 flex-shrink-0" />
                                 <span>Cuajimalpa, CDMX, México</span>
                             </li>
                         </ul>
@@ -92,12 +92,12 @@ export const Footer: React.FC = () => {
                 </div>
 
                 {/* Divider */}
-                <div className="border-t border-gray-800 pt-8">
-                    <div className="flex flex-col md:flex-row justify-between items-center">
-                        <p className="text-gray-500 text-sm mb-4 md:mb-0">
+                <div className="border-t border-gray-800 pt-6 sm:pt-8">
+                    <div className="flex flex-col md:flex-row justify-between items-center gap-2">
+                        <p className="text-gray-500 text-xs sm:text-sm text-center md:text-left">
                             © {currentYear} Erick Rodríguez Bores Isaías. Todos los derechos reservados.
                         </p>
-                        <p className="text-gray-500 text-sm flex items-center">
+                        <p className="text-gray-500 text-xs sm:text-sm flex items-center">
                             Hecho con <FaHeart className="text-red-500 mx-1" /> y <FaCode className="text-blue-500 mx-1" /> usando React + TypeScript
                         </p>
                     </div>

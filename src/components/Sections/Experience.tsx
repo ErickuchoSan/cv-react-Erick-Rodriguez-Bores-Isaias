@@ -100,29 +100,29 @@ export const EXPERIENCE_DATA = [
 
 export const Experience: React.FC = () => {
     return (
-        <section id="experiencia" className="enhanced-section section-tech-bg py-20 bg-gray-50 dark:bg-gray-900 transition-colors duration-300 relative">
+        <section id="experiencia" className="enhanced-section section-tech-bg py-12 sm:py-16 md:py-20 bg-gray-50 dark:bg-gray-900 transition-colors duration-300 relative">
             <div className="section-particles">
                 {[...Array(4)].map((_, i) => (
                     <div key={i} className="section-particle" />
                 ))}
             </div>
 
-            <div className="max-w-6xl mx-auto px-4 relative z-10">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <SectionTitle
                     title="Experiencia Profesional"
                     subtitle="+5 años de trayectoria en desarrollo de software"
                 />
 
-                <div className="space-y-12">
+                <div className="space-y-8 sm:space-y-12">
                     {EXPERIENCE_DATA.map((exp, index) => (
-                        <div key={index} className="experience-card glass-card tech-hover-effect p-8">
-                            <div className="experience-header flex flex-col md:flex-row md:items-center md:justify-between mb-6">
-                                <div className="experience-company mb-4 md:mb-0">
-                                    <h3 className="text-2xl font-bold text-gray-800 dark:text-gray-200">{exp.role}</h3>
-                                    <p className="text-blue-600 font-semibold text-lg">{exp.company}</p>
+                        <div key={index} className="experience-card glass-card tech-hover-effect p-4 sm:p-6 md:p-8">
+                            <div className="experience-header flex flex-col md:flex-row md:items-center md:justify-between mb-4 sm:mb-6">
+                                <div className="experience-company mb-3 md:mb-0">
+                                    <h3 className="text-xl sm:text-2xl font-bold text-gray-800 dark:text-gray-200">{exp.role}</h3>
+                                    <p className="text-blue-600 font-semibold text-base sm:text-lg">{exp.company}</p>
                                 </div>
                                 <div className="experience-period flex flex-col items-start md:items-end">
-                                    <span className={`inline-block px-4 py-2 text-sm font-semibold rounded-full shadow-md transition-all duration-300 hover:scale-105 hover:shadow-lg ${exp.badgeType === 'primary'
+                                    <span className={`inline-block px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-semibold rounded-full shadow-md transition-all duration-300 hover:scale-105 hover:shadow-lg ${exp.badgeType === 'primary'
                                         ? 'text-white bg-gradient-to-r from-blue-600 to-blue-700'
                                         : exp.badgeType === 'secondary'
                                             ? 'text-blue-600 bg-blue-100 dark:bg-blue-900 dark:text-blue-300'
@@ -130,34 +130,34 @@ export const Experience: React.FC = () => {
                                         }`}>
                                         {exp.period}
                                     </span>
-                                    <span className="text-sm text-gray-500 mt-1">{exp.duration}</span>
+                                    <span className="text-xs sm:text-sm text-gray-500 mt-1">{exp.duration}</span>
                                 </div>
                             </div>
 
                             <div className="experience-content">
-                                <p className="text-gray-600 dark:text-gray-300 mb-6 font-medium text-lg leading-relaxed">
+                                <p className="text-gray-600 dark:text-gray-300 mb-4 sm:mb-6 font-medium text-base sm:text-lg leading-relaxed">
                                     {exp.description}
                                 </p>
 
-                                <div className="grid md:grid-cols-2 gap-8">
+                                <div className="grid md:grid-cols-2 gap-6 md:gap-8">
                                     <div>
-                                        <h4 className="font-semibold mb-4 text-gray-800 dark:text-gray-200 text-lg">Responsabilidades:</h4>
-                                        <ul className="space-y-2 text-gray-600 dark:text-gray-300">
+                                        <h4 className="font-semibold mb-3 sm:mb-4 text-gray-800 dark:text-gray-200 text-base sm:text-lg">Responsabilidades:</h4>
+                                        <ul className="space-y-2 text-sm sm:text-base text-gray-600 dark:text-gray-300">
                                             {exp.functions.map((func, i) => (
                                                 <li key={i} className="flex items-start">
-                                                    <FaCheck className="text-green-500 mr-2 mt-1 min-w-[12px]" />
+                                                    <FaCheck className="text-green-500 mr-2 mt-1 min-w-[12px] flex-shrink-0" />
                                                     <span>{func}</span>
                                                 </li>
                                             ))}
                                         </ul>
 
                                         {exp.achievements && (
-                                            <div className="mt-6">
-                                                <h4 className="font-semibold mb-3 text-gray-800 dark:text-gray-200">Logros Destacados:</h4>
+                                            <div className="mt-4 sm:mt-6">
+                                                <h4 className="font-semibold mb-2 sm:mb-3 text-gray-800 dark:text-gray-200 text-base sm:text-lg">Logros Destacados:</h4>
                                                 <ul className="space-y-2">
                                                     {exp.achievements.map((achievement, i) => (
-                                                        <li key={i} className="flex items-start text-green-600 dark:text-green-400">
-                                                            <span className="text-yellow-500 mr-2">★</span>
+                                                        <li key={i} className="flex items-start text-sm sm:text-base text-green-600 dark:text-green-400">
+                                                            <span className="text-yellow-500 mr-2 flex-shrink-0">★</span>
                                                             <span>{achievement}</span>
                                                         </li>
                                                     ))}
@@ -167,12 +167,12 @@ export const Experience: React.FC = () => {
                                     </div>
 
                                     <div>
-                                        <h4 className="font-semibold mb-4 text-gray-800 dark:text-gray-200 text-lg">Stack Tecnológico:</h4>
-                                        <div className="flex flex-wrap gap-3">
+                                        <h4 className="font-semibold mb-3 sm:mb-4 text-gray-800 dark:text-gray-200 text-base sm:text-lg mt-4 md:mt-0">Stack Tecnológico:</h4>
+                                        <div className="flex flex-wrap gap-2 sm:gap-3">
                                             {exp.technologies.map((tech, i) => (
-                                                <div key={i} className="flex items-center bg-gray-100 dark:bg-gray-700 px-3 py-2 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-md">
-                                                    <tech.icon className={`${tech.color} mr-2 text-lg`} />
-                                                    <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{tech.name}</span>
+                                                <div key={i} className="flex items-center bg-gray-100 dark:bg-gray-700 px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-md">
+                                                    <tech.icon className={`${tech.color} mr-1.5 sm:mr-2 text-base sm:text-lg`} />
+                                                    <span className="text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300">{tech.name}</span>
                                                 </div>
                                             ))}
                                         </div>

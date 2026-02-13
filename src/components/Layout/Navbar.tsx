@@ -2,20 +2,25 @@ import React, { useState } from 'react';
 import { useTheme } from '../../hooks/useTheme';
 import { FaMoon, FaSun, FaBars, FaTimes } from 'react-icons/fa';
 
-const NAV_LINKS = [
-    { href: '#inicio', label: 'Inicio' },
-    { href: '#sobre-mi', label: 'Sobre Mí' },
-    { href: '#experiencia', label: 'Experiencia' },
-    { href: '#habilidades', label: 'Habilidades' },
-    { href: '#proyectos', label: 'Proyectos' },
-    { href: '#contacto', label: 'Contacto' },
-];
+
+
+import { useLanguage } from '../../context/LanguageContext';
 
 export const Navbar: React.FC = () => {
     const { theme, toggleTheme } = useTheme();
+    const { language, setLanguage, t } = useLanguage();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
+    const NAV_LINKS = [
+        { href: '#inicio', label: t.nav.home },
+        { href: '#sobre-mi', label: t.nav.about },
+        { href: '#experiencia', label: t.nav.experience },
+        { href: '#habilidades', label: t.nav.skills },
+        { href: '#proyectos', label: t.nav.projects },
+        { href: '#contacto', label: t.nav.contact },
+    ];
 
     return (
         <nav className="fixed top-0 w-full bg-white dark:bg-gray-900 z-50 border-b border-gray-200 dark:border-gray-700 shadow-lg transition-colors duration-300">
@@ -45,6 +50,28 @@ export const Navbar: React.FC = () => {
                     </div>
 
                     <div className="flex items-center space-x-4 flex-shrink-0">
+                        {/* Language Toggle */}
+                        <div className="flex items-center bg-gray-100 dark:bg-gray-800 rounded-lg p-1">
+                            <button
+                                onClick={() => setLanguage('es')}
+                                className={`px-2 py-1 rounded-md text-xs font-medium transition-all duration-300 ${language === 'es'
+                                    ? 'bg-white dark:bg-gray-700 text-blue-600 dark:text-blue-400 shadow-sm'
+                                    : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200'
+                                    }`}
+                            >
+                                ES
+                            </button>
+                            <button
+                                onClick={() => setLanguage('en')}
+                                className={`px-2 py-1 rounded-md text-xs font-medium transition-all duration-300 ${language === 'en'
+                                    ? 'bg-white dark:bg-gray-700 text-blue-600 dark:text-blue-400 shadow-sm'
+                                    : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200'
+                                    }`}
+                            >
+                                EN
+                            </button>
+                        </div>
+
                         <button
                             onClick={toggleTheme}
                             className="p-3 bg-gray-100 dark:bg-gray-800 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-300 text-gray-600 dark:text-gray-300"

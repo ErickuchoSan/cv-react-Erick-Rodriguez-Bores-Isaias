@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
         fontSize: 9,
         flexDirection: 'row',
         alignItems: 'center',
-        flexWrap: 'wrap', // Allow wrapping
+        flexWrap: 'wrap',
     },
     contactIcon: {
         marginRight: 6,
@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
         letterSpacing: 1,
     },
     summary: {
-        fontSize: 9, // Reduced from 10
+        fontSize: 9,
         color: '#475569', // slate-600
         lineHeight: 1.4,
         marginBottom: 15,
@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
         paddingLeft: 8,
     },
     experienceItem: {
-        marginBottom: 12, // Reduced from 15
+        marginBottom: 12,
     },
     jobHeader: {
         flexDirection: 'row',
@@ -172,7 +172,7 @@ const styles = StyleSheet.create({
         marginTop: 4,
     },
     bulletText: {
-        fontSize: 8.5, // Reduced from 9
+        fontSize: 8.5,
         color: '#475569',
         flex: 1,
         lineHeight: 1.3,
@@ -180,7 +180,7 @@ const styles = StyleSheet.create({
     projectItem: {
         marginBottom: 8,
         backgroundColor: 'white',
-        padding: 6, // Reduced from 8
+        padding: 6,
         borderRadius: 4,
         borderWidth: 1,
         borderColor: '#e2e8f0',
@@ -227,8 +227,7 @@ const styles = StyleSheet.create({
     }
 });
 
-export const CVDocument = () => {
-    // Definimos la imagen aquí dentro del componente para que se evalúe al renderizar
+export const CVDocumentEN = () => {
     const profileImage = `${window.location.origin}/assets/images/profile.jpeg`;
 
     return (
@@ -245,13 +244,13 @@ export const CVDocument = () => {
                     </View>
 
                     <View style={{ marginBottom: 20 }}>
-                        <Text style={styles.sidebarTitle}>CONTACTO</Text>
+                        <Text style={styles.sidebarTitle}>CONTACT</Text>
                         <View style={styles.contactItem}>
-                            <Text style={styles.contactIcon}>Ubicación:</Text>
+                            <Text style={styles.contactIcon}>Location:</Text>
                             <Text>Cuajimalpa, CDMX</Text>
                         </View>
                         <View style={styles.contactItem}>
-                            <Text style={styles.contactIcon}>Teléfono:</Text>
+                            <Text style={styles.contactIcon}>Phone:</Text>
                             <Link src="tel:+525512345678" style={{ color: 'white', textDecoration: 'none' }}>
                                 +52 55 1234 5678
                             </Link>
@@ -277,14 +276,14 @@ export const CVDocument = () => {
                     </View>
 
                     <View style={{ marginBottom: 20 }}>
-                        <Text style={styles.sidebarTitle}>HABILIDADES TÉCNICAS</Text>
+                        <Text style={styles.sidebarTitle}>TECHNICAL SKILLS</Text>
 
                         <View style={styles.skillCategory}>
                             <Text style={styles.categoryTitle}>BACKEND</Text>
-                            <Text style={styles.skillItem}>• .NET Core / C# (Experto)</Text>
+                            <Text style={styles.skillItem}>• .NET Core / C# (Expert)</Text>
                             <Text style={styles.skillItem}>• SQL Server / T-SQL</Text>
                             <Text style={styles.skillItem}>• Entity Framework</Text>
-                            <Text style={styles.skillItem}>• Microservicios / API</Text>
+                            <Text style={styles.skillItem}>• Microservices / API</Text>
                             <Text style={styles.skillItem}>• Python / Scripts</Text>
                         </View>
 
@@ -297,37 +296,37 @@ export const CVDocument = () => {
                         </View>
 
                         <View style={styles.skillCategory}>
-                            <Text style={styles.categoryTitle}>DEVOPS & HERRAMIENTAS</Text>
-                            <Text style={styles.skillItem}>• Docker / Contenedores</Text>
+                            <Text style={styles.categoryTitle}>DEVOPS & TOOLS</Text>
+                            <Text style={styles.skillItem}>• Docker / Containers</Text>
                             <Text style={styles.skillItem}>• Azure DevOps</Text>
-                            <Text style={styles.skillItem}>• AWS (Básico)</Text>
+                            <Text style={styles.skillItem}>• AWS (Basic)</Text>
                             <Text style={styles.skillItem}>• Git / CI/CD</Text>
                         </View>
                     </View>
 
                     <View style={{ marginBottom: 20 }}>
-                        <Text style={styles.sidebarTitle}>IDIOMAS</Text>
+                        <Text style={styles.sidebarTitle}>LANGUAGES</Text>
                         <View style={styles.languageItem}>
-                            <Text style={styles.languageName}>Español</Text>
-                            <Text style={styles.languageLevel}>Nativo</Text>
+                            <Text style={styles.languageName}>Spanish</Text>
+                            <Text style={styles.languageLevel}>Native</Text>
                         </View>
                         <View style={styles.languageItem}>
-                            <Text style={styles.languageName}>Inglés</Text>
-                            <Text style={styles.languageLevel}>A2-B1 Intermedio</Text>
+                            <Text style={styles.languageName}>English</Text>
+                            <Text style={styles.languageLevel}>A2-B1 Intermediate</Text>
                         </View>
                     </View>
 
                     <View>
-                        <Text style={styles.sidebarTitle}>EDUCACIÓN</Text>
+                        <Text style={styles.sidebarTitle}>EDUCATION</Text>
                         <View style={styles.educationItem}>
-                            <Text style={styles.degree}>Ing. Sistemas Computacionales</Text>
-                            <Text style={styles.school}>UTEL Universidad</Text>
+                            <Text style={styles.degree}>B.S. Computer Systems</Text>
+                            <Text style={styles.school}>UTEL University</Text>
                             <Text style={styles.year}>2019 - 2023</Text>
                         </View>
                         <View style={styles.educationItem}>
-                            <Text style={styles.degree}>Maestría en IA</Text>
+                            <Text style={styles.degree}>Master in AI</Text>
                             <Text style={styles.school}>UNIR</Text>
-                            <Text style={styles.year}>2025 - Presente</Text>
+                            <Text style={styles.year}>2025 - Present</Text>
                         </View>
                     </View>
                 </View>
@@ -336,50 +335,50 @@ export const CVDocument = () => {
                 <View style={styles.main}>
                     <View style={styles.header}>
                         <Text style={styles.name}>ERICK RODRÍGUEZ</Text>
-                        <Text style={styles.title}>DESARROLLADOR FULL STACK SENIOR</Text>
+                        <Text style={styles.title}>SENIOR FULL STACK DEVELOPER</Text>
                     </View>
 
                     <Text style={styles.summary}>
-                        Especialista en Arquitectura Empresarial con +5 años de experiencia. Experto en .NET/C#, React y SQL Server.
-                        Enfocado en optimizar rendimiento (reducción de 40% en tiempos de consulta), migrar sistemas legados e implementar
-                        arquitecturas escalables. Autodidacta y orientado a resultados, aprovechando herramientas de IA para acelerar el desarrollo
-                        sin comprometer la calidad.
+                        Enterprise Architecture Specialist with +5 years of experience. Expert in .NET/C#, React, and SQL Server.
+                        Focused on performance optimization (40% reduction in query times), migrating legacy systems, and implementing
+                        scalable architectures. Self-taught and results-oriented, leveraging AI tools to accelerate development
+                        without compromising quality.
                     </Text>
 
                     <View>
-                        <Text style={styles.sectionTitle}>EXPERIENCIA PROFESIONAL</Text>
+                        <Text style={styles.sectionTitle}>PROFESSIONAL EXPERIENCE</Text>
 
                         {/* Job 1 */}
                         <View style={styles.experienceItem}>
                             <View style={styles.jobHeader}>
                                 <View>
-                                    <Text style={styles.jobTitle}>Programador de Auditoría Senior</Text>
+                                    <Text style={styles.jobTitle}>Senior Audit Programmer</Text>
                                     <Text style={styles.company}>Grupo Salinas</Text>
                                 </View>
-                                <Text style={styles.period}>Mayo 2024 - Actual</Text>
+                                <Text style={styles.period}>May 2024 - Present</Text>
                             </View>
                             <Text style={styles.jobDescription}>
-                                Líder técnico de sistemas críticos de auditoría interna (ADA/HONESTEL).
+                                Technical lead for critical internal audit systems (ADA/HONESTEL).
                             </Text>
                             <View style={styles.bulletPoint}>
                                 <View style={styles.bullet} />
-                                <Text style={styles.bulletText}>Diseño y desarrollo de API v2 del Sistema de Auditoría con microservicios.</Text>
+                                <Text style={styles.bulletText}>Design and development of Audit System API v2 with microservices architecture.</Text>
                             </View>
                             <View style={styles.bulletPoint}>
                                 <View style={styles.bullet} />
-                                <Text style={styles.bulletText}>Optimización de procedimientos almacenados SQL (mejora de performance del 40%).</Text>
+                                <Text style={styles.bulletText}>Optimization of SQL Server stored procedures (40% performance improvement).</Text>
                             </View>
                             <View style={styles.bulletPoint}>
                                 <View style={styles.bullet} />
-                                <Text style={styles.bulletText}>Implementación de encriptación end-to-end (AES-256, RSA) para datos sensibles.</Text>
+                                <Text style={styles.bulletText}>Implementation of end-to-end encryption (AES-256, RSA) for sensitive data.</Text>
                             </View>
                             <View style={styles.bulletPoint}>
                                 <View style={styles.bullet} />
-                                <Text style={styles.bulletText}>Migración de .NET Framework a .NET Core y frontend a React/Next.js.</Text>
+                                <Text style={styles.bulletText}>Migration from .NET Framework to .NET Core and frontend to React/Next.js.</Text>
                             </View>
                             <View style={styles.bulletPoint}>
                                 <View style={styles.bullet} />
-                                <Text style={styles.bulletText}>Automatización de procesos con scripts de Python.</Text>
+                                <Text style={styles.bulletText}>Process automation with Python scripts.</Text>
                             </View>
                         </View>
 
@@ -387,25 +386,25 @@ export const CVDocument = () => {
                         <View style={styles.experienceItem}>
                             <View style={styles.jobHeader}>
                                 <View>
-                                    <Text style={styles.jobTitle}>Desarrollador Full Stack</Text>
+                                    <Text style={styles.jobTitle}>Full Stack Developer</Text>
                                     <Text style={styles.company}>Digital Solutions</Text>
                                 </View>
-                                <Text style={styles.period}>Mayo 2023 - Mayo 2024</Text>
+                                <Text style={styles.period}>May 2023 - May 2024</Text>
                             </View>
                             <Text style={styles.jobDescription}>
-                                Desarrollo de sistemas empresariales de RRHH y Reclutamiento.
+                                Development of enterprise HR and Recruitment systems.
                             </Text>
                             <View style={styles.bulletPoint}>
                                 <View style={styles.bullet} />
-                                <Text style={styles.bulletText}>Implementación end-to-end del sistema de reclutamiento.</Text>
+                                <Text style={styles.bulletText}>End-to-end implementation of recruitment system.</Text>
                             </View>
                             <View style={styles.bulletPoint}>
                                 <View style={styles.bullet} />
-                                <Text style={styles.bulletText}>Módulo de carga masiva procesando miles de registros desde Excel/TXT.</Text>
+                                <Text style={styles.bulletText}>Bulk upload module processing thousands of records from Excel/TXT.</Text>
                             </View>
                             <View style={styles.bulletPoint}>
                                 <View style={styles.bullet} />
-                                <Text style={styles.bulletText}>Integración backend con .NET Framework y Entity Framework.</Text>
+                                <Text style={styles.bulletText}>Backend integration with .NET Framework and Entity Framework.</Text>
                             </View>
                         </View>
 
@@ -413,31 +412,31 @@ export const CVDocument = () => {
                         <View style={styles.experienceItem}>
                             <View style={styles.jobHeader}>
                                 <View>
-                                    <Text style={styles.jobTitle}>Desarrollador Full Stack</Text>
-                                    <Text style={styles.company}>Freelance / Proyectos Propios</Text>
+                                    <Text style={styles.jobTitle}>Full Stack Developer</Text>
+                                    <Text style={styles.company}>Freelance / Own Projects</Text>
                                 </View>
                                 <Text style={styles.period}>2020 - 2023</Text>
                             </View>
                             <Text style={styles.jobDescription}>
-                                Desarrollo autodidacta de aplicaciones web y sistemas de gestión.
+                                Self-taught development of web applications and management systems.
                             </Text>
                             <View style={styles.bulletPoint}>
                                 <View style={styles.bullet} />
-                                <Text style={styles.bulletText}>Desarrollo con .NET, NestJS, PostgreSQL, Vue.js y Node.js.</Text>
+                                <Text style={styles.bulletText}>Development with .NET, NestJS, PostgreSQL, Vue.js, and Node.js.</Text>
                             </View>
                             <View style={styles.bulletPoint}>
                                 <View style={styles.bullet} />
-                                <Text style={styles.bulletText}>Implementación de algoritmos de seguridad (AES, RSA, SHA-256).</Text>
+                                <Text style={styles.bulletText}>Implementation of security algorithms (AES, RSA, SHA-256).</Text>
                             </View>
                         </View>
                     </View>
 
                     <View>
-                        <Text style={styles.sectionTitle}>PROYECTOS DESTACADOS</Text>
+                        <Text style={styles.sectionTitle}>FEATURED PROJECTS</Text>
 
                         <View style={styles.projectItem}>
-                            <Text style={styles.projectTitle}>Sistema de Auditoría Interna (ADA/HONESTEL)</Text>
-                            <Text style={styles.projectDesc}>Plataforma crítica de gestión de denuncias. Migrada a .NET Core con micro-frontends.</Text>
+                            <Text style={styles.projectTitle}>Internal Audit System (ADA/HONESTEL)</Text>
+                            <Text style={styles.projectDesc}>Critical whistleblowing platform. Migrated to .NET Core with micro-frontends.</Text>
                             <View style={styles.techStack}>
                                 <Text style={styles.techBagde}>.NET Core</Text>
                                 <Text style={styles.techBagde}>React</Text>
@@ -447,8 +446,8 @@ export const CVDocument = () => {
                         </View>
 
                         <View style={styles.projectItem}>
-                            <Text style={styles.projectTitle}>Sistema de Reclutamiento Empresarial</Text>
-                            <Text style={styles.projectDesc}>Gestión de reclutamiento con procesamiento masivo de candidatos.</Text>
+                            <Text style={styles.projectTitle}>Enterprise Recruitment System</Text>
+                            <Text style={styles.projectDesc}>Recruitment management with bulk candidate processing.</Text>
                             <View style={styles.techStack}>
                                 <Text style={styles.techBagde}>.NET</Text>
                                 <Text style={styles.techBagde}>Bootstrap</Text>

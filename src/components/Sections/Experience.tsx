@@ -2,29 +2,19 @@ import React from 'react';
 import { SectionTitle } from '../UI/SectionTitle';
 import { FaCheck, FaMicrosoft, FaJs, FaReact, FaCode, FaDatabase, FaLayerGroup, FaPython, FaDocker, FaGitAlt, FaNodeJs } from 'react-icons/fa';
 import { SiTypescript, SiTailwindcss, SiNextdotjs, SiPostgresql, SiNestjs, SiVuedotjs } from 'react-icons/si';
+import { useLanguage } from '../../context/LanguageContext';
 
 export const EXPERIENCE_DATA = [
     {
+        // Text fields will be overwritten by translations
         role: "Programador de Auditoría Senior",
         company: "Grupo Salinas",
         period: "Mayo 2024 - Actual",
         duration: "~2 años",
-        description: "Líder técnico responsable de la arquitectura, desarrollo y evolución de los sistemas críticos de auditoría interna (ADA/HONESTEL) que procesan denuncias de todas las empresas del grupo corporativo.",
-        functions: [
-            "Diseño y desarrollo de la API v2 del sistema de auditoría con arquitectura de microservicios",
-            "Optimización de stored procedures en SQL Server, logrando mejoras de rendimiento de hasta 40%",
-            "Refactorización de código legacy: modularización de métodos extensos, eliminación de código redundante y mejora de mantenibilidad",
-            "Actualización de librerías/packages y migración del código a nuevas versiones con buenas prácticas",
-            "Implementación de encriptación end-to-end con AES-256, RSA y SHA-256 para protección de datos sensibles",
-            "Liderazgo de la migración progresiva de .NET Framework a .NET Core",
-            "Modernización del frontend: de vanilla JS a React + Next.js + TypeScript + Tailwind CSS",
-            "Automatización de procesos operativos mediante scripts Python, eliminando tareas manuales repetitivas"
-        ],
-        achievements: [
-            "Reducción de 40% en tiempo de ejecución de consultas críticas de base de datos",
-            "Automatización de procesos que tomaban 30 minutos a solo segundos con Python",
-            "Creación de documentación técnica completa para sistemas que carecían de ella"
-        ],
+        description: "Líder técnico responsable...",
+        functions: [],
+        achievements: [],
+        // Static data
         technologies: [
             { name: ".NET Core", icon: FaMicrosoft, color: "text-blue-600 dark:text-blue-400" },
             { name: "C#", icon: FaCode, color: "text-purple-600 dark:text-purple-400" },
@@ -44,19 +34,9 @@ export const EXPERIENCE_DATA = [
         company: "Digital Solutions",
         period: "Mayo 2023 - Mayo 2024",
         duration: "1 año",
-        description: "Desarrollo integral de sistemas empresariales para gestión de recursos humanos y reclutamiento, con enfoque en procesamiento masivo de datos y automatización de flujos operativos.",
-        functions: [
-            "Diseño e implementación end-to-end del sistema de reclutamiento y gestión de candidatos",
-            "Desarrollo de módulo de carga masiva desde Excel y TXT, procesando miles de registros simultáneamente",
-            "Arquitectura e integración de servicios backend con .NET Framework y Entity Framework",
-            "Diseño de interfaces responsivas y accesibles con JavaScript y Bootstrap",
-            "Optimización de consultas SQL Server para manejo eficiente de grandes volúmenes de datos"
-        ],
-        achievements: [
-            "Entrega de sistema completo de gestión de reclutamiento desde cero",
-            "Módulo de carga masiva capaz de procesar miles de registros en segundos",
-            "Reducción significativa del tiempo de onboarding mediante automatización de procesos"
-        ],
+        description: "Desarrollo integral...",
+        functions: [],
+        achievements: [],
         technologies: [
             { name: ".NET Framework", icon: FaMicrosoft, color: "text-blue-600 dark:text-blue-400" },
             { name: "Entity Framework", icon: FaLayerGroup, color: "text-indigo-600 dark:text-indigo-400" },
@@ -73,19 +53,9 @@ export const EXPERIENCE_DATA = [
         company: "Freelance / Proyectos Propios",
         period: "2020 - 2023",
         duration: "3 años",
-        description: "Desarrollo profesional autodidacta construyendo aplicaciones web completas, sistemas de gestión empresarial y herramientas de automatización con múltiples stacks tecnológicos.",
-        functions: [
-            "Desarrollo de aplicaciones web completas con .NET, Entity Framework y bases de datos relacionales",
-            "Diseño e implementación de sistemas de administración con SQL Server",
-            "Construcción de APIs RESTful y exploración de arquitecturas de microservicios",
-            "Implementación de algoritmos de seguridad y criptografía (AES, RSA, SHA-256)",
-            "Desarrollo con stacks modernos: NestJS, PostgreSQL, Vue.js y Node.js"
-        ],
-        achievements: [
-            "Dominio autodidacta de +20 tecnologías en backend, frontend y DevOps",
-            "Portfolio de proyectos funcionales desplegados en producción",
-            "Base sólida en patrones de diseño y arquitecturas escalables"
-        ],
+        description: "Desarrollo profesional...",
+        functions: [],
+        achievements: [],
         technologies: [
             { name: ".NET", icon: FaMicrosoft, color: "text-blue-600 dark:text-blue-400" },
             { name: "Python", icon: FaPython, color: "text-yellow-500 dark:text-yellow-400" },
@@ -100,6 +70,22 @@ export const EXPERIENCE_DATA = [
 ];
 
 export const Experience: React.FC = () => {
+    const { t } = useLanguage();
+
+    const experiencePoints = EXPERIENCE_DATA.map((item, index) => {
+        const trans = t.experience.jobs[index];
+        return {
+            ...item,
+            role: trans.role,
+            company: trans.company,
+            period: trans.period,
+            duration: trans.duration,
+            description: trans.description,
+            functions: trans.functions,
+            achievements: trans.achievements
+        };
+    });
+
     return (
         <section id="experiencia" className="enhanced-section section-tech-bg py-12 sm:py-16 md:py-20 bg-gray-50 dark:bg-gray-900 transition-colors duration-300 relative">
             <div className="section-particles">
@@ -110,12 +96,12 @@ export const Experience: React.FC = () => {
 
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <SectionTitle
-                    title="Experiencia Profesional"
-                    subtitle="+5 años de trayectoria en desarrollo de software"
+                    title={t.experience.title}
+                    subtitle={t.experience.subtitle}
                 />
 
                 <div className="space-y-8 sm:space-y-12">
-                    {EXPERIENCE_DATA.map((exp, index) => (
+                    {experiencePoints.map((exp, index) => (
                         <div key={index} className="experience-card glass-card tech-hover-effect p-4 sm:p-6 md:p-8">
                             <div className="experience-header flex flex-col md:flex-row md:items-center md:justify-between mb-4 sm:mb-6">
                                 <div className="experience-company mb-3 md:mb-0">
@@ -142,7 +128,7 @@ export const Experience: React.FC = () => {
 
                                 <div className="grid md:grid-cols-2 gap-6 md:gap-8">
                                     <div>
-                                        <h4 className="font-semibold mb-3 sm:mb-4 text-gray-800 dark:text-gray-200 text-base sm:text-lg">Responsabilidades:</h4>
+                                        <h4 className="font-semibold mb-3 sm:mb-4 text-gray-800 dark:text-gray-200 text-base sm:text-lg">{t.experience.responsibilities}</h4>
                                         <ul className="space-y-2 text-sm sm:text-base text-gray-600 dark:text-gray-300">
                                             {exp.functions.map((func, i) => (
                                                 <li key={i} className="flex items-start">
@@ -152,9 +138,9 @@ export const Experience: React.FC = () => {
                                             ))}
                                         </ul>
 
-                                        {exp.achievements && (
+                                        {exp.achievements && exp.achievements.length > 0 && (
                                             <div className="mt-4 sm:mt-6">
-                                                <h4 className="font-semibold mb-2 sm:mb-3 text-gray-800 dark:text-gray-200 text-base sm:text-lg">Logros Destacados:</h4>
+                                                <h4 className="font-semibold mb-2 sm:mb-3 text-gray-800 dark:text-gray-200 text-base sm:text-lg">{t.experience.achievements}</h4>
                                                 <ul className="space-y-2">
                                                     {exp.achievements.map((achievement, i) => (
                                                         <li key={i} className="flex items-start text-sm sm:text-base text-green-600 dark:text-green-400">
@@ -168,7 +154,7 @@ export const Experience: React.FC = () => {
                                     </div>
 
                                     <div>
-                                        <h4 className="font-semibold mb-3 sm:mb-4 text-gray-800 dark:text-gray-200 text-base sm:text-lg mt-4 md:mt-0">Stack Tecnológico:</h4>
+                                        <h4 className="font-semibold mb-3 sm:mb-4 text-gray-800 dark:text-gray-200 text-base sm:text-lg mt-4 md:mt-0">{t.experience.stack}</h4>
                                         <div className="flex flex-wrap gap-2 sm:gap-3">
                                             {exp.technologies.map((tech, i) => (
                                                 <div key={i} className="flex items-center bg-gray-100 dark:bg-gray-700 px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-md">

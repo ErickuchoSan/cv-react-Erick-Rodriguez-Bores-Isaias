@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 // import { SectionTitle } from '../UI/SectionTitle'; // Removed unused import
 import { FaGithub, FaLinkedin, FaEnvelope, FaFileDownload, FaArrowRight } from 'react-icons/fa';
 import { PDFDownloadLink } from '@react-pdf/renderer';
@@ -7,7 +7,8 @@ import { CVDocumentEN } from '../PDF/CVDocumentEN'; // Import English version
 import { useLanguage } from '../../context/LanguageContext';
 
 export const Hero: React.FC = () => {
-    const { t, language } = useLanguage(); // Get current language
+    const { t } = useLanguage(); // Removed language from destructuring as it is no longer used for download logic
+    const [showDownloadOptions, setShowDownloadOptions] = useState(false);
 
     return (
         <section id="inicio" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gray-50 dark:bg-gray-900 transition-colors duration-300 pt-16">
@@ -45,26 +46,35 @@ export const Hero: React.FC = () => {
                             {t.hero.projectsBtn}
                         </a>
 
-                        {/* PDF Download Button */}
-                        <div className="inline-flex">
-                            <PDFDownloadLink
-                                document={language === 'en' ? <CVDocumentEN /> : <CVDocument />}
-                                fileName={`CV_Erick_Rodriguez_${language.toUpperCase()}.pdf`}
+                        {/* PDF Download Dropdown */}
+                        <div className="relative inline-flex">
+                            <button
+                                onClick={() => setShowDownloadOptions(!showDownloadOptions)}
                                 className="px-8 py-3 rounded-lg bg-gray-800 dark:bg-gray-700 text-white font-semibold hover:bg-gray-700 dark:hover:bg-gray-600 transition-colors flex items-center justify-center shadow-lg"
                             >
-                                {({ loading }) => (
-                                    <>
-                                        {loading ? (
-                                            <span>{t.hero.generating}</span>
-                                        ) : (
-                                            <>
-                                                <span className="mr-2">{t.hero.downloadBtn}</span>
-                                                <FaFileDownload />
-                                            </>
-                                        )}
-                                    </>
-                                )}
-                            </PDFDownloadLink>
+                                <span className="mr-2">{t.hero.downloadBtn}</span>
+                                <FaFileDownload />
+                            </button>
+
+                            {/* Dropdown Menu */}
+                            {showDownloadOptions && (
+                                <div className="absolute top-full left-0 mt-2 w-full bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden z-20 animate-fade-in-up">
+                                    <PDFDownloadLink
+                                        document={<CVDocument />}
+                                        fileName="CV_Erick_Rodriguez_ES.pdf"
+                                        className="block w-full px-4 py-3 text-left text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                                    >
+                                        {({ loading }) => (loading ? 'Español (Generando...)' : 'Español')}
+                                    </PDFDownloadLink>
+                                    <PDFDownloadLink
+                                        document={<CVDocumentEN />}
+                                        fileName="CV_Erick_Rodriguez_EN.pdf"
+                                        className="block w-full px-4 py-3 text-left text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors border-t border-gray-100 dark:border-gray-700"
+                                    >
+                                        {({ loading }) => (loading ? 'English (Generating...)' : 'English')}
+                                    </PDFDownloadLink>
+                                </div>
+                            )}
                         </div>
                     </div>
 

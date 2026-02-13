@@ -167,7 +167,7 @@ const styles = StyleSheet.create({
         width: 3,
         height: 3,
         backgroundColor: '#94a3b8',
-        borderRadius: '50%',
+        borderRadius: 1.5,
         marginRight: 6,
         marginTop: 4,
     },
@@ -229,7 +229,7 @@ const styles = StyleSheet.create({
 
 export const CVDocument = () => {
     // Definimos la imagen aquí dentro del componente para que se evalúe al renderizar
-    const profileImage = `${window.location.origin}/assets/images/profile.jpeg`;
+    const profileImage = `${window.location.origin}/assets/images/profile.jpg`;
 
     return (
         <Document>

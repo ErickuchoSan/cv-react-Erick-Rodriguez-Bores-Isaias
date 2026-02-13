@@ -88,7 +88,7 @@ export const Hero: React.FC = () => {
                         <div className="absolute inset-0 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full opacity-20 blur-3xl animate-pulse"></div>
                         <div className="relative z-10 glass-card p-2 rounded-full border-4 border-white/10 overflow-hidden shadow-2xl">
                             <img
-                                src="/assets/images/profile.jpeg"
+                                src="/assets/images/profile.jpg"
                                 alt="Erick Rodríguez"
                                 className="w-full h-full object-cover rounded-full hover:scale-105 transition-transform duration-700"
                             />

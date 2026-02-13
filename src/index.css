@@ -4,115 +4,104 @@
 
 @theme {
   --color-primary: #3b82f6;
-  --color-primary-dark: #1e40af;
-  --color-secondary: #7c3aed;
+  /* Electric Blue */
+  --color-primary-dark: #2563eb;
+  --color-accent: #06b6d4;
+  /* Cyan */
+  --color-bg-light: #f8fafc;
+  --color-text-main: #1e293b;
+  --color-text-muted: #64748b;
 
   --font-sans: 'Inter', sans-serif;
 
   --animate-fade-in: fadeInUp 0.8s ease-out;
-  --animate-fade-in-delay: fadeInUp 0.8s ease-out 0.2s both;
-  --animate-fade-in-delay-2: fadeInUp 0.8s ease-out 0.4s both;
-  --animate-fade-in-delay-3: fadeInUp 0.8s ease-out 0.6s both;
-  --animate-subtle-pulse: subtlePulse 6s ease-in-out infinite;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-pulse-soft: pulseSoft 4s ease-in-out infinite;
 
   @keyframes fadeInUp {
-    0% {
+    from {
       opacity: 0;
-      transform: translate3d(0, 30px, 0);
+      transform: translateY(20px);
     }
 
-    100% {
+    to {
       opacity: 1;
-      transform: translate3d(0, 0, 0);
+      transform: translateY(0);
     }
   }
 
-  @keyframes subtlePulse {
+  @keyframes float {
 
     0%,
     100% {
-      transform: translate(-50%, -50%) scale(1);
-      opacity: 0.4;
+      transform: translateY(0);
     }
 
     50% {
-      transform: translate(-50%, -50%) scale(1.05);
-      opacity: 0.1;
+      transform: translateY(-10px);
+    }
+  }
+
+  @keyframes pulseSoft {
+
+    0%,
+    100% {
+      opacity: 0.6;
+      transform: scale(1);
+    }
+
+    50% {
+      opacity: 1;
+      transform: scale(1.05);
     }
   }
 }
 
 @layer base {
-  html {
-    scroll-behavior: smooth;
-  }
-
   body {
-    @apply font-sans text-gray-800 dark:text-gray-100 bg-gray-50 dark:bg-gray-900 transition-colors duration-300;
+    @apply font-sans text-slate-800 bg-slate-50 antialiased selection:bg-blue-100 selection:text-blue-900;
+    background-image:
+      radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.05) 0%, transparent 40%),
+      radial-gradient(circle at 90% 80%, rgba(6, 182, 212, 0.05) 0%, transparent 40%);
+    background-attachment: fixed;
   }
 }
 
 @layer components {
-  .btn-tech-primary {
-    @apply inline-flex items-center text-sm sm:text-base font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-300 relative overflow-hidden px-5 py-3 sm:px-8 sm:py-4 rounded-xl border border-blue-500/30 shadow-lg backdrop-blur-md justify-center;
-    background: linear-gradient(135deg, rgba(59, 130, 246, 0.9), rgba(29, 78, 216, 0.9));
+
+  /* Modern Button Styles */
+  .btn-modern-primary {
+    @apply inline-flex items-center px-6 py-3 rounded-full text-white font-medium shadow-lg hover:shadow-blue-500/30 transition-all duration-300 transform hover:-translate-y-1 active:scale-95;
+    background: linear-gradient(135deg, #3b82f6, #06b6d4);
   }
 
-  .btn-tech-primary:hover {
-    @apply transform -translate-y-1 shadow-2xl scale-105;
-    background: linear-gradient(135deg, rgba(37, 99, 235, 0.95), rgba(30, 64, 175, 0.95));
+  .btn-modern-secondary {
+    @apply inline-flex items-center px-6 py-3 rounded-full text-slate-700 font-medium bg-white border border-slate-200 shadow-sm hover:shadow-md hover:border-blue-300 hover:text-blue-600 transition-all duration-300 transform hover:-translate-y-1;
   }
 
-  .btn-tech-secondary {
-    @apply inline-flex items-center text-sm sm:text-base font-medium text-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-300 relative px-5 py-3 sm:px-8 sm:py-4 rounded-xl border border-blue-500/40 shadow-md backdrop-blur-md bg-blue-500/5 justify-center;
+  /* Frosted Glass Card */
+  .glass-card-modern {
+    @apply bg-white/70 backdrop-blur-xl border border-white/50 shadow-xl rounded-2xl transition-all duration-500 hover:shadow-2xl hover:bg-white/90 relative overflow-hidden;
+    box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.05);
   }
 
-  .btn-tech-secondary:hover {
-    @apply transform -translate-y-1 shadow-xl text-blue-800 bg-blue-500/15 scale-105;
+  .glass-card-modern:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px -10px rgba(59, 130, 246, 0.15);
   }
 
-  .glass-card {
-    @apply bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 transition-all duration-500 relative overflow-hidden backdrop-blur-sm;
+  /* Typography */
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-500;
   }
 
-  .glass-card::before {
+  .section-title-modern {
+    @apply text-3xl md:text-4xl font-bold text-slate-900 mb-2 relative inline-block;
+  }
+
+  .section-title-modern::after {
     content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-    transition: left 0.6s ease;
-  }
-
-  .glass-card:hover::before {
-    left: 100%;
-  }
-
-  .tech-hover-effect {
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  }
-
-  .tech-hover-effect:hover {
-    @apply shadow-2xl;
-    box-shadow: 0 25px 50px -12px rgba(59, 130, 246, 0.25);
-  }
-
-  @media (min-width: 768px) {
-    .tech-hover-effect:hover {
-      @apply transform -translate-y-2;
-    }
-  }
-
-  .enhanced-section-title {
-    @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 bg-clip-text text-transparent mb-4;
-    background-size: 200% auto;
-    animation: gradientShift 3s ease infinite;
-  }
-
-  .tech-subtitle {
-    @apply text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-400 font-light;
+    @apply block w-16 h-1 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full mt-2;
   }
 }
 
@@ -706,15 +695,10 @@
 }
 
 .project-card:hover {
+  transform: translateY(-10px) rotateX(2deg);
   box-shadow:
     0 30px 60px -15px rgba(0, 0, 0, 0.3),
     0 0 30px rgba(59, 130, 246, 0.2);
-}
-
-@media (min-width: 768px) {
-  .project-card:hover {
-    transform: translateY(-10px) rotateX(2deg);
-  }
 }
 
 .project-card .project-image {
@@ -809,137 +793,4 @@
 
 .tech-tag:hover {
   transform: translateY(-3px) scale(1.1);
-  box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
-}
-
-/* ============================================
-   STAT ITEM COUNTER ANIMATION
-   ============================================ */
-
-.stat-item {
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.stat-item:hover {
-  box-shadow: 0 20px 40px rgba(59, 130, 246, 0.2);
-}
-
-@media (min-width: 768px) {
-  .stat-item:hover {
-    transform: translateY(-5px) scale(1.05);
-  }
-}
-
-/* ============================================
-   INFO CARD ENHANCEMENTS
-   ============================================ */
-
-.info-card {
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.info-card:hover {
-  border-left: 4px solid #3b82f6;
-}
-
-@media (min-width: 768px) {
-  .info-card:hover {
-    transform: translateX(10px);
-  }
-}
-
-/* ============================================
-   ANIMATE ON SCROLL - CSS ONLY APPROACH
-   ============================================ */
-
-@media (prefers-reduced-motion: no-preference) {
-  .enhanced-section {
-    animation: sectionReveal 0.8s ease-out;
-  }
-
-  @keyframes sectionReveal {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-}
-
-/* ============================================
-   CURSOR EFFECTS (optional glow on cards)
-   ============================================ */
-
-.glass-card {
-  --mouse-x: 50%;
-  --mouse-y: 50%;
-}
-
-.glass-card:hover::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y),
-      rgba(59, 130, 246, 0.06),
-      transparent 40%);
-  pointer-events: none;
-  border-radius: inherit;
-}
-
-/* ============================================
-   LOADING ANIMATION
-   ============================================ */
-
-@keyframes loadingPulse {
-
-  0%,
-  100% {
-    opacity: 0.4;
-  }
-
-  50% {
-    opacity: 1;
-  }
-}
-
-.loading-pulse {
-  animation: loadingPulse 1.5s ease-in-out infinite;
-}
-
-/* ============================================
-   GRADIENT TEXT ANIMATION
-   ============================================ */
-
-.gradient-text-animated {
-  background: linear-gradient(90deg,
-      #3b82f6,
-      #8b5cf6,
-      #06b6d4,
-      #3b82f6);
-  background-size: 300% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: gradientFlow 4s ease infinite;
-}
-
-@keyframes gradientFlow {
-  0% {
-    background-position: 0% 50%;
-  }
-
-  50% {
-    background-position: 100% 50%;
-  }
-
-  100% {
-    background-position: 0% 50%;
-  }
 }

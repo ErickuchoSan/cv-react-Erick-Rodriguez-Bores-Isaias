@@ -6,59 +6,45 @@ import { CVDocument } from '../PDF/CVDocument';
 
 export const Hero: React.FC = () => {
     return (
-        <section id="inicio" className="min-h-screen flex items-center justify-center hero-tech-bg text-white relative overflow-hidden pt-24 md:pt-20">
-            {/* ... existing background effects ... */}
-            <div className="circuit-nodes opacity-30">
-                {[...Array(8)].map((_, i) => (
-                    <div key={`node-${i}`} className="circuit-node" />
-                ))}
+        <section id="inicio" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20 md:pt-0 bg-transparent">
+            {/* Soft Ambient Background */}
+            <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
+                <div className="absolute -top-[10%] -left-[10%] w-[50%] h-[50%] bg-blue-200/30 rounded-full blur-[100px] animate-float"></div>
+                <div className="absolute top-[20%] -right-[10%] w-[40%] h-[40%] bg-cyan-200/30 rounded-full blur-[100px] animate-float" style={{ animationDelay: '2s' }}></div>
+                <div className="absolute -bottom-[10%] left-[20%] w-[60%] h-[40%] bg-indigo-200/20 rounded-full blur-[100px] animate-float" style={{ animationDelay: '4s' }}></div>
             </div>
 
-            <div className="tech-particles opacity-30">
-                {[...Array(8)].map((_, i) => (
-                    <div key={`particle-${i}`} className="tech-particle" />
-                ))}
-            </div>
-
-            <div className="tech-waves opacity-20">
-                {[...Array(3)].map((_, i) => (
-                    <div key={`wave-${i}`} className="tech-wave" />
-                ))}
-            </div>
-
-            <div className="scan-line opacity-10"></div>
-
-            <div className="hero-overlay absolute inset-0 bg-black/20 z-0"></div>
-
-            <div className="relative z-10 text-center max-w-4xl mx-auto px-4 sm:px-6 pb-4 sm:pb-16">
-                <div className="mb-6 sm:mb-8 relative inline-block">
-                    <div className="profile-glow"></div>
+            <div className="relative z-10 text-center max-w-5xl mx-auto px-4">
+                <div className="mb-10 relative inline-block group">
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full blur-lg opacity-40 group-hover:opacity-60 transition-opacity duration-500"></div>
                     <img
                         src="/assets/images/profile.jpg"
                         alt="Erick Rodríguez Bores Isaías"
-                        className="w-24 h-24 sm:w-32 sm:h-32 rounded-full mx-auto mb-4 sm:mb-6 border-4 border-white/30 shadow-2xl relative z-10 hover:scale-110 transition-all duration-500 hover:border-white/60 object-cover"
+                        className="w-40 h-40 rounded-full mx-auto relative z-10 object-cover border-4 border-white shadow-2xl transform transition-transform duration-500 group-hover:scale-105"
                     />
+                    <div className="absolute bottom-2 right-2 bg-green-500 w-6 h-6 rounded-full border-4 border-white z-20" title="Available for work"></div>
                 </div>
 
-                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-4 sm:mb-6 animate-fade-in">
-                    Erick Rodríguez Bores Isaías
+                <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight text-slate-900">
+                    Erick Rodríguez <br className="hidden md:block" />
+                    <span className="text-gradient">Bores Isaías</span>
                 </h1>
 
-                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-light mb-6 sm:mb-8 opacity-90 animate-fade-in-delay">
-                    Desarrollador Full Stack Senior | Arquitecto de Soluciones Empresariales
+                <h2 className="text-2xl md:text-3xl font-medium mb-8 text-slate-600">
+                    Desarrollador Full Stack Senior
                 </h2>
 
-                <p className="text-base sm:text-lg md:text-xl mb-8 sm:mb-12 max-w-2xl mx-auto leading-relaxed animate-fade-in-delay-2">
-                    +5 años diseñando arquitecturas empresariales escalables con .NET/C# y React.
-                    Especialista en optimización de rendimiento, migración de sistemas legacy y seguridad de datos.
+                <p className="text-lg md:text-xl mb-12 max-w-2xl mx-auto leading-relaxed text-slate-500">
+                    Impulsando la innovación con arquitecturas escalables y experiencias de usuario modernas.
+                    Especialista en <span className="font-semibold text-blue-600">.NET/C#</span>, <span className="font-semibold text-cyan-600">React</span> y Soluciones Cloud.
                 </p>
 
-                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center animate-fade-in-delay-3">
-                    <a href="#contacto" className="btn-tech-primary">
+                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <a href="#contacto" className="btn-modern-primary">
                         <FaEnvelope className="mr-2" />
                         Contáctame
                     </a>
-                    <a href="#proyectos" className="btn-tech-secondary !text-white !border-white/40 !bg-white/10 hover:!bg-white/20 hover:!text-white">
+                    <a href="#proyectos" className="btn-modern-secondary">
                         <FaCode className="mr-2" />
                         Ver Proyectos
                     </a>
@@ -66,20 +52,19 @@ export const Hero: React.FC = () => {
                     <PDFDownloadLink
                         document={<CVDocument />}
                         fileName="CV_Erick_Rodriguez_Bores_Isaias.pdf"
-                        className="btn-tech-primary"
-                        style={{ display: 'inline-flex', alignItems: 'center', textDecoration: 'none', justifyContent: 'center' }}
+                        className="text-slate-500 hover:text-blue-600 font-medium transition-colors px-4 py-2 flex items-center gap-2"
                     >
                         {({ loading }) => (
-                            <span style={{ display: 'flex', alignItems: 'center' }}>
-                                <FaDownload style={{ marginRight: '0.5rem' }} />
+                            <>
+                                <FaDownload />
                                 {loading ? 'Generando...' : 'Descargar CV'}
-                            </span>
+                            </>
                         )}
                     </PDFDownloadLink>
                 </div>
             </div>
 
-            <div className="absolute bottom-2 sm:bottom-4 left-1/2 transform -translate-x-1/2 animate-bounce hidden sm:block">
+            <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce text-slate-400">
                 <FaChevronDown className="text-2xl" />
             </div>
         </section>

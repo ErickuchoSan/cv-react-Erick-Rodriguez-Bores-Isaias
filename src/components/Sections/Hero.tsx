@@ -25,18 +25,18 @@ export const Hero: React.FC = () => {
                     <div className="absolute bottom-2 right-2 bg-green-500 w-6 h-6 rounded-full border-4 border-white z-20" title="Available for work"></div>
                 </div>
 
-                <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight text-slate-900">
+                <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight text-slate-900 dark:text-white">
                     Erick Rodríguez <br className="hidden md:block" />
                     <span className="text-gradient">Bores Isaías</span>
                 </h1>
 
-                <h2 className="text-2xl md:text-3xl font-medium mb-8 text-slate-600">
+                <h2 className="text-2xl md:text-3xl font-medium mb-8 text-slate-600 dark:text-slate-300">
                     Desarrollador Full Stack Senior
                 </h2>
 
-                <p className="text-lg md:text-xl mb-12 max-w-2xl mx-auto leading-relaxed text-slate-500">
+                <p className="text-lg md:text-xl mb-12 max-w-2xl mx-auto leading-relaxed text-slate-500 dark:text-slate-400">
                     Impulsando la innovación con arquitecturas escalables y experiencias de usuario modernas.
-                    Especialista en <span className="font-semibold text-blue-600">.NET/C#</span>, <span className="font-semibold text-cyan-600">React</span> y Soluciones Cloud.
+                    Especialista en <span className="font-semibold text-blue-600 dark:text-blue-400">.NET/C#</span>, <span className="font-semibold text-cyan-600 dark:text-cyan-400">React</span> y Soluciones Cloud.
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">

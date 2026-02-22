@@ -8,11 +8,11 @@
 
 ### Issues detectados:
 
-- [ ] **`src/components/Sections/Skills.tsx:9-68`** — `SKILLS_DATA` está definido dentro del componente. Mover a un archivo de datos separado (`src/data/skills.ts`).
-- [ ] **`src/components/Sections/Experience.tsx:7-70`** — `EXPERIENCE_DATA` hardcodeado en el componente. Extraer a `src/data/experience.ts`.
-- [ ] **`src/components/Sections/Projects.tsx:6-25`** — `PROJECTS` hardcodeado. Mover a `src/data/projects.ts`.
-- [ ] **`src/components/Sections/Languages.tsx:9-15`** — `LANGUAGES_DATA` podría combinarse con las traducciones en lugar de mapear índices.
-- [ ] **`src/components/Layout/Navbar.tsx:16-23`** — `NAV_LINKS` definido dentro del componente. Extraer a archivo de configuración o usar traducciones.
+- [x] **`src/components/Sections/Skills.tsx:9-68`** — `SKILLS_DATA` está definido dentro del componente. Mover a un archivo de datos separado (`src/data/skills.ts`).
+- [x] **`src/components/Sections/Experience.tsx:7-70`** — `EXPERIENCE_DATA` hardcodeado en el componente. Extraer a `src/data/experience.ts`.
+- [x] **`src/components/Sections/Projects.tsx:6-25`** — `PROJECTS` hardcodeado. Mover a `src/data/projects.ts`.
+- [x] **`src/components/Sections/Languages.tsx:9-15`** — `LANGUAGES_DATA` podría combinarse con las traducciones en lugar de mapear índices.
+- [x] **`src/components/Layout/Navbar.tsx:16-23`** — `NAV_LINKS` definido dentro del componente. Extraer a archivo de configuración o usar traducciones.
 
 ---
 
@@ -20,13 +20,13 @@
 
 ### Issues detectados:
 
-- [ ] **`src/components/Sections/Contact.tsx:8-29`** — Lógica de formulario (estado + handlers + submit) está mezclada con UI. Extraer a un custom hook `useContactForm()`.
-- [ ] **`src/components/Sections/Skills.tsx`** — Mezcla datos estáticos (iconos, colores de tecnologías) con datos de traducción. Separar:
+- [x] **`src/components/Sections/Contact.tsx:8-29`** — Lógica de formulario (estado + handlers + submit) está mezclada con UI. Extraer a un custom hook `useContactForm()`.
+- [x] **`src/components/Sections/Skills.tsx`** — Mezcla datos estáticos (iconos, colores de tecnologías) con datos de traducción. Separar:
   - `src/data/skills.ts` → datos estáticos (iconos, colores)
   - `src/i18n/translations.ts` → textos traducibles
-- [ ] **`src/components/Sections/Experience.tsx:75-87`** — Lógica de mapeo de traducciones dentro del componente. Mover a una utilidad o hacer en el archivo de datos.
-- [ ] **Crear** `src/hooks/useContactForm.ts` para encapsular la lógica del formulario de contacto.
-- [ ] **Crear** `src/utils/mergeWithTranslations.ts` para la lógica repetida de merge de datos + traducciones.
+- [x] **`src/components/Sections/Experience.tsx:75-87`** — Lógica de mapeo de traducciones dentro del componente. Mover a una utilidad o hacer en el archivo de datos.
+- [x] **Crear** `src/hooks/useContactForm.ts` para encapsular la lógica del formulario de contacto.
+- [x] **Crear** `src/utils/mergeWithTranslations.ts` para la lógica repetida de merge de datos + traducciones.
 
 ---
 
@@ -34,10 +34,10 @@
 
 ### Issues CRÍTICOS:
 
-- [ ] **`src/components/PDF/CVDocument.tsx` vs `CVDocumentEN.tsx`** — Ambos archivos son ~95% idénticos (~470 líneas cada uno). 
+- [x] **`src/components/PDF/CVDocument.tsx` vs `CVDocumentEN.tsx`** — Ambos archivos son ~95% idénticos (~470 líneas cada uno). 
   - **Solución:** Crear un componente base `CVDocumentBase.tsx` que reciba el idioma como prop y use las traducciones existentes. Eliminar duplicación.
   
-- [ ] **Patrón de partículas repetido** en 6 archivos:
+- [x] **Patrón de partículas repetido** en 6 archivos:
   - `Languages.tsx:29-33`
   - `Projects.tsx:41-45`
   - `Skills.tsx:72-76`
@@ -46,10 +46,10 @@
   - `About.tsx:11-15`
   - **Solución:** Crear componente `src/components/UI/SectionParticles.tsx`
 
-- [ ] **Clases CSS repetidas** — `glass-card tech-hover-effect` se repiten en 15+ lugares.
+- [x] **Clases CSS repetidas** — `glass-card tech-hover-effect` se repiten en 15+ lugares.
   - **Solución:** Crear componente wrapper `src/components/UI/GlassCard.tsx`
 
-- [ ] **Patrón de mapeo datos+traducciones** repetido:
+- [x] **Patrón de mapeo datos+traducciones** repetido:
   ```tsx
   // Se repite en: Languages, Projects, Experience
   items.map((item, index) => {
@@ -59,7 +59,7 @@
   ```
   - **Solución:** Crear utilidad `mergeDataWithTranslations(data, translations)`
 
-- [ ] **Datos de contacto hardcodeados** en múltiples archivos. Ver sección Single Source of Truth.
+- [x] **Datos de contacto hardcodeados** en múltiples archivos. Ver sección Single Source of Truth.
 
 ---
 
@@ -67,7 +67,7 @@
 
 ### Issues CRÍTICOS:
 
-- [ ] **Datos de contacto duplicados/inconsistentes:**
+- [x] **Datos de contacto duplicados/inconsistentes:**
   | Archivo | Email usado | Ubicación |
   |---------|-------------|-----------|
   | `Contact.tsx:58` | e.bores.i@outlook.com | Correcto |
@@ -77,7 +77,7 @@
   
   - **Solución:** Crear `src/data/contact.ts` con todos los datos de contacto y usarlos en todos los componentes.
 
-- [ ] **URLs de redes sociales duplicadas:**
+- [x] **URLs de redes sociales duplicadas:**
   - LinkedIn: `Contact.tsx:92`, `CVDocument.tsx:267`, `Hero.tsx:86`
   - GitHub: `Contact.tsx:95`, `CVDocument.tsx:273`, `Hero.tsx:83`, `Footer.tsx:45`
   - WhatsApp: `Contact.tsx:98`, `Contact.tsx:26`, `CVDocument.tsx:255`
@@ -91,14 +91,14 @@
     };
     ```
 
-- [ ] **Teléfono hardcodeado** en 3 lugares:
+- [x] **Teléfono hardcodeado** en 3 lugares:
   - `Contact.tsx:26,70`
   - `CVDocument.tsx:256`
   - `CVDocumentEN.tsx:256`
   
-- [ ] **Datos de experiencia duplicados** entre `Experience.tsx` y `CVDocument.tsx/EN.tsx`. Usar la misma fuente de datos.
+- [x] **Datos de experiencia duplicados** entre `Experience.tsx` y `CVDocument.tsx/EN.tsx`. Usar la misma fuente de datos.
 
-- [ ] **Datos de proyectos duplicados** entre `Projects.tsx` y `CVDocument.tsx/EN.tsx`.
+- [x] **Datos de proyectos duplicados** entre `Projects.tsx` y `CVDocument.tsx/EN.tsx`.
 
 ### Archivo a crear: `src/data/contact.ts`
 ```typescript
@@ -121,20 +121,20 @@ export const CONTACT_INFO = {
 
 ### Issues detectados:
 
-- [ ] **`src/components/Sections/Contact.tsx`** — Formulario sin validación:
+- [x] **`src/components/Sections/Contact.tsx`** — Formulario sin validación:
   - Agregar validación de email (formato)
   - Agregar validación de longitud mínima en mensaje
   - Agregar feedback visual de errores
   
-- [ ] **`src/components/Sections/Hero.tsx:62-76`** — PDFDownloadLink sin manejo de errores:
+- [x] **`src/components/Sections/Hero.tsx:62-76`** — PDFDownloadLink sin manejo de errores:
   - Agregar estado de error si la generación falla
   - Mostrar mensaje si el navegador no soporta descarga
 
-- [ ] **`src/components/Sections/Contact.tsx:22-29`** — `handleSubmit` solo abre WhatsApp:
+- [x] **`src/components/Sections/Contact.tsx:22-29`** — `handleSubmit` solo abre WhatsApp:
   - Agregar feedback visual de éxito/error
   - Considerar alternativa si el usuario no tiene WhatsApp (mailto fallback)
   
-- [ ] **Estados de loading** — Agregar estados de carga donde aplique:
+- [x] **Estados de loading** — Agregar estados de carga donde aplique:
   - Carga de imágenes de perfil
   - Generación de PDF
 
@@ -144,19 +144,19 @@ export const CONTACT_INFO = {
 
 ### Issues detectados:
 
-- [ ] **`src/components/Layout/Navbar.tsx`** — Accesibilidad del menú:
+- [x] **`src/components/Layout/Navbar.tsx`** — Accesibilidad del menú:
   - Agregar `role="navigation"` y `aria-label="Main navigation"`
   - Agregar `aria-expanded={isMenuOpen}` al botón del menú móvil
   - Agregar `aria-controls` apuntando al menú móvil
 
-- [ ] **`src/components/Layout/Navbar.tsx:56-72`** — Botones de idioma:
+- [x] **`src/components/Layout/Navbar.tsx:56-72`** — Botones de idioma:
   - Agregar `aria-pressed={language === 'es'}` y `aria-pressed={language === 'en'}`
   - Agregar `aria-label="Cambiar idioma a español"` y `aria-label="Change language to English"`
 
-- [ ] **`src/components/Layout/Navbar.tsx:75-81`** — Botón de tema:
+- [x] **`src/components/Layout/Navbar.tsx:75-81`** — Botón de tema:
   - El `aria-label` existe pero debería ser dinámico según el idioma actual
 
-- [ ] **`src/components/Sections/Hero.tsx:82-92`** — Links de redes sociales:
+- [x] **`src/components/Sections/Hero.tsx:82-92`** — Links de redes sociales:
   - Agregar `aria-label` descriptivos:
     ```tsx
     aria-label="Visitar perfil de GitHub"
@@ -164,22 +164,22 @@ export const CONTACT_INFO = {
     aria-label="Enviar correo electrónico"
     ```
 
-- [ ] **`src/components/Sections/Footer.tsx:41-51`** — Mismo issue que Hero para links sociales.
+- [x] **`src/components/Sections/Footer.tsx:41-51`** — Mismo issue que Hero para links sociales.
 
-- [ ] **`src/components/Sections/Contact.tsx:111-147`** — Formulario:
+- [x] **`src/components/Sections/Contact.tsx:111-147`** — Formulario:
   - Agregar `aria-describedby` en inputs apuntando a mensajes de error
   - Agregar `aria-invalid` cuando hay errores de validación
   - Asociar labels correctamente con inputs (ya están con `htmlFor`)
 
-- [ ] **`src/components/Sections/Hero.tsx:108-116`** — Badges flotantes con emojis:
+- [x] **`src/components/Sections/Hero.tsx:108-116`** — Badges flotantes con emojis:
   - Los emojis no son accesibles para lectores de pantalla
   - Agregar `aria-hidden="true"` o reemplazar con texto/iconos accesibles
 
-- [ ] **`src/components/Sections/About.tsx:28-29`** — `dangerouslySetInnerHTML`:
+- [x] **`src/components/Sections/About.tsx:28-29`** — `dangerouslySetInnerHTML`:
   - Asegurar que el HTML sea seguro y accesible
   - Considerar alternativas más seguras
 
-- [ ] **`src/components/PDF/CVDocument.tsx:241` y `CVDocumentEN.tsx:241`** — Imagen sin alt:
+- [x] **`src/components/PDF/CVDocument.tsx:241` y `CVDocumentEN.tsx:241`** — Imagen sin alt:
   - El comentario `eslint-disable jsx-a11y/alt-text` desactiva el warning, pero debería agregarse `alt` real
 
 ---
@@ -212,10 +212,10 @@ export const CONTACT_INFO = {
 
 ## Checklist Final
 
-- [ ] Todos los emails son consistentes (elegir uno)
-- [ ] CVDocument y CVDocumentEN unificados en un componente
-- [ ] Datos de contacto centralizados
-- [ ] Componentes UI reutilizables creados
-- [ ] Accesibilidad implementada (aria-labels, roles)
-- [ ] Validación de formularios agregada
-- [ ] Código pasa `npm run lint` sin errores
+- [x] Todos los emails son consistentes (elegir uno)
+- [x] CVDocument y CVDocumentEN unificados en un componente
+- [x] Datos de contacto centralizados
+- [x] Componentes UI reutilizables creados
+- [x] Accesibilidad implementada (aria-labels, roles)
+- [x] Validación de formularios agregada
+- [x] Código pasa `npm run lint` sin errores

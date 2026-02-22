@@ -1,6 +1,8 @@
 import React from 'react';
 import { FaLinkedin, FaGithub, FaEnvelope, FaHeart } from 'react-icons/fa';
 import { useLanguage } from '../../context/LanguageContext';
+import { CONTACT_INFO } from '../../data/contact';
+import { NAV_LINKS_KEYS } from '../../data/navigation';
 
 export const Footer: React.FC = () => {
     const { t } = useLanguage();
@@ -29,24 +31,27 @@ export const Footer: React.FC = () => {
                     <div>
                         <h3 className="font-bold text-gray-800 dark:text-gray-200 mb-4 text-base sm:text-lg">{t.footer.navigation}</h3>
                         <ul className="space-y-2 text-sm sm:text-base">
-                            <li><a href="#inicio" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{t.nav.home}</a></li>
-                            <li><a href="#sobre-mi" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{t.nav.about}</a></li>
-                            <li><a href="#experiencia" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{t.nav.experience}</a></li>
-                            <li><a href="#proyectos" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{t.nav.projects}</a></li>
+                            {NAV_LINKS_KEYS.map((link) => (
+                                <li key={link.href}>
+                                    <a href={link.href} className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                                        {t.nav[link.key]}
+                                    </a>
+                                </li>
+                            ))}
                         </ul>
                     </div>
 
                     <div>
                         <h3 className="font-bold text-gray-800 dark:text-gray-200 mb-4 text-base sm:text-lg">{t.footer.contact}</h3>
                         <div className="flex space-x-4">
-                            <a href="https://www.linkedin.com/in/erick-rodr%C3%ADguez-bores-isa%C3%ADas-0a0117149/" target="_blank" rel="noopener noreferrer" className="bg-white dark:bg-gray-800 p-2 sm:p-3 rounded-full shadow-sm hover:shadow-md transition-all duration-300 hover:scale-110 text-blue-600">
-                                <FaLinkedin className="text-lg sm:text-xl" />
+                            <a href={CONTACT_INFO.social.linkedin} aria-label="Perfil de LinkedIn" target="_blank" rel="noopener noreferrer" className="bg-white dark:bg-gray-800 p-2 sm:p-3 rounded-full shadow-sm hover:shadow-md transition-all duration-300 hover:scale-110 text-blue-600">
+                                <FaLinkedin aria-hidden="true" className="text-lg sm:text-xl" />
                             </a>
-                            <a href="https://github.com/ErickuchoSan" target="_blank" rel="noopener noreferrer" className="bg-white dark:bg-gray-800 p-2 sm:p-3 rounded-full shadow-sm hover:shadow-md transition-all duration-300 hover:scale-110 text-gray-800 dark:text-gray-200">
-                                <FaGithub className="text-lg sm:text-xl" />
+                            <a href={CONTACT_INFO.social.github} aria-label="Perfil de GitHub" target="_blank" rel="noopener noreferrer" className="bg-white dark:bg-gray-800 p-2 sm:p-3 rounded-full shadow-sm hover:shadow-md transition-all duration-300 hover:scale-110 text-gray-800 dark:text-gray-200">
+                                <FaGithub aria-hidden="true" className="text-lg sm:text-xl" />
                             </a>
-                            <a href="mailto:e.bores.i@outlook.com" className="bg-white dark:bg-gray-800 p-2 sm:p-3 rounded-full shadow-sm hover:shadow-md transition-all duration-300 hover:scale-110 text-red-500">
-                                <FaEnvelope className="text-lg sm:text-xl" />
+                            <a href={`mailto:${CONTACT_INFO.email}`} aria-label="Enviar correo electrónico" className="bg-white dark:bg-gray-800 p-2 sm:p-3 rounded-full shadow-sm hover:shadow-md transition-all duration-300 hover:scale-110 text-red-500">
+                                <FaEnvelope aria-hidden="true" className="text-lg sm:text-xl" />
                             </a>
                         </div>
                     </div>
@@ -57,7 +62,7 @@ export const Footer: React.FC = () => {
                         &copy; {currentYear} {t.footer.brand}. {t.footer.rights}
                     </p>
                     <p className="flex items-center text-sm text-gray-500">
-                        {t.footer.madeWith} <FaHeart className="text-red-500 mx-1 animate-pulse" /> using React & Tailwind
+                        {t.footer.madeWith} <FaHeart aria-hidden="true" className="text-red-500 mx-1 animate-pulse" /> using React & Tailwind
                     </p>
                 </div>
             </div>

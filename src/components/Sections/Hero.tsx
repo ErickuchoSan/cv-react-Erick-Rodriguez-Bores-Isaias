@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 // import { SectionTitle } from '../UI/SectionTitle'; // Removed unused import
-import { FaGithub, FaLinkedin, FaEnvelope, FaFileDownload, FaArrowRight } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaEnvelope, FaFileDownload, FaArrowRight, FaSpinner } from 'react-icons/fa';
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import { CVDocument } from '../PDF/CVDocument';
 import { CVDocumentEN } from '../PDF/CVDocumentEN'; // Import English version
 import { useLanguage } from '../../context/LanguageContext';
+import { CONTACT_INFO } from '../../data/contact';
 
 export const Hero: React.FC = () => {
     const { t } = useLanguage(); // Removed language from destructuring as it is no longer used for download logic
@@ -37,12 +38,12 @@ export const Hero: React.FC = () => {
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start animate-fade-in-up delay-300">
-                        <a href="#contacto" className="btn-modern-primary flex items-center justify-center group">
+                        <a href="#contacto" className="btn-modern-primary flex items-center justify-center group" aria-label={t.hero.contactBtn}>
                             <span>{t.hero.contactBtn}</span>
-                            <FaArrowRight className="ml-2 transform group-hover:translate-x-1 transition-transform" />
+                            <FaArrowRight aria-hidden="true" className="ml-2 transform group-hover:translate-x-1 transition-transform" />
                         </a>
 
-                        <a href="#proyectos" className="px-8 py-3 rounded-lg border-2 border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-semibold hover:border-blue-600 hover:text-blue-600 transition-all duration-300 flex items-center justify-center">
+                        <a href="#proyectos" aria-label={t.hero.projectsBtn} className="px-8 py-3 rounded-lg border-2 border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-semibold hover:border-blue-600 hover:text-blue-600 transition-all duration-300 flex items-center justify-center">
                             {t.hero.projectsBtn}
                         </a>
 
@@ -50,10 +51,12 @@ export const Hero: React.FC = () => {
                         <div className="relative inline-flex">
                             <button
                                 onClick={() => setShowDownloadOptions(!showDownloadOptions)}
+                                aria-label="Opciones para descargar Currículum"
+                                aria-expanded={showDownloadOptions}
                                 className="px-8 py-3 rounded-lg bg-gray-800 dark:bg-gray-700 text-white font-semibold hover:bg-gray-700 dark:hover:bg-gray-600 transition-colors flex items-center justify-center shadow-lg"
                             >
                                 <span className="mr-2">{t.hero.downloadBtn}</span>
-                                <FaFileDownload />
+                                <FaFileDownload aria-hidden="true" />
                             </button>
 
                             {/* Dropdown Menu */}
@@ -64,14 +67,24 @@ export const Hero: React.FC = () => {
                                         fileName="CV_Erick_Rodriguez_ES.pdf"
                                         className="block w-full px-4 py-3 text-left text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                                     >
-                                        {({ loading }) => (loading ? 'Español (Generando...)' : 'Español')}
+                                        {({ loading }) => (
+                                            <span className="flex items-center">
+                                                {loading && <FaSpinner aria-hidden="true" className="animate-spin mr-2 text-blue-500" />}
+                                                {loading ? 'Español (Generando...)' : 'Español'}
+                                            </span>
+                                        )}
                                     </PDFDownloadLink>
                                     <PDFDownloadLink
                                         document={<CVDocumentEN />}
                                         fileName="CV_Erick_Rodriguez_EN.pdf"
                                         className="block w-full px-4 py-3 text-left text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors border-t border-gray-100 dark:border-gray-700"
                                     >
-                                        {({ loading }) => (loading ? 'English (Generating...)' : 'English')}
+                                        {({ loading }) => (
+                                            <span className="flex items-center">
+                                                {loading && <FaSpinner aria-hidden="true" className="animate-spin mr-2 text-blue-500" />}
+                                                {loading ? 'English (Generating...)' : 'English'}
+                                            </span>
+                                        )}
                                     </PDFDownloadLink>
                                 </div>
                             )}
@@ -80,14 +93,14 @@ export const Hero: React.FC = () => {
 
                     {/* Social Links */}
                     <div className="mt-12 flex items-center justify-center md:justify-start space-x-6 animate-fade-in-up delay-400">
-                        <a href="https://github.com/ErickuchoSan" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors transform hover:scale-110">
-                            <FaGithub className="text-2xl" />
+                        <a href={CONTACT_INFO.social.github} aria-label="Perfil de GitHub" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors transform hover:scale-110">
+                            <FaGithub aria-hidden="true" className="text-2xl" />
                         </a>
-                        <a href="https://www.linkedin.com/in/erick-rodr%C3%ADguez-bores-isa%C3%ADas-0a0117149/" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors transform hover:scale-110">
-                            <FaLinkedin className="text-2xl" />
+                        <a href={CONTACT_INFO.social.linkedin} aria-label="Perfil de LinkedIn" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors transform hover:scale-110">
+                            <FaLinkedin aria-hidden="true" className="text-2xl" />
                         </a>
-                        <a href="mailto:e.bores.i@outlook.com" className="text-gray-500 hover:text-red-500 dark:text-gray-400 dark:hover:text-red-400 transition-colors transform hover:scale-110">
-                            <FaEnvelope className="text-2xl" />
+                        <a href={`mailto:${CONTACT_INFO.email}`} aria-label="Enviar correo electrónico" className="text-gray-500 hover:text-red-500 dark:text-gray-400 dark:hover:text-red-400 transition-colors transform hover:scale-110">
+                            <FaEnvelope aria-hidden="true" className="text-2xl" />
                         </a>
                     </div>
                 </div>
@@ -106,13 +119,13 @@ export const Hero: React.FC = () => {
 
                         {/* Floating Tech Badges */}
                         <div className="absolute -top-4 -right-4 bg-white dark:bg-gray-800 p-3 rounded-xl shadow-xl animate-float">
-                            <span className="text-2xl">🚀</span>
+                            <span aria-hidden="true" className="text-2xl">🚀</span>
                         </div>
                         <div className="absolute top-1/2 -right-12 bg-white dark:bg-gray-800 p-3 rounded-xl shadow-xl animate-float delay-700">
-                            <span className="text-2xl font-bold text-blue-600">.NET</span>
+                            <span aria-hidden="true" className="text-2xl font-bold text-blue-600">.NET</span>
                         </div>
                         <div className="absolute bottom-10 -left-8 bg-white dark:bg-gray-800 p-3 rounded-xl shadow-xl animate-float delay-1000">
-                            <span className="text-2xl font-bold text-cyan-500">React</span>
+                            <span aria-hidden="true" className="text-2xl font-bold text-cyan-500">React</span>
                         </div>
                     </div>
                 </div>

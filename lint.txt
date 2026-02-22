@@ -1,0 +1,55 @@
+﻿
+D:\ErickuchoSan\Desktop\CV Erick Rodriguez Bores Isaias CV WEB\cv-react-Erick-Rodriguez -Bores-Isaias\src\components\PDF\CVDocument.tsx
+  1:1  warning  Unused eslint-disable directive (no problems were reported from 'react-refresh/only-export-components')
+
+D:\ErickuchoSan\Desktop\CV Erick Rodriguez Bores Isaias CV WEB\cv-react-Erick-Rodriguez -Bores-Isaias\src\components\PDF\CVDocumentBase.tsx
+  1:1   warning  Unused eslint-disable directive (no problems were reported from 'react-refresh/only-export-components')
+  5:10  error    'EXPERIENCE_DATA' is defined but never used                                                              @typescript-eslint/no-unused-vars
+
+D:\ErickuchoSan\Desktop\CV Erick Rodriguez Bores Isaias CV WEB\cv-react-Erick-Rodriguez -Bores-Isaias\src\components\PDF\CVDocumentEN.tsx
+  1:1  warning  Unused eslint-disable directive (no problems were reported from 'react-refresh/only-export-components')
+
+D:\ErickuchoSan\Desktop\CV Erick Rodriguez Bores Isaias CV WEB\cv-react-Erick-Rodriguez -Bores-Isaias\src\components\Sections\Experience.tsx
+  3:19   error  'FaMicrosoft' is defined but never used    @typescript-eslint/no-unused-vars
+  3:32   error  'FaJs' is defined but never used           @typescript-eslint/no-unused-vars
+  3:38   error  'FaReact' is defined but never used        @typescript-eslint/no-unused-vars
+  3:47   error  'FaCode' is defined but never used         @typescript-eslint/no-unused-vars
+  3:55   error  'FaDatabase' is defined but never used     @typescript-eslint/no-unused-vars
+  3:67   error  'FaLayerGroup' is defined but never used   @typescript-eslint/no-unused-vars
+  3:81   error  'FaPython' is defined but never used       @typescript-eslint/no-unused-vars
+  3:91   error  'FaDocker' is defined but never used       @typescript-eslint/no-unused-vars
+  3:101  error  'FaGitAlt' is defined but never used       @typescript-eslint/no-unused-vars
+  3:111  error  'FaNodeJs' is defined but never used       @typescript-eslint/no-unused-vars
+  4:10   error  'SiTypescript' is defined but never used   @typescript-eslint/no-unused-vars
+  4:24   error  'SiTailwindcss' is defined but never used  @typescript-eslint/no-unused-vars
+  4:39   error  'SiNextdotjs' is defined but never used    @typescript-eslint/no-unused-vars
+  4:52   error  'SiPostgresql' is defined but never used   @typescript-eslint/no-unused-vars
+  4:66   error  'SiNestjs' is defined but never used       @typescript-eslint/no-unused-vars
+  4:76   error  'SiVuedotjs' is defined but never used     @typescript-eslint/no-unused-vars
+
+D:\ErickuchoSan\Desktop\CV Erick Rodriguez Bores Isaias CV WEB\cv-react-Erick-Rodriguez -Bores-Isaias\src\components\Sections\Skills.tsx
+  3:10   error  'FaCode' is defined but never used       @typescript-eslint/no-unused-vars
+  3:18   error  'FaServer' is defined but never used     @typescript-eslint/no-unused-vars
+  3:28   error  'FaTools' is defined but never used      @typescript-eslint/no-unused-vars
+  3:37   error  'FaBrain' is defined but never used      @typescript-eslint/no-unused-vars
+  3:46   error  'FaLightbulb' is defined but never used  @typescript-eslint/no-unused-vars
+  3:59   error  'FaRocket' is defined but never used     @typescript-eslint/no-unused-vars
+  3:69   error  'FaUsers' is defined but never used      @typescript-eslint/no-unused-vars
+  3:78   error  'FaCogs' is defined but never used       @typescript-eslint/no-unused-vars
+  3:86   error  'FaChartLine' is defined but never used  @typescript-eslint/no-unused-vars
+  3:99   error  'FaDatabase' is defined but never used   @typescript-eslint/no-unused-vars
+  3:111  error  'FaDocker' is defined but never used     @typescript-eslint/no-unused-vars
+  3:121  error  'FaGitAlt' is defined but never used     @typescript-eslint/no-unused-vars
+  3:131  error  'FaWindows' is defined but never used    @typescript-eslint/no-unused-vars
+  3:142  error  'FaReact' is defined but never used      @typescript-eslint/no-unused-vars
+  3:151  error  'FaCloud' is defined but never used      @typescript-eslint/no-unused-vars
+
+D:\ErickuchoSan\Desktop\CV Erick Rodriguez Bores Isaias CV WEB\cv-react-Erick-Rodriguez -Bores-Isaias\src\context\LanguageContext.tsx
+  31:14  error  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+
+D:\ErickuchoSan\Desktop\CV Erick Rodriguez Bores Isaias CV WEB\cv-react-Erick-Rodriguez -Bores-Isaias\src\data\experience.ts
+  1:10  error  'FaCheck' is defined but never used  @typescript-eslint/no-unused-vars
+
+Ô£û 37 problems (34 errors, 3 warnings)
+  0 errors and 3 warnings potentially fixable with the `--fix` option.
+

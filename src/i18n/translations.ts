@@ -71,19 +71,17 @@ export const translations = {
                     duration: "~2 años",
                     description: "Líder técnico responsable de la arquitectura, desarrollo y evolución de los sistemas críticos de auditoría interna (ADA/HONESTEL) que procesan denuncias de todas las empresas del grupo corporativo.",
                     functions: [
-                        "Diseño y desarrollo de la API v2 del sistema de auditoría con arquitectura de microservicios",
-                        "Optimización de stored procedures en SQL Server, logrando mejoras de rendimiento de hasta 40%",
-                        "Refactorización de código legacy: modularización de métodos extensos, eliminación de código redundante y mejora de mantenibilidad",
-                        "Actualización de librerías/packages y migración del código a nuevas versiones con buenas prácticas",
-                        "Implementación de encriptación end-to-end con AES-256, RSA y SHA-256 para protección de datos sensibles",
-                        "Liderazgo de la migración progresiva de .NET Framework a .NET Core",
-                        "Modernización del frontend: de vanilla JS a React + Next.js + TypeScript + Tailwind CSS",
-                        "Automatización de procesos operativos mediante scripts Python, eliminando tareas manuales repetitivas"
+                        "Desarrollo de la API v2 de Honestel (SICH) con 6 endpoints iniciales e integración con ADACH aplicando metodología DRY.",
+                        "Implementación de nuevas funcionalidades, vistas, soporte técnico y capacitación a usuarios finales en sistemas como ADACH, SICH y NOC (sistema de alarmas).",
+                        "Optimización de consultas y stored procedures en SQL Server, logrando mejoras de rendimiento de hasta 40%.",
+                        "Implementación de algoritmos de encriptación (AES y SHA-256) para la protección de datos sensibles end-to-end.",
+                        "Diseño de Arquitectura Backend basado en principios: SOLID, YAGNI, Fail Fast, Ley de Demeter (LoD), Idempotencia, Least Privilege y DRY.",
+                        "Desarrollo Frontend guiado por las mejores prácticas: KISS, SoC (Separation of Concerns), DRY, Single Source of Truth, Progressive Enhancement y Accessibility First."
                     ],
                     achievements: [
-                        "Reducción de 40% en tiempo de ejecución de consultas críticas de base de datos",
-                        "Automatización de procesos que tomaban 30 minutos a solo segundos con Python",
-                        "Creación de documentación técnica completa para sistemas que carecían de ella"
+                        "Creación de la API v2 de Honestel desde cero (6 endpoints principales) y su integración continua con múltiples sistemas.",
+                        "Reducción de 40% en tiempo de ejecución de consultas críticas de base de datos.",
+                        "Automatización de procesos operativos mediante scripts Python, eliminando tareas repetitivas."
                     ]
                 },
                 {
@@ -194,6 +192,15 @@ export const translations = {
                 message: 'Mensaje',
                 send: 'Enviar Mensaje',
                 sent: 'Mensaje enviado (simulación)'
+            },
+            errors: {
+                name: 'El nombre es requerido',
+                subject: 'El asunto es requerido',
+                message: 'El mensaje es requerido'
+            },
+            success: {
+                title: '¡Mensaje Preparado!',
+                text: 'Se abrirá WhatsApp para enviar tu mensaje de manera exitosa.'
             }
         },
         footer: {
@@ -277,19 +284,17 @@ export const translations = {
                     duration: "~2 years",
                     description: "Technical lead responsible for the architecture, development, and evolution of critical internal audit systems (ADA/HONESTEL) processing reports from all corporate group companies.",
                     functions: [
-                        "Design and development of Audit System API v2 with microservices architecture",
-                        "Optimization of stored procedures in SQL Server, achieving up to 40% performance improvements",
-                        "Refactoring of legacy code: modularization of extensive methods, elimination of redundant code, and maintainability improvement",
-                        "Updating libraries/packages and migrating code to new versions with best practices",
-                        "Implementation of end-to-end encryption with AES-256, RSA, and SHA-256 for sensitive data protection",
-                        "Leadership of the progressive migration from .NET Framework to .NET Core",
-                        "Modernization of the frontend: from vanilla JS to React + Next.js + TypeScript + Tailwind CSS",
-                        "Automation of operational processes using Python scripts, eliminating repetitive manual tasks"
+                        "Development of the Honestel v2 API (SICH) with 6 initial endpoints and integration with ADACH applying DRY methodology.",
+                        "Implementation of new features, views, technical support, and end-user training on systems like ADACH, SICH, and NOC (alarm system).",
+                        "Optimization of queries and stored procedures in SQL Server, achieving up to 40% performance improvements.",
+                        "Implementation of encryption algorithms (AES and SHA-256) for end-to-end sensitive data protection.",
+                        "Backend Architecture design based on principles: SOLID, YAGNI, Fail Fast, Law of Demeter (LoD), Idempotency, Least Privilege, and DRY.",
+                        "Frontend Development guided by best practices: KISS, SoC (Separation of Concerns), DRY, Single Source of Truth, Progressive Enhancement, and Accessibility First."
                     ],
                     achievements: [
-                        "40% reduction in execution time of critical database queries",
-                        "Automation of processes that took 30 minutes to just seconds with Python",
-                        "Creation of complete technical documentation for systems that lacked it"
+                        "Creation of the Honestel v2 API from scratch (6 core endpoints) and its continuous integration with multiple systems.",
+                        "40% reduction in execution time of critical database queries.",
+                        "Automation of operational processes using Python scripts, eliminating repetitive tasks."
                     ]
                 },
                 {
@@ -400,6 +405,15 @@ export const translations = {
                 message: 'Message',
                 send: 'Send Message',
                 sent: 'Message sent (simulation)'
+            },
+            errors: {
+                name: 'Name is required',
+                subject: 'Subject is required',
+                message: 'Message is required'
+            },
+            success: {
+                title: 'Message Ready!',
+                text: 'WhatsApp will open to send your message successfully.'
             }
         },
         footer: {

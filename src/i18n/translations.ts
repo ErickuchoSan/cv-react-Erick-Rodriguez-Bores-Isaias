@@ -72,7 +72,7 @@ export const translations = {
                     description: "Líder técnico responsable de la arquitectura, desarrollo y evolución de los sistemas críticos de auditoría interna (ADA/HONESTEL) que procesan denuncias de todas las empresas del grupo corporativo.",
                     functions: [
                         "Desarrollo de la API v2 de Honestel (SICH) con 6 endpoints iniciales e integración con ADACH aplicando metodología DRY.",
-                        "Refactorización de la arquitectura legacy (código espagueti) de ADACH hacia un proyecto con principios limpios de Frontend y Backend.",
+                        "Refactorización de la arquitectura legacy (código espagueti en HTML vanilla y .NET Framework) de ADACH hacia un proyecto con principios limpios de Frontend y Backend.",
                         "Desarrollo de nuevos endpoints API para el sistema de alarmas NOC.",
                         "Optimización integral de rendimiento abarcando consultas SQL, lógica de Backend y renderizado en Frontend.",
                         "Mantenimiento activo mediante la actualización de paquetes NuGet y librerías JS, resolviendo dependencias y adaptando el código.",
@@ -288,7 +288,7 @@ export const translations = {
                     description: "Technical lead responsible for the architecture, development, and evolution of critical internal audit systems (ADA/HONESTEL) processing reports from all corporate group companies.",
                     functions: [
                         "Development of the Honestel v2 API (SICH) with 6 initial endpoints and integration with ADACH applying DRY methodology.",
-                        "Refactoring of ADACH's legacy architecture (spaghetti code) into a project with clean Frontend and Backend principles.",
+                        "Refactoring of ADACH's legacy architecture (spaghetti code in vanilla HTML and .NET Framework) into a project with clean Frontend and Backend principles.",
                         "Development of new API endpoints for the NOC alarm system.",
                         "Comprehensive performance optimization spanning SQL queries, Backend logic, and Frontend rendering.",
                         "Active maintenance through updating NuGet packages and JS libraries, resolving dependencies and adapting code.",

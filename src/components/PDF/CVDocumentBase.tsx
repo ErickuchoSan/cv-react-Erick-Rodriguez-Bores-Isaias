@@ -20,19 +20,29 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         backgroundColor: '#FFFFFF',
         fontFamily: 'Roboto',
+        padding: 0,
+    },
+    // Adding absolute background for the sidebar so it spans pages seamlessly
+    sidebarBg: {
+        position: 'absolute',
+        left: 0,
+        top: 0,
+        bottom: 0,
+        width: '32%',
+        backgroundColor: '#1e293b',
+        zIndex: -1,
     },
     sidebar: {
         width: '32%',
-        backgroundColor: '#1e293b', // slate-800
         color: 'white',
         padding: 15,
-        height: '100%',
+        // No explicit height or bg here natively to allow natural wrapping without clipping
     },
     main: {
         width: '68%',
         padding: 20,
         paddingTop: 15,
-        backgroundColor: '#f8fafc', // slate-50
+        backgroundColor: '#f8fafc',
     },
     profileContainer: {
         alignItems: 'center',
@@ -244,9 +254,12 @@ export const CVDocumentBase: React.FC<CVDocumentBaseProps> = ({ language }) => {
 
     return (
         <Document>
-            <Page size="A4" style={styles.page}>
+            <Page size="A4" style={styles.page} wrap={true}>
+                {/* Background explicitly rendered to cover the whole page depth */}
+                <View style={styles.sidebarBg} fixed />
+
                 {/* Sidebar - Left Column */}
-                <View style={styles.sidebar}>
+                <View style={styles.sidebar} wrap={true}>
                     <View style={styles.profileContainer}>
                         <Image
                             src={profileImage}
@@ -341,7 +354,7 @@ export const CVDocumentBase: React.FC<CVDocumentBaseProps> = ({ language }) => {
                 </View>
 
                 {/* Main Content - Right Column */}
-                <View style={styles.main}>
+                <View style={styles.main} wrap={true}>
                     <View style={styles.header}>
                         <Text style={styles.name}>{`${t.hero.title} ${t.hero.subtitle}`}</Text>
                         <Text style={styles.title}>{t.hero.role.toUpperCase()}</Text>

@@ -72,11 +72,14 @@ export const translations = {
                     description: "Líder técnico responsable de la arquitectura, desarrollo y evolución de los sistemas críticos de auditoría interna (ADA/HONESTEL) que procesan denuncias de todas las empresas del grupo corporativo.",
                     functions: [
                         "Desarrollo de la API v2 de Honestel (SICH) con 6 endpoints iniciales e integración con ADACH aplicando metodología DRY.",
-                        "Implementación de nuevas funcionalidades, vistas, soporte técnico y capacitación a usuarios finales en sistemas como ADACH, SICH y NOC (sistema de alarmas).",
-                        "Optimización de consultas y stored procedures en SQL Server, logrando mejoras de rendimiento de hasta 40%.",
+                        "Refactorización de la arquitectura legacy (código espagueti) de ADACH hacia un proyecto con principios limpios de Frontend y Backend.",
+                        "Desarrollo de nuevos endpoints API para el sistema de alarmas NOC.",
+                        "Optimización integral de rendimiento abarcando consultas SQL, lógica de Backend y renderizado en Frontend.",
+                        "Mantenimiento activo mediante la actualización de paquetes NuGet y librerías JS, resolviendo dependencias y adaptando el código.",
+                        "Soporte técnico e impartición de capacitaciones mensuales a usuarios finales sobre el sistema ADACH.",
                         "Implementación de algoritmos de encriptación (AES y SHA-256) para la protección de datos sensibles end-to-end.",
-                        "Diseño de Arquitectura Backend basado en principios: SOLID, YAGNI, Fail Fast, Ley de Demeter (LoD), Idempotencia, Least Privilege y DRY.",
-                        "Desarrollo Frontend guiado por las mejores prácticas: KISS, SoC (Separation of Concerns), DRY, Single Source of Truth, Progressive Enhancement y Accessibility First."
+                        "Diseño de Arquitectura Backend basado en: SOLID, YAGNI, Fail Fast, Ley de Demeter (LoD), Idempotencia, Least Privilege y DRY.",
+                        "Desarrollo Frontend guiado por: KISS, SoC, DRY, Single Source of Truth, Progressive Enhancement y Accessibility First."
                     ],
                     achievements: [
                         "Creación de la API v2 de Honestel desde cero (6 endpoints principales) y su integración continua con múltiples sistemas.",
@@ -285,11 +288,14 @@ export const translations = {
                     description: "Technical lead responsible for the architecture, development, and evolution of critical internal audit systems (ADA/HONESTEL) processing reports from all corporate group companies.",
                     functions: [
                         "Development of the Honestel v2 API (SICH) with 6 initial endpoints and integration with ADACH applying DRY methodology.",
-                        "Implementation of new features, views, technical support, and end-user training on systems like ADACH, SICH, and NOC (alarm system).",
-                        "Optimization of queries and stored procedures in SQL Server, achieving up to 40% performance improvements.",
+                        "Refactoring of ADACH's legacy architecture (spaghetti code) into a project with clean Frontend and Backend principles.",
+                        "Development of new API endpoints for the NOC alarm system.",
+                        "Comprehensive performance optimization spanning SQL queries, Backend logic, and Frontend rendering.",
+                        "Active maintenance through updating NuGet packages and JS libraries, resolving dependencies and adapting code.",
+                        "Technical support and conducting monthly training sessions for end-users on the ADACH system.",
                         "Implementation of encryption algorithms (AES and SHA-256) for end-to-end sensitive data protection.",
-                        "Backend Architecture design based on principles: SOLID, YAGNI, Fail Fast, Law of Demeter (LoD), Idempotency, Least Privilege, and DRY.",
-                        "Frontend Development guided by best practices: KISS, SoC (Separation of Concerns), DRY, Single Source of Truth, Progressive Enhancement, and Accessibility First."
+                        "Backend Architecture design based on: SOLID, YAGNI, Fail Fast, Law of Demeter (LoD), Idempotency, Least Privilege, and DRY.",
+                        "Frontend Development guided by: KISS, SoC, DRY, Single Source of Truth, Progressive Enhancement, and Accessibility First."
                     ],
                     achievements: [
                         "Creation of the Honestel v2 API from scratch (6 core endpoints) and its continuous integration with multiple systems.",

@@ -21,9 +21,10 @@ export const Contact: React.FC = () => {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        // Simulate sending
-        console.log('Form data:', formData);
-        alert(t.contact.form.sent);
+        const { name, subject, message } = formData;
+        const textToSend = `Hola, mi nombre es ${name}.\nAsunto: ${subject}\n\nMensaje:\n${message}`;
+        const whatsappUrl = `https://wa.me/525571104581?text=${encodeURIComponent(textToSend)}`;
+        window.open(whatsappUrl, '_blank');
         setFormData({ name: '', email: '', subject: '', message: '' });
     };
 
@@ -53,8 +54,8 @@ export const Contact: React.FC = () => {
                                     </div>
                                     <div>
                                         <p className="text-sm text-gray-500 dark:text-gray-400">Email</p>
-                                        <a href="mailto:erick.rodriguez.bores@gmail.com" className="text-gray-800 dark:text-gray-200 font-medium hover:text-blue-600 transition-colors text-sm sm:text-base break-all">
-                                            erick.rodriguez.bores@gmail.com
+                                        <a href="mailto:e.bores.i@outlook.com" className="text-gray-800 dark:text-gray-200 font-medium hover:text-blue-600 transition-colors text-sm sm:text-base break-all">
+                                            e.bores.i@outlook.com
                                         </a>
                                     </div>
                                 </div>
@@ -66,7 +67,7 @@ export const Contact: React.FC = () => {
                                     <div>
                                         <p className="text-sm text-gray-500 dark:text-gray-400">Teléfono</p>
                                         <p className="text-gray-800 dark:text-gray-200 font-medium text-sm sm:text-base">
-                                            +52 55 1234 5678
+                                            +52 55 7110 4581
                                         </p>
                                     </div>
                                 </div>
@@ -88,13 +89,13 @@ export const Contact: React.FC = () => {
                         <div>
                             <h3 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-gray-800 dark:text-gray-200">{t.contact.followMe}</h3>
                             <div className="flex space-x-4">
-                                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="social-btn bg-[#0077b5] text-white p-3 sm:p-4 rounded-full hover:scale-110 transition-transform shadow-lg">
+                                <a href="https://www.linkedin.com/in/erick-rodr%C3%ADguez-bores-isa%C3%ADas-0a0117149/" target="_blank" rel="noopener noreferrer" className="social-btn bg-[#0077b5] text-white p-3 sm:p-4 rounded-full hover:scale-110 transition-transform shadow-lg">
                                     <FaLinkedin className="text-xl sm:text-2xl" />
                                 </a>
-                                <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="social-btn bg-[#333] text-white p-3 sm:p-4 rounded-full hover:scale-110 transition-transform shadow-lg">
+                                <a href="https://github.com/ErickuchoSan" target="_blank" rel="noopener noreferrer" className="social-btn bg-[#333] text-white p-3 sm:p-4 rounded-full hover:scale-110 transition-transform shadow-lg">
                                     <FaGithub className="text-xl sm:text-2xl" />
                                 </a>
-                                <a href="https://wa.me/525512345678" target="_blank" rel="noopener noreferrer" className="social-btn bg-[#25D366] text-white p-3 sm:p-4 rounded-full hover:scale-110 transition-transform shadow-lg">
+                                <a href="https://wa.me/525571104581" target="_blank" rel="noopener noreferrer" className="social-btn bg-[#25D366] text-white p-3 sm:p-4 rounded-full hover:scale-110 transition-transform shadow-lg">
                                     <FaWhatsapp className="text-xl sm:text-2xl" />
                                 </a>
                             </div>
@@ -108,31 +109,17 @@ export const Contact: React.FC = () => {
                             {t.contact.messageTitle}
                         </h3>
                         <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
-                            <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
-                                <div className="form-group">
-                                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">{t.contact.form.name}</label>
-                                    <input
-                                        type="text"
-                                        id="name"
-                                        name="name"
-                                        value={formData.name}
-                                        onChange={handleChange}
-                                        className="w-full px-4 py-2 sm:py-3 rounded-lg bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 focus:ring-2 focus:ring-blue-500 outline-none transition-all dark:text-white"
-                                        required
-                                    />
-                                </div>
-                                <div className="form-group">
-                                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">{t.contact.form.email}</label>
-                                    <input
-                                        type="email"
-                                        id="email"
-                                        name="email"
-                                        value={formData.email}
-                                        onChange={handleChange}
-                                        className="w-full px-4 py-2 sm:py-3 rounded-lg bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 focus:ring-2 focus:ring-blue-500 outline-none transition-all dark:text-white"
-                                        required
-                                    />
-                                </div>
+                            <div className="form-group">
+                                <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">{t.contact.form.name}</label>
+                                <input
+                                    type="text"
+                                    id="name"
+                                    name="name"
+                                    value={formData.name}
+                                    onChange={handleChange}
+                                    className="w-full px-4 py-2 sm:py-3 rounded-lg bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 focus:ring-2 focus:ring-blue-500 outline-none transition-all dark:text-white"
+                                    required
+                                />
                             </div>
                             <div className="form-group">
                                 <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">{t.contact.form.subject}</label>

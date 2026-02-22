@@ -252,26 +252,26 @@ export const CVDocumentEN = () => {
                         </View>
                         <View style={styles.contactItem}>
                             <Text style={styles.contactIcon}>Phone:</Text>
-                            <Link src="tel:+525512345678" style={{ color: 'white', textDecoration: 'none' }}>
-                                +52 55 1234 5678
+                            <Link src="tel:+525571104581" style={{ color: 'white', textDecoration: 'none' }}>
+                                +52 55 7110 4581
                             </Link>
                         </View>
                         <View style={styles.contactItem}>
                             <Text style={styles.contactIcon}>Email:</Text>
-                            <Link src="mailto:erick.rodriguez.bores@gmail.com" style={{ color: 'white', textDecoration: 'none', fontSize: 8 }}>
-                                erick.rodriguez.bores@gmail.com
+                            <Link src="mailto:e.bores.i@outlook.com" style={{ color: 'white', textDecoration: 'none', fontSize: 8 }}>
+                                e.bores.i@outlook.com
                             </Link>
                         </View>
                         <View style={styles.contactItem}>
                             <Text style={styles.contactIcon}>LinkedIn:</Text>
-                            <Link src="https://linkedin.com" style={{ color: '#60a5fa', textDecoration: 'none' }}>
-                                linkedin.com/in/erickrodriguez
+                            <Link src="https://www.linkedin.com/in/erick-rodr%C3%ADguez-bores-isa%C3%ADas-0a0117149/" style={{ color: '#60a5fa', textDecoration: 'none' }}>
+                                linkedin.com/in/erick-rodríguez-bores-isaías
                             </Link>
                         </View>
                         <View style={styles.contactItem}>
                             <Text style={styles.contactIcon}>GitHub:</Text>
-                            <Link src="https://github.com" style={{ color: '#60a5fa', textDecoration: 'none' }}>
-                                github.com/erickrodriguez
+                            <Link src="https://github.com/ErickuchoSan" style={{ color: '#60a5fa', textDecoration: 'none' }}>
+                                github.com/ErickuchoSan
                             </Link>
                         </View>
                     </View>
@@ -299,18 +299,13 @@ export const CVDocumentEN = () => {
                         <View style={styles.skillCategory}>
                             <Text style={styles.categoryTitle}>DEVOPS & TOOLS</Text>
                             <Text style={styles.skillItem}>• Docker / Containers</Text>
-                            <Text style={styles.skillItem}>• Azure DevOps</Text>
-                            <Text style={styles.skillItem}>• AWS (Basic)</Text>
                             <Text style={styles.skillItem}>• Git / CI/CD</Text>
                         </View>
                     </View>
 
                     <View style={{ marginBottom: 20 }}>
                         <Text style={styles.sidebarTitle}>LANGUAGES</Text>
-                        <View style={styles.languageItem}>
-                            <Text style={styles.languageName}>Spanish</Text>
-                            <Text style={styles.languageLevel}>Native</Text>
-                        </View>
+
                         <View style={styles.languageItem}>
                             <Text style={styles.languageName}>English</Text>
                             <Text style={styles.languageLevel}>A2-B1 Intermediate</Text>
@@ -416,7 +411,7 @@ export const CVDocumentEN = () => {
                                     <Text style={styles.jobTitle}>Full Stack Developer</Text>
                                     <Text style={styles.company}>Freelance / Own Projects</Text>
                                 </View>
-                                <Text style={styles.period}>2020 - 2023</Text>
+                                <Text style={styles.period}>2025 - 2026</Text>
                             </View>
                             <Text style={styles.jobDescription}>
                                 Self-taught development of web applications and management systems.
@@ -436,8 +431,8 @@ export const CVDocumentEN = () => {
                         <Text style={styles.sectionTitle}>FEATURED PROJECTS</Text>
 
                         <View style={styles.projectItem}>
-                            <Text style={styles.projectTitle}>🚀 Align Designs Platform</Text>
-                            <Text style={styles.projectDesc}>Cloud B2B/B2C platform with monorepo architecture. Best practices (SOLID, SoC) and advanced security.</Text>
+                            <Text style={styles.projectTitle}>Align Designs Platform</Text>
+                            <Text style={styles.projectDesc}>Cloud B2B/B2C platform with monorepo architecture. Best practices (SOLID, SoC). AI-guided development (Claude).</Text>
                             <View style={styles.techStack}>
                                 <Text style={styles.techBagde}>Next.js</Text>
                                 <Text style={styles.techBagde}>React</Text>

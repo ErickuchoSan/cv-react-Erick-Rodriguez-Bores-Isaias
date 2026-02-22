@@ -5,7 +5,7 @@ import { useLanguage } from '../../context/LanguageContext';
 
 export const PROJECTS = [
     {
-        title: "🚀 Align Designs Platform",
+        title: "Align Designs Platform",
         description: "Plataforma integral...",
         tech: ["Next.js", "React", "NestJS", "MinIO", "PostgreSQL", "TypeScript"],
         icon: FaCloud

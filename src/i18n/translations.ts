@@ -108,7 +108,7 @@ export const translations = {
                 {
                     role: "Desarrollador Full Stack",
                     company: "Freelance / Proyectos Propios",
-                    period: "2020 - 2023",
+                    period: "2025 - 2026",
                     duration: "3 años",
                     description: "Desarrollo profesional autodidacta construyendo aplicaciones web completas, sistemas de gestión empresarial y herramientas de automatización con múltiples stacks tecnológicos.",
                     functions: [
@@ -156,16 +156,16 @@ export const translations = {
             subtitle: 'Soluciones Innovadoras y Aplicaciones Modernas',
             items: [
                 {
+                    title: "Align Designs Platform",
+                    description: "Plataforma B2B/B2C en la nube con arquitectura monorepo. Diseño regido por metodologías SOLID y SoC con seguridad avanzada. Desarrollo optimizado e implementado con el uso de IA (Claude) para garantizar la mejor calidad y rendimiento."
+                },
+                {
                     title: "Sistema de Auditoría Interna (ADA/HONESTEL)",
                     description: "Plataforma crítica para gestión de denuncias internas de todas las empresas del Grupo Salinas. Lideré la migración de .NET Framework a .NET Core con arquitectura de microfrontends, mejorando el rendimiento un 40%."
                 },
                 {
                     title: "Sistema de Reclutamiento Empresarial",
                     description: "Plataforma end-to-end para gestión del ciclo completo de reclutamiento con carga masiva de candidatos desde Excel/TXT, procesando miles de registros simultáneamente."
-                },
-                {
-                    title: "Sistema de Encriptación de Datos",
-                    description: "Solución de seguridad empresarial con implementación de algoritmos de encriptación avanzada (AES-256, RSA, SHA-256) para protección de datos sensibles y cumplimiento normativo."
                 }
             ]
         },
@@ -173,11 +173,7 @@ export const translations = {
             title: 'Idiomas',
             subtitle: 'Competencias Lingüísticas',
             items: [
-                {
-                    name: 'Español',
-                    level: 'Nativo',
-                    details: ['Lengua materna', 'Comunicación profesional escrita y oral', 'Redacción de documentación técnica']
-                },
+
                 {
                     name: 'Inglés',
                     level: 'A2-B1 Intermedio',
@@ -192,7 +188,7 @@ export const translations = {
             followMe: 'Sígueme',
             messageTitle: 'Envíame un Mensaje',
             form: {
-                name: 'Nombre',
+                name: 'Nombre completo',
                 email: 'Email',
                 subject: 'Asunto',
                 message: 'Mensaje',
@@ -318,7 +314,7 @@ export const translations = {
                 {
                     role: "Full Stack Developer",
                     company: "Freelance / Own Projects",
-                    period: "2020 - 2023",
+                    period: "2025 - 2026",
                     duration: "3 years",
                     description: "Self-taught professional development building complete web applications, business management systems, and automation tools with multiple tech stacks.",
                     functions: [
@@ -366,16 +362,16 @@ export const translations = {
             subtitle: 'Innovative Solutions and Modern Applications',
             items: [
                 {
+                    title: "Align Designs Platform",
+                    description: "Cloud B2B/B2C platform with monorepo architecture. Design governed by SOLID and SoC methodologies with advanced security. Development optimized and implemented using AI (Claude) to ensure the highest quality and performance."
+                },
+                {
                     title: "Internal Audit System (ADA/HONESTEL)",
                     description: "Critical platform for internal whistleblowing management for all Grupo Salinas companies. I lead the migration from .NET Framework to .NET Core with micro-frontend architecture, improving performance by 40%."
                 },
                 {
                     title: "Enterprise Recruitment System",
                     description: "End-to-end platform for full recruitment cycle management with bulk candidate upload from Excel/TXT, processing thousands of records simultaneously."
-                },
-                {
-                    title: "Data Encryption System",
-                    description: "Enterprise security solution implementing advanced encryption algorithms (AES-256, RSA, SHA-256) for sensitive data protection and compliance."
                 }
             ]
         },
@@ -383,11 +379,7 @@ export const translations = {
             title: 'Languages',
             subtitle: 'Linguistic Competencies',
             items: [
-                {
-                    name: 'Spanish',
-                    level: 'Native',
-                    details: ['Native language', 'Professional written and oral communication', 'Technical documentation writing']
-                },
+
                 {
                     name: 'English',
                     level: 'A2-B1 Intermediate',

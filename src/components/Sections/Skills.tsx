@@ -1,6 +1,6 @@
 import React from 'react';
 import { SectionTitle } from '../UI/SectionTitle';
-import { FaCode, FaServer, FaTools, FaBrain, FaLightbulb, FaRocket, FaUsers, FaCogs, FaChartLine, FaDatabase, FaDocker, FaAws, FaWindows, FaReact, FaCloud } from 'react-icons/fa';
+import { FaCode, FaServer, FaTools, FaBrain, FaLightbulb, FaRocket, FaUsers, FaCogs, FaChartLine, FaDatabase, FaDocker, FaGitAlt, FaWindows, FaReact, FaCloud } from 'react-icons/fa';
 import { useLanguage } from '../../context/LanguageContext';
 
 export const Skills: React.FC = () => {
@@ -42,10 +42,8 @@ export const Skills: React.FC = () => {
                 title: t.skills.categories.devops,
                 icon: FaTools,
                 skills: [
-                    { name: "Docker", icon: FaDocker, color: "text-blue-500" },
-                    { name: "Azure DevOps", icon: FaTools, color: "text-blue-700" },
-                    { name: "AWS", icon: FaAws, color: "text-orange-500" },
-                    { name: "CI/CD", icon: FaRocket, color: "text-green-600" }
+                    { name: "Contenedores", icon: FaDocker, color: "text-blue-500" },
+                    { name: "Git", icon: FaGitAlt, color: "text-orange-600" }
                 ]
             },
             {

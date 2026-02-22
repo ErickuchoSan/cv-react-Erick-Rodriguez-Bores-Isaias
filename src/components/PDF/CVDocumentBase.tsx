@@ -20,16 +20,18 @@ const styles = StyleSheet.create({
     page: {
         backgroundColor: '#FFFFFF',
         fontFamily: 'Roboto',
-        paddingTop: 0,
-        paddingBottom: 40, // Space for footer
-        paddingHorizontal: 0,
+        paddingTop: 30,
+        paddingBottom: 45, // Space for footer
+        paddingHorizontal: 30,
     },
     headerBg: {
         backgroundColor: '#1e293b', // slate-800
-        padding: 30,
+        padding: 25,
+        borderRadius: 8,
         flexDirection: 'row',
         alignItems: 'center',
-        color: 'white'
+        color: 'white',
+        marginBottom: 10,
     },
     profileImage: {
         width: 80,
@@ -69,8 +71,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     body: {
-        paddingHorizontal: 40,
-        paddingTop: 25,
+        paddingHorizontal: 10,
+        paddingTop: 10,
     },
     sectionTitle: {
         fontSize: 14,
@@ -329,7 +331,7 @@ export const CVDocumentBase: React.FC<CVDocumentBaseProps> = ({ language }) => {
                         <Text style={styles.sectionTitle}>{t.experience.title.toUpperCase()}</Text>
 
                         {t.experience.jobs.map((job, index) => (
-                            <View key={index} style={styles.experienceItem} wrap={false}>
+                            <View key={index} style={styles.experienceItem}>
                                 <View style={styles.jobHeader}>
                                     <View style={styles.jobRoleRow}>
                                         <Text style={styles.jobTitle}>{job.role}</Text>
@@ -368,7 +370,7 @@ export const CVDocumentBase: React.FC<CVDocumentBaseProps> = ({ language }) => {
                         {PROJECTS_DATA.map((project, index) => {
                             const trans = t.projects.items[index];
                             return (
-                                <View key={index} style={styles.projectItem} wrap={false}>
+                                <View key={index} style={styles.projectItem}>
                                     <Text style={styles.projectTitle}>{trans.title}</Text>
                                     <Text style={styles.projectDesc}>{trans.description}</Text>
                                     <View style={styles.projectTechWrap}>

@@ -436,13 +436,24 @@ export const CVDocumentEN = () => {
                         <Text style={styles.sectionTitle}>FEATURED PROJECTS</Text>
 
                         <View style={styles.projectItem}>
+                            <Text style={styles.projectTitle}>🚀 Align Designs Platform</Text>
+                            <Text style={styles.projectDesc}>Cloud B2B/B2C platform with monorepo architecture. Best practices (SOLID, SoC) and advanced security.</Text>
+                            <View style={styles.techStack}>
+                                <Text style={styles.techBagde}>Next.js</Text>
+                                <Text style={styles.techBagde}>React</Text>
+                                <Text style={styles.techBagde}>NestJS</Text>
+                                <Text style={styles.techBagde}>MinIO</Text>
+                                <Text style={styles.techBagde}>PostgreSQL</Text>
+                            </View>
+                        </View>
+
+                        <View style={styles.projectItem}>
                             <Text style={styles.projectTitle}>Internal Audit System (ADA/HONESTEL)</Text>
                             <Text style={styles.projectDesc}>Critical whistleblowing platform. Migrated to .NET Core with micro-frontends.</Text>
                             <View style={styles.techStack}>
                                 <Text style={styles.techBagde}>.NET Core</Text>
                                 <Text style={styles.techBagde}>React</Text>
-                                <Text style={styles.techBagde}>AWS</Text>
-                                <Text style={styles.techBagde}>SQL Server</Text>
+                                <Text style={styles.techBagde}>Next.js</Text>
                             </View>
                         </View>
 

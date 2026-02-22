@@ -5,23 +5,22 @@ import { useLanguage } from '../../context/LanguageContext';
 
 export const PROJECTS = [
     {
-        // Text fields retained for structure but overwritten
+        title: "🚀 Align Designs Platform",
+        description: "Plataforma integral...",
+        tech: ["Next.js", "React", "NestJS", "MinIO", "PostgreSQL", "TypeScript"],
+        icon: FaShieldAlt
+    },
+    {
         title: "Sistema de Auditoría Interna (ADA/HONESTEL)",
         description: "Plataforma crítica...",
-        tech: [".NET Core", "Next.js", "React", "TypeScript", "Turbo Repo", "AWS"],
-        icon: FaShieldAlt
+        tech: [".NET Core", "Next.js", "React"],
+        icon: FaLock
     },
     {
         title: "Sistema de Reclutamiento Empresarial",
         description: "Plataforma end-to-end...",
-        tech: [".NET Framework", "JavaScript", "Bootstrap", "SQL Server"],
+        tech: [".NET Framework", "JavaScript", "Bootstrap"],
         icon: FaUsers
-    },
-    {
-        title: "Sistema de Encriptación de Datos",
-        description: "Solución de seguridad...",
-        tech: ["C#", ".NET Core", "Criptografía", "Seguridad"],
-        icon: FaLock
     }
 ];
 

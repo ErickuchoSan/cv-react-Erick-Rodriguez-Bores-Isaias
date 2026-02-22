@@ -437,13 +437,24 @@ export const CVDocument = () => {
                         <Text style={styles.sectionTitle}>PROYECTOS DESTACADOS</Text>
 
                         <View style={styles.projectItem}>
+                            <Text style={styles.projectTitle}>🚀 Align Designs Platform</Text>
+                            <Text style={styles.projectDesc}>Plataforma B2B/B2C en la nube con arquitectura monorepo. Buenas prácticas (SOLID, SoC) y seguridad avanzada.</Text>
+                            <View style={styles.techStack}>
+                                <Text style={styles.techBagde}>Next.js</Text>
+                                <Text style={styles.techBagde}>React</Text>
+                                <Text style={styles.techBagde}>NestJS</Text>
+                                <Text style={styles.techBagde}>MinIO</Text>
+                                <Text style={styles.techBagde}>PostgreSQL</Text>
+                            </View>
+                        </View>
+
+                        <View style={styles.projectItem}>
                             <Text style={styles.projectTitle}>Sistema de Auditoría Interna (ADA/HONESTEL)</Text>
                             <Text style={styles.projectDesc}>Plataforma crítica de gestión de denuncias. Migrada a .NET Core con micro-frontends.</Text>
                             <View style={styles.techStack}>
                                 <Text style={styles.techBagde}>.NET Core</Text>
                                 <Text style={styles.techBagde}>React</Text>
-                                <Text style={styles.techBagde}>AWS</Text>
-                                <Text style={styles.techBagde}>SQL Server</Text>
+                                <Text style={styles.techBagde}>Next.js</Text>
                             </View>
                         </View>
 

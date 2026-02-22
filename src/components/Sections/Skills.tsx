@@ -1,6 +1,6 @@
 import React from 'react';
 import { SectionTitle } from '../UI/SectionTitle';
-import { FaCode, FaServer, FaTools, FaBrain, FaLightbulb, FaRocket, FaUsers, FaCogs, FaChartLine, FaDatabase, FaDocker, FaAws, FaWindows } from 'react-icons/fa';
+import { FaCode, FaServer, FaTools, FaBrain, FaLightbulb, FaRocket, FaUsers, FaCogs, FaChartLine, FaDatabase, FaDocker, FaAws, FaWindows, FaReact, FaCloud } from 'react-icons/fa';
 import { useLanguage } from '../../context/LanguageContext';
 
 export const Skills: React.FC = () => {
@@ -8,11 +8,11 @@ export const Skills: React.FC = () => {
 
     const SKILLS_DATA = {
         main: [
-            { name: ".NET Core / C#", level: 95, color: "bg-blue-600" },
-            { name: "React / Next.js", level: 90, color: "bg-cyan-500" },
-            { name: "SQL Server", level: 92, color: "bg-red-500" },
-            { name: "Microservices", level: 85, color: "bg-purple-600" },
-            { name: "Cloud Architecture", level: 80, color: "bg-orange-500" }
+            { name: ".NET Core / C#", icon: FaWindows, color: "text-blue-600 dark:text-blue-500", bg: "bg-blue-500/5 dark:bg-blue-500/10", border: "hover:border-blue-500/30", shadow: "hover:shadow-blue-500/20" },
+            { name: "React / Next.js", icon: FaReact, color: "text-cyan-500 dark:text-cyan-400", bg: "bg-cyan-500/5 dark:bg-cyan-500/10", border: "hover:border-cyan-500/30", shadow: "hover:shadow-cyan-400/20" },
+            { name: "SQL Server", icon: FaDatabase, color: "text-red-500 dark:text-red-400", bg: "bg-red-500/5 dark:bg-red-500/10", border: "hover:border-red-500/30", shadow: "hover:shadow-red-500/20" },
+            { name: "Microservices", icon: FaServer, color: "text-purple-600 dark:text-purple-400", bg: "bg-purple-500/5 dark:bg-purple-500/10", border: "hover:border-purple-500/30", shadow: "hover:shadow-purple-500/20" },
+            { name: "Cloud Architecture", icon: FaCloud, color: "text-orange-500 dark:text-orange-400", bg: "bg-orange-500/5 dark:bg-orange-500/10", border: "hover:border-orange-500/30", shadow: "hover:shadow-orange-500/20" }
         ],
         categories: [
             {
@@ -86,11 +86,12 @@ export const Skills: React.FC = () => {
                 {/* Main Skills Progress */}
                 <div className="mb-12 sm:mb-16">
                     <h3 className="text-xl sm:text-2xl font-bold mb-6 sm:mb-8 text-center text-gray-800 dark:text-gray-200">{t.skills.mainTech}</h3>
-                    <div className="flex flex-wrap justify-center gap-4 sm:gap-6 max-w-4xl mx-auto">
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6 max-w-6xl mx-auto">
                         {SKILLS_DATA.main.map((skill, index) => (
-                            <div key={index} className="glass-card flex items-center px-6 py-4 rounded-full tech-hover-effect">
-                                <div className={`w-3 h-3 rounded-full mr-3 ${skill.color}`}></div>
-                                <span className="font-bold text-gray-800 dark:text-gray-200">{skill.name}</span>
+                            <div key={index} className={`group glass-card p-6 rounded-2xl flex flex-col items-center justify-center text-center border border-transparent transition-all duration-300 relative overflow-hidden ${skill.border} hover:shadow-lg ${skill.shadow}`}>
+                                <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${skill.bg}`}></div>
+                                <skill.icon className={`text-4xl sm:text-5xl mb-4 transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1 drop-shadow-md relative z-10 ${skill.color}`} />
+                                <h4 className="font-bold text-gray-800 dark:text-gray-200 text-sm sm:text-base relative z-10">{skill.name}</h4>
                             </div>
                         ))}
                     </div>

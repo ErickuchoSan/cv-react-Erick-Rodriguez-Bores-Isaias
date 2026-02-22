@@ -86,19 +86,11 @@ export const Skills: React.FC = () => {
                 {/* Main Skills Progress */}
                 <div className="mb-12 sm:mb-16">
                     <h3 className="text-xl sm:text-2xl font-bold mb-6 sm:mb-8 text-center text-gray-800 dark:text-gray-200">{t.skills.mainTech}</h3>
-                    <div className="grid sm:grid-cols-2 gap-4 sm:gap-6 max-w-4xl mx-auto">
+                    <div className="flex flex-wrap justify-center gap-4 sm:gap-6 max-w-4xl mx-auto">
                         {SKILLS_DATA.main.map((skill, index) => (
-                            <div key={index} className="glass-card p-3 sm:p-4 rounded-xl">
-                                <div className="flex justify-between mb-2">
-                                    <span className="font-semibold text-gray-700 dark:text-gray-300">{skill.name}</span>
-                                    <span className="text-blue-600 font-bold">{skill.level}%</span>
-                                </div>
-                                <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
-                                    <div
-                                        className={`h-2.5 rounded-full ${skill.color} transition-all duration-1000 ease-out`}
-                                        style={{ width: `${skill.level}%` }}
-                                    ></div>
-                                </div>
+                            <div key={index} className="glass-card flex items-center px-6 py-4 rounded-full tech-hover-effect">
+                                <div className={`w-3 h-3 rounded-full mr-3 ${skill.color}`}></div>
+                                <span className="font-bold text-gray-800 dark:text-gray-200">{skill.name}</span>
                             </div>
                         ))}
                     </div>

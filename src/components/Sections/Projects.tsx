@@ -1,6 +1,6 @@
 import React from 'react';
 import { SectionTitle } from '../UI/SectionTitle';
-import { FaShieldAlt, FaUsers, FaLock } from 'react-icons/fa';
+import { FaShieldAlt, FaUsers, FaCloud } from 'react-icons/fa';
 import { useLanguage } from '../../context/LanguageContext';
 
 export const PROJECTS = [
@@ -8,13 +8,13 @@ export const PROJECTS = [
         title: "🚀 Align Designs Platform",
         description: "Plataforma integral...",
         tech: ["Next.js", "React", "NestJS", "MinIO", "PostgreSQL", "TypeScript"],
-        icon: FaShieldAlt
+        icon: FaCloud
     },
     {
         title: "Sistema de Auditoría Interna (ADA/HONESTEL)",
         description: "Plataforma crítica...",
         tech: [".NET Core", "Next.js", "React"],
-        icon: FaLock
+        icon: FaShieldAlt
     },
     {
         title: "Sistema de Reclutamiento Empresarial",

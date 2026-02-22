@@ -95,7 +95,7 @@ export const Contact: React.FC = () => {
                                 <a href="https://github.com/ErickuchoSan" target="_blank" rel="noopener noreferrer" className="social-btn bg-[#333] text-white p-3 sm:p-4 rounded-full hover:scale-110 transition-transform shadow-lg">
                                     <FaGithub className="text-xl sm:text-2xl" />
                                 </a>
-                                <a href="https://wa.me/525571104581" target="_blank" rel="noopener noreferrer" className="social-btn bg-[#25D366] text-white p-3 sm:p-4 rounded-full hover:scale-110 transition-transform shadow-lg">
+                                <a href="https://wa.me/525571104581?text=Hola%20Erick%2C%20vi%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20contactarte..." target="_blank" rel="noopener noreferrer" className="social-btn bg-[#25D366] text-white p-3 sm:p-4 rounded-full hover:scale-110 transition-transform shadow-lg">
                                     <FaWhatsapp className="text-xl sm:text-2xl" />
                                 </a>
                             </div>

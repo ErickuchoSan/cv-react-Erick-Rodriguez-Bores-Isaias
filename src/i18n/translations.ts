@@ -109,7 +109,7 @@ export const translations = {
                     role: "Desarrollador Full Stack",
                     company: "Freelance / Proyectos Propios",
                     period: "2025 - 2026",
-                    duration: "3 años",
+                    duration: "1 año",
                     description: "Desarrollo profesional autodidacta construyendo aplicaciones web completas, sistemas de gestión empresarial y herramientas de automatización con múltiples stacks tecnológicos.",
                     functions: [
                         "Desarrollo de aplicaciones web completas con .NET, Entity Framework y bases de datos relacionales",
@@ -315,7 +315,7 @@ export const translations = {
                     role: "Full Stack Developer",
                     company: "Freelance / Own Projects",
                     period: "2025 - 2026",
-                    duration: "3 years",
+                    duration: "1 year",
                     description: "Self-taught professional development building complete web applications, business management systems, and automation tools with multiple tech stacks.",
                     functions: [
                         "Development of complete web applications with .NET, Entity Framework, and relational databases",

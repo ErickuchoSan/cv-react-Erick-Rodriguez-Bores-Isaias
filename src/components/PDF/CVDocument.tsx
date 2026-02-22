@@ -377,6 +377,15 @@ export const CVDocument = () => {
                                 <View style={styles.bullet} />
                                 <Text style={styles.bulletText}>Automatización de procesos con scripts de Python.</Text>
                             </View>
+                            <Text style={{ fontSize: 9, fontFamily: 'Roboto', fontWeight: 'bold', color: '#1f2937', marginTop: 4, marginBottom: 2 }}>Logros Destacados:</Text>
+                            <View style={styles.bulletPoint}>
+                                <View style={styles.bullet} />
+                                <Text style={styles.bulletText}>Reducción de 40% en tiempo de ejecución de consultas SQL críticas.</Text>
+                            </View>
+                            <View style={styles.bulletPoint}>
+                                <View style={styles.bullet} />
+                                <Text style={styles.bulletText}>Automatización de procesos de 30 min a segundos con Python.</Text>
+                            </View>
                         </View>
 
                         {/* Job 2 */}
@@ -403,6 +412,15 @@ export const CVDocument = () => {
                                 <View style={styles.bullet} />
                                 <Text style={styles.bulletText}>Integración backend con .NET Framework y Entity Framework.</Text>
                             </View>
+                            <Text style={{ fontSize: 9, fontFamily: 'Roboto', fontWeight: 'bold', color: '#1f2937', marginTop: 4, marginBottom: 2 }}>Logros Destacados:</Text>
+                            <View style={styles.bulletPoint}>
+                                <View style={styles.bullet} />
+                                <Text style={styles.bulletText}>Entrega de sistema de reclutamiento completo desde cero.</Text>
+                            </View>
+                            <View style={styles.bulletPoint}>
+                                <View style={styles.bullet} />
+                                <Text style={styles.bulletText}>Procesamiento de miles de registros de candidatos en segundos.</Text>
+                            </View>
                         </View>
 
                         {/* Job 3 */}
@@ -424,6 +442,15 @@ export const CVDocument = () => {
                             <View style={styles.bulletPoint}>
                                 <View style={styles.bullet} />
                                 <Text style={styles.bulletText}>Implementación de algoritmos de seguridad (AES, RSA, SHA-256).</Text>
+                            </View>
+                            <Text style={{ fontSize: 9, fontFamily: 'Roboto', fontWeight: 'bold', color: '#1f2937', marginTop: 4, marginBottom: 2 }}>Logros Destacados:</Text>
+                            <View style={styles.bulletPoint}>
+                                <View style={styles.bullet} />
+                                <Text style={styles.bulletText}>Dominio autodidacta de +20 tecnologías en backend, frontend y DevOps.</Text>
+                            </View>
+                            <View style={styles.bulletPoint}>
+                                <View style={styles.bullet} />
+                                <Text style={styles.bulletText}>Portfolio de proyectos funcionales desplegados en producción.</Text>
                             </View>
                         </View>
                     </View>

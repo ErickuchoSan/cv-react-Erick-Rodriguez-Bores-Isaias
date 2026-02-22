@@ -39,13 +39,13 @@ export const Footer: React.FC = () => {
                     <div>
                         <h3 className="font-bold text-gray-800 dark:text-gray-200 mb-4 text-base sm:text-lg">{t.footer.contact}</h3>
                         <div className="flex space-x-4">
-                            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="bg-white dark:bg-gray-800 p-2 sm:p-3 rounded-full shadow-sm hover:shadow-md transition-all duration-300 hover:scale-110 text-blue-600">
+                            <a href="https://www.linkedin.com/in/erick-rodr%C3%ADguez-bores-isa%C3%ADas-0a0117149/" target="_blank" rel="noopener noreferrer" className="bg-white dark:bg-gray-800 p-2 sm:p-3 rounded-full shadow-sm hover:shadow-md transition-all duration-300 hover:scale-110 text-blue-600">
                                 <FaLinkedin className="text-lg sm:text-xl" />
                             </a>
-                            <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="bg-white dark:bg-gray-800 p-2 sm:p-3 rounded-full shadow-sm hover:shadow-md transition-all duration-300 hover:scale-110 text-gray-800 dark:text-gray-200">
+                            <a href="https://github.com/ErickuchoSan" target="_blank" rel="noopener noreferrer" className="bg-white dark:bg-gray-800 p-2 sm:p-3 rounded-full shadow-sm hover:shadow-md transition-all duration-300 hover:scale-110 text-gray-800 dark:text-gray-200">
                                 <FaGithub className="text-lg sm:text-xl" />
                             </a>
-                            <a href="mailto:erick.rodriguez.bores@gmail.com" className="bg-white dark:bg-gray-800 p-2 sm:p-3 rounded-full shadow-sm hover:shadow-md transition-all duration-300 hover:scale-110 text-red-500">
+                            <a href="mailto:e.bores.i@outlook.com" className="bg-white dark:bg-gray-800 p-2 sm:p-3 rounded-full shadow-sm hover:shadow-md transition-all duration-300 hover:scale-110 text-red-500">
                                 <FaEnvelope className="text-lg sm:text-xl" />
                             </a>
                         </div>

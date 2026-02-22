@@ -80,13 +80,13 @@ export const Hero: React.FC = () => {
 
                     {/* Social Links */}
                     <div className="mt-12 flex items-center justify-center md:justify-start space-x-6 animate-fade-in-up delay-400">
-                        <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors transform hover:scale-110">
+                        <a href="https://github.com/ErickuchoSan" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors transform hover:scale-110">
                             <FaGithub className="text-2xl" />
                         </a>
-                        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors transform hover:scale-110">
+                        <a href="https://www.linkedin.com/in/erick-rodr%C3%ADguez-bores-isa%C3%ADas-0a0117149/" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors transform hover:scale-110">
                             <FaLinkedin className="text-2xl" />
                         </a>
-                        <a href="mailto:erick.rodriguez.bores@gmail.com" className="text-gray-500 hover:text-red-500 dark:text-gray-400 dark:hover:text-red-400 transition-colors transform hover:scale-110">
+                        <a href="mailto:e.bores.i@outlook.com" className="text-gray-500 hover:text-red-500 dark:text-gray-400 dark:hover:text-red-400 transition-colors transform hover:scale-110">
                             <FaEnvelope className="text-2xl" />
                         </a>
                     </div>

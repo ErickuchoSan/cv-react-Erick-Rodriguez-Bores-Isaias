@@ -1,18 +1,12 @@
 import React from 'react';
 import { SectionTitle } from '../UI/SectionTitle';
-import { FaGlobeAmericas, FaFlagUsa } from 'react-icons/fa';
+import { FaFlagUsa } from 'react-icons/fa';
 import { useLanguage } from '../../context/LanguageContext';
 
 export const Languages: React.FC = () => {
     const { t } = useLanguage();
 
     const LANGUAGES_DATA = [
-        {
-            // name and level will be from translation
-            percentage: 100,
-            icon: FaGlobeAmericas,
-            color: 'bg-green-500'
-        },
         {
             percentage: 60,
             icon: FaFlagUsa,

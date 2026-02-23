@@ -327,6 +327,32 @@ export const CVDocumentBase: React.FC<CVDocumentBaseProps> = ({ language }) => {
                         </View>
                     </View>
 
+                    {/* Education & Languages - Moved here to fill space on first page */}
+                    <View style={styles.bottomColumns} wrap={false}>
+                        <View style={styles.bottomCol}>
+                            <Text style={styles.sectionTitle}>{t.about.education.title.toUpperCase()}</Text>
+                            <View style={styles.eduItem}>
+                                <Text style={styles.eduDegree}>{t.about.education.degree1}</Text>
+                                <Text style={styles.eduSchool}>{t.about.education.school1.split(' • ')[0]}</Text>
+                                <Text style={styles.eduYear}>{t.about.education.school1.split(' • ')[1]}</Text>
+                            </View>
+                            <View style={styles.eduItem}>
+                                <Text style={styles.eduDegree}>{t.about.education.degree2}</Text>
+                                <Text style={styles.eduSchool}>{t.about.education.school2}</Text>
+                                <Text style={styles.eduYear}>{t.about.education.status2.split(' • ')[1]}</Text>
+                            </View>
+                        </View>
+                        <View style={styles.bottomCol}>
+                            <Text style={styles.sectionTitle}>{isEs ? 'IDIOMAS' : 'LANGUAGES'}</Text>
+                            {t.languages.items.map((lang, index) => (
+                                <View key={index} style={styles.langRow}>
+                                    <Text style={styles.langName}>{lang.name}</Text>
+                                    <Text style={styles.langLevel}>{lang.level}</Text>
+                                </View>
+                            ))}
+                        </View>
+                    </View>
+
                     {/* Professional Experience */}
                     <View>
                         <View wrap={false}>
@@ -365,7 +391,7 @@ export const CVDocumentBase: React.FC<CVDocumentBaseProps> = ({ language }) => {
                         </View>
 
                         {t.experience.jobs.slice(1).map((job, index) => (
-                            <View key={index + 1} style={styles.experienceItem}>
+                            <View key={index + 1} style={styles.experienceItem} wrap={false}>
                                 <View style={styles.jobHeader}>
                                     <View style={styles.jobRoleRow}>
                                         <Text style={styles.jobTitle}>{job.role}</Text>
@@ -417,7 +443,7 @@ export const CVDocumentBase: React.FC<CVDocumentBaseProps> = ({ language }) => {
                         {PROJECTS_DATA.slice(1).map((project, index) => {
                             const trans = t.projects.items[index + 1];
                             return (
-                                <View key={index + 1} style={styles.projectItem}>
+                                <View key={index + 1} style={styles.projectItem} wrap={false}>
                                     <Text style={styles.projectTitle}>{trans.title}</Text>
                                     <Text style={styles.projectDesc}>{trans.description}</Text>
                                     <View style={styles.projectTechWrap}>
@@ -429,32 +455,6 @@ export const CVDocumentBase: React.FC<CVDocumentBaseProps> = ({ language }) => {
                             );
                         })}
                     </View>
-
-                    {/* Bottom Split (Education & Languages) */}
-                    <View style={styles.bottomColumns} wrap={false}>
-                        <View style={styles.bottomCol}>
-                            <Text style={styles.sectionTitle}>{t.about.education.title.toUpperCase()}</Text>
-                            <View style={styles.eduItem}>
-                                <Text style={styles.eduDegree}>{t.about.education.degree1}</Text>
-                                <Text style={styles.eduSchool}>{t.about.education.school1.split(' • ')[0]}</Text>
-                                <Text style={styles.eduYear}>{t.about.education.school1.split(' • ')[1]}</Text>
-                            </View>
-                            <View style={styles.eduItem}>
-                                <Text style={styles.eduDegree}>{t.about.education.degree2}</Text>
-                                <Text style={styles.eduSchool}>{t.about.education.school2}</Text>
-                                <Text style={styles.eduYear}>{t.about.education.status2.split(' • ')[1]}</Text>
-                            </View>
-                        </View>
-                        <View style={styles.bottomCol}>
-                            <Text style={styles.sectionTitle}>{isEs ? 'IDIOMAS' : 'LANGUAGES'}</Text>
-                            {t.languages.items.map((lang, index) => (
-                                <View key={index} style={styles.langRow}>
-                                    <Text style={styles.langName}>{lang.name}</Text>
-                                    <Text style={styles.langLevel}>{lang.level}</Text>
-                                </View>
-                            ))}
-                        </View>
-                    </View>
                 </View>
 
                 {/* FIXED FOOTER - Appears dynamically on every page bottom */}
@@ -462,6 +462,6 @@ export const CVDocumentBase: React.FC<CVDocumentBaseProps> = ({ language }) => {
                     `${t.hero.title} ${t.hero.subtitle}  •  ${CONTACT_INFO.email}  •  ${isEs ? 'Página' : 'Page'} ${pageNumber} / ${totalPages}`
                 )} />
             </Page>
-        </Document>
+        </Document >
     );
 };

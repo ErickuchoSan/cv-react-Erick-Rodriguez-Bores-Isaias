@@ -65,7 +65,8 @@ export const PDF_SKILLS = {
         "Docker / Contenedores",
         "Git / CI/CD",
         "Entity Framework",
-        "Agile / Scrum",
+        "Tailwind CSS",
+        "Bootstrap",
         "SOLID / Clean Code"
     ],
     en: [
@@ -79,7 +80,8 @@ export const PDF_SKILLS = {
         "Docker / Containers",
         "Git / CI/CD",
         "Entity Framework",
-        "Agile / Scrum",
+        "Tailwind CSS",
+        "Bootstrap",
         "SOLID / Clean Code"
     ]
 };

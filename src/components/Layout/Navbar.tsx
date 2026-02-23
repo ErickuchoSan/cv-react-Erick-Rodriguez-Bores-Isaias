@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { useTheme } from '../../hooks/useTheme';
 import { FaMoon, FaSun, FaBars, FaTimes } from 'react-icons/fa';
-
-
 import { useLanguage } from '../../context/LanguageContext';
 import { NAV_LINKS_KEYS } from '../../data/navigation';
 
@@ -12,8 +10,6 @@ export const Navbar: React.FC = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-
-
 
     return (
         <nav className="fixed top-0 w-full bg-white dark:bg-gray-900 z-50 border-b border-gray-200 dark:border-gray-700 shadow-lg transition-colors duration-300">

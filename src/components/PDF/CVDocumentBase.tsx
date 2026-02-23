@@ -69,6 +69,7 @@ const styles = StyleSheet.create({
     contactItem: {
         flexDirection: 'row',
         alignItems: 'center',
+        paddingRight: 8,
     },
     body: {
         paddingHorizontal: 10,
@@ -284,18 +285,10 @@ export const CVDocumentBase: React.FC<CVDocumentBaseProps> = ({ language }) => {
                         <Text style={styles.title}>{t.hero.role.toUpperCase()}</Text>
 
                         <View style={styles.contactRow}>
-                            <View style={styles.contactItem}>
-                                <Text>📍 {t.about.location.city.split(',')[0]}, CDMX    </Text>
-                            </View>
-                            <View style={styles.contactItem}>
-                                <Link src={`tel:${CONTACT_INFO.phone.replace(/\s+/g, '')}`} style={{ color: '#cbd5e1', textDecoration: 'none' }}>☏ {CONTACT_INFO.phone}    </Link>
-                            </View>
-                            <View style={styles.contactItem}>
-                                <Link src={`mailto:${CONTACT_INFO.email}`} style={{ color: '#cbd5e1', textDecoration: 'none' }}>✉ {CONTACT_INFO.email}    </Link>
-                            </View>
-                            <View style={styles.contactItem}>
-                                <Link src={CONTACT_INFO.social.linkedin} style={{ color: '#cbd5e1', textDecoration: 'none' }}>🔗 in/erick-rodríguez-bores-isaías</Link>
-                            </View>
+                            <View style={styles.contactItem}><Text style={{ marginLeft: 2 }}>{t.about.location.city.split(',')[0]}, CDMX</Text></View>
+                            <View style={styles.contactItem}><Link src={`tel:${CONTACT_INFO.phone.replace(/\s+/g, '')}`} style={{ color: '#cbd5e1', textDecoration: 'none', marginLeft: 2 }}>{CONTACT_INFO.phone}</Link></View>
+                            <View style={styles.contactItem}><Link src={`mailto:${CONTACT_INFO.email}`} style={{ color: '#cbd5e1', textDecoration: 'none', marginLeft: 2 }}>{CONTACT_INFO.email}</Link></View>
+                            <View style={styles.contactItem}><Link src={CONTACT_INFO.social.linkedin} style={{ color: '#cbd5e1', textDecoration: 'none', marginLeft: 2 }}>linkedin.com/in/erick-rodríguez-bores-isaías</Link></View>
                         </View>
                     </View>
                 </View>
@@ -319,7 +312,7 @@ export const CVDocumentBase: React.FC<CVDocumentBaseProps> = ({ language }) => {
                             <Text style={styles.skillBadge}>React / Next.js</Text>
                             <Text style={styles.skillBadge}>TypeScript</Text>
                             <Text style={styles.skillBadge}>Tailwind CSS</Text>
-                            <Text style={styles.skillBadge}>Python ({isEs ? 'Scripts' : 'Scripting'})</Text>
+                            <Text style={styles.skillBadge}>Python</Text>
                             <Text style={styles.skillBadge}>{isEs ? 'Microservicios' : 'Microservices'}</Text>
                             <Text style={styles.skillBadge}>Docker / {isEs ? 'Contenedores' : 'Containers'}</Text>
                             <Text style={styles.skillBadge}>Git / CI/CD</Text>

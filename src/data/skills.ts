@@ -59,23 +59,27 @@ export const PDF_SKILLS = {
         "SQL Server (T-SQL)",
         "React / Next.js",
         "TypeScript",
-        "Tailwind CSS",
         "Python",
+        "REST API",
         "Microservicios",
         "Docker / Contenedores",
         "Git / CI/CD",
-        "Entity Framework"
+        "Entity Framework",
+        "Agile / Scrum",
+        "SOLID / Clean Code"
     ],
     en: [
         ".NET Core / C#",
         "SQL Server (T-SQL)",
         "React / Next.js",
         "TypeScript",
-        "Tailwind CSS",
         "Python",
+        "REST API",
         "Microservices",
         "Docker / Containers",
         "Git / CI/CD",
-        "Entity Framework"
+        "Entity Framework",
+        "Agile / Scrum",
+        "SOLID / Clean Code"
     ]
 };

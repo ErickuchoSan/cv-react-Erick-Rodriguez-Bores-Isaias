@@ -293,6 +293,8 @@ export const CVDocumentBase: React.FC<CVDocumentBaseProps> = ({ language }) => {
                             <Link src={`mailto:${CONTACT_INFO.email}`} style={{ color: '#cbd5e1', textDecoration: 'none' }}>{CONTACT_INFO.email}</Link>
                             <Text style={{ color: '#64748b' }}>|</Text>
                             <Link src={CONTACT_INFO.social.linkedin} style={{ color: '#cbd5e1', textDecoration: 'none' }}>LinkedIn</Link>
+                            <Text style={{ color: '#64748b' }}>|</Text>
+                            <Link src={CONTACT_INFO.social.github} style={{ color: '#cbd5e1', textDecoration: 'none' }}>GitHub</Link>
                         </View>
                     </View>
                 </View>
@@ -313,6 +315,16 @@ export const CVDocumentBase: React.FC<CVDocumentBaseProps> = ({ language }) => {
                         <View style={styles.skillsContainer}>
                             {PDF_SKILLS[language].map((skill, index) => (
                                 <Text key={index} style={styles.skillBadge}>{skill}</Text>
+                            ))}
+                        </View>
+                    </View>
+
+                    {/* Soft Skills / Key Competencies */}
+                    <View wrap={false}>
+                        <Text style={styles.sectionTitle}>{t.skills.competencies.title.toUpperCase()}</Text>
+                        <View style={styles.skillsContainer}>
+                            {t.skills.competencies.items.slice(0, 6).map((comp, index) => (
+                                <Text key={index} style={styles.skillBadge}>{comp.title}</Text>
                             ))}
                         </View>
                     </View>

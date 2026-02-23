@@ -4,6 +4,7 @@ import { Document, Page, Text, View, StyleSheet, Font, Image, Link } from '@reac
 import { translations } from '../../i18n/translations';
 import { CONTACT_INFO } from '../../data/contact';
 import { PROJECTS_DATA } from '../../data/projects';
+import { PDF_SKILLS } from '../../data/skills';
 
 Font.register({
     family: 'Roboto',
@@ -285,7 +286,7 @@ export const CVDocumentBase: React.FC<CVDocumentBaseProps> = ({ language }) => {
                         <Text style={styles.title}>{t.hero.role.toUpperCase()}</Text>
 
                         <View style={styles.contactRow}>
-                            <Text style={{ color: '#cbd5e1' }}>Cuajimalpa de Morelos, CDMX</Text>
+                            <Text style={{ color: '#cbd5e1' }}>{CONTACT_INFO.location}</Text>
                             <Text style={{ color: '#64748b' }}>|</Text>
                             <Link src={`tel:${CONTACT_INFO.phone.replace(/\s+/g, '')}`} style={{ color: '#cbd5e1', textDecoration: 'none' }}>{CONTACT_INFO.phone}</Link>
                             <Text style={{ color: '#64748b' }}>|</Text>
@@ -310,16 +311,9 @@ export const CVDocumentBase: React.FC<CVDocumentBaseProps> = ({ language }) => {
                     <View wrap={false}>
                         <Text style={styles.sectionTitle}>{isEs ? 'HABILIDADES TÉCNICAS' : 'TECHNICAL SKILLS'}</Text>
                         <View style={styles.skillsContainer}>
-                            <Text style={styles.skillBadge}>.NET Core / C#</Text>
-                            <Text style={styles.skillBadge}>SQL Server (T-SQL)</Text>
-                            <Text style={styles.skillBadge}>React / Next.js</Text>
-                            <Text style={styles.skillBadge}>TypeScript</Text>
-                            <Text style={styles.skillBadge}>Tailwind CSS</Text>
-                            <Text style={styles.skillBadge}>Python</Text>
-                            <Text style={styles.skillBadge}>{isEs ? 'Microservicios' : 'Microservices'}</Text>
-                            <Text style={styles.skillBadge}>Docker / {isEs ? 'Contenedores' : 'Containers'}</Text>
-                            <Text style={styles.skillBadge}>Git / CI/CD</Text>
-                            <Text style={styles.skillBadge}>Entity Framework</Text>
+                            {PDF_SKILLS[language].map((skill, index) => (
+                                <Text key={index} style={styles.skillBadge}>{skill}</Text>
+                            ))}
                         </View>
                     </View>
 

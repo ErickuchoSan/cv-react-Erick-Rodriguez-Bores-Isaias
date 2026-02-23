@@ -51,3 +51,31 @@ export const SKILLS_DATA_CATEGORIES = [
 ];
 
 export const SOFT_SKILLS_ICONS = [FaBrain, FaLightbulb, FaCogs, FaRocket, FaCode, FaUsers, FaChartLine, FaTools, FaRocket];
+
+// Skills for PDF - centralized list with translations
+export const PDF_SKILLS = {
+    es: [
+        ".NET Core / C#",
+        "SQL Server (T-SQL)",
+        "React / Next.js",
+        "TypeScript",
+        "Tailwind CSS",
+        "Python",
+        "Microservicios",
+        "Docker / Contenedores",
+        "Git / CI/CD",
+        "Entity Framework"
+    ],
+    en: [
+        ".NET Core / C#",
+        "SQL Server (T-SQL)",
+        "React / Next.js",
+        "TypeScript",
+        "Tailwind CSS",
+        "Python",
+        "Microservices",
+        "Docker / Containers",
+        "Git / CI/CD",
+        "Entity Framework"
+    ]
+};

@@ -174,7 +174,11 @@ export const translations = {
             title: 'Idiomas',
             subtitle: 'Competencias Lingüísticas',
             items: [
-
+                {
+                    name: 'Español',
+                    level: 'Nativo',
+                    details: ['Lengua materna', 'Comunicación profesional', 'Redacción técnica avanzada']
+                },
                 {
                     name: 'Inglés',
                     level: 'A2-B1 Intermedio',
@@ -390,7 +394,11 @@ export const translations = {
             title: 'Languages',
             subtitle: 'Linguistic Competencies',
             items: [
-
+                {
+                    name: 'Spanish',
+                    level: 'Native',
+                    details: ['Mother tongue', 'Professional communication', 'Advanced technical writing']
+                },
                 {
                     name: 'English',
                     level: 'A2-B1 Intermediate',

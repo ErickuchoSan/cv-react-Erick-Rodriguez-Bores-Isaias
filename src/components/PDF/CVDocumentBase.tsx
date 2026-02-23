@@ -84,6 +84,7 @@ const styles = StyleSheet.create({
         borderBottomWidth: 2,
         borderBottomColor: '#3b82f6',
         paddingBottom: 4,
+        minPresenceAhead: 100,
     },
     summary: {
         fontSize: 10,

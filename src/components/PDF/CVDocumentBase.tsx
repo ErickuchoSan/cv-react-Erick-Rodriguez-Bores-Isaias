@@ -285,10 +285,13 @@ export const CVDocumentBase: React.FC<CVDocumentBaseProps> = ({ language }) => {
                         <Text style={styles.title}>{t.hero.role.toUpperCase()}</Text>
 
                         <View style={styles.contactRow}>
-                            <View style={styles.contactItem}><Text style={{ marginLeft: 2 }}>{t.about.location.city.split(',')[0]}, CDMX</Text></View>
-                            <View style={styles.contactItem}><Link src={`tel:${CONTACT_INFO.phone.replace(/\s+/g, '')}`} style={{ color: '#cbd5e1', textDecoration: 'none', marginLeft: 2 }}>{CONTACT_INFO.phone}</Link></View>
-                            <View style={styles.contactItem}><Link src={`mailto:${CONTACT_INFO.email}`} style={{ color: '#cbd5e1', textDecoration: 'none', marginLeft: 2 }}>{CONTACT_INFO.email}</Link></View>
-                            <View style={styles.contactItem}><Link src={CONTACT_INFO.social.linkedin} style={{ color: '#cbd5e1', textDecoration: 'none', marginLeft: 2 }}>linkedin.com/in/erick-rodríguez-bores-isaías</Link></View>
+                            <Text style={{ color: '#cbd5e1' }}>Cuajimalpa de Morelos, CDMX</Text>
+                            <Text style={{ color: '#64748b' }}>|</Text>
+                            <Link src={`tel:${CONTACT_INFO.phone.replace(/\s+/g, '')}`} style={{ color: '#cbd5e1', textDecoration: 'none' }}>{CONTACT_INFO.phone}</Link>
+                            <Text style={{ color: '#64748b' }}>|</Text>
+                            <Link src={`mailto:${CONTACT_INFO.email}`} style={{ color: '#cbd5e1', textDecoration: 'none' }}>{CONTACT_INFO.email}</Link>
+                            <Text style={{ color: '#64748b' }}>|</Text>
+                            <Link src={CONTACT_INFO.social.linkedin} style={{ color: '#cbd5e1', textDecoration: 'none' }}>LinkedIn</Link>
                         </View>
                     </View>
                 </View>

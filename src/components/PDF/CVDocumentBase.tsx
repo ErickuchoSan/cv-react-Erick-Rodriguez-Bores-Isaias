@@ -328,11 +328,44 @@ export const CVDocumentBase: React.FC<CVDocumentBaseProps> = ({ language }) => {
                     </View>
 
                     {/* Professional Experience */}
-                    <View wrap={true}>
-                        <Text style={styles.sectionTitle}>{t.experience.title.toUpperCase()}</Text>
+                    <View>
+                        <View wrap={false}>
+                            <Text style={styles.sectionTitle}>{t.experience.title.toUpperCase()}</Text>
+                            {t.experience.jobs.length > 0 && (
+                                <View style={styles.experienceItem}>
+                                    <View style={styles.jobHeader}>
+                                        <View style={styles.jobRoleRow}>
+                                            <Text style={styles.jobTitle}>{t.experience.jobs[0].role}</Text>
+                                            <Text style={styles.company}>{t.experience.jobs[0].company}</Text>
+                                        </View>
+                                        <Text style={styles.period}>{t.experience.jobs[0].period}</Text>
+                                    </View>
+                                    <View>
+                                        <Text style={styles.jobDescription}>{t.experience.jobs[0].description}</Text>
+                                        {t.experience.jobs[0].functions.map((func, i) => (
+                                            <View key={i} style={styles.bulletPoint}>
+                                                <View style={styles.bullet} />
+                                                <Text style={styles.bulletText}>{func}</Text>
+                                            </View>
+                                        ))}
+                                        {t.experience.jobs[0].achievements && t.experience.jobs[0].achievements.length > 0 && (
+                                            <View>
+                                                <Text style={styles.achievementsTitle}>{t.experience.achievements}</Text>
+                                                {t.experience.jobs[0].achievements.map((achievement, i) => (
+                                                    <View key={`ach-${i}`} style={styles.bulletPoint}>
+                                                        <View style={styles.bullet} />
+                                                        <Text style={styles.bulletText}>{achievement}</Text>
+                                                    </View>
+                                                ))}
+                                            </View>
+                                        )}
+                                    </View>
+                                </View>
+                            )}
+                        </View>
 
-                        {t.experience.jobs.map((job, index) => (
-                            <View key={index} style={styles.experienceItem}>
+                        {t.experience.jobs.slice(1).map((job, index) => (
+                            <View key={index + 1} style={styles.experienceItem}>
                                 <View style={styles.jobHeader}>
                                     <View style={styles.jobRoleRow}>
                                         <Text style={styles.jobTitle}>{job.role}</Text>
@@ -365,13 +398,26 @@ export const CVDocumentBase: React.FC<CVDocumentBaseProps> = ({ language }) => {
                     </View>
 
                     {/* Featured Projects */}
-                    <View wrap={true}>
-                        <Text style={styles.sectionTitle}>{t.projects.title.toUpperCase()}</Text>
+                    <View>
+                        <View wrap={false}>
+                            <Text style={styles.sectionTitle}>{t.projects.title.toUpperCase()}</Text>
+                            {PROJECTS_DATA.length > 0 && (
+                                <View style={styles.projectItem}>
+                                    <Text style={styles.projectTitle}>{t.projects.items[0].title}</Text>
+                                    <Text style={styles.projectDesc}>{t.projects.items[0].description}</Text>
+                                    <View style={styles.projectTechWrap}>
+                                        {PROJECTS_DATA[0].tech.map((tag, tIndex) => (
+                                            <Text key={tIndex} style={styles.projectTechBadge}>{tag}</Text>
+                                        ))}
+                                    </View>
+                                </View>
+                            )}
+                        </View>
 
-                        {PROJECTS_DATA.map((project, index) => {
-                            const trans = t.projects.items[index];
+                        {PROJECTS_DATA.slice(1).map((project, index) => {
+                            const trans = t.projects.items[index + 1];
                             return (
-                                <View key={index} style={styles.projectItem}>
+                                <View key={index + 1} style={styles.projectItem}>
                                     <Text style={styles.projectTitle}>{trans.title}</Text>
                                     <Text style={styles.projectDesc}>{trans.description}</Text>
                                     <View style={styles.projectTechWrap}>

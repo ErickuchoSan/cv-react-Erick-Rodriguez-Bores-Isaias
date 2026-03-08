@@ -3,7 +3,9 @@ import React, { useState } from 'react';
 import { FaGithub, FaLinkedin, FaEnvelope, FaFileDownload, FaArrowRight, FaSpinner } from 'react-icons/fa';
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import { CVDocument } from '../PDF/CVDocument';
-import { CVDocumentEN } from '../PDF/CVDocumentEN'; // Import English version
+import { CVDocumentEN } from '../PDF/CVDocumentEN';
+import { CVDocumentATS_ES } from '../PDF/CVDocumentATS_ES';
+import { CVDocumentATS_EN } from '../PDF/CVDocumentATS_EN';
 import { useLanguage } from '../../context/LanguageContext';
 import { CONTACT_INFO } from '../../data/contact';
 
@@ -61,7 +63,11 @@ export const Hero: React.FC = () => {
 
                             {/* Dropdown Menu */}
                             {showDownloadOptions && (
-                                <div className="absolute top-full left-0 mt-2 w-full bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden z-20 animate-fade-in-up">
+                                <div className="absolute top-full left-0 mt-2 bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden z-20 animate-fade-in-up" style={{ minWidth: '220px' }}>
+                                    {/* Diseño Visual */}
+                                    <div className="px-3 py-2 bg-gray-50 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+                                        <span className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">Diseño Visual</span>
+                                    </div>
                                     <PDFDownloadLink
                                         document={<CVDocument />}
                                         fileName="CV_Erick_Rodriguez_ES.pdf"
@@ -70,7 +76,7 @@ export const Hero: React.FC = () => {
                                         {({ loading }) => (
                                             <span className="flex items-center">
                                                 {loading && <FaSpinner aria-hidden="true" className="animate-spin mr-2 text-blue-500" />}
-                                                {loading ? 'Español (Generando...)' : 'Español'}
+                                                {loading ? 'Español (Generando...)' : '🇲🇽 Español'}
                                             </span>
                                         )}
                                     </PDFDownloadLink>
@@ -82,7 +88,36 @@ export const Hero: React.FC = () => {
                                         {({ loading }) => (
                                             <span className="flex items-center">
                                                 {loading && <FaSpinner aria-hidden="true" className="animate-spin mr-2 text-blue-500" />}
-                                                {loading ? 'English (Generating...)' : 'English'}
+                                                {loading ? 'English (Generating...)' : '🇺🇸 English'}
+                                            </span>
+                                        )}
+                                    </PDFDownloadLink>
+
+                                    {/* Formato ATS */}
+                                    <div className="px-3 py-2 bg-gray-50 dark:bg-gray-900 border-t border-b border-gray-200 dark:border-gray-700">
+                                        <span className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">Formato ATS</span>
+                                    </div>
+                                    <PDFDownloadLink
+                                        document={<CVDocumentATS_ES />}
+                                        fileName="CV_Erick_Rodriguez_ATS_ES.pdf"
+                                        className="block w-full px-4 py-3 text-left text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                                    >
+                                        {({ loading }) => (
+                                            <span className="flex items-center">
+                                                {loading && <FaSpinner aria-hidden="true" className="animate-spin mr-2 text-green-500" />}
+                                                {loading ? 'ATS Español (Generando...)' : '🇲🇽 ATS Español'}
+                                            </span>
+                                        )}
+                                    </PDFDownloadLink>
+                                    <PDFDownloadLink
+                                        document={<CVDocumentATS_EN />}
+                                        fileName="CV_Erick_Rodriguez_ATS_EN.pdf"
+                                        className="block w-full px-4 py-3 text-left text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors border-t border-gray-100 dark:border-gray-700"
+                                    >
+                                        {({ loading }) => (
+                                            <span className="flex items-center">
+                                                {loading && <FaSpinner aria-hidden="true" className="animate-spin mr-2 text-green-500" />}
+                                                {loading ? 'ATS English (Generating...)' : '🇺🇸 ATS English'}
                                             </span>
                                         )}
                                     </PDFDownloadLink>

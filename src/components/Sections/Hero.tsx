@@ -14,7 +14,7 @@ export const Hero: React.FC = () => {
     const [showDownloadOptions, setShowDownloadOptions] = useState(false);
 
     return (
-        <section id="inicio" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gray-50 dark:bg-gray-900 transition-colors duration-300 pt-16">
+        <section id="inicio" className="min-h-screen flex items-center justify-center relative bg-gray-50 dark:bg-gray-900 transition-colors duration-300 pt-16">
             {/* Background Effects */}
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
                 <div className="absolute top-20 right-10 w-72 h-72 bg-blue-500/20 rounded-full blur-[100px] animate-pulse"></div>

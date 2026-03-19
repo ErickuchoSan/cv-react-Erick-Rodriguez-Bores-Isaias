@@ -1,4 +1,4 @@
-import { FaCode, FaServer, FaTools, FaBrain, FaLightbulb, FaRocket, FaUsers, FaCogs, FaChartLine, FaDatabase, FaDocker, FaGitAlt, FaWindows, FaReact, FaPython } from 'react-icons/fa';
+import { FaCode, FaServer, FaTools, FaBrain, FaLightbulb, FaRocket, FaUsers, FaCogs, FaChartLine, FaDatabase, FaGitAlt, FaWindows, FaReact } from 'react-icons/fa';
 
 export const SKILLS_DATA_MAIN = [
     { name: ".NET Core / C#", icon: FaWindows, color: "text-blue-600 dark:text-blue-500", bg: "bg-blue-500/5 dark:bg-blue-500/10", border: "hover:border-blue-500/30", shadow: "hover:shadow-blue-500/20" },

@@ -11,8 +11,8 @@ export const translations = {
         hero: {
             title: 'Erick Rodríguez',
             subtitle: 'Bores Isaías',
-            role: 'Desarrollador Full Stack Senior',
-            description: 'Impulsando la innovación con arquitecturas escalables y experiencias de usuario modernas. Especialista en .NET/C#, React y Soluciones Cloud.',
+            role: 'Desarrollador Full Stack .NET & React',
+            description: 'Especialista en C#/.NET Core, React 19, SQL Server y Azure. 3 años desarrollando arquitecturas escalables y soluciones empresariales.',
             contactBtn: 'Contáctame',
             projectsBtn: 'Ver Proyectos',
             downloadBtn: 'Descargar CV',
@@ -21,9 +21,9 @@ export const translations = {
         about: {
             title: 'Sobre Mí',
             subtitle: 'Transformando ideas en soluciones empresariales de alto impacto',
-            roleTitle: 'Especialista en Arquitecturas Empresariales',
-            description1: 'Con +5 años de experiencia en desarrollo de software empresarial, diseño e implemento arquitecturas escalables que resuelven problemas reales de negocio. He logrado reducir tiempos de consulta en un 40%, automatizar procesos críticos y migrar sistemas legacy a tecnologías modernas con .NET/C#, React y SQL Server.',
-            description2: 'Actualmente como Programador de Auditoría Senior en Grupo Salinas, lidero el desarrollo de sistemas críticos de auditoría interna que dan servicio a todas las empresas del grupo, utilizando .NET Core, React, Next.js y arquitecturas de microservicios. Me distingo por mi capacidad autodidacta, pensamiento orientado a resultados y programación asistida por IA (Claude, Gemini, Antigravity) sin sacrificar la calidad del código.',
+            roleTitle: 'Desarrollador Full Stack .NET & React',
+            description1: 'Con 3 años de experiencia en desarrollo de software empresarial, diseño e implemento arquitecturas escalables con C#/.NET Core (3 años), React 19 (2 años), SQL Server (3 años), y Azure Service Bus (2 años). Experiencia sólida en REST APIs, Entity Framework, OAuth2/JWT, y algoritmos de cifrado AES/RSA (3.5 años).',
+            description2: 'Actualmente como Programador de Auditoría Senior en Grupo Salinas, lidero el desarrollo de sistemas críticos de auditoría interna (ADA/HONESTEL) utilizando .NET Core, React, y Azure Functions. Me distingo por mi capacidad autodidacta, conocimiento en arquitecturas limpias (Clean Architecture, DDD), microservicios, y programación asistida por IA sin sacrificar la calidad del código.',
             stats: {
                 experience: 'Años de Experiencia',
                 technologies: 'Tecnologías Dominadas',
@@ -59,7 +59,7 @@ export const translations = {
         },
         experience: {
             title: 'Experiencia Profesional',
-            subtitle: '+5 años de trayectoria en desarrollo de software',
+            subtitle: '3 años de trayectoria en desarrollo de software empresarial',
             responsibilities: 'Responsabilidades:',
             achievements: 'Logros Destacados:',
             stack: 'Stack Tecnológico:',
@@ -69,22 +69,22 @@ export const translations = {
                     company: "Grupo Salinas",
                     period: "Mayo 2024 - Actual",
                     duration: "~2 años",
-                    description: "Líder técnico responsable de la arquitectura, desarrollo y evolución de los sistemas críticos de auditoría interna (ADA/HONESTEL) que procesan denuncias de todas las empresas del grupo corporativo.",
+                    description: "Líder técnico responsable de la arquitectura, desarrollo y evolución de sistemas críticos de auditoría interna (ADA/HONESTEL). Stack: .NET Core, C#, React, SQL Server, Azure Functions, Azure Service Bus.",
                     functions: [
-                        "Desarrollo de la API v2 de Honestel (SICH) con 6 endpoints iniciales e integración con ADACH aplicando metodología DRY.",
-                        "Refactorización de la arquitectura legacy (código espagueti en HTML vanilla y .NET Framework) de ADACH hacia un proyecto con principios limpios de Frontend y Backend.",
-                        "Desarrollo de nuevos endpoints API para el sistema de alarmas NOC.",
-                        "Optimización integral de rendimiento abarcando consultas SQL, lógica de Backend y renderizado en Frontend.",
-                        "Mantenimiento activo mediante la actualización de paquetes NuGet y librerías JS, resolviendo dependencias y adaptando el código.",
-                        "Soporte técnico e impartición de capacitaciones mensuales a usuarios finales sobre el sistema ADACH.",
-                        "Implementación de algoritmos de encriptación (AES y SHA-256) para la protección de datos sensibles end-to-end.",
-                        "Diseño de Arquitectura Backend basado en: SOLID, YAGNI, Fail Fast, Ley de Demeter (LoD), Idempotencia, Least Privilege y DRY.",
-                        "Desarrollo Frontend guiado por: KISS, SoC, DRY, Single Source of Truth, Progressive Enhancement y Accessibility First."
+                        "Desarrollo de API REST con .NET Core 8 integrando OAuth2 y tokenización JWT para autenticación segura.",
+                        "Implementación de Azure Functions y Azure Service Bus para mensajería (colas, topics/subscriptions, retry, backoff).",
+                        "Desarrollo Frontend con React 19 y JavaScript, aplicando diseño responsivo con CSS y Bootstrap.",
+                        "Optimización de consultas SQL Server con T-SQL, procedimientos almacenados y funciones.",
+                        "Implementación de algoritmos de cifrado (AES, RSA, SHA-256) para protección de datos sensibles.",
+                        "Arquitectura Backend basada en SOLID, Clean Architecture y principios DDD.",
+                        "Integración CI/CD con Azure DevOps y control de código con GitHub.",
+                        "Refactorización de arquitectura legacy hacia proyecto con Entity Framework y principios limpios.",
+                        "Documentación técnica con Swagger y pruebas de API con Postman/Insomnia."
                     ],
                     achievements: [
-                        "Creación de la API v2 de Honestel desde cero (6 endpoints principales) y su integración continua con múltiples sistemas.",
+                        "Creación de API v2 de Honestel desde cero (6 endpoints principales) con integración continua.",
                         "Reducción de 40% en tiempo de ejecución de consultas críticas de base de datos.",
-                        "Automatización de procesos operativos mediante scripts Python, eliminando tareas repetitivas."
+                        "Automatización de procesos operativos mediante scripts, eliminando tareas repetitivas."
                     ]
                 },
                 {
@@ -92,37 +92,37 @@ export const translations = {
                     company: "Digital Solutions",
                     period: "Mayo 2023 - Mayo 2024",
                     duration: "1 año",
-                    description: "Desarrollo integral de sistemas empresariales para gestión de recursos humanos y reclutamiento, con enfoque en procesamiento masivo de datos y automatización de flujos operativos.",
+                    description: "Desarrollo integral de sistemas empresariales para gestión de RH y reclutamiento. Stack: .NET Framework, C#, Entity Framework, SQL Server, JavaScript, jQuery, Bootstrap.",
                     functions: [
-                        "Diseño e implementación end-to-end del sistema de reclutamiento y gestión de candidatos",
-                        "Desarrollo de módulo de carga masiva desde Excel y TXT, procesando miles de registros simultáneamente",
-                        "Arquitectura e integración de servicios backend con .NET Framework y Entity Framework",
-                        "Diseño de interfaces responsivas y accesibles con JavaScript y Bootstrap",
-                        "Optimización de consultas SQL Server para manejo eficiente de grandes volúmenes de datos"
+                        "Desarrollo de APIs REST con .NET Framework y Entity Framework para gestión de candidatos.",
+                        "Implementación de módulo de carga masiva desde Excel y TXT procesando miles de registros.",
+                        "Diseño de interfaces responsivas con JavaScript, jQuery y Bootstrap.",
+                        "Optimización de consultas SQL Server con procedimientos almacenados y funciones.",
+                        "Control de versiones con GitHub y gestión de ramas para trabajo colaborativo."
                     ],
                     achievements: [
-                        "Entrega de sistema completo de gestión de reclutamiento desde cero",
-                        "Módulo de carga masiva capaz de procesar miles de registros en segundos",
-                        "Reducción significativa del tiempo de onboarding mediante automatización de procesos"
+                        "Entrega de sistema completo de gestión de reclutamiento desde cero.",
+                        "Módulo de carga masiva capaz de procesar miles de registros en segundos.",
+                        "Reducción significativa del tiempo de onboarding mediante automatización."
                     ]
                 },
                 {
                     role: "Desarrollador Full Stack",
                     company: "Freelance / Proyectos Propios",
-                    period: "2025 - 2026",
+                    period: "2022 - 2023",
                     duration: "1 año",
-                    description: "Desarrollo profesional autodidacta construyendo aplicaciones web completas, sistemas de gestión empresarial y herramientas de automatización con múltiples stacks tecnológicos.",
+                    description: "Desarrollo profesional autodidacta con enfoque en .NET Core, React, Node.js y arquitecturas de microservicios.",
                     functions: [
-                        "Desarrollo de aplicaciones web completas con .NET, Entity Framework y bases de datos relacionales",
-                        "Diseño e implementación de sistemas de administración con SQL Server",
-                        "Construcción de APIs RESTful y exploración de arquitecturas de microservicios",
-                        "Implementación de algoritmos de seguridad y criptografía (AES, RSA, SHA-256)",
-                        "Desarrollo con stacks modernos: NestJS, PostgreSQL, Vue.js y Node.js"
+                        "Desarrollo de aplicaciones web con .NET Core, Entity Framework y SQL Server.",
+                        "Construcción de APIs RESTful aplicando arquitectura limpia y principios SOLID.",
+                        "Implementación de algoritmos de cifrado (AES, RSA, SHA-256) para seguridad de datos.",
+                        "Desarrollo Frontend con React, TypeScript y Node.js.",
+                        "Exploración de microservicios y Azure Functions para arquitecturas cloud."
                     ],
                     achievements: [
-                        "Dominio autodidacta de +20 tecnologías en backend, frontend y DevOps",
-                        "Portfolio de proyectos funcionales desplegados en producción",
-                        "Base sólida en patrones de diseño y arquitecturas escalables"
+                        "Dominio autodidacta de tecnologías backend, frontend y cloud.",
+                        "Portfolio de proyectos funcionales con código limpio.",
+                        "Base sólida en patrones de diseño y arquitecturas escalables."
                     ]
                 }
             ]
@@ -140,15 +140,15 @@ export const translations = {
             competencies: {
                 title: 'Competencias Clave',
                 items: [
-                    { title: 'Desarrollo Asistido por IA', desc: 'Programo con Claude, Gemini y Antigravity - entiendo, reviso y optimizo cada línea aplicando buenas prácticas' },
+                    { title: 'Arquitectura Limpia / DDD', desc: 'Diseño de soluciones con Clean Architecture y Domain-Driven Design (2 años)' },
+                    { title: 'Codificación Segura', desc: 'Implementación de cifrado AES/RSA, OAuth2, JWT y prácticas de seguridad' },
+                    { title: 'Optimización SQL', desc: 'Mejora de tiempos de consulta hasta 40% con procedimientos y funciones' },
+                    { title: 'Metodología SCRUM', desc: 'Experiencia trabajando con metodologías ágiles (10 meses)' },
+                    { title: 'Pruebas y QA', desc: 'Pruebas unitarias, pruebas de usuario y documentación técnica (Swagger)' },
                     { title: 'Aprendizaje Autodidacta', desc: 'Capacidad demostrada para dominar nuevas tecnologías de forma independiente' },
-                    { title: 'Resolución de Problemas', desc: 'Pensamiento analítico y sistemático para optimización de sistemas' },
-                    { title: 'Adaptabilidad Tecnológica', desc: 'Rápida adopción de nuevas herramientas y frameworks' },
-                    { title: 'Políglota Tecnológico', desc: 'Con IA me adapto a cualquier lenguaje o stack que el proyecto requiera' },
-                    { title: 'Resiliencia', desc: 'Persistencia y enfoque bajo presión en proyectos complejos' },
-                    { title: 'Optimización de Rendimiento', desc: 'Mejora de tiempos de respuesta y queries SQL hasta 40%' },
-                    { title: 'Refactorización de Código', desc: 'Modularización, eliminación de redundancia y mejora de mantenibilidad' },
-                    { title: 'Automatización de Procesos', desc: 'Scripts y pipelines para eficiencia operativa' }
+                    { title: 'Trabajo en Equipo', desc: 'Comunicación asertiva, adaptabilidad y colaboración efectiva' },
+                    { title: 'Desarrollo Asistido por IA', desc: 'Programo con Claude y Gemini optimizando cada línea con buenas prácticas' },
+                    { title: 'Disponibilidad Inmediata', desc: 'Disponible para incorporación en 1 semana o 3 días' }
                 ]
             }
         },
@@ -212,7 +212,7 @@ export const translations = {
         },
         footer: {
             brand: 'Erick Rodríguez',
-            description: 'Desarrollador Full Stack Senior especializado en arquitecturas empresariales escalables con .NET/C# y React. +5 años de experiencia.',
+            description: 'Desarrollador Full Stack especializado en .NET Core/C#, React 19 y Azure. 3 años de experiencia en desarrollo empresarial.',
             navigation: 'Navegación',
             contact: 'Contacto',
             rights: 'Todos los derechos reservados.',
@@ -231,8 +231,8 @@ export const translations = {
         hero: {
             title: 'Erick Rodríguez',
             subtitle: 'Bores Isaías',
-            role: 'Senior Full Stack Developer',
-            description: 'Driving innovation with scalable architectures and modern user experiences. Specialist in .NET/C#, React, and Cloud Solutions.',
+            role: 'Full Stack Developer .NET & React',
+            description: 'Specialist in C#/.NET Core, React 19, SQL Server, and Azure. 3 years building scalable architectures and enterprise solutions.',
             contactBtn: 'Contact Me',
             projectsBtn: 'View Projects',
             downloadBtn: 'Download CV',
@@ -241,9 +241,9 @@ export const translations = {
         about: {
             title: 'About Me',
             subtitle: 'Transforming ideas into high-impact business solutions',
-            roleTitle: 'Enterprise Architecture Specialist',
-            description1: 'With +5 years of experience in enterprise software development, I design and implement scalable architectures that solve real business problems. I have achieved a 40% reduction in query times, automated critical processes, and migrated legacy systems to modern technologies using .NET/C#, React, and SQL Server.',
-            description2: 'Currently as a Senior Audit Programmer at Group Salinas, I lead the development of critical internal audit systems serving all group companies, using .NET Core, React, Next.js, and microservices architectures. I distinguish myself by my self-taught ability, results-oriented thinking, and AI-assisted programming (Claude, Gemini, Antigravity) without sacrificing code quality.',
+            roleTitle: 'Full Stack Developer .NET & React',
+            description1: 'With 3 years of experience in enterprise software development, I design and implement scalable architectures with C#/.NET Core (3 years), React 19 (2 years), SQL Server (3 years), and Azure Service Bus (2 years). Solid experience in REST APIs, Entity Framework, OAuth2/JWT, and AES/RSA encryption algorithms (3.5 years).',
+            description2: 'Currently as a Senior Audit Programmer at Grupo Salinas, I lead the development of critical internal audit systems (ADA/HONESTEL) using .NET Core, React, and Azure Functions. I distinguish myself by my self-taught ability, knowledge in clean architectures (Clean Architecture, DDD), microservices, and AI-assisted programming without sacrificing code quality.',
             stats: {
                 experience: 'Years of Experience',
                 technologies: 'Technologies Mastered',
@@ -279,7 +279,7 @@ export const translations = {
         },
         experience: {
             title: 'Professional Experience',
-            subtitle: '+5 years of experience in software development',
+            subtitle: '3 years of experience in enterprise software development',
             responsibilities: 'Responsibilities:',
             achievements: 'Key Achievements:',
             stack: 'Tech Stack:',
@@ -289,22 +289,22 @@ export const translations = {
                     company: "Grupo Salinas",
                     period: "May 2024 - Present",
                     duration: "~2 years",
-                    description: "Technical lead responsible for the architecture, development, and evolution of critical internal audit systems (ADA/HONESTEL) processing reports from all corporate group companies.",
+                    description: "Technical lead responsible for architecture, development and evolution of critical internal audit systems (ADA/HONESTEL). Stack: .NET Core, C#, React, SQL Server, Azure Functions, Azure Service Bus.",
                     functions: [
-                        "Development of the Honestel v2 API (SICH) with 6 initial endpoints and integration with ADACH applying DRY methodology.",
-                        "Refactoring of ADACH's legacy architecture (spaghetti code in vanilla HTML and .NET Framework) into a project with clean Frontend and Backend principles.",
-                        "Development of new API endpoints for the NOC alarm system.",
-                        "Comprehensive performance optimization spanning SQL queries, Backend logic, and Frontend rendering.",
-                        "Active maintenance through updating NuGet packages and JS libraries, resolving dependencies and adapting code.",
-                        "Technical support and conducting monthly training sessions for end-users on the ADACH system.",
-                        "Implementation of encryption algorithms (AES and SHA-256) for end-to-end sensitive data protection.",
-                        "Backend Architecture design based on: SOLID, YAGNI, Fail Fast, Law of Demeter (LoD), Idempotency, Least Privilege, and DRY.",
-                        "Frontend Development guided by: KISS, SoC, DRY, Single Source of Truth, Progressive Enhancement, and Accessibility First."
+                        "REST API development with .NET Core 8 integrating OAuth2 and JWT tokenization for secure authentication.",
+                        "Implementation of Azure Functions and Azure Service Bus for messaging (queues, topics/subscriptions, retry, backoff).",
+                        "Frontend development with React 19 and JavaScript, applying responsive design with CSS and Bootstrap.",
+                        "SQL Server query optimization with T-SQL, stored procedures and functions.",
+                        "Implementation of encryption algorithms (AES, RSA, SHA-256) for sensitive data protection.",
+                        "Backend architecture based on SOLID, Clean Architecture and DDD principles.",
+                        "CI/CD integration with Azure DevOps and source control with GitHub.",
+                        "Legacy architecture refactoring towards project with Entity Framework and clean principles.",
+                        "Technical documentation with Swagger and API testing with Postman/Insomnia."
                     ],
                     achievements: [
-                        "Creation of the Honestel v2 API from scratch (6 core endpoints) and its continuous integration with multiple systems.",
+                        "Creation of Honestel v2 API from scratch (6 core endpoints) with continuous integration.",
                         "40% reduction in execution time of critical database queries.",
-                        "Automation of operational processes using Python scripts, eliminating repetitive tasks."
+                        "Automation of operational processes through scripts, eliminating repetitive tasks."
                     ]
                 },
                 {
@@ -312,37 +312,37 @@ export const translations = {
                     company: "Digital Solutions",
                     period: "May 2023 - May 2024",
                     duration: "1 year",
-                    description: "Integral development of enterprise systems for human resources and recruitment management, focusing on massive data processing and automation of operational flows.",
+                    description: "Integral development of enterprise systems for HR and recruitment management. Stack: .NET Framework, C#, Entity Framework, SQL Server, JavaScript, jQuery, Bootstrap.",
                     functions: [
-                        "End-to-end design and implementation of the recruitment and candidate management system",
-                        "Development of bulk upload module from Excel and TXT, processing thousands of records simultaneously",
-                        "Architecture and integration of backend services with .NET Framework and Entity Framework",
-                        "Design of responsive and accessible interfaces with JavaScript and Bootstrap",
-                        "Optimization of SQL Server queries for efficient handling of large data volumes"
+                        "REST API development with .NET Framework and Entity Framework for candidate management.",
+                        "Implementation of bulk upload module from Excel and TXT processing thousands of records.",
+                        "Responsive interface design with JavaScript, jQuery and Bootstrap.",
+                        "SQL Server query optimization with stored procedures and functions.",
+                        "Version control with GitHub and branch management for collaborative work."
                     ],
                     achievements: [
-                        "Delivery of complete recruitment management system from scratch",
-                        "Bulk upload module capable of processing thousands of records in seconds",
-                        "Significant reduction of onboarding time through process automation"
+                        "Delivery of complete recruitment management system from scratch.",
+                        "Bulk upload module capable of processing thousands of records in seconds.",
+                        "Significant reduction of onboarding time through automation."
                     ]
                 },
                 {
                     role: "Full Stack Developer",
                     company: "Freelance / Own Projects",
-                    period: "2025 - 2026",
+                    period: "2022 - 2023",
                     duration: "1 year",
-                    description: "Self-taught professional development building complete web applications, business management systems, and automation tools with multiple tech stacks.",
+                    description: "Self-taught professional development focused on .NET Core, React, Node.js and microservices architectures.",
                     functions: [
-                        "Development of complete web applications with .NET, Entity Framework, and relational databases",
-                        "Design and implementation of administration systems with SQL Server",
-                        "Construction of RESTful APIs and exploration of microservices architectures",
-                        "Implementation of security and cryptography algorithms (AES, RSA, SHA-256)",
-                        "Development with modern stacks: NestJS, PostgreSQL, Vue.js, and Node.js"
+                        "Web application development with .NET Core, Entity Framework and SQL Server.",
+                        "RESTful API construction applying clean architecture and SOLID principles.",
+                        "Implementation of encryption algorithms (AES, RSA, SHA-256) for data security.",
+                        "Frontend development with React, TypeScript and Node.js.",
+                        "Exploration of microservices and Azure Functions for cloud architectures."
                     ],
                     achievements: [
-                        "Self-taught mastery of +20 technologies in backend, frontend, and DevOps",
-                        "Portfolio of functional projects deployed in production",
-                        "Solid foundation in design patterns and scalable architectures"
+                        "Self-taught mastery of backend, frontend and cloud technologies.",
+                        "Portfolio of functional projects with clean code.",
+                        "Solid foundation in design patterns and scalable architectures."
                     ]
                 }
             ]
@@ -360,15 +360,15 @@ export const translations = {
             competencies: {
                 title: 'Key Competencies',
                 items: [
-                    { title: 'AI-Assisted Development', desc: 'Programming with Claude, Gemini and Antigravity - understanding, reviewing, and optimizing every line applying best practices' },
+                    { title: 'Clean Architecture / DDD', desc: 'Solution design with Clean Architecture and Domain-Driven Design (2 years)' },
+                    { title: 'Secure Coding', desc: 'Implementation of AES/RSA encryption, OAuth2, JWT and security practices' },
+                    { title: 'SQL Optimization', desc: 'Query time improvement up to 40% with procedures and functions' },
+                    { title: 'SCRUM Methodology', desc: 'Experience working with agile methodologies (10 months)' },
+                    { title: 'Testing & QA', desc: 'Unit testing, user testing and technical documentation (Swagger)' },
                     { title: 'Self-Taught Learning', desc: 'Demonstrated ability to master new technologies independently' },
-                    { title: 'Problem Solving', desc: 'Analytical and systematic thinking for system optimization' },
-                    { title: 'Technological Adaptability', desc: 'Rapid adoption of new tools and frameworks' },
-                    { title: 'Tech Polyglot', desc: 'With AI, I adapt to any language or stack the project requires' },
-                    { title: 'Resilience', desc: 'Persistence and focus under pressure in complex projects' },
-                    { title: 'Performance Optimization', desc: 'Improvement of response times and SQL queries up to 40%' },
-                    { title: 'Code Refactoring', desc: 'Modularization, redundancy elimination, and maintainability improvement' },
-                    { title: 'Process Automation', desc: 'Scripts and pipelines for operational efficiency' }
+                    { title: 'Teamwork', desc: 'Assertive communication, adaptability and effective collaboration' },
+                    { title: 'AI-Assisted Development', desc: 'Programming with Claude and Gemini optimizing every line with best practices' },
+                    { title: 'Immediate Availability', desc: 'Available for onboarding in 1 week or 3 days' }
                 ]
             }
         },
@@ -432,7 +432,7 @@ export const translations = {
         },
         footer: {
             brand: 'Erick Rodríguez',
-            description: 'Senior Full Stack Developer specializing in scalable enterprise architectures with .NET/C# and React. +5 years of experience.',
+            description: 'Full Stack Developer specializing in .NET Core/C#, React 19 and Azure. 3 years of experience in enterprise development.',
             navigation: 'Navigation',
             contact: 'Contact',
             rights: 'All rights reserved.',

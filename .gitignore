@@ -24,3 +24,10 @@ dist-ssr
 *.sw?
 
 .vercel
+
+# Claude configuration (local only)
+.claude/
+.claude.bak/
+
+# Interview documents (confidential)
+*.pdf

@@ -158,7 +158,7 @@ export const translations = {
             items: [
                 {
                     title: "Align Designs Platform",
-                    description: "Plataforma B2B/B2C en la nube con arquitectura monorepo. Diseño regido por metodologías SOLID y SoC con seguridad avanzada. Desarrollo optimizado e implementado con el uso de IA (Claude) para garantizar la mejor calidad y rendimiento."
+                    description: "Plataforma B2B/B2C cloud con arquitectura monorepo (NestJS + Next.js 15 + PostgreSQL/Prisma). Autenticación dual JWT/OTP, mensajería con colas y topics, cifrado AES/RSA, CI/CD con GitHub Actions, Docker y arquitectura Clean/SOLID con RBAC."
                 },
                 {
                     title: "Sistema de Auditoría Interna (ADA/HONESTEL)",
@@ -378,7 +378,7 @@ export const translations = {
             items: [
                 {
                     title: "Align Designs Platform",
-                    description: "Cloud B2B/B2C platform with monorepo architecture. Design governed by SOLID and SoC methodologies with advanced security. Development optimized and implemented using AI (Claude) to ensure the highest quality and performance."
+                    description: "Cloud B2B/B2C platform with monorepo architecture (NestJS + Next.js 15 + PostgreSQL/Prisma). Dual JWT/OTP authentication, messaging with queues and topics, AES/RSA encryption, CI/CD with GitHub Actions, Docker and Clean/SOLID architecture with RBAC."
                 },
                 {
                     title: "Internal Audit System (ADA/HONESTEL)",

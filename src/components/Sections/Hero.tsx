@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 // import { SectionTitle } from '../UI/SectionTitle'; // Removed unused import
-import { FaGithub, FaLinkedin, FaEnvelope, FaFileDownload, FaArrowRight, FaSpinner } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaEnvelope, FaFileDownload, FaArrowRight, FaSpinner, FaReact, FaDatabase, FaCloud, FaServer, FaNodeJs } from 'react-icons/fa';
+import { SiDotnet, SiTypescript } from 'react-icons/si';
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import { CVDocument } from '../PDF/CVDocument';
 import { CVDocumentEN } from '../PDF/CVDocumentEN';
@@ -27,31 +28,53 @@ export const Hero: React.FC = () => {
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 {/* Mobile Photo - Shown only on mobile, above text */}
-                <div className="md:hidden flex justify-center mb-8 animate-scale-in opacity-0">
-                    <div className="relative w-40 h-40 sm:w-48 sm:h-48">
+                <div className="md:hidden flex justify-center mb-6 animate-scale-in opacity-0">
+                    <div className="relative py-6 px-10">
                         {/* Animated glow background */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full opacity-40 blur-2xl animate-pulse scale-110"></div>
+                        <div className="absolute inset-0 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full opacity-30 blur-3xl animate-pulse"></div>
 
                         {/* Profile image container */}
-                        <div className="relative z-10 glass-card p-1.5 rounded-full border-4 border-white/30 dark:border-gray-700/50 overflow-hidden shadow-2xl shadow-blue-500/30 dark:shadow-purple-500/20">
-                            <img
-                                src="/assets/images/profile.jpg"
-                                alt="Erick Rodríguez"
-                                className="w-full h-full object-cover rounded-full"
-                            />
-                            {/* Shimmer effect */}
-                            <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-transparent via-white/20 to-transparent"></div>
+                        <div className="relative z-10 w-36 h-36 sm:w-44 sm:h-44">
+                            <div className="w-full h-full glass-card p-1.5 rounded-full border-4 border-white/30 dark:border-gray-700/50 overflow-hidden shadow-2xl shadow-blue-500/30 dark:shadow-purple-500/20">
+                                <img
+                                    src="/assets/images/profile.jpg"
+                                    alt="Erick Rodríguez"
+                                    className="w-full h-full object-cover rounded-full"
+                                />
+                                {/* Shimmer effect */}
+                                <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-transparent via-white/20 to-transparent"></div>
+                            </div>
                         </div>
 
-                        {/* Floating badges for mobile - smaller and repositioned */}
-                        <div className="absolute -top-2 -right-2 bg-white dark:bg-gray-800 p-2 rounded-lg shadow-lg animate-float border border-gray-100 dark:border-gray-700">
-                            <span aria-hidden="true" className="text-lg">🚀</span>
+                        {/* Floating Tech Icons - Positioned around the photo */}
+                        {/* Top Right - .NET */}
+                        <div className="absolute top-0 right-0 bg-white dark:bg-gray-800 p-2.5 rounded-xl shadow-lg animate-float border border-gray-100 dark:border-gray-700">
+                            <SiDotnet aria-hidden="true" className="text-xl text-purple-600" />
                         </div>
-                        <div className="absolute -bottom-1 -left-3 bg-white dark:bg-gray-800 p-2 rounded-lg shadow-lg animate-float delay-500 border border-gray-100 dark:border-gray-700">
-                            <span aria-hidden="true" className="text-sm font-bold text-cyan-500">React</span>
+
+                        {/* Top Left - React */}
+                        <div className="absolute top-2 left-0 bg-white dark:bg-gray-800 p-2.5 rounded-xl shadow-lg animate-float delay-200 border border-gray-100 dark:border-gray-700">
+                            <FaReact aria-hidden="true" className="text-xl text-cyan-500" />
                         </div>
-                        <div className="absolute top-1/2 -right-4 bg-white dark:bg-gray-800 p-2 rounded-lg shadow-lg animate-float delay-300 border border-gray-100 dark:border-gray-700">
-                            <span aria-hidden="true" className="text-sm font-bold bg-gradient-to-r from-purple-600 to-blue-600 text-transparent bg-clip-text">.NET</span>
+
+                        {/* Right Middle - Azure */}
+                        <div className="absolute top-1/2 -translate-y-1/2 -right-2 bg-white dark:bg-gray-800 p-2.5 rounded-xl shadow-lg animate-float delay-400 border border-gray-100 dark:border-gray-700">
+                            <FaCloud aria-hidden="true" className="text-xl text-blue-500" />
+                        </div>
+
+                        {/* Left Middle - TypeScript */}
+                        <div className="absolute top-1/2 -translate-y-1/2 -left-2 bg-white dark:bg-gray-800 p-2.5 rounded-xl shadow-lg animate-float delay-300 border border-gray-100 dark:border-gray-700">
+                            <SiTypescript aria-hidden="true" className="text-xl text-blue-600" />
+                        </div>
+
+                        {/* Bottom Right - Server/Backend */}
+                        <div className="absolute bottom-0 right-2 bg-white dark:bg-gray-800 p-2.5 rounded-xl shadow-lg animate-float delay-500 border border-gray-100 dark:border-gray-700">
+                            <FaServer aria-hidden="true" className="text-xl text-purple-600" />
+                        </div>
+
+                        {/* Bottom Left - Database */}
+                        <div className="absolute bottom-2 left-0 bg-white dark:bg-gray-800 p-2.5 rounded-xl shadow-lg animate-float delay-600 border border-gray-100 dark:border-gray-700">
+                            <FaDatabase aria-hidden="true" className="text-xl text-emerald-500" />
                         </div>
                     </div>
                 </div>
@@ -196,18 +219,40 @@ export const Hero: React.FC = () => {
                             <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
                         </div>
 
-                        {/* Floating Tech Badges with enhanced animations */}
-                        <div className="absolute -top-4 -right-4 bg-white dark:bg-gray-800 p-3 rounded-xl shadow-xl animate-float border border-gray-100 dark:border-gray-700 hover:scale-110 transition-transform cursor-default">
-                            <span aria-hidden="true" className="text-2xl">🚀</span>
+                        {/* Floating Tech Icons with enhanced animations */}
+                        {/* Top Right - .NET */}
+                        <div className="absolute -top-2 -right-2 bg-white dark:bg-gray-800 p-3.5 rounded-2xl shadow-xl animate-float border border-gray-100 dark:border-gray-700 hover:scale-110 transition-transform cursor-default group/icon">
+                            <SiDotnet aria-hidden="true" className="text-3xl text-purple-600 group-hover/icon:rotate-12 transition-transform" />
                         </div>
-                        <div className="absolute top-1/2 -right-12 bg-white dark:bg-gray-800 p-3 rounded-xl shadow-xl animate-float delay-300 border border-gray-100 dark:border-gray-700 hover:scale-110 transition-transform cursor-default">
-                            <span aria-hidden="true" className="text-xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 text-transparent bg-clip-text">.NET</span>
+
+                        {/* Right Middle - React */}
+                        <div className="absolute top-1/3 -right-14 bg-white dark:bg-gray-800 p-3.5 rounded-2xl shadow-xl animate-float delay-200 border border-gray-100 dark:border-gray-700 hover:scale-110 transition-transform cursor-default group/icon">
+                            <FaReact aria-hidden="true" className="text-3xl text-cyan-500 group-hover/icon:animate-spin" />
                         </div>
-                        <div className="absolute bottom-10 -left-8 bg-white dark:bg-gray-800 p-3 rounded-xl shadow-xl animate-float delay-700 border border-gray-100 dark:border-gray-700 hover:scale-110 transition-transform cursor-default">
-                            <span aria-hidden="true" className="text-xl font-bold text-cyan-500">React</span>
+
+                        {/* Bottom Right - Azure/Cloud */}
+                        <div className="absolute bottom-1/4 -right-10 bg-white dark:bg-gray-800 p-3.5 rounded-2xl shadow-xl animate-float delay-400 border border-gray-100 dark:border-gray-700 hover:scale-110 transition-transform cursor-default group/icon">
+                            <FaCloud aria-hidden="true" className="text-3xl text-blue-500 group-hover/icon:rotate-12 transition-transform" />
                         </div>
-                        <div className="absolute -bottom-2 right-10 bg-white dark:bg-gray-800 p-3 rounded-xl shadow-xl animate-float delay-500 border border-gray-100 dark:border-gray-700 hover:scale-110 transition-transform cursor-default">
-                            <span aria-hidden="true" className="text-xl font-bold text-orange-500">Azure</span>
+
+                        {/* Bottom - Server/Backend */}
+                        <div className="absolute -bottom-4 right-1/3 bg-white dark:bg-gray-800 p-3.5 rounded-2xl shadow-xl animate-float delay-500 border border-gray-100 dark:border-gray-700 hover:scale-110 transition-transform cursor-default group/icon">
+                            <FaServer aria-hidden="true" className="text-3xl text-purple-600 group-hover/icon:rotate-12 transition-transform" />
+                        </div>
+
+                        {/* Left Bottom - TypeScript */}
+                        <div className="absolute bottom-1/4 -left-10 bg-white dark:bg-gray-800 p-3.5 rounded-2xl shadow-xl animate-float delay-600 border border-gray-100 dark:border-gray-700 hover:scale-110 transition-transform cursor-default group/icon">
+                            <SiTypescript aria-hidden="true" className="text-3xl text-blue-600 group-hover/icon:rotate-12 transition-transform" />
+                        </div>
+
+                        {/* Left Middle - Database */}
+                        <div className="absolute top-1/3 -left-12 bg-white dark:bg-gray-800 p-3.5 rounded-2xl shadow-xl animate-float delay-300 border border-gray-100 dark:border-gray-700 hover:scale-110 transition-transform cursor-default group/icon">
+                            <FaDatabase aria-hidden="true" className="text-3xl text-emerald-500 group-hover/icon:rotate-12 transition-transform" />
+                        </div>
+
+                        {/* Top Left - Node.js */}
+                        <div className="absolute -top-4 left-1/4 bg-white dark:bg-gray-800 p-3.5 rounded-2xl shadow-xl animate-float delay-700 border border-gray-100 dark:border-gray-700 hover:scale-110 transition-transform cursor-default group/icon">
+                            <FaNodeJs aria-hidden="true" className="text-3xl text-green-600 group-hover/icon:rotate-12 transition-transform" />
                         </div>
                     </div>
                 </div>

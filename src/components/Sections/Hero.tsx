@@ -25,7 +25,38 @@ export const Hero: React.FC = () => {
             {/* Animated Grid Background */}
             <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.03)_1px,transparent_1px)] bg-[size:50px_50px] dark:bg-[linear-gradient(rgba(59,130,246,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.05)_1px,transparent_1px)]"></div>
 
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid md:grid-cols-2 gap-12 items-center">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                {/* Mobile Photo - Shown only on mobile, above text */}
+                <div className="md:hidden flex justify-center mb-8 animate-scale-in opacity-0">
+                    <div className="relative w-40 h-40 sm:w-48 sm:h-48">
+                        {/* Animated glow background */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full opacity-40 blur-2xl animate-pulse scale-110"></div>
+
+                        {/* Profile image container */}
+                        <div className="relative z-10 glass-card p-1.5 rounded-full border-4 border-white/30 dark:border-gray-700/50 overflow-hidden shadow-2xl shadow-blue-500/30 dark:shadow-purple-500/20">
+                            <img
+                                src="/assets/images/profile.jpg"
+                                alt="Erick Rodríguez"
+                                className="w-full h-full object-cover rounded-full"
+                            />
+                            {/* Shimmer effect */}
+                            <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-transparent via-white/20 to-transparent"></div>
+                        </div>
+
+                        {/* Floating badges for mobile - smaller and repositioned */}
+                        <div className="absolute -top-2 -right-2 bg-white dark:bg-gray-800 p-2 rounded-lg shadow-lg animate-float border border-gray-100 dark:border-gray-700">
+                            <span aria-hidden="true" className="text-lg">🚀</span>
+                        </div>
+                        <div className="absolute -bottom-1 -left-3 bg-white dark:bg-gray-800 p-2 rounded-lg shadow-lg animate-float delay-500 border border-gray-100 dark:border-gray-700">
+                            <span aria-hidden="true" className="text-sm font-bold text-cyan-500">React</span>
+                        </div>
+                        <div className="absolute top-1/2 -right-4 bg-white dark:bg-gray-800 p-2 rounded-lg shadow-lg animate-float delay-300 border border-gray-100 dark:border-gray-700">
+                            <span aria-hidden="true" className="text-sm font-bold bg-gradient-to-r from-purple-600 to-blue-600 text-transparent bg-clip-text">.NET</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-12 items-center">
                 {/* Text Content */}
                 <div className="text-center md:text-left">
                     <div className="inline-block px-4 py-2 bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 rounded-full text-sm font-semibold mb-6 animate-bounce-in opacity-0 border border-blue-200 dark:border-blue-800 shadow-sm">
@@ -147,7 +178,7 @@ export const Hero: React.FC = () => {
                     </div>
                 </div>
 
-                {/* Hero Image/Visual */}
+                {/* Hero Image/Visual - Desktop Only */}
                 <div className="relative hidden md:block animate-scale-in opacity-0 delay-300">
                     <div className="relative w-full aspect-square max-w-md mx-auto">
                         {/* Animated glow background */}
@@ -179,6 +210,7 @@ export const Hero: React.FC = () => {
                             <span aria-hidden="true" className="text-xl font-bold text-orange-500">Azure</span>
                         </div>
                     </div>
+                </div>
                 </div>
             </div>
         </section>

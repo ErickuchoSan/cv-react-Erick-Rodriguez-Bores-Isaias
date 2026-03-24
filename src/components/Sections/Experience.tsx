@@ -26,8 +26,11 @@ export const Experience: React.FC = () => {
     });
 
     return (
-        <section id="experiencia" className="enhanced-section section-tech-bg py-12 sm:py-16 md:py-20 bg-gray-50 dark:bg-gray-900 transition-colors duration-300 relative">
+        <section id="experiencia" className="enhanced-section section-tech-bg py-12 sm:py-16 md:py-20 bg-gray-50 dark:bg-gray-900 transition-colors duration-300 relative overflow-hidden">
             <SectionParticles />
+
+            {/* Timeline line decoration */}
+            <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-blue-500/20 to-transparent hidden lg:block"></div>
 
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <SectionTitle
@@ -37,22 +40,29 @@ export const Experience: React.FC = () => {
 
                 <div className="space-y-8 sm:space-y-12">
                     {experiencePoints.map((exp, index) => (
-                        <GlassCard key={index} className="experience-card p-4 sm:p-6 md:p-8">
+                        <GlassCard
+                            key={index}
+                            className="experience-card p-4 sm:p-6 md:p-8 group hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 animate-fade-in-up opacity-0 relative"
+                            style={{ animationDelay: `${index * 200}ms` }}
+                        >
+                            {/* Gradient accent on left side */}
+                            <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-500 via-purple-500 to-blue-500 rounded-l-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
                             <div className="experience-header flex flex-col md:flex-row md:items-center md:justify-between mb-4 sm:mb-6">
                                 <div className="experience-company mb-3 md:mb-0">
-                                    <h3 className="text-xl sm:text-2xl font-bold text-gray-800 dark:text-gray-200">{exp.role}</h3>
-                                    <p className="text-blue-600 font-semibold text-base sm:text-lg">{exp.company}</p>
+                                    <h3 className="text-xl sm:text-2xl font-bold text-gray-800 dark:text-gray-200 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">{exp.role}</h3>
+                                    <p className="text-blue-600 dark:text-blue-400 font-semibold text-base sm:text-lg">{exp.company}</p>
                                 </div>
                                 <div className="experience-period flex flex-col items-start md:items-end">
                                     <span className={`inline-block px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-semibold rounded-full shadow-md transition-all duration-300 hover:scale-105 hover:shadow-lg ${exp.badgeType === 'primary'
-                                        ? 'text-white bg-gradient-to-r from-blue-600 to-blue-700'
+                                        ? 'text-white bg-gradient-to-r from-blue-600 to-purple-600 shadow-blue-500/25'
                                         : exp.badgeType === 'secondary'
-                                            ? 'text-blue-600 bg-blue-100 dark:bg-blue-900 dark:text-blue-300'
+                                            ? 'text-blue-600 bg-blue-100 dark:bg-blue-900/50 dark:text-blue-300 border border-blue-200 dark:border-blue-800'
                                             : 'text-gray-600 bg-gray-100 dark:bg-gray-700 dark:text-gray-300'
                                         }`}>
                                         {exp.period}
                                     </span>
-                                    <span className="text-xs sm:text-sm text-gray-500 mt-1">{exp.duration}</span>
+                                    <span className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-1">{exp.duration}</span>
                                 </div>
                             </div>
 
@@ -92,8 +102,11 @@ export const Experience: React.FC = () => {
                                         <h4 className="font-semibold mb-3 sm:mb-4 text-gray-800 dark:text-gray-200 text-base sm:text-lg mt-4 md:mt-0">{t.experience.stack}</h4>
                                         <div className="flex flex-wrap gap-2 sm:gap-3">
                                             {exp.technologies.map((tech, i) => (
-                                                <div key={i} className="flex items-center bg-gray-100 dark:bg-gray-700 px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-md">
-                                                    <tech.icon aria-hidden="true" className={`${tech.color} mr-1.5 sm:mr-2 text-base sm:text-lg`} />
+                                                <div
+                                                    key={i}
+                                                    className="flex items-center bg-gray-100 dark:bg-gray-700/50 px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-lg transition-all duration-300 hover:scale-110 hover:shadow-lg hover:-translate-y-1 cursor-default border border-transparent hover:border-blue-500/30 dark:hover:border-blue-400/30 hover:bg-white dark:hover:bg-gray-700"
+                                                >
+                                                    <tech.icon aria-hidden="true" className={`${tech.color} mr-1.5 sm:mr-2 text-base sm:text-lg transition-transform duration-300`} />
                                                     <span className="text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300">{tech.name}</span>
                                                 </div>
                                             ))}

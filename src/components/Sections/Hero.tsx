@@ -14,38 +14,45 @@ export const Hero: React.FC = () => {
     const [showDownloadOptions, setShowDownloadOptions] = useState(false);
 
     return (
-        <section id="inicio" className="min-h-screen flex items-center justify-center relative bg-gray-50 dark:bg-gray-900 transition-colors duration-300 pt-16">
-            {/* Background Effects */}
+        <section id="inicio" className="min-h-screen flex items-center justify-center relative bg-gray-50 dark:bg-gray-900 transition-colors duration-300 pt-16 overflow-hidden">
+            {/* Enhanced Background Effects */}
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-                <div className="absolute top-20 right-10 w-72 h-72 bg-blue-500/20 rounded-full blur-[100px] animate-pulse"></div>
-                <div className="absolute bottom-20 left-10 w-96 h-96 bg-purple-500/20 rounded-full blur-[100px] animate-pulse delay-1000"></div>
+                <div className="absolute top-20 right-10 w-72 h-72 bg-blue-500/30 dark:bg-blue-500/20 rounded-full blur-[100px] animate-float"></div>
+                <div className="absolute bottom-20 left-10 w-96 h-96 bg-purple-500/30 dark:bg-purple-500/20 rounded-full blur-[100px] animate-float delay-500"></div>
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-full blur-[120px] animate-pulse"></div>
             </div>
+
+            {/* Animated Grid Background */}
+            <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.03)_1px,transparent_1px)] bg-[size:50px_50px] dark:bg-[linear-gradient(rgba(59,130,246,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.05)_1px,transparent_1px)]"></div>
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid md:grid-cols-2 gap-12 items-center">
                 {/* Text Content */}
                 <div className="text-center md:text-left">
-                    <div className="inline-block px-4 py-2 bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 rounded-full text-sm font-semibold mb-6 animate-fade-in-up">
-                        {t.hero.role}
+                    <div className="inline-block px-4 py-2 bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 rounded-full text-sm font-semibold mb-6 animate-bounce-in opacity-0 border border-blue-200 dark:border-blue-800 shadow-sm">
+                        <span className="flex items-center gap-2">
+                            <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                            {t.hero.role}
+                        </span>
                     </div>
 
-                    <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold text-gray-900 dark:text-white mb-6 leading-tight animate-fade-in-up delay-100">
+                    <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 dark:text-white mb-6 leading-tight animate-fade-in-up opacity-0 delay-100">
                         {t.hero.title} <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 dark:from-blue-400 dark:via-purple-400 dark:to-blue-400 bg-[length:200%_auto] animate-gradient-x">
                             {t.hero.subtitle}
                         </span>
                     </h1>
 
-                    <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto md:mx-0 leading-relaxed animate-fade-in-up delay-200">
+                    <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto md:mx-0 leading-relaxed animate-fade-in-up opacity-0 delay-200">
                         {t.hero.description}
                     </p>
 
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start animate-fade-in-up delay-300">
-                        <a href="#contacto" className="btn-modern-primary flex items-center justify-center group" aria-label={t.hero.contactBtn}>
-                            <span>{t.hero.contactBtn}</span>
-                            <FaArrowRight aria-hidden="true" className="ml-2 transform group-hover:translate-x-1 transition-transform" />
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start animate-fade-in-up opacity-0 delay-300">
+                        <a href="#contacto" className="btn-glow relative px-8 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold flex items-center justify-center group overflow-hidden shadow-lg hover:shadow-blue-500/25 transition-all duration-300 hover:-translate-y-0.5" aria-label={t.hero.contactBtn}>
+                            <span className="relative z-10">{t.hero.contactBtn}</span>
+                            <FaArrowRight aria-hidden="true" className="ml-2 relative z-10 transform group-hover:translate-x-1 transition-transform" />
                         </a>
 
-                        <a href="#proyectos" aria-label={t.hero.projectsBtn} className="px-8 py-3 rounded-lg border-2 border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-semibold hover:border-blue-600 hover:text-blue-600 transition-all duration-300 flex items-center justify-center">
+                        <a href="#proyectos" aria-label={t.hero.projectsBtn} className="px-8 py-3 rounded-xl border-2 border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-semibold hover:border-blue-600 dark:hover:border-blue-400 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 flex items-center justify-center backdrop-blur-sm hover:-translate-y-0.5 hover:shadow-lg">
                             {t.hero.projectsBtn}
                         </a>
 
@@ -127,40 +134,49 @@ export const Hero: React.FC = () => {
                     </div>
 
                     {/* Social Links */}
-                    <div className="mt-12 flex items-center justify-center md:justify-start space-x-6 animate-fade-in-up delay-400">
-                        <a href={CONTACT_INFO.social.github} aria-label="Perfil de GitHub" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors transform hover:scale-110">
-                            <FaGithub aria-hidden="true" className="text-2xl" />
+                    <div className="mt-12 flex items-center justify-center md:justify-start space-x-4 animate-fade-in-up opacity-0 delay-400">
+                        <a href={CONTACT_INFO.social.github} aria-label="Perfil de GitHub" target="_blank" rel="noopener noreferrer" className="p-3 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-900 hover:text-white dark:hover:bg-white dark:hover:text-gray-900 transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 shadow-sm hover:shadow-lg">
+                            <FaGithub aria-hidden="true" className="text-xl" />
                         </a>
-                        <a href={CONTACT_INFO.social.linkedin} aria-label="Perfil de LinkedIn" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors transform hover:scale-110">
-                            <FaLinkedin aria-hidden="true" className="text-2xl" />
+                        <a href={CONTACT_INFO.social.linkedin} aria-label="Perfil de LinkedIn" target="_blank" rel="noopener noreferrer" className="p-3 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-blue-600 hover:text-white transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 shadow-sm hover:shadow-lg hover:shadow-blue-500/25">
+                            <FaLinkedin aria-hidden="true" className="text-xl" />
                         </a>
-                        <a href={`mailto:${CONTACT_INFO.email}`} aria-label="Enviar correo electrónico" className="text-gray-500 hover:text-red-500 dark:text-gray-400 dark:hover:text-red-400 transition-colors transform hover:scale-110">
-                            <FaEnvelope aria-hidden="true" className="text-2xl" />
+                        <a href={`mailto:${CONTACT_INFO.email}`} aria-label="Enviar correo electrónico" className="p-3 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-red-500 hover:text-white transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 shadow-sm hover:shadow-lg hover:shadow-red-500/25">
+                            <FaEnvelope aria-hidden="true" className="text-xl" />
                         </a>
                     </div>
                 </div>
 
                 {/* Hero Image/Visual */}
-                <div className="relative hidden md:block animate-fade-in-left delay-500">
+                <div className="relative hidden md:block animate-scale-in opacity-0 delay-300">
                     <div className="relative w-full aspect-square max-w-md mx-auto">
-                        <div className="absolute inset-0 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full opacity-20 blur-3xl animate-pulse"></div>
-                        <div className="relative z-10 glass-card p-2 rounded-full border-4 border-white/10 overflow-hidden shadow-2xl">
+                        {/* Animated glow background */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full opacity-30 blur-3xl animate-pulse scale-110"></div>
+                        <div className="absolute inset-0 bg-gradient-to-tr from-purple-600 to-blue-600 rounded-full opacity-20 blur-3xl animate-float delay-500 scale-105"></div>
+
+                        {/* Profile image container */}
+                        <div className="relative z-10 glass-card p-2 rounded-full border-4 border-white/20 dark:border-gray-700/30 overflow-hidden shadow-2xl shadow-blue-500/20 dark:shadow-purple-500/10 group">
                             <img
                                 src="/assets/images/profile.jpg"
                                 alt="Erick Rodríguez"
-                                className="w-full h-full object-cover rounded-full hover:scale-105 transition-transform duration-700"
+                                className="w-full h-full object-cover rounded-full group-hover:scale-110 transition-transform duration-700 ease-out"
                             />
+                            {/* Shimmer effect on hover */}
+                            <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
                         </div>
 
-                        {/* Floating Tech Badges */}
-                        <div className="absolute -top-4 -right-4 bg-white dark:bg-gray-800 p-3 rounded-xl shadow-xl animate-float">
+                        {/* Floating Tech Badges with enhanced animations */}
+                        <div className="absolute -top-4 -right-4 bg-white dark:bg-gray-800 p-3 rounded-xl shadow-xl animate-float border border-gray-100 dark:border-gray-700 hover:scale-110 transition-transform cursor-default">
                             <span aria-hidden="true" className="text-2xl">🚀</span>
                         </div>
-                        <div className="absolute top-1/2 -right-12 bg-white dark:bg-gray-800 p-3 rounded-xl shadow-xl animate-float delay-700">
-                            <span aria-hidden="true" className="text-2xl font-bold text-blue-600">.NET</span>
+                        <div className="absolute top-1/2 -right-12 bg-white dark:bg-gray-800 p-3 rounded-xl shadow-xl animate-float delay-300 border border-gray-100 dark:border-gray-700 hover:scale-110 transition-transform cursor-default">
+                            <span aria-hidden="true" className="text-xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 text-transparent bg-clip-text">.NET</span>
                         </div>
-                        <div className="absolute bottom-10 -left-8 bg-white dark:bg-gray-800 p-3 rounded-xl shadow-xl animate-float delay-1000">
-                            <span aria-hidden="true" className="text-2xl font-bold text-cyan-500">React</span>
+                        <div className="absolute bottom-10 -left-8 bg-white dark:bg-gray-800 p-3 rounded-xl shadow-xl animate-float delay-700 border border-gray-100 dark:border-gray-700 hover:scale-110 transition-transform cursor-default">
+                            <span aria-hidden="true" className="text-xl font-bold text-cyan-500">React</span>
+                        </div>
+                        <div className="absolute -bottom-2 right-10 bg-white dark:bg-gray-800 p-3 rounded-xl shadow-xl animate-float delay-500 border border-gray-100 dark:border-gray-700 hover:scale-110 transition-transform cursor-default">
+                            <span aria-hidden="true" className="text-xl font-bold text-orange-500">Azure</span>
                         </div>
                     </div>
                 </div>

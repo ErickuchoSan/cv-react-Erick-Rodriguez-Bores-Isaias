@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 // import { SectionTitle } from '../UI/SectionTitle'; // Removed unused import
-import { FaGithub, FaLinkedin, FaEnvelope, FaFileDownload, FaArrowRight, FaSpinner, FaReact, FaDatabase, FaCloud, FaServer, FaNodeJs } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaEnvelope, FaFileDownload, FaArrowRight, FaSpinner, FaReact, FaDatabase, FaCloud, FaServer, FaNodeJs, FaTimes } from 'react-icons/fa';
 import { SiDotnet, SiTypescript } from 'react-icons/si';
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import { CVDocument } from '../PDF/CVDocument';
@@ -13,6 +13,22 @@ import { CONTACT_INFO } from '../../data/contact';
 export const Hero: React.FC = () => {
     const { t } = useLanguage(); // Removed language from destructuring as it is no longer used for download logic
     const [showDownloadOptions, setShowDownloadOptions] = useState(false);
+    const [showPhotoModal, setShowPhotoModal] = useState(false);
+
+    // Close modal on Escape key
+    useEffect(() => {
+        const handleEscape = (e: KeyboardEvent) => {
+            if (e.key === 'Escape') setShowPhotoModal(false);
+        };
+        if (showPhotoModal) {
+            document.addEventListener('keydown', handleEscape);
+            document.body.style.overflow = 'hidden';
+        }
+        return () => {
+            document.removeEventListener('keydown', handleEscape);
+            document.body.style.overflow = 'unset';
+        };
+    }, [showPhotoModal]);
 
     return (
         <section id="inicio" className="min-h-screen flex items-center justify-center relative bg-gray-50 dark:bg-gray-900 transition-colors duration-300 pt-16 overflow-hidden">
@@ -33,16 +49,26 @@ export const Hero: React.FC = () => {
                         {/* Animated glow background */}
                         <div className="absolute inset-0 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full opacity-30 blur-3xl animate-pulse"></div>
 
-                        {/* Profile image container */}
-                        <div className="relative w-36 h-36 sm:w-44 sm:h-44">
-                            <div className="w-full h-full bg-white dark:bg-gray-800 p-1.5 rounded-full border-4 border-white/50 dark:border-gray-700/50 shadow-2xl shadow-blue-500/30 dark:shadow-purple-500/20">
+                        {/* Profile image container - Clickable */}
+                        <button
+                            onClick={() => setShowPhotoModal(true)}
+                            className="relative w-48 h-48 sm:w-56 sm:h-56 cursor-pointer group focus:outline-none focus:ring-4 focus:ring-blue-500/50 rounded-full"
+                            aria-label="Ver foto en grande"
+                        >
+                            <div className="w-full h-full bg-white dark:bg-gray-800 p-1.5 rounded-full border-4 border-white/50 dark:border-gray-700/50 shadow-2xl shadow-blue-500/30 dark:shadow-purple-500/20 group-hover:scale-105 transition-transform duration-300">
                                 <img
                                     src="/assets/images/profile.jpg"
                                     alt="Erick Rodríguez"
                                     className="w-full h-full object-cover rounded-full"
                                 />
                             </div>
-                        </div>
+                            {/* Hover indicator */}
+                            <div className="absolute inset-0 rounded-full bg-black/0 group-hover:bg-black/10 transition-colors duration-300 flex items-center justify-center">
+                                <span className="text-white text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity bg-black/50 px-3 py-1 rounded-full">
+                                    Click para ampliar
+                                </span>
+                            </div>
+                        </button>
 
                         {/* Floating Tech Icons - Positioned around the photo with z-20 */}
                         {/* Top Right - .NET */}
@@ -206,56 +232,107 @@ export const Hero: React.FC = () => {
                         <div className="absolute inset-0 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full opacity-30 blur-3xl animate-pulse scale-110"></div>
                         <div className="absolute inset-0 bg-gradient-to-tr from-purple-600 to-blue-600 rounded-full opacity-20 blur-3xl animate-float delay-500 scale-105"></div>
 
-                        {/* Profile image container */}
-                        <div className="relative z-10 glass-card p-2 rounded-full border-4 border-white/20 dark:border-gray-700/30 overflow-hidden shadow-2xl shadow-blue-500/20 dark:shadow-purple-500/10 group">
+                        {/* Profile image container - Clickable */}
+                        <button
+                            onClick={() => setShowPhotoModal(true)}
+                            className="relative z-10 w-full h-full bg-white dark:bg-gray-800 p-2 rounded-full border-4 border-white/30 dark:border-gray-700/50 shadow-2xl shadow-blue-500/30 dark:shadow-purple-500/20 group cursor-pointer focus:outline-none focus:ring-4 focus:ring-blue-500/50"
+                            aria-label="Ver foto en grande"
+                        >
                             <img
                                 src="/assets/images/profile.jpg"
                                 alt="Erick Rodríguez"
-                                className="w-full h-full object-cover rounded-full group-hover:scale-110 transition-transform duration-700 ease-out"
+                                className="w-full h-full object-cover rounded-full group-hover:scale-105 transition-transform duration-500 ease-out"
                             />
-                            {/* Shimmer effect on hover */}
-                            <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-                        </div>
+                            {/* Hover overlay */}
+                            <div className="absolute inset-0 rounded-full bg-black/0 group-hover:bg-black/10 transition-colors duration-300 flex items-center justify-center">
+                                <span className="text-white text-base font-medium opacity-0 group-hover:opacity-100 transition-opacity bg-black/60 px-4 py-2 rounded-full backdrop-blur-sm">
+                                    Click para ampliar
+                                </span>
+                            </div>
+                        </button>
 
-                        {/* Floating Tech Icons with enhanced animations */}
+                        {/* Floating Tech Icons with z-20 to appear in front */}
                         {/* Top Right - .NET */}
-                        <div className="absolute -top-2 -right-2 bg-white dark:bg-gray-800 p-3.5 rounded-2xl shadow-xl animate-float border border-gray-100 dark:border-gray-700 hover:scale-110 transition-transform cursor-default group/icon">
+                        <div className="absolute -top-2 -right-2 z-20 bg-white dark:bg-gray-800 p-3.5 rounded-2xl shadow-xl animate-float border border-gray-200 dark:border-gray-700 hover:scale-110 transition-transform cursor-default group/icon">
                             <SiDotnet aria-hidden="true" className="text-3xl text-purple-600 group-hover/icon:rotate-12 transition-transform" />
                         </div>
 
                         {/* Right Middle - React */}
-                        <div className="absolute top-1/3 -right-14 bg-white dark:bg-gray-800 p-3.5 rounded-2xl shadow-xl animate-float delay-200 border border-gray-100 dark:border-gray-700 hover:scale-110 transition-transform cursor-default group/icon">
+                        <div className="absolute top-1/3 -right-14 z-20 bg-white dark:bg-gray-800 p-3.5 rounded-2xl shadow-xl animate-float delay-200 border border-gray-200 dark:border-gray-700 hover:scale-110 transition-transform cursor-default group/icon">
                             <FaReact aria-hidden="true" className="text-3xl text-cyan-500 group-hover/icon:animate-spin" />
                         </div>
 
                         {/* Bottom Right - Azure/Cloud */}
-                        <div className="absolute bottom-1/4 -right-10 bg-white dark:bg-gray-800 p-3.5 rounded-2xl shadow-xl animate-float delay-400 border border-gray-100 dark:border-gray-700 hover:scale-110 transition-transform cursor-default group/icon">
+                        <div className="absolute bottom-1/4 -right-10 z-20 bg-white dark:bg-gray-800 p-3.5 rounded-2xl shadow-xl animate-float delay-400 border border-gray-200 dark:border-gray-700 hover:scale-110 transition-transform cursor-default group/icon">
                             <FaCloud aria-hidden="true" className="text-3xl text-blue-500 group-hover/icon:rotate-12 transition-transform" />
                         </div>
 
                         {/* Bottom - Server/Backend */}
-                        <div className="absolute -bottom-4 right-1/3 bg-white dark:bg-gray-800 p-3.5 rounded-2xl shadow-xl animate-float delay-500 border border-gray-100 dark:border-gray-700 hover:scale-110 transition-transform cursor-default group/icon">
+                        <div className="absolute -bottom-4 right-1/3 z-20 bg-white dark:bg-gray-800 p-3.5 rounded-2xl shadow-xl animate-float delay-500 border border-gray-200 dark:border-gray-700 hover:scale-110 transition-transform cursor-default group/icon">
                             <FaServer aria-hidden="true" className="text-3xl text-purple-600 group-hover/icon:rotate-12 transition-transform" />
                         </div>
 
                         {/* Left Bottom - TypeScript */}
-                        <div className="absolute bottom-1/4 -left-10 bg-white dark:bg-gray-800 p-3.5 rounded-2xl shadow-xl animate-float delay-600 border border-gray-100 dark:border-gray-700 hover:scale-110 transition-transform cursor-default group/icon">
+                        <div className="absolute bottom-1/4 -left-10 z-20 bg-white dark:bg-gray-800 p-3.5 rounded-2xl shadow-xl animate-float delay-600 border border-gray-200 dark:border-gray-700 hover:scale-110 transition-transform cursor-default group/icon">
                             <SiTypescript aria-hidden="true" className="text-3xl text-blue-600 group-hover/icon:rotate-12 transition-transform" />
                         </div>
 
                         {/* Left Middle - Database */}
-                        <div className="absolute top-1/3 -left-12 bg-white dark:bg-gray-800 p-3.5 rounded-2xl shadow-xl animate-float delay-300 border border-gray-100 dark:border-gray-700 hover:scale-110 transition-transform cursor-default group/icon">
+                        <div className="absolute top-1/3 -left-12 z-20 bg-white dark:bg-gray-800 p-3.5 rounded-2xl shadow-xl animate-float delay-300 border border-gray-200 dark:border-gray-700 hover:scale-110 transition-transform cursor-default group/icon">
                             <FaDatabase aria-hidden="true" className="text-3xl text-emerald-500 group-hover/icon:rotate-12 transition-transform" />
                         </div>
 
                         {/* Top Left - Node.js */}
-                        <div className="absolute -top-4 left-1/4 bg-white dark:bg-gray-800 p-3.5 rounded-2xl shadow-xl animate-float delay-700 border border-gray-100 dark:border-gray-700 hover:scale-110 transition-transform cursor-default group/icon">
+                        <div className="absolute -top-4 left-1/4 z-20 bg-white dark:bg-gray-800 p-3.5 rounded-2xl shadow-xl animate-float delay-700 border border-gray-200 dark:border-gray-700 hover:scale-110 transition-transform cursor-default group/icon">
                             <FaNodeJs aria-hidden="true" className="text-3xl text-green-600 group-hover/icon:rotate-12 transition-transform" />
                         </div>
                     </div>
                 </div>
                 </div>
             </div>
+
+            {/* Photo Modal */}
+            {showPhotoModal && (
+                <div
+                    className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm animate-fade-in"
+                    onClick={() => setShowPhotoModal(false)}
+                >
+                    {/* Close button */}
+                    <button
+                        onClick={() => setShowPhotoModal(false)}
+                        className="absolute top-4 right-4 z-10 p-3 bg-white/10 hover:bg-white/20 rounded-full text-white transition-colors"
+                        aria-label="Cerrar"
+                    >
+                        <FaTimes className="text-2xl" />
+                    </button>
+
+                    {/* Large image */}
+                    <div
+                        className="relative max-w-[90vw] max-h-[90vh] animate-scale-in"
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        <div className="relative">
+                            {/* Glow effect */}
+                            <div className="absolute inset-0 bg-gradient-to-br from-blue-600 to-purple-600 rounded-3xl opacity-30 blur-2xl scale-105"></div>
+
+                            {/* Image container */}
+                            <div className="relative bg-white dark:bg-gray-800 p-3 rounded-3xl shadow-2xl">
+                                <img
+                                    src="/assets/images/profile.jpg"
+                                    alt="Erick Rodríguez"
+                                    className="w-auto h-auto max-w-[85vw] max-h-[80vh] object-contain rounded-2xl"
+                                />
+                            </div>
+                        </div>
+
+                        {/* Name caption */}
+                        <div className="absolute -bottom-16 left-1/2 -translate-x-1/2 text-center">
+                            <h3 className="text-white text-2xl font-bold">Erick Rodríguez</h3>
+                            <p className="text-gray-300 text-sm">Full Stack Developer</p>
+                        </div>
+                    </div>
+                </div>
+            )}
         </section>
     );
 };

@@ -82,9 +82,9 @@ export const translations = {
                         "Documentación técnica con Swagger y pruebas de API con Postman/Insomnia."
                     ],
                     achievements: [
-                        "Creación de API v2 de Honestel desde cero (6 endpoints principales) con integración continua.",
-                        "Reducción de 40% en tiempo de ejecución de consultas críticas de base de datos.",
-                        "Automatización de procesos operativos mediante scripts, eliminando tareas repetitivas."
+                        "Creación de API v2 de Honestel desde cero (6 endpoints principales) con CI/CD y documentación Swagger.",
+                        "Reducción del 40% en tiempo de ejecución de consultas críticas mediante optimización de procedimientos almacenados.",
+                        "Automatización de 5 procesos operativos mediante scripts, eliminando ~8 hrs/semana de trabajo manual."
                     ]
                 },
                 {
@@ -101,9 +101,9 @@ export const translations = {
                         "Control de versiones con GitHub y gestión de ramas para trabajo colaborativo."
                     ],
                     achievements: [
-                        "Entrega de sistema completo de gestión de reclutamiento desde cero.",
-                        "Módulo de carga masiva capaz de procesar miles de registros en segundos.",
-                        "Reducción significativa del tiempo de onboarding mediante automatización."
+                        "Entrega de sistema de gestión de reclutamiento completo (12 módulos) en 8 meses.",
+                        "Módulo de carga masiva procesando +5,000 registros en <10 segundos desde Excel/TXT.",
+                        "Reducción del 50% en tiempo de onboarding mediante automatización de procesos de alta."
                     ]
                 },
                 {
@@ -120,9 +120,9 @@ export const translations = {
                         "Exploración de microservicios y Azure Functions para arquitecturas cloud."
                     ],
                     achievements: [
-                        "Dominio autodidacta de tecnologías backend, frontend y cloud.",
-                        "Portfolio de proyectos funcionales con código limpio.",
-                        "Base sólida en patrones de diseño y arquitecturas escalables."
+                        "Dominio autodidacta de 10+ tecnologías (C#, .NET Core, React, SQL Server, Azure) en 12 meses.",
+                        "Desarrollo de 3 aplicaciones completas con código limpio y arquitectura SOLID.",
+                        "Implementación de cifrado AES/RSA y autenticación JWT en proyectos personales."
                     ]
                 }
             ]
@@ -302,9 +302,9 @@ export const translations = {
                         "Technical documentation with Swagger and API testing with Postman/Insomnia."
                     ],
                     achievements: [
-                        "Creation of Honestel v2 API from scratch (6 core endpoints) with continuous integration.",
-                        "40% reduction in execution time of critical database queries.",
-                        "Automation of operational processes through scripts, eliminating repetitive tasks."
+                        "Creation of Honestel v2 API from scratch (6 core endpoints) with CI/CD and Swagger documentation.",
+                        "40% reduction in critical query execution time through stored procedure optimization.",
+                        "Automation of 5 operational processes via scripts, eliminating ~8 hrs/week of manual work."
                     ]
                 },
                 {
@@ -321,9 +321,9 @@ export const translations = {
                         "Version control with GitHub and branch management for collaborative work."
                     ],
                     achievements: [
-                        "Delivery of complete recruitment management system from scratch.",
-                        "Bulk upload module capable of processing thousands of records in seconds.",
-                        "Significant reduction of onboarding time through automation."
+                        "Delivery of complete recruitment management system (12 modules) in 8 months.",
+                        "Bulk upload module processing +5,000 records in <10 seconds from Excel/TXT.",
+                        "50% reduction in onboarding time through employee registration automation."
                     ]
                 },
                 {
@@ -340,9 +340,9 @@ export const translations = {
                         "Exploration of microservices and Azure Functions for cloud architectures."
                     ],
                     achievements: [
-                        "Self-taught mastery of backend, frontend and cloud technologies.",
-                        "Portfolio of functional projects with clean code.",
-                        "Solid foundation in design patterns and scalable architectures."
+                        "Self-taught mastery of 10+ technologies (C#, .NET Core, React, SQL Server, Azure) in 12 months.",
+                        "Development of 3 complete applications with clean code and SOLID architecture.",
+                        "Implementation of AES/RSA encryption and JWT authentication in personal projects."
                     ]
                 }
             ]

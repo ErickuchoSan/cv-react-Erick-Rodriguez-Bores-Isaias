@@ -18,6 +18,8 @@ export const SKILLS_DATA_CATEGORIES = [
             { name: "Entity Framework", icon: FaDatabase, color: "text-indigo-600" },
             { name: "REST API", icon: FaServer, color: "text-blue-500" },
             { name: "Microservices", icon: FaServer, color: "text-green-500" },
+            { name: "Serverless", icon: FaServer, color: "text-cyan-500" },
+            { name: "Event-Driven", icon: FaServer, color: "text-orange-500" },
         ]
     },
     {
@@ -71,8 +73,11 @@ export const PDF_SKILLS = {
         "Cifrado AES/RSA (3.5 años)",
         "Git / GitHub (2 años)",
         "CI/CD Azure DevOps",
+        "SOLID (2 años)",
         "Arquitectura Limpia / DDD (2 años)",
         "Microservicios (1 año)",
+        "Serverless (1 año)",
+        "Event-Driven Architecture (1 año)",
         "Bootstrap / CSS (2 años)",
         "jQuery (2 años)",
         "Postman / Insomnia"
@@ -92,8 +97,11 @@ export const PDF_SKILLS = {
         "AES/RSA Encryption (3.5 years)",
         "Git / GitHub (2 years)",
         "CI/CD Azure DevOps",
+        "SOLID (2 years)",
         "Clean Architecture / DDD (2 years)",
         "Microservices (1 year)",
+        "Serverless (1 year)",
+        "Event-Driven Architecture (1 year)",
         "Bootstrap / CSS (2 years)",
         "jQuery (2 years)",
         "Postman / Insomnia"

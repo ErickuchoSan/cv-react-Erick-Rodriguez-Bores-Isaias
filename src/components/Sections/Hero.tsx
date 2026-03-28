@@ -148,18 +148,19 @@ export const Hero: React.FC = () => {
 
                             {/* Dropdown Menu */}
                             {showDownloadOptions && (
-                                <div className="absolute top-full left-0 mt-2 bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden z-50 animate-fade-in-up" style={{ minWidth: '220px' }}>
+                                <div className="absolute top-full left-0 mt-2 bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 z-50" style={{ minWidth: '220px' }}>
                                     {/* Diseño Visual */}
-                                    <div className="px-3 py-2 bg-gray-50 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+                                    <div className="px-3 py-2 bg-gray-50 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 rounded-t-lg">
                                         <span className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">Diseño Visual</span>
                                     </div>
                                     <PDFDownloadLink
                                         document={<CVDocument />}
                                         fileName="CV_Erick_Rodriguez_ES.pdf"
-                                        className="block w-full px-4 py-3 text-left text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                                        style={{ display: 'block', width: '100%', padding: '12px 16px', textAlign: 'left', fontSize: '14px', color: 'inherit', textDecoration: 'none', boxSizing: 'border-box' }}
+                                        className="text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                                     >
                                         {({ loading, error }) => (
-                                            <span className="flex items-center">
+                                            <span style={{ display: 'flex', alignItems: 'center', width: '100%', pointerEvents: 'none' }}>
                                                 {loading && <FaSpinner aria-hidden="true" className="animate-spin mr-2 text-blue-500" />}
                                                 {error ? '⚠️ Error — Reintenta' : loading ? 'Español (Generando...)' : '🇲🇽 Español'}
                                             </span>
@@ -168,10 +169,11 @@ export const Hero: React.FC = () => {
                                     <PDFDownloadLink
                                         document={<CVDocumentEN />}
                                         fileName="CV_Erick_Rodriguez_EN.pdf"
-                                        className="block w-full px-4 py-3 text-left text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors border-t border-gray-100 dark:border-gray-700"
+                                        style={{ display: 'block', width: '100%', padding: '12px 16px', textAlign: 'left', fontSize: '14px', color: 'inherit', textDecoration: 'none', borderTop: '1px solid #f3f4f6', boxSizing: 'border-box' }}
+                                        className="text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                                     >
                                         {({ loading }) => (
-                                            <span className="flex items-center">
+                                            <span style={{ display: 'flex', alignItems: 'center', width: '100%', pointerEvents: 'none' }}>
                                                 {loading && <FaSpinner aria-hidden="true" className="animate-spin mr-2 text-blue-500" />}
                                                 {loading ? 'English (Generating...)' : '🇺🇸 English'}
                                             </span>
@@ -185,10 +187,11 @@ export const Hero: React.FC = () => {
                                     <PDFDownloadLink
                                         document={<CVDocumentATS_ES />}
                                         fileName="CV_Erick_Rodriguez_ATS_ES.pdf"
-                                        className="block w-full px-4 py-3 text-left text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                                        style={{ display: 'block', width: '100%', padding: '12px 16px', textAlign: 'left', fontSize: '14px', color: 'inherit', textDecoration: 'none', boxSizing: 'border-box' }}
+                                        className="text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                                     >
                                         {({ loading }) => (
-                                            <span className="flex items-center">
+                                            <span style={{ display: 'flex', alignItems: 'center', width: '100%', pointerEvents: 'none' }}>
                                                 {loading && <FaSpinner aria-hidden="true" className="animate-spin mr-2 text-green-500" />}
                                                 {loading ? 'ATS Español (Generando...)' : '🇲🇽 ATS Español'}
                                             </span>
@@ -197,10 +200,11 @@ export const Hero: React.FC = () => {
                                     <PDFDownloadLink
                                         document={<CVDocumentATS_EN />}
                                         fileName="CV_Erick_Rodriguez_ATS_EN.pdf"
-                                        className="block w-full px-4 py-3 text-left text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors border-t border-gray-100 dark:border-gray-700"
+                                        style={{ display: 'block', width: '100%', padding: '12px 16px', textAlign: 'left', fontSize: '14px', color: 'inherit', textDecoration: 'none', borderTop: '1px solid #f3f4f6', boxSizing: 'border-box' }}
+                                        className="text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors rounded-b-lg"
                                     >
                                         {({ loading }) => (
-                                            <span className="flex items-center">
+                                            <span style={{ display: 'flex', alignItems: 'center', width: '100%', pointerEvents: 'none' }}>
                                                 {loading && <FaSpinner aria-hidden="true" className="animate-spin mr-2 text-green-500" />}
                                                 {loading ? 'ATS English (Generating...)' : '🇺🇸 ATS English'}
                                             </span>

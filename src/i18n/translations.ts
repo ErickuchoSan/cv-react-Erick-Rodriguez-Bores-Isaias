@@ -107,8 +107,8 @@ export const translations = {
                 {
                     role: "Desarrollador Full Stack",
                     company: "Freelance · Align Designs Platform",
-                    period: "2023 - Actual",
-                    duration: "~2 años",
+                    period: "Oct. 2025 - Actual",
+                    duration: "~6 meses",
                     description: "Desarrollo de plataforma B2B/B2C cloud con arquitectura monorepo profesional. Stack: NestJS 11, Next.js 15, PostgreSQL 16, Prisma ORM, Docker, GitHub Actions, JWT/OTP, RBAC.",
                     functions: [
                         "Arquitectura modular monorepo con NestJS 11 + Next.js 15 + PostgreSQL/Prisma aplicando SOLID y Clean Architecture.",
@@ -327,8 +327,8 @@ export const translations = {
                 {
                     role: "Full Stack Developer",
                     company: "Freelance · Align Designs Platform",
-                    period: "2023 - Present",
-                    duration: "~2 years",
+                    period: "Oct. 2025 - Present",
+                    duration: "~6 months",
                     description: "Development of a cloud B2B/B2C platform with professional monorepo architecture. Stack: NestJS 11, Next.js 15, PostgreSQL 16, Prisma ORM, Docker, GitHub Actions, JWT/OTP, RBAC.",
                     functions: [
                         "Modular monorepo architecture with NestJS 11 + Next.js 15 + PostgreSQL/Prisma applying SOLID and Clean Architecture.",

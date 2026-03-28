@@ -1,4 +1,4 @@
-import { FaMicrosoft, FaJs, FaReact, FaCode, FaDatabase, FaLayerGroup, FaGitAlt, FaNodeJs, FaDocker, FaLock } from 'react-icons/fa';
+import { FaMicrosoft, FaJs, FaCode, FaDatabase, FaLayerGroup, FaGitAlt, FaNodeJs, FaDocker, FaLock } from 'react-icons/fa';
 import { SiTypescript, SiNestjs, SiNextdotjs, SiPostgresql, SiPrisma } from 'react-icons/si';
 
 export const EXPERIENCE_DATA = [

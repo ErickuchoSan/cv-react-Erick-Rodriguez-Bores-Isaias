@@ -28,7 +28,6 @@ const styles = StyleSheet.create({
     headerBg: {
         backgroundColor: '#09090b', // zinc-950
         padding: 25,
-        borderRadius: 0,
         flexDirection: 'row',
         alignItems: 'center',
         color: 'white',

@@ -16,30 +16,35 @@
 | Tecnologia | Anios | Nivel | Donde lo use |
 |------------|-------|-------|--------------|
 | C# | 3 | Avanzado | Grupo Salinas, Digital Solutions, Freelance |
-| .NET Core | 3 | Avanzado | v3 a v8, APIs REST, microservicios |
+| .NET Core | 3 | Avanzado | v3 a v10, APIs REST, microservicios |
 | Entity Framework | 3 | Avanzado | Code First, migrations, LINQ |
 | SQL Server / T-SQL | 3 | Avanzado | Procedimientos almacenados, funciones, optimizacion |
+| Procedimientos Almacenados | 3 | Avanzado | Grupo Salinas, Digital Solutions |
 | REST API | 3 | Avanzado | 6+ endpoints, documentacion Swagger |
+| Expresiones Lambda / LINQ | 3 | Avanzado | Parte del dia a dia en C# |
+| Swagger / OpenAPI | 2 | Intermedio | Documentacion de APIs en Grupo Salinas |
 
 ### Frontend
 
 | Tecnologia | Anios | Nivel | Donde lo use |
 |------------|-------|-------|--------------|
-| React 19 | 2 | Intermedio-Avanzado | Grupo Salinas, proyectos personales |
+| React 19 | 2 | Intermedio-Avanzado | Proyectos personales, Align Designs |
 | JavaScript | 3 | Avanzado | Todos los proyectos |
 | TypeScript | 1 | Intermedio | 1 aplicacion completa |
 | Node.js | 3 | Intermedio | APIs, scripts, proyectos |
-| CSS / Bootstrap | 2 | Avanzado | Diseno responsivo |
+| CSS / Bootstrap | 2 | Avanzado | Diseno responsivo, Grupo Salinas |
 | jQuery | 2 | Intermedio | Digital Solutions |
 
-### Cloud / Azure
+### DevOps / Infraestructura
 
 | Tecnologia | Anios | Nivel | Donde lo use |
 |------------|-------|-------|--------------|
-| Azure Functions | 1 | Intermedio | Grupo Salinas - procesos serverless |
-| Azure Service Bus | 2 | Intermedio | Colas, topics, subscriptions |
-| Serverless | 1 | Intermedio | Azure Functions = serverless |
-| Event-Driven Architecture | 1 | Intermedio | Service Bus triggers y mensajeria |
+| GitHub Actions / CI/CD | 1 | Intermedio | Align Designs — pipeline automatizado |
+| Docker | 1 | Intermedio | Align Designs — contenedores + health checks |
+| Digital Ocean | 1 | Intermedio | Servidor VPS propio con deploy automatizado |
+| CRON / Scheduled Jobs | 6 meses | Basico-Intermedio | Jobs en pipelines de GitHub Actions |
+| Git / GitHub | 2 | Avanzado | Control de versiones, ramas, PRs |
+| Postman / Insomnia | 1 | Intermedio | Pruebas de API |
 
 ### Seguridad
 
@@ -48,6 +53,7 @@
 | OAuth2 | 2 | Intermedio | Autenticacion en APIs |
 | JWT | 1 | Intermedio | Tokenizacion, refresh tokens |
 | Cifrado AES/RSA | 3.5 | Avanzado | Cifrado de texto, datos sensibles |
+| OWASP Top 10 | - | Aplicado | No por nombre, pero: rate limiting, input validation, AES/RSA, SSH hardening, fail2ban |
 
 ### Arquitectura
 
@@ -56,15 +62,15 @@
 | SOLID | 2 | Avanzado | Todos los proyectos |
 | Clean Architecture | 2 | Intermedio-Avanzado | Grupo Salinas, Align Designs |
 | DDD | 1 | Intermedio | Grupo Salinas |
+| Event-Driven Architecture | 1 | Intermedio | Align Designs — arquitectura basada en eventos/mensajes |
 | Microservicios | 1 | Intermedio | Proyectos personales |
 
-### DevOps
+### Testing / Metodologias
 
 | Tecnologia | Anios | Nivel | Donde lo use |
 |------------|-------|-------|--------------|
-| Git / GitHub | 2 | Avanzado | Control de versiones, ramas, PRs |
-| CI/CD Azure DevOps | - | Basico | Integracion de manera independiente |
-| Postman / Insomnia | 1 | Intermedio | Pruebas de API |
+| Pruebas Unitarias | 6 meses | Basico | Proyectos propios |
+| SCRUM | 10 meses | Basico-Intermedio | Trabajo en equipo |
 
 ---
 
@@ -73,18 +79,32 @@
 ### C# / .NET Core
 
 **P: Que version de .NET Core has usado?**
-> He trabajado desde .NET Core 3 (2019) hasta .NET 8 (actual). Mi experiencia mas reciente es con .NET Core 8 en Grupo Salinas donde desarrollo APIs REST para sistemas de auditoria.
+> He trabajado desde .NET Core 3 (2019) hasta la version 10. Mi experiencia mas reciente es con .NET Core 6 en Grupo Salinas donde desarrollo APIs REST para sistemas de auditoria, y conozco las nuevas caracteristicas hasta .NET 10.
 
 **P: Como implementas Entity Framework?**
 > Uso Code First con migrations. Defino mis entidades, configuro relaciones con Fluent API, y uso LINQ para consultas. En Grupo Salinas refactorize arquitectura legacy hacia EF con principios limpios.
 
 **P: Que son las expresiones Lambda?**
-> Son funciones anonimas que uso constantemente con LINQ. Por ejemplo: `list.Where(x => x.Active).Select(x => x.Name)`. Las uso para filtrar, mapear y transformar colecciones.
+> Son funciones anonimas que uso constantemente con LINQ en C#. Por ejemplo:
+> ```csharp
+> var activos = lista.Where(x => x.Activo).OrderBy(x => x.Nombre).Select(x => x.Id);
+> ```
+> Las uso para filtrar, ordenar y transformar colecciones. Llevan 3 anios siendo parte de mi trabajo diario.
 
 **P: Como manejas autenticacion en tus APIs?**
 > Implemento OAuth2 con JWT tokens. El flujo es: login -> validar credenciales -> generar access token + refresh token -> cliente usa token en headers -> middleware valida en cada request.
 
-### Azure
+**P: Como documentas tus APIs?**
+> Con Swagger/OpenAPI. En Grupo Salinas cree la documentacion de la API v2 de Honestel con todos sus endpoints, schemas y ejemplos de request/response.
+
+**P: Que son los procedimientos almacenados y cuanto llevas usandolos?**
+> 3 anios. Son bloques de SQL precompilados en el servidor. Los uso para:
+> - Logica de negocio compleja que requiere multiples operaciones
+> - Optimizacion de consultas (el plan de ejecucion se cachea)
+> - Seguridad (el usuario solo ejecuta el SP, no accede a las tablas directamente)
+> En Grupo Salinas optimice SPs criticos reduciendo un 40% el tiempo de ejecucion.
+
+### Azure / Cloud (Lockton lo requiere)
 
 **P: Que son Azure Functions y cuando las usas?**
 > Son funciones serverless que se ejecutan bajo demanda sin administrar servidores. Las uso para:
@@ -100,10 +120,13 @@
 > - **Retry con backoff**: Reintentos con espera exponencial
 
 **P: Que es arquitectura Serverless?**
-> Es ejecutar codigo sin administrar infraestructura. Azure Functions ES serverless. Yo tengo 1 anio de experiencia con esto porque uso Azure Functions para procesar mensajes y triggers.
+> Es ejecutar codigo sin administrar infraestructura. Azure Functions ES serverless. Se ejecutan en respuesta a triggers (HTTP, Service Bus, Timer) sin que yo administre servidores.
 
 **P: Que es Event-Driven Architecture?**
-> Es una arquitectura basada en eventos/mensajes. Azure Service Bus con topics, subscriptions y triggers ES event-driven. Yo tengo 1 anio de experiencia porque uso Service Bus con triggers para reaccionar a eventos.
+> Es una arquitectura donde los componentes se comunican a traves de eventos en lugar de llamadas directas. Un productor emite un evento, los consumidores reaccionan independientemente. En Align Designs use este patron — cuando ocurre una accion, se dispara un evento que otros modulos procesan de forma asincrona. Esto desacopla los servicios y mejora la escalabilidad.
+
+**P: Que son los CRON/Scheduled Jobs?**
+> Son tareas programadas que se ejecutan automaticamente en intervalos definidos. En mis pipelines de GitHub Actions tengo jobs programados con sintaxis cron. Ejemplo: `0 2 * * *` ejecuta algo todos los dias a las 2am. Los uso para deploys automatizados, limpieza de logs, reportes periodicos.
 
 ### Seguridad
 
@@ -114,6 +137,15 @@
 > - **SHA-256**: Para hashing de contrasenas (junto con salt)
 >
 > Tengo 3.5 anios cifrando texto y datos sensibles en todos mis proyectos.
+
+**P: Conoces OWASP Top 10?**
+> No lo conozco por nombre especifico, pero aplico sus principios en mis proyectos:
+> - Rate limiting para prevenir fuerza bruta
+> - Validacion y sanitizacion de inputs
+> - Cifrado AES/RSA para datos sensibles
+> - SSH hardening y fail2ban en mi servidor
+> - Autenticacion con OAuth2/JWT
+> - Principio de minimo privilegio en BD
 
 **P: Diferencia entre OAuth2 y JWT?**
 > - **OAuth2**: Es el PROTOCOLO/FRAMEWORK de autorizacion
@@ -147,12 +179,15 @@
 > - **Repositories**: Abstraccion de persistencia
 > - **Domain Services**: Logica que no pertenece a una entidad
 
+**P: Que es Event-Driven Architecture?**
+> Arquitectura donde los componentes reaccionan a eventos en lugar de llamarse directamente. Beneficios: desacoplamiento, escalabilidad, resiliencia. En Align Designs los modulos publican eventos cuando cambia el estado, y otros modulos suscritos reaccionan de forma independiente y asincrona.
+
 ### SQL Server
 
 **P: Como optimizas consultas?**
 > - Analizo planes de ejecucion
 > - Creo indices apropiados
-> - Uso procedimientos almacenados
+> - Uso procedimientos almacenados (plan cacheado)
 > - Evito SELECT *
 > - Optimizo JOINs
 >
@@ -161,6 +196,9 @@
 **P: Diferencia entre procedimiento almacenado y funcion?**
 > - **Procedimiento**: Puede modificar datos (INSERT/UPDATE/DELETE), no retorna valor directamente
 > - **Funcion**: Solo lectura, retorna valor, se usa en SELECT
+
+**P: Cuanto llevas con T-SQL?**
+> 3 anios. Escribo consultas complejas, JOINs multitabla, CTEs (Common Table Expressions), funciones de ventana (ROW_NUMBER, PARTITION BY) y procedimientos almacenados optimizados.
 
 ### React
 
@@ -176,19 +214,20 @@
 
 ## Mis Logros Cuantificados
 
-### Grupo Salinas (2024 - Actual)
-- Creacion de API v2 de Honestel desde cero (6 endpoints) con CI/CD
-- **40% reduccion** en tiempo de consultas SQL
+### Grupo Salinas (Mayo 2024 - Actual)
+- Creacion de API v2 de Honestel desde cero (6 endpoints) con documentacion Swagger
+- **40% reduccion** en tiempo de consultas SQL mediante optimizacion de SPs
 - Automatizacion de **5 procesos** eliminando **~8 hrs/semana** de trabajo manual
 
-### Digital Solutions (2023 - 2024)
+### Digital Solutions (Mayo 2023 - Mayo 2024)
 - Sistema de reclutamiento completo (**12 modulos**) en 8 meses
 - Modulo de carga masiva: **+5,000 registros en <10 segundos**
 - **50% reduccion** en tiempo de onboarding
 
-### Freelance (2022 - 2023)
-- Dominio autodidacta de **10+ tecnologias** en 12 meses
-- **3 aplicaciones completas** con codigo limpio y SOLID
+### Align Designs (Oct. 2025 - Actual)
+- Arquitectura monorepo NestJS 11 + Next.js 15 + PostgreSQL + Docker
+- CI/CD automatizado con GitHub Actions en servidor Digital Ocean propio
+- Autenticacion dual JWT (admins) / OTP (clientes) con RBAC
 
 ---
 
@@ -201,9 +240,10 @@
 | Entra ID | No conozco |
 | Cascada | No he usado |
 | Kanban | No he usado formalmente |
-| OWASP Top 10 | No lo conozco por nombre (pero aplico seguridad) |
 | SonarQube | No he usado |
 | Pruebas integrales | 0 anios formales |
+| Arquitectura Serverless | Basico — conozco el concepto via Azure Functions |
+| SAML 2.0 | 2 meses, muy basico |
 
 ---
 
@@ -240,7 +280,13 @@
 
 4. **Muestra interes**: Pregunta sobre el proyecto, el equipo, las tecnologias.
 
-5. **Serverless y Event-Driven**: Ahora sabes que YA LOS USAS con Azure Functions y Service Bus.
+5. **Lambda expressions**: Son `x => x.Algo` en C# — las usas con LINQ todos los dias. No es nada nuevo para ti.
+
+6. **OWASP Top 10**: No lo conoces de nombre pero LO APLICAS. Rate limiting, input validation, cifrado, SSH hardening.
+
+7. **Event-Driven**: En Align Designs tu arquitectura reacciona a eventos entre modulos. ESO es event-driven.
+
+8. **CRON/Jobs**: Tus pipelines de GitHub Actions con jobs programados = CRON services.
 
 ---
 

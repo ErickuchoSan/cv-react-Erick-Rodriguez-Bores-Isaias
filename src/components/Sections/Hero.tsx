@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-// import { SectionTitle } from '../UI/SectionTitle'; // Removed unused import
-import { FaGithub, FaLinkedin, FaEnvelope, FaFileDownload, FaArrowRight, FaSpinner, FaReact, FaDatabase, FaCloud, FaServer, FaNodeJs, FaTimes } from 'react-icons/fa';
-import { SiDotnet, SiTypescript } from 'react-icons/si';
+import { FaGithub, FaLinkedin, FaEnvelope, FaFileDownload, FaArrowRight, FaSpinner, FaTimes } from 'react-icons/fa';
+import { SiDotnet } from 'react-icons/si';
+import { FaReact, FaDatabase, FaDocker } from 'react-icons/fa';
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import { CVDocument } from '../PDF/CVDocument';
 import { CVDocumentEN } from '../PDF/CVDocumentEN';
@@ -10,158 +10,149 @@ import { CVDocumentATS_EN } from '../PDF/CVDocumentATS_EN';
 import { useLanguage } from '../../context/LanguageContext';
 import { CONTACT_INFO } from '../../data/contact';
 
+const TECH_STACK = [
+    { name: '.NET Core 8', color: '#7c3aed' },
+    { name: 'React 19', color: '#06b6d4' },
+    { name: 'PostgreSQL', color: '#3b82f6' },
+    { name: 'Docker', color: '#60a5fa' },
+    { name: 'NestJS 11', color: '#ef4444' },
+];
+
 export const Hero: React.FC = () => {
-    const { t } = useLanguage(); // Removed language from destructuring as it is no longer used for download logic
+    const { t } = useLanguage();
     const [showDownloadOptions, setShowDownloadOptions] = useState(false);
     const [showPhotoModal, setShowPhotoModal] = useState(false);
 
-    // Close modal on Escape key
     useEffect(() => {
         const handleEscape = (e: KeyboardEvent) => {
-            if (e.key === 'Escape') setShowPhotoModal(false);
+            if (e.key === 'Escape') {
+                setShowPhotoModal(false);
+                setShowDownloadOptions(false);
+            }
         };
+        document.addEventListener('keydown', handleEscape);
+        return () => document.removeEventListener('keydown', handleEscape);
+    }, []);
+
+    useEffect(() => {
         if (showPhotoModal) {
-            document.addEventListener('keydown', handleEscape);
             document.body.style.overflow = 'hidden';
-        }
-        return () => {
-            document.removeEventListener('keydown', handleEscape);
+        } else {
             document.body.style.overflow = 'unset';
-        };
+        }
+        return () => { document.body.style.overflow = 'unset'; };
     }, [showPhotoModal]);
 
+    // Split name for visual display: "Erick" solid / "Rodríguez" outline
+    const nameParts = t.hero.title.split(' ');
+    const firstName = nameParts[0];
+    const lastName = nameParts.slice(1).join(' ');
+
     return (
-        <section id="inicio" className="min-h-screen flex items-center justify-center relative bg-gray-50 dark:bg-gray-900 transition-colors duration-300 pt-16">
-            {/* Enhanced Background Effects */}
-            <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-                <div className="absolute top-20 right-10 w-72 h-72 bg-blue-500/30 dark:bg-blue-500/20 rounded-full blur-[100px] animate-float"></div>
-                <div className="absolute bottom-20 left-10 w-96 h-96 bg-purple-500/30 dark:bg-purple-500/20 rounded-full blur-[100px] animate-float delay-500"></div>
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-full blur-[120px] animate-pulse"></div>
-            </div>
+        <>
+            <section id="inicio" className="flex flex-col md:flex-row min-h-screen pt-16 md:pt-0">
 
-            {/* Animated Grid Background */}
-            <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.03)_1px,transparent_1px)] bg-[size:50px_50px] dark:bg-[linear-gradient(rgba(59,130,246,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.05)_1px,transparent_1px)]"></div>
+                {/* ===== LEFT PANEL — White ===== */}
+                <div className="w-full md:w-[60%] bg-white dark:bg-zinc-950 flex flex-col justify-center px-8 sm:px-14 md:px-16 lg:px-20 xl:px-28 py-12 md:py-0 md:pt-24 relative">
 
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                {/* Mobile Photo - Shown only on mobile, above text */}
-                <div className="md:hidden flex justify-center mb-6 animate-scale-in opacity-0">
-                    <div className="relative py-8 px-12">
-                        {/* Animated glow background */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full opacity-30 blur-3xl animate-pulse"></div>
-
-                        {/* Profile image container - Clickable */}
-                        <button
-                            onClick={() => setShowPhotoModal(true)}
-                            className="relative w-48 h-48 sm:w-56 sm:h-56 cursor-pointer group focus:outline-none focus:ring-4 focus:ring-blue-500/50 rounded-full"
-                            aria-label="Ver foto en grande"
-                        >
-                            <div className="w-full h-full bg-white dark:bg-gray-800 p-1.5 rounded-full border-4 border-white/50 dark:border-gray-700/50 shadow-2xl shadow-blue-500/30 dark:shadow-purple-500/20 group-hover:scale-105 transition-transform duration-300">
-                                <img
-                                    src="/assets/images/profile.jpg"
-                                    alt="Erick Rodríguez"
-                                    className="w-full h-full object-cover rounded-full"
-                                />
-                            </div>
-                            {/* Hover indicator */}
-                            <div className="absolute inset-0 rounded-full bg-black/0 group-hover:bg-black/10 transition-colors duration-300 flex items-center justify-center">
-                                <span className="text-white text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity bg-black/50 px-3 py-1 rounded-full">
-                                    Click para ampliar
-                                </span>
-                            </div>
-                        </button>
-
-                        {/* Floating Tech Icons - Positioned around the photo with z-20 */}
-                        {/* Top Right - .NET */}
-                        <div className="absolute top-0 right-0 z-20 bg-white dark:bg-gray-800 p-2.5 rounded-xl shadow-lg animate-float border border-gray-200 dark:border-gray-700">
-                            <SiDotnet aria-hidden="true" className="text-xl text-purple-600" />
-                        </div>
-
-                        {/* Top Left - React */}
-                        <div className="absolute top-0 left-0 z-20 bg-white dark:bg-gray-800 p-2.5 rounded-xl shadow-lg animate-float delay-200 border border-gray-200 dark:border-gray-700">
-                            <FaReact aria-hidden="true" className="text-xl text-cyan-500" />
-                        </div>
-
-                        {/* Right Middle - Azure */}
-                        <div className="absolute top-1/2 -translate-y-1/2 right-0 z-20 bg-white dark:bg-gray-800 p-2.5 rounded-xl shadow-lg animate-float delay-400 border border-gray-200 dark:border-gray-700">
-                            <FaCloud aria-hidden="true" className="text-xl text-blue-500" />
-                        </div>
-
-                        {/* Left Middle - TypeScript */}
-                        <div className="absolute top-1/2 -translate-y-1/2 left-0 z-20 bg-white dark:bg-gray-800 p-2.5 rounded-xl shadow-lg animate-float delay-300 border border-gray-200 dark:border-gray-700">
-                            <SiTypescript aria-hidden="true" className="text-xl text-blue-600" />
-                        </div>
-
-                        {/* Bottom Right - Server/Backend */}
-                        <div className="absolute bottom-0 right-2 z-20 bg-white dark:bg-gray-800 p-2.5 rounded-xl shadow-lg animate-float delay-500 border border-gray-200 dark:border-gray-700">
-                            <FaServer aria-hidden="true" className="text-xl text-purple-600" />
-                        </div>
-
-                        {/* Bottom Left - Database */}
-                        <div className="absolute bottom-0 left-2 z-20 bg-white dark:bg-gray-800 p-2.5 rounded-xl shadow-lg animate-float delay-600 border border-gray-200 dark:border-gray-700">
-                            <FaDatabase aria-hidden="true" className="text-xl text-emerald-500" />
-                        </div>
-                    </div>
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-12 items-center">
-                {/* Text Content */}
-                <div className="text-center md:text-left">
-                    <div className="inline-block px-4 py-2 bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 rounded-full text-sm font-semibold mb-6 animate-bounce-in opacity-0 border border-blue-200 dark:border-blue-800 shadow-sm">
-                        <span className="flex items-center gap-2">
-                            <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                    {/* Available badge */}
+                    <div className="flex items-center gap-2 mb-8 animate-fade-in opacity-0" style={{ animationDelay: '50ms' }}>
+                        <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                        <span className="text-xs font-bold tracking-[0.2em] uppercase text-zinc-500 dark:text-zinc-400 font-['Inter']">
                             {t.hero.role}
                         </span>
                     </div>
 
-                    <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 dark:text-white mb-6 leading-tight animate-fade-in-up opacity-0 delay-100">
-                        {t.hero.title} <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 dark:from-blue-400 dark:via-purple-400 dark:to-blue-400 bg-[length:200%_auto] animate-gradient-x">
-                            {t.hero.subtitle}
+                    {/* Giant Name */}
+                    <h1
+                        className="font-['Manrope'] font-black uppercase tracking-tighter text-zinc-900 dark:text-white leading-[0.88] mb-6 animate-fade-in-up opacity-0"
+                        style={{ fontSize: 'clamp(3.2rem, 7.5vw, 6rem)', animationDelay: '100ms' }}
+                    >
+                        {firstName}
+                        <br />
+                        <span
+                            className="dark:text-transparent"
+                            style={{
+                                WebkitTextStroke: '0px',
+                            }}
+                        >
+                            {lastName}
                         </span>
                     </h1>
 
-                    <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto md:mx-0 leading-relaxed animate-fade-in-up opacity-0 delay-200">
+                    {/* Role gradient */}
+                    <h2
+                        className="text-lg md:text-xl xl:text-2xl font-black font-['Manrope'] uppercase tracking-tight mb-8 animate-fade-in-up opacity-0"
+                        style={{
+                            background: 'linear-gradient(45deg, #b61722, #f97316)',
+                            WebkitBackgroundClip: 'text',
+                            WebkitTextFillColor: 'transparent',
+                            backgroundClip: 'text',
+                            animationDelay: '150ms',
+                        }}
+                    >
+                        Full Stack .NET &amp; React
+                    </h2>
+
+                    {/* Description */}
+                    <p
+                        className="text-zinc-600 dark:text-zinc-400 text-base md:text-lg leading-relaxed mb-10 max-w-lg font-['Inter'] animate-fade-in-up opacity-0"
+                        style={{ animationDelay: '200ms' }}
+                    >
                         {t.hero.description}
                     </p>
 
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start animate-fade-in-up opacity-0 delay-300">
-                        <a href="#contacto" className="btn-glow relative px-8 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold flex items-center justify-center group overflow-hidden shadow-lg hover:shadow-blue-500/25 transition-all duration-300 hover:-translate-y-0.5" aria-label={t.hero.contactBtn}>
-                            <span className="relative z-10">{t.hero.contactBtn}</span>
-                            <FaArrowRight aria-hidden="true" className="ml-2 relative z-10 transform group-hover:translate-x-1 transition-transform" />
+                    {/* CTA Buttons */}
+                    <div
+                        className="flex flex-wrap gap-4 mb-10 animate-fade-in-up opacity-0"
+                        style={{ animationDelay: '250ms' }}
+                    >
+                        <a
+                            href="#contacto"
+                            className="btn-editorial-primary flex items-center gap-2"
+                            aria-label={t.hero.contactBtn}
+                        >
+                            {t.hero.contactBtn}
+                            <FaArrowRight aria-hidden="true" className="text-xs" />
                         </a>
 
-                        <a href="#proyectos" aria-label={t.hero.projectsBtn} className="px-8 py-3 rounded-xl border-2 border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-semibold hover:border-blue-600 dark:hover:border-blue-400 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 flex items-center justify-center backdrop-blur-sm hover:-translate-y-0.5 hover:shadow-lg">
+                        <a
+                            href="#proyectos"
+                            className="btn-editorial-outline"
+                            aria-label={t.hero.projectsBtn}
+                        >
                             {t.hero.projectsBtn}
                         </a>
 
-                        {/* PDF Download Dropdown */}
+                        {/* Download CV Dropdown */}
                         <div className="relative inline-flex">
                             <button
                                 onClick={() => setShowDownloadOptions(!showDownloadOptions)}
-                                aria-label="Opciones para descargar Currículum"
+                                aria-label="Opciones para descargar CV"
                                 aria-expanded={showDownloadOptions}
-                                className="px-8 py-3 rounded-lg bg-gray-800 dark:bg-gray-700 text-white font-semibold hover:bg-gray-700 dark:hover:bg-gray-600 transition-colors flex items-center justify-center shadow-lg"
+                                className="flex items-center gap-2 px-6 py-4 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 font-bold uppercase tracking-widest text-sm font-['Manrope'] hover:bg-zinc-700 dark:hover:bg-white transition-colors duration-200"
                             >
-                                <span className="mr-2">{t.hero.downloadBtn}</span>
                                 <FaFileDownload aria-hidden="true" />
+                                <span>{t.hero.downloadBtn}</span>
                             </button>
 
-                            {/* Dropdown Menu */}
                             {showDownloadOptions && (
-                                <div className="absolute top-full left-0 mt-2 bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 z-50" style={{ minWidth: '220px' }}>
-                                    {/* Diseño Visual */}
-                                    <div className="px-3 py-2 bg-gray-50 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 rounded-t-lg">
-                                        <span className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">Diseño Visual</span>
+                                <div
+                                    className="absolute top-full left-0 mt-1 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 shadow-xl z-50"
+                                    style={{ minWidth: '230px' }}
+                                >
+                                    <div className="px-3 py-2 bg-zinc-50 dark:bg-zinc-800 border-b border-zinc-200 dark:border-zinc-700">
+                                        <span className="text-xs font-bold text-zinc-400 uppercase tracking-wider font-['Manrope']">Diseño Visual</span>
                                     </div>
                                     <PDFDownloadLink
                                         document={<CVDocument />}
                                         fileName="CV_Erick_Rodriguez_ES.pdf"
-                                        style={{ display: 'block', width: '100%', padding: '12px 16px', textAlign: 'left', fontSize: '14px', color: 'inherit', textDecoration: 'none', boxSizing: 'border-box' }}
-                                        className="text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                                        style={{ display: 'block', width: '100%', padding: '12px 16px', textDecoration: 'none', boxSizing: 'border-box' }}
+                                        className="text-zinc-700 dark:text-zinc-200 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
                                     >
                                         {({ loading, error }) => (
-                                            <span style={{ display: 'flex', alignItems: 'center', width: '100%', pointerEvents: 'none' }}>
-                                                {loading && <FaSpinner aria-hidden="true" className="animate-spin mr-2 text-blue-500" />}
+                                            <span style={{ display: 'flex', alignItems: 'center', pointerEvents: 'none', fontSize: '14px' }}>
+                                                {loading && <FaSpinner aria-hidden="true" className="animate-spin mr-2 text-[#b61722]" />}
                                                 {error ? '⚠️ Error — Reintenta' : loading ? 'Español (Generando...)' : '🇲🇽 Español'}
                                             </span>
                                         )}
@@ -169,29 +160,28 @@ export const Hero: React.FC = () => {
                                     <PDFDownloadLink
                                         document={<CVDocumentEN />}
                                         fileName="CV_Erick_Rodriguez_EN.pdf"
-                                        style={{ display: 'block', width: '100%', padding: '12px 16px', textAlign: 'left', fontSize: '14px', color: 'inherit', textDecoration: 'none', borderTop: '1px solid #f3f4f6', boxSizing: 'border-box' }}
-                                        className="text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                                        style={{ display: 'block', width: '100%', padding: '12px 16px', textDecoration: 'none', borderTop: '1px solid #f4f4f5', boxSizing: 'border-box' }}
+                                        className="text-zinc-700 dark:text-zinc-200 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
                                     >
                                         {({ loading }) => (
-                                            <span style={{ display: 'flex', alignItems: 'center', width: '100%', pointerEvents: 'none' }}>
-                                                {loading && <FaSpinner aria-hidden="true" className="animate-spin mr-2 text-blue-500" />}
+                                            <span style={{ display: 'flex', alignItems: 'center', pointerEvents: 'none', fontSize: '14px' }}>
+                                                {loading && <FaSpinner aria-hidden="true" className="animate-spin mr-2 text-[#b61722]" />}
                                                 {loading ? 'English (Generating...)' : '🇺🇸 English'}
                                             </span>
                                         )}
                                     </PDFDownloadLink>
 
-                                    {/* Formato ATS */}
-                                    <div className="px-3 py-2 bg-gray-50 dark:bg-gray-900 border-t border-b border-gray-200 dark:border-gray-700">
-                                        <span className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">Formato ATS</span>
+                                    <div className="px-3 py-2 bg-zinc-50 dark:bg-zinc-800 border-t border-b border-zinc-200 dark:border-zinc-700">
+                                        <span className="text-xs font-bold text-zinc-400 uppercase tracking-wider font-['Manrope']">Formato ATS</span>
                                     </div>
                                     <PDFDownloadLink
                                         document={<CVDocumentATS_ES />}
                                         fileName="CV_Erick_Rodriguez_ATS_ES.pdf"
-                                        style={{ display: 'block', width: '100%', padding: '12px 16px', textAlign: 'left', fontSize: '14px', color: 'inherit', textDecoration: 'none', boxSizing: 'border-box' }}
-                                        className="text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                                        style={{ display: 'block', width: '100%', padding: '12px 16px', textDecoration: 'none', boxSizing: 'border-box' }}
+                                        className="text-zinc-700 dark:text-zinc-200 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
                                     >
                                         {({ loading }) => (
-                                            <span style={{ display: 'flex', alignItems: 'center', width: '100%', pointerEvents: 'none' }}>
+                                            <span style={{ display: 'flex', alignItems: 'center', pointerEvents: 'none', fontSize: '14px' }}>
                                                 {loading && <FaSpinner aria-hidden="true" className="animate-spin mr-2 text-green-500" />}
                                                 {loading ? 'ATS Español (Generando...)' : '🇲🇽 ATS Español'}
                                             </span>
@@ -200,11 +190,11 @@ export const Hero: React.FC = () => {
                                     <PDFDownloadLink
                                         document={<CVDocumentATS_EN />}
                                         fileName="CV_Erick_Rodriguez_ATS_EN.pdf"
-                                        style={{ display: 'block', width: '100%', padding: '12px 16px', textAlign: 'left', fontSize: '14px', color: 'inherit', textDecoration: 'none', borderTop: '1px solid #f3f4f6', boxSizing: 'border-box' }}
-                                        className="text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors rounded-b-lg"
+                                        style={{ display: 'block', width: '100%', padding: '12px 16px', textDecoration: 'none', borderTop: '1px solid #f4f4f5', boxSizing: 'border-box' }}
+                                        className="text-zinc-700 dark:text-zinc-200 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
                                     >
                                         {({ loading }) => (
-                                            <span style={{ display: 'flex', alignItems: 'center', width: '100%', pointerEvents: 'none' }}>
+                                            <span style={{ display: 'flex', alignItems: 'center', pointerEvents: 'none', fontSize: '14px' }}>
                                                 {loading && <FaSpinner aria-hidden="true" className="animate-spin mr-2 text-green-500" />}
                                                 {loading ? 'ATS English (Generating...)' : '🇺🇸 ATS English'}
                                             </span>
@@ -216,127 +206,158 @@ export const Hero: React.FC = () => {
                     </div>
 
                     {/* Social Links */}
-                    <div className="mt-12 flex items-center justify-center md:justify-start space-x-4 animate-fade-in-up opacity-0 delay-400">
-                        <a href={CONTACT_INFO.social.github} aria-label="Perfil de GitHub" target="_blank" rel="noopener noreferrer" className="p-3 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-900 hover:text-white dark:hover:bg-white dark:hover:text-gray-900 transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 shadow-sm hover:shadow-lg">
-                            <FaGithub aria-hidden="true" className="text-xl" />
-                        </a>
-                        <a href={CONTACT_INFO.social.linkedin} aria-label="Perfil de LinkedIn" target="_blank" rel="noopener noreferrer" className="p-3 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-blue-600 hover:text-white transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 shadow-sm hover:shadow-lg hover:shadow-blue-500/25">
-                            <FaLinkedin aria-hidden="true" className="text-xl" />
-                        </a>
-                        <a href={`mailto:${CONTACT_INFO.email}`} aria-label="Enviar correo electrónico" className="p-3 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-red-500 hover:text-white transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 shadow-sm hover:shadow-lg hover:shadow-red-500/25">
-                            <FaEnvelope aria-hidden="true" className="text-xl" />
-                        </a>
-                    </div>
-                </div>
-
-                {/* Hero Image/Visual - Desktop Only */}
-                <div className="relative hidden md:block animate-scale-in opacity-0 delay-300">
-                    <div className="relative w-full aspect-square max-w-md mx-auto">
-                        {/* Animated glow background */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full opacity-30 blur-3xl animate-pulse scale-110"></div>
-                        <div className="absolute inset-0 bg-gradient-to-tr from-purple-600 to-blue-600 rounded-full opacity-20 blur-3xl animate-float delay-500 scale-105"></div>
-
-                        {/* Profile image container - Clickable */}
-                        <button
-                            onClick={() => setShowPhotoModal(true)}
-                            className="relative z-10 w-full h-full bg-white dark:bg-gray-800 p-2 rounded-full border-4 border-white/30 dark:border-gray-700/50 shadow-2xl shadow-blue-500/30 dark:shadow-purple-500/20 group cursor-pointer focus:outline-none focus:ring-4 focus:ring-blue-500/50"
-                            aria-label="Ver foto en grande"
-                        >
-                            <img
-                                src="/assets/images/profile.jpg"
-                                alt="Erick Rodríguez"
-                                className="w-full h-full object-cover rounded-full group-hover:scale-105 transition-transform duration-500 ease-out"
-                            />
-                            {/* Hover overlay */}
-                            <div className="absolute inset-0 rounded-full bg-black/0 group-hover:bg-black/10 transition-colors duration-300 flex items-center justify-center">
-                                <span className="text-white text-base font-medium opacity-0 group-hover:opacity-100 transition-opacity bg-black/60 px-4 py-2 rounded-full backdrop-blur-sm">
-                                    Click para ampliar
-                                </span>
-                            </div>
-                        </button>
-
-                        {/* Floating Tech Icons with z-20 to appear in front */}
-                        {/* Top Right - .NET */}
-                        <div className="absolute -top-2 -right-2 z-20 bg-white dark:bg-gray-800 p-3.5 rounded-2xl shadow-xl animate-float border border-gray-200 dark:border-gray-700 hover:scale-110 transition-transform cursor-default group/icon">
-                            <SiDotnet aria-hidden="true" className="text-3xl text-purple-600 group-hover/icon:rotate-12 transition-transform" />
-                        </div>
-
-                        {/* Right Middle - React */}
-                        <div className="absolute top-1/3 -right-14 z-20 bg-white dark:bg-gray-800 p-3.5 rounded-2xl shadow-xl animate-float delay-200 border border-gray-200 dark:border-gray-700 hover:scale-110 transition-transform cursor-default group/icon">
-                            <FaReact aria-hidden="true" className="text-3xl text-cyan-500 group-hover/icon:animate-spin" />
-                        </div>
-
-                        {/* Bottom Right - Azure/Cloud */}
-                        <div className="absolute bottom-1/4 -right-10 z-20 bg-white dark:bg-gray-800 p-3.5 rounded-2xl shadow-xl animate-float delay-400 border border-gray-200 dark:border-gray-700 hover:scale-110 transition-transform cursor-default group/icon">
-                            <FaCloud aria-hidden="true" className="text-3xl text-blue-500 group-hover/icon:rotate-12 transition-transform" />
-                        </div>
-
-                        {/* Bottom - Server/Backend */}
-                        <div className="absolute -bottom-4 right-1/3 z-20 bg-white dark:bg-gray-800 p-3.5 rounded-2xl shadow-xl animate-float delay-500 border border-gray-200 dark:border-gray-700 hover:scale-110 transition-transform cursor-default group/icon">
-                            <FaServer aria-hidden="true" className="text-3xl text-purple-600 group-hover/icon:rotate-12 transition-transform" />
-                        </div>
-
-                        {/* Left Bottom - TypeScript */}
-                        <div className="absolute bottom-1/4 -left-10 z-20 bg-white dark:bg-gray-800 p-3.5 rounded-2xl shadow-xl animate-float delay-600 border border-gray-200 dark:border-gray-700 hover:scale-110 transition-transform cursor-default group/icon">
-                            <SiTypescript aria-hidden="true" className="text-3xl text-blue-600 group-hover/icon:rotate-12 transition-transform" />
-                        </div>
-
-                        {/* Left Middle - Database */}
-                        <div className="absolute top-1/3 -left-12 z-20 bg-white dark:bg-gray-800 p-3.5 rounded-2xl shadow-xl animate-float delay-300 border border-gray-200 dark:border-gray-700 hover:scale-110 transition-transform cursor-default group/icon">
-                            <FaDatabase aria-hidden="true" className="text-3xl text-emerald-500 group-hover/icon:rotate-12 transition-transform" />
-                        </div>
-
-                        {/* Top Left - Node.js */}
-                        <div className="absolute -top-4 left-1/4 z-20 bg-white dark:bg-gray-800 p-3.5 rounded-2xl shadow-xl animate-float delay-700 border border-gray-200 dark:border-gray-700 hover:scale-110 transition-transform cursor-default group/icon">
-                            <FaNodeJs aria-hidden="true" className="text-3xl text-green-600 group-hover/icon:rotate-12 transition-transform" />
-                        </div>
-                    </div>
-                </div>
-                </div>
-            </div>
-
-            {/* Photo Modal */}
-            {showPhotoModal && (
-                <div
-                    className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm animate-fade-in"
-                    onClick={() => setShowPhotoModal(false)}
-                >
-                    {/* Close button */}
-                    <button
-                        onClick={() => setShowPhotoModal(false)}
-                        className="absolute top-4 right-4 z-10 p-3 bg-white/10 hover:bg-white/20 rounded-full text-white transition-colors"
-                        aria-label="Cerrar"
+                    <div
+                        className="flex items-center gap-3 animate-fade-in-up opacity-0"
+                        style={{ animationDelay: '300ms' }}
                     >
-                        <FaTimes className="text-2xl" />
+                        <a
+                            href={CONTACT_INFO.social.github}
+                            aria-label="GitHub"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="p-2.5 border border-zinc-200 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400 hover:border-zinc-900 dark:hover:border-zinc-100 hover:text-zinc-900 dark:hover:text-zinc-100 transition-all duration-200"
+                        >
+                            <FaGithub aria-hidden="true" className="text-lg" />
+                        </a>
+                        <a
+                            href={CONTACT_INFO.social.linkedin}
+                            aria-label="LinkedIn"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="p-2.5 border border-zinc-200 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400 hover:border-[#0077b5] hover:text-[#0077b5] transition-all duration-200"
+                        >
+                            <FaLinkedin aria-hidden="true" className="text-lg" />
+                        </a>
+                        <a
+                            href={`mailto:${CONTACT_INFO.email}`}
+                            aria-label="Email"
+                            className="p-2.5 border border-zinc-200 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400 hover:border-[#b61722] hover:text-[#b61722] transition-all duration-200"
+                        >
+                            <FaEnvelope aria-hidden="true" className="text-lg" />
+                        </a>
+
+                        <div className="w-px h-5 bg-zinc-200 dark:bg-zinc-700 mx-1"></div>
+                        <span className="text-xs text-zinc-400 font-['Inter'] tracking-wider">
+                            CDMX, México
+                        </span>
+                    </div>
+                </div>
+
+                {/* ===== RIGHT PANEL — Dark ===== */}
+                <div className="w-full md:w-[40%] bg-zinc-950 flex flex-col justify-between px-8 md:px-10 lg:px-14 py-8 md:py-0 md:pt-28 md:pb-10 relative overflow-hidden">
+
+                    {/* Subtle grid decoration */}
+                    <div className="absolute inset-0 opacity-[0.04] pointer-events-none"
+                        style={{ backgroundImage: 'linear-gradient(to right, #fff 1px, transparent 1px), linear-gradient(to bottom, #fff 1px, transparent 1px)', backgroundSize: '40px 40px' }}
+                    ></div>
+
+                    {/* Profile Photo */}
+                    <button
+                        onClick={() => setShowPhotoModal(true)}
+                        className="relative w-full mb-8 cursor-pointer group focus:outline-none overflow-hidden animate-fade-in opacity-0"
+                        style={{ aspectRatio: '4/5', animationDelay: '200ms' }}
+                        aria-label="Ver foto en grande"
+                    >
+                        <img
+                            src="/assets/images/profile.jpg"
+                            alt="Erick Rodríguez"
+                            className="w-full h-full object-cover grayscale brightness-90 contrast-105 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-700"
+                        />
+                        {/* Red overlay on hover */}
+                        <div className="absolute inset-0 bg-[#b61722]/0 group-hover:bg-[#b61722]/10 transition-colors duration-500"></div>
+                        {/* Expand hint */}
+                        <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div className="bg-[#b61722] text-white text-xs font-bold px-2 py-1 font-['Manrope'] uppercase tracking-wider">
+                                Ver ↗
+                            </div>
+                        </div>
                     </button>
 
-                    {/* Large image */}
+                    {/* Tech Stack */}
+                    <div className="flex flex-col gap-2 mb-8 animate-fade-in-up opacity-0" style={{ animationDelay: '300ms' }}>
+                        {TECH_STACK.map((tech) => (
+                            <div
+                                key={tech.name}
+                                className="flex items-center gap-3 bg-zinc-900/60 px-4 py-2.5 border border-zinc-800 hover:border-zinc-600 transition-colors duration-200"
+                            >
+                                <span
+                                    className="w-1.5 h-1.5 rounded-full flex-shrink-0"
+                                    style={{ background: tech.color }}
+                                ></span>
+                                <span className="text-zinc-300 font-bold text-xs tracking-[0.15em] uppercase font-['Manrope']">
+                                    {tech.name}
+                                </span>
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* Stats */}
+                    <div
+                        className="grid grid-cols-3 border-t border-zinc-800 pt-6 animate-fade-in-up opacity-0"
+                        style={{ animationDelay: '400ms' }}
+                    >
+                        <div className="text-center">
+                            <div className="text-orange-500 font-black text-2xl font-['Manrope']">3 YRS</div>
+                            <div className="text-zinc-500 text-[9px] uppercase tracking-[0.15em] font-bold mt-1 font-['Manrope']">
+                                {t.about?.stats?.experience ?? 'Experience'}
+                            </div>
+                        </div>
+                        <div className="text-center border-x border-zinc-800">
+                            <div className="text-orange-500 font-black text-2xl font-['Manrope']">15+</div>
+                            <div className="text-zinc-500 text-[9px] uppercase tracking-[0.15em] font-bold mt-1 font-['Manrope']">
+                                Proyectos
+                            </div>
+                        </div>
+                        <div className="text-center">
+                            <div className="text-orange-500 font-black text-2xl font-['Manrope']">40%</div>
+                            <div className="text-zinc-500 text-[9px] uppercase tracking-[0.15em] font-bold mt-1 font-['Manrope']">
+                                SQL Perf
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Tech icons decorative — mobile visible too */}
+                    <div className="absolute top-4 right-4 flex flex-col gap-3 opacity-20">
+                        <SiDotnet className="text-white text-xl" />
+                        <FaReact className="text-white text-xl" />
+                        <FaDatabase className="text-white text-xl" />
+                        <FaDocker className="text-white text-xl" />
+                    </div>
+                </div>
+            </section>
+
+            {/* ===== Photo Modal ===== */}
+            {showPhotoModal && (
+                <div
+                    className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 animate-fade-in"
+                    onClick={() => setShowPhotoModal(false)}
+                >
+                    <button
+                        onClick={() => setShowPhotoModal(false)}
+                        className="absolute top-6 right-6 z-10 p-3 border border-white/20 text-white hover:bg-white/10 transition-colors"
+                        aria-label="Cerrar"
+                    >
+                        <FaTimes className="text-xl" />
+                    </button>
+
                     <div
                         className="relative max-w-[90vw] max-h-[90vh] animate-scale-in"
                         onClick={(e) => e.stopPropagation()}
                     >
-                        <div className="relative">
-                            {/* Glow effect */}
-                            <div className="absolute inset-0 bg-gradient-to-br from-blue-600 to-purple-600 rounded-3xl opacity-30 blur-2xl scale-105"></div>
-
-                            {/* Image container */}
-                            <div className="relative bg-white dark:bg-gray-800 p-3 rounded-3xl shadow-2xl">
-                                <img
-                                    src="/assets/images/profile.jpg"
-                                    alt="Erick Rodríguez"
-                                    className="w-auto h-auto max-w-[85vw] max-h-[80vh] object-contain rounded-2xl"
-                                />
-                            </div>
-                        </div>
-
-                        {/* Name caption */}
-                        <div className="absolute -bottom-16 left-1/2 -translate-x-1/2 text-center">
-                            <h3 className="text-white text-2xl font-bold">Erick Rodríguez</h3>
-                            <p className="text-gray-300 text-sm">Full Stack Developer</p>
+                        <img
+                            src="/assets/images/profile.jpg"
+                            alt="Erick Rodríguez"
+                            className="w-auto h-auto max-w-[85vw] max-h-[85vh] object-contain"
+                        />
+                        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent px-6 py-4">
+                            <h3 className="text-white text-xl font-black font-['Manrope'] uppercase tracking-tighter">
+                                Erick Rodríguez
+                            </h3>
+                            <p className="text-zinc-400 text-sm font-['Inter']">Full Stack Developer</p>
                         </div>
                     </div>
                 </div>
             )}
-        </section>
+        </>
     );
 };

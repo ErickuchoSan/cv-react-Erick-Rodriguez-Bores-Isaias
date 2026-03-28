@@ -21,61 +21,60 @@ export const Skills: React.FC = () => {
     };
 
     return (
-        <section id="habilidades" className="enhanced-section section-tech-bg py-12 sm:py-16 md:py-20 bg-gray-50 dark:bg-gray-900 transition-colors duration-300 relative overflow-hidden">
+        <section id="habilidades" className="section-tech-bg py-16 sm:py-20 md:py-24 bg-[#f9f9f9] dark:bg-zinc-950 transition-colors duration-300 relative">
             <SectionParticles />
 
-            {/* Decorative background elements */}
-            <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/5 dark:bg-blue-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
-            <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-500/5 dark:bg-purple-500/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
-
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="max-w-6xl mx-auto px-6 lg:px-8 relative z-10">
                 <SectionTitle
                     title={t.skills.title}
                     subtitle={t.skills.subtitle}
                 />
 
-                {/* Main Skills Progress */}
-                <div className="mb-12 sm:mb-16">
-                    <h3 className="text-xl sm:text-2xl font-bold mb-6 sm:mb-8 text-center text-gray-800 dark:text-gray-200 animate-fade-in-up opacity-0">{t.skills.mainTech}</h3>
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6 max-w-6xl mx-auto">
+                {/* Main Skills */}
+                <div className="mb-14 sm:mb-16">
+                    <h3 className="text-base font-black mb-8 text-zinc-900 dark:text-zinc-100 uppercase tracking-[0.15em] font-['Manrope'] flex items-center gap-3 animate-fade-in-up opacity-0">
+                        <span className="w-5 h-0.5 bg-[#b61722]"></span>
+                        {t.skills.mainTech}
+                    </h3>
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-5">
                         {SKILLS_DATA.main.map((skill, index) => (
                             <GlassCard
                                 key={index}
-                                className={`group p-6 rounded-2xl flex flex-col items-center justify-center text-center border border-transparent transition-all duration-500 relative overflow-hidden ${skill.border} hover:shadow-xl ${skill.shadow} hover:-translate-y-2 animate-scale-in opacity-0`}
-                                style={{ animationDelay: `${index * 100}ms` }}
+                                className="group p-6 flex flex-col items-center justify-center text-center hover:border-[#b61722]/50 transition-all duration-300 animate-scale-in opacity-0"
+                                style={{ animationDelay: `${index * 80}ms` }}
                             >
-                                {/* Shimmer effect on hover */}
-                                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full duration-1000"></div>
-                                <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${skill.bg}`}></div>
-                                <skill.icon aria-hidden="true" className={`text-4xl sm:text-5xl mb-4 transition-all duration-500 group-hover:scale-125 group-hover:-translate-y-2 drop-shadow-lg relative z-10 ${skill.color}`} />
-                                <h4 className="font-bold text-gray-800 dark:text-gray-200 text-sm sm:text-base relative z-10 transition-colors duration-300">{skill.name}</h4>
+                                <skill.icon
+                                    aria-hidden="true"
+                                    className={`text-4xl sm:text-5xl mb-3 group-hover:scale-125 transition-transform duration-300 ${skill.color}`}
+                                />
+                                <h4 className="font-bold text-zinc-800 dark:text-zinc-200 text-xs sm:text-sm font-['Inter']">{skill.name}</h4>
                             </GlassCard>
                         ))}
                     </div>
                 </div>
 
                 {/* Tech Categories */}
-                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-12 sm:mb-16">
+                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 mb-14 sm:mb-16">
                     {SKILLS_DATA.categories.map((cat, index) => (
                         <GlassCard
                             key={index}
-                            className="tech-category-card p-4 sm:p-5 rounded-xl group hover:shadow-xl transition-all duration-500 hover:-translate-y-1 animate-fade-in-up opacity-0"
-                            style={{ animationDelay: `${index * 150}ms` }}
+                            className="p-5 group hover:border-[#b61722]/50 transition-all duration-300 animate-fade-in-up opacity-0"
+                            style={{ animationDelay: `${index * 100}ms` }}
                         >
                             <div className="flex items-center mb-4">
-                                <div className="p-2 sm:p-3 bg-blue-100 dark:bg-blue-900/50 rounded-lg mr-3 text-blue-600 dark:text-blue-400 group-hover:scale-110 group-hover:bg-blue-500 group-hover:text-white dark:group-hover:bg-blue-500 transition-all duration-300 shadow-sm">
-                                    <cat.icon aria-hidden="true" className="text-xl" />
+                                <div className="w-7 h-7 bg-[#b61722] flex items-center justify-center mr-3 group-hover:bg-orange-500 transition-colors duration-300">
+                                    <cat.icon aria-hidden="true" className="text-white text-sm" />
                                 </div>
-                                <h4 className="font-bold text-gray-800 dark:text-gray-200 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">{cat.title}</h4>
+                                <h4 className="font-black text-zinc-900 dark:text-zinc-100 text-sm uppercase tracking-tight font-['Manrope']">{cat.title}</h4>
                             </div>
-                            <div className="space-y-3">
+                            <div className="space-y-2">
                                 {cat.skills.map((skill, sIndex) => (
                                     <div
                                         key={sIndex}
-                                        className="flex items-center p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700/50 transition-colors duration-200 cursor-default"
+                                        className="flex items-center py-1 border-b border-zinc-100 dark:border-zinc-800 last:border-0"
                                     >
-                                        <skill.icon aria-hidden="true" className={`${skill.color} mr-2 transition-transform duration-300 group-hover:scale-110`} />
-                                        <span className="text-sm text-gray-600 dark:text-gray-400">{skill.name}</span>
+                                        <skill.icon aria-hidden="true" className={`${skill.color} mr-2 text-sm flex-shrink-0`} />
+                                        <span className="text-xs text-zinc-600 dark:text-zinc-400 font-['Inter']">{skill.name}</span>
                                     </div>
                                 ))}
                             </div>
@@ -83,23 +82,26 @@ export const Skills: React.FC = () => {
                     ))}
                 </div>
 
-                {/* Soft Skills */}
+                {/* Soft Skills / Competencies */}
                 <div>
-                    <h3 className="text-xl sm:text-2xl font-bold mb-6 sm:mb-8 text-center text-gray-800 dark:text-gray-200 animate-fade-in-up opacity-0">{t.skills.competencies.title}</h3>
-                    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                    <h3 className="text-base font-black mb-8 text-zinc-900 dark:text-zinc-100 uppercase tracking-[0.15em] font-['Manrope'] flex items-center gap-3 animate-fade-in-up opacity-0">
+                        <span className="w-5 h-0.5 bg-orange-500"></span>
+                        {t.skills.competencies.title}
+                    </h3>
+                    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
                         {SKILLS_DATA.softSkills.map((skill, index) => (
                             <GlassCard
                                 key={index}
-                                className="p-4 sm:p-5 group hover:shadow-xl transition-all duration-500 hover:-translate-y-1 animate-fade-in-up opacity-0"
-                                style={{ animationDelay: `${index * 100}ms` }}
+                                className="p-5 group hover:border-[#b61722]/50 transition-all duration-300 animate-fade-in-up opacity-0"
+                                style={{ animationDelay: `${index * 80}ms` }}
                             >
-                                <div className="flex items-start mb-3">
-                                    <div className="p-2 bg-gradient-to-br from-blue-500 to-purple-500 rounded-lg mr-3 flex-shrink-0 group-hover:scale-110 transition-transform duration-300 shadow-md">
-                                        <skill.icon aria-hidden="true" className="text-white text-lg" />
+                                <div className="flex items-start gap-3">
+                                    <div className="w-7 h-7 bg-zinc-900 dark:bg-zinc-700 group-hover:bg-[#b61722] flex items-center justify-center flex-shrink-0 transition-colors duration-300">
+                                        <skill.icon aria-hidden="true" className="text-white text-xs" />
                                     </div>
                                     <div>
-                                        <h4 className="font-bold text-gray-800 dark:text-gray-200 mb-1 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">{skill.title}</h4>
-                                        <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                                        <h4 className="font-black text-zinc-900 dark:text-zinc-100 text-sm mb-1 font-['Manrope'] uppercase tracking-tight group-hover:text-[#b61722] transition-colors duration-300">{skill.title}</h4>
+                                        <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed font-['Inter']">
                                             {skill.desc}
                                         </p>
                                     </div>

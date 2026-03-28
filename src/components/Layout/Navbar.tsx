@@ -11,15 +11,11 @@ export const Navbar: React.FC = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [activeSection, setActiveSection] = useState('inicio');
 
-    // Handle scroll effect and active section detection
     useEffect(() => {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 20);
-
-            // Detect active section
             const sections = NAV_LINKS_KEYS.map(link => link.href.replace('#', ''));
-            const scrollPosition = window.scrollY + 100; // Offset for navbar height
-
+            const scrollPosition = window.scrollY + 100;
             for (let i = sections.length - 1; i >= 0; i--) {
                 const section = document.getElementById(sections[i]);
                 if (section && section.offsetTop <= scrollPosition) {
@@ -28,96 +24,78 @@ export const Navbar: React.FC = () => {
                 }
             }
         };
-
         window.addEventListener('scroll', handleScroll);
-        handleScroll(); // Initial check
+        handleScroll();
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    // Prevent body scroll when mobile menu is open
     useEffect(() => {
-        if (isMenuOpen) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = 'unset';
-        }
-        return () => {
-            document.body.style.overflow = 'unset';
-        };
+        document.body.style.overflow = isMenuOpen ? 'hidden' : 'unset';
+        return () => { document.body.style.overflow = 'unset'; };
     }, [isMenuOpen]);
 
-    const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-
-    const isLinkActive = (href: string) => {
-        return activeSection === href.replace('#', '');
-    };
+    const isLinkActive = (href: string) => activeSection === href.replace('#', '');
 
     return (
         <>
-            <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${
+            <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${
                 isScrolled
-                    ? 'bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl shadow-lg shadow-gray-200/20 dark:shadow-gray-900/30 border-b border-gray-200/50 dark:border-gray-700/50'
-                    : 'bg-transparent'
+                    ? 'bg-white/95 dark:bg-zinc-950/95 backdrop-blur-xl shadow-sm border-b border-zinc-200/50 dark:border-zinc-800/50'
+                    : 'bg-white/80 dark:bg-zinc-950/80 backdrop-blur-xl'
             }`}>
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="max-w-7xl mx-auto px-6 lg:px-8">
                     <div className="flex justify-between items-center h-16 md:h-20">
-                        {/* Logo */}
-                        <div className="flex items-center min-w-0 mr-2 sm:mr-4">
-                            <a href="#inicio" className="group flex items-center">
-                                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-blue-500/25 group-hover:shadow-blue-500/40 transition-all duration-300 group-hover:scale-105">
-                                    ER
-                                </div>
-                                <div className="ml-3 hidden sm:block">
-                                    <h1 className="text-sm md:text-base font-bold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
-                                        Erick Rodríguez
-                                    </h1>
-                                    <p className="text-xs text-gray-500 dark:text-gray-400">
-                                        Full Stack Developer
-                                    </p>
-                                </div>
-                            </a>
-                        </div>
 
-                        {/* Desktop Menu */}
-                        <div className="hidden md:block">
-                            <div className="flex items-center space-x-1">
-                                {NAV_LINKS_KEYS.map((link) => (
-                                    <a
-                                        key={link.href}
-                                        href={link.href}
-                                        className={`nav-link relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-lg group ${
-                                            isLinkActive(link.href)
-                                                ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30'
-                                                : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20'
-                                        }`}
-                                    >
-                                        {t.nav[link.key]}
-                                        <span className={`absolute bottom-1 left-1/2 h-0.5 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full transition-all duration-300 transform -translate-x-1/2 ${
-                                            isLinkActive(link.href) ? 'w-3/4' : 'w-0 group-hover:w-3/4'
-                                        }`}></span>
-                                    </a>
-                                ))}
+                        {/* Logo */}
+                        <a href="#inicio" className="group flex items-center gap-2 shrink-0">
+                            <div className="w-9 h-9 bg-[#b61722] flex items-center justify-center text-white font-black text-sm font-['Manrope']">
+                                ER
                             </div>
+                            <span className="font-black tracking-tighter text-zinc-900 dark:text-zinc-50 text-lg font-['Manrope'] uppercase hidden sm:block group-hover:text-[#b61722] transition-colors duration-200">
+                                .DEV
+                            </span>
+                        </a>
+
+                        {/* Desktop Nav Links */}
+                        <div className="hidden md:flex items-center gap-1">
+                            {NAV_LINKS_KEYS.map((link) => (
+                                <a
+                                    key={link.href}
+                                    href={link.href}
+                                    className={`relative px-4 py-2 text-xs font-black tracking-[0.12em] uppercase font-['Manrope'] transition-colors duration-200 ${
+                                        isLinkActive(link.href)
+                                            ? 'text-[#b61722]'
+                                            : 'text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100'
+                                    }`}
+                                >
+                                    {t.nav[link.key]}
+                                    {isLinkActive(link.href) && (
+                                        <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-[#b61722]"></span>
+                                    )}
+                                </a>
+                            ))}
                         </div>
 
                         {/* Desktop Right Controls */}
-                        <div className="hidden md:flex items-center space-x-3 flex-shrink-0">
+                        <div className="hidden md:flex items-center gap-2 shrink-0">
                             {/* Language Toggle */}
-                            <div className="flex items-center bg-gray-100/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl p-1 border border-gray-200/50 dark:border-gray-700/50">
+                            <div className="flex items-center border border-zinc-200 dark:border-zinc-700 overflow-hidden">
                                 <button
                                     onClick={() => setLanguage('es')}
-                                    className={`px-2.5 py-1.5 rounded-lg text-xs font-semibold transition-all duration-300 ${language === 'es'
-                                        ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-md shadow-blue-500/25'
-                                        : 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
+                                    className={`px-3 py-1.5 text-xs font-black tracking-wider uppercase font-['Manrope'] transition-all duration-200 ${
+                                        language === 'es'
+                                            ? 'bg-[#b61722] text-white'
+                                            : 'text-zinc-500 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800'
                                     }`}
                                 >
                                     ES
                                 </button>
                                 <button
                                     onClick={() => setLanguage('en')}
-                                    className={`px-2.5 py-1.5 rounded-lg text-xs font-semibold transition-all duration-300 ${language === 'en'
-                                        ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-md shadow-blue-500/25'
-                                        : 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
+                                    className={`px-3 py-1.5 text-xs font-black tracking-wider uppercase font-['Manrope'] transition-all duration-200 ${
+                                        language === 'en'
+                                            ? 'bg-[#b61722] text-white'
+                                            : 'text-zinc-500 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800'
                                     }`}
                                 >
                                     EN
@@ -127,35 +105,37 @@ export const Navbar: React.FC = () => {
                             {/* Theme Toggle */}
                             <button
                                 onClick={toggleTheme}
-                                className="p-2.5 bg-gray-100/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-300 text-gray-600 dark:text-gray-300 border border-gray-200/50 dark:border-gray-700/50 hover:scale-105 hover:shadow-lg"
+                                className="p-2 border border-zinc-200 dark:border-zinc-700 text-zinc-600 dark:text-zinc-300 hover:border-[#b61722] hover:text-[#b61722] transition-all duration-200"
                                 aria-label="Toggle theme"
                                 aria-pressed={theme === 'dark'}
                             >
                                 {theme === 'light' ? (
-                                    <FaMoon aria-hidden="true" className="text-lg text-purple-600" />
+                                    <FaMoon aria-hidden="true" className="text-base" />
                                 ) : (
-                                    <FaSun aria-hidden="true" className="text-lg text-yellow-400" />
+                                    <FaSun aria-hidden="true" className="text-base" />
                                 )}
                             </button>
+
+                            {/* Contact CTA */}
+                            <a
+                                href="#contacto"
+                                className="px-5 py-2 bg-[#b61722] text-white text-xs font-black tracking-[0.12em] uppercase font-['Manrope'] hover:bg-[#930013] transition-colors duration-200"
+                            >
+                                {t.nav.contact}
+                            </a>
                         </div>
 
-                        {/* Mobile Menu Button Only */}
+                        {/* Mobile Menu Button */}
                         <div className="md:hidden">
                             <button
-                                onClick={toggleMenu}
-                                className="p-2.5 bg-gray-100/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-300 border border-gray-200/50 dark:border-gray-700/50 hover:scale-105"
+                                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                                className="p-2 border border-zinc-200 dark:border-zinc-700 text-zinc-600 dark:text-zinc-300"
                                 aria-label="Toggle menu"
                                 aria-expanded={isMenuOpen}
                             >
                                 <div className="relative w-5 h-5 flex items-center justify-center">
-                                    <FaBars
-                                        aria-hidden="true"
-                                        className={`text-lg absolute transition-all duration-300 ${isMenuOpen ? 'rotate-180 opacity-0 scale-50' : 'rotate-0 opacity-100 scale-100'}`}
-                                    />
-                                    <FaTimes
-                                        aria-hidden="true"
-                                        className={`text-lg absolute transition-all duration-300 ${isMenuOpen ? 'rotate-0 opacity-100 scale-100' : '-rotate-180 opacity-0 scale-50'}`}
-                                    />
+                                    <FaBars className={`text-lg absolute transition-all duration-300 ${isMenuOpen ? 'rotate-180 opacity-0 scale-50' : 'rotate-0 opacity-100 scale-100'}`} />
+                                    <FaTimes className={`text-lg absolute transition-all duration-300 ${isMenuOpen ? 'rotate-0 opacity-100 scale-100' : '-rotate-180 opacity-0 scale-50'}`} />
                                 </div>
                             </button>
                         </div>
@@ -163,153 +143,96 @@ export const Navbar: React.FC = () => {
                 </div>
             </nav>
 
-            {/* Mobile Menu Overlay */}
+            {/* Mobile Overlay */}
             <div
-                className={`fixed inset-0 bg-black/60 backdrop-blur-sm z-40 md:hidden transition-opacity duration-300 ${
-                    isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
-                }`}
+                className={`fixed inset-0 bg-black/60 z-40 md:hidden transition-opacity duration-300 ${isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
                 onClick={() => setIsMenuOpen(false)}
             />
 
-            {/* Mobile Menu Panel */}
-            <div
-                className={`fixed top-0 right-0 h-full w-[300px] bg-white dark:bg-gray-900 z-50 md:hidden transform transition-all duration-500 ease-out shadow-2xl ${
-                    isMenuOpen ? 'translate-x-0' : 'translate-x-full'
-                }`}
-            >
-                {/* Menu Header */}
-                <div className="flex items-center justify-between p-5 border-b border-gray-200 dark:border-gray-700">
-                    <div className="flex items-center">
-                        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-blue-500/25">
+            {/* Mobile Panel */}
+            <div className={`fixed top-0 right-0 h-full w-[300px] bg-white dark:bg-zinc-950 z-50 md:hidden transform transition-all duration-400 ease-out shadow-2xl border-l border-zinc-200 dark:border-zinc-800 ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+                {/* Header */}
+                <div className="flex items-center justify-between p-5 border-b border-zinc-200 dark:border-zinc-800">
+                    <div className="flex items-center gap-2">
+                        <div className="w-8 h-8 bg-[#b61722] flex items-center justify-center text-white font-black text-xs font-['Manrope']">
                             ER
                         </div>
-                        <div className="ml-3">
-                            <h2 className="text-sm font-bold text-gray-900 dark:text-white">Erick Rodríguez</h2>
-                            <p className="text-xs text-gray-500 dark:text-gray-400">Full Stack Developer</p>
-                        </div>
+                        <span className="font-black tracking-tighter text-zinc-900 dark:text-zinc-50 font-['Manrope'] uppercase text-sm">.DEV</span>
                     </div>
                     <button
                         onClick={() => setIsMenuOpen(false)}
-                        className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                        className="p-2 text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100"
                         aria-label="Close menu"
                     >
-                        <FaTimes aria-hidden="true" />
+                        <FaTimes />
                     </button>
                 </div>
 
-                {/* Menu Links */}
+                {/* Links */}
                 <div className="p-4 space-y-1">
                     {NAV_LINKS_KEYS.map((link, index) => (
                         <a
                             key={link.href}
                             href={link.href}
                             onClick={() => setIsMenuOpen(false)}
-                            className={`flex items-center px-4 py-3.5 rounded-xl text-base font-medium transition-all duration-300 transform ${
+                            className={`flex items-center px-4 py-3 text-sm font-black tracking-[0.1em] uppercase font-['Manrope'] transition-all duration-200 ${
                                 isLinkActive(link.href)
-                                    ? 'text-blue-600 dark:text-blue-400 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/30 dark:to-purple-900/30'
-                                    : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800/50'
-                            } ${
-                                isMenuOpen ? 'translate-x-0 opacity-100' : 'translate-x-8 opacity-0'
-                            }`}
-                            style={{
-                                transitionDelay: isMenuOpen ? `${index * 75 + 100}ms` : '0ms'
-                            }}
+                                    ? 'text-[#b61722] border-l-2 border-[#b61722] pl-3'
+                                    : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 border-l-2 border-transparent pl-3'
+                            } ${isMenuOpen ? 'translate-x-0 opacity-100' : 'translate-x-8 opacity-0'}`}
+                            style={{ transitionDelay: isMenuOpen ? `${index * 60 + 80}ms` : '0ms' }}
                         >
-                            <span className={`w-2 h-2 rounded-full mr-3 transition-all duration-300 ${
-                                isLinkActive(link.href)
-                                    ? 'bg-gradient-to-r from-blue-500 to-purple-500'
-                                    : 'bg-gray-300 dark:bg-gray-600'
-                            }`}></span>
                             {t.nav[link.key]}
                         </a>
                     ))}
                 </div>
 
-                {/* Divider */}
-                <div className="mx-4 my-2 h-px bg-gradient-to-r from-transparent via-gray-200 dark:via-gray-700 to-transparent"></div>
+                <div className="mx-4 my-2 h-px bg-zinc-200 dark:bg-zinc-800"></div>
 
-                {/* Language & Theme Controls in Mobile Menu */}
-                <div
-                    className={`p-4 space-y-4 transition-all duration-300 ${
-                        isMenuOpen ? 'translate-x-0 opacity-100' : 'translate-x-8 opacity-0'
-                    }`}
-                    style={{ transitionDelay: isMenuOpen ? '400ms' : '0ms' }}
-                >
-                    {/* Language Toggle */}
+                {/* Controls */}
+                <div className={`p-4 space-y-4 transition-all duration-300 ${isMenuOpen ? 'translate-x-0 opacity-100' : 'translate-x-8 opacity-0'}`}
+                    style={{ transitionDelay: isMenuOpen ? '400ms' : '0ms' }}>
+                    {/* Language */}
                     <div>
-                        <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2 px-1">
+                        <p className="text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2 font-['Manrope']">
                             {language === 'es' ? 'Idioma' : 'Language'}
                         </p>
-                        <div className="flex bg-gray-100 dark:bg-gray-800 rounded-xl p-1">
-                            <button
-                                onClick={() => setLanguage('es')}
-                                className={`flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold transition-all duration-300 ${
-                                    language === 'es'
-                                        ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-md'
-                                        : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
-                                }`}
-                            >
-                                <span className="text-base">🇲🇽</span>
-                                <span>Español</span>
+                        <div className="flex border border-zinc-200 dark:border-zinc-700 overflow-hidden">
+                            <button onClick={() => setLanguage('es')}
+                                className={`flex-1 flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-black uppercase font-['Manrope'] transition-all duration-200 ${language === 'es' ? 'bg-[#b61722] text-white' : 'text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-800'}`}>
+                                <span>🇲🇽</span><span>ES</span>
                             </button>
-                            <button
-                                onClick={() => setLanguage('en')}
-                                className={`flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold transition-all duration-300 ${
-                                    language === 'en'
-                                        ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-md'
-                                        : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
-                                }`}
-                            >
-                                <span className="text-base">🇺🇸</span>
-                                <span>English</span>
+                            <button onClick={() => setLanguage('en')}
+                                className={`flex-1 flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-black uppercase font-['Manrope'] transition-all duration-200 border-l border-zinc-200 dark:border-zinc-700 ${language === 'en' ? 'bg-[#b61722] text-white' : 'text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-800'}`}>
+                                <span>🇺🇸</span><span>EN</span>
                             </button>
                         </div>
                     </div>
 
-                    {/* Theme Toggle */}
+                    {/* Theme */}
                     <div>
-                        <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2 px-1">
+                        <p className="text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2 font-['Manrope']">
                             {language === 'es' ? 'Tema' : 'Theme'}
                         </p>
-                        <button
-                            onClick={toggleTheme}
-                            className="w-full flex items-center justify-between px-4 py-3 bg-gray-100 dark:bg-gray-800 rounded-xl transition-all duration-300 hover:bg-gray-200 dark:hover:bg-gray-700 group"
-                        >
+                        <button onClick={toggleTheme}
+                            className="w-full flex items-center justify-between px-4 py-3 border border-zinc-200 dark:border-zinc-700 hover:border-[#b61722] transition-colors duration-200">
                             <div className="flex items-center gap-3">
                                 {theme === 'light' ? (
-                                    <>
-                                        <div className="p-2 bg-purple-100 dark:bg-purple-900/50 rounded-lg">
-                                            <FaMoon aria-hidden="true" className="text-purple-600 dark:text-purple-400" />
-                                        </div>
-                                        <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                                            {language === 'es' ? 'Modo Oscuro' : 'Dark Mode'}
-                                        </span>
-                                    </>
+                                    <><FaMoon className="text-zinc-600" /><span className="text-sm font-medium text-zinc-700 dark:text-zinc-300">{language === 'es' ? 'Modo Oscuro' : 'Dark Mode'}</span></>
                                 ) : (
-                                    <>
-                                        <div className="p-2 bg-yellow-100 dark:bg-yellow-900/50 rounded-lg">
-                                            <FaSun aria-hidden="true" className="text-yellow-600 dark:text-yellow-400" />
-                                        </div>
-                                        <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                                            {language === 'es' ? 'Modo Claro' : 'Light Mode'}
-                                        </span>
-                                    </>
+                                    <><FaSun className="text-yellow-500" /><span className="text-sm font-medium text-zinc-700 dark:text-zinc-300">{language === 'es' ? 'Modo Claro' : 'Light Mode'}</span></>
                                 )}
                             </div>
-                            <div className={`w-12 h-6 rounded-full p-1 transition-colors duration-300 ${
-                                theme === 'dark' ? 'bg-blue-600' : 'bg-gray-300'
-                            }`}>
-                                <div className={`w-4 h-4 rounded-full bg-white shadow-md transform transition-transform duration-300 ${
-                                    theme === 'dark' ? 'translate-x-6' : 'translate-x-0'
-                                }`}></div>
+                            <div className={`w-10 h-5 p-0.5 transition-colors duration-300 ${theme === 'dark' ? 'bg-[#b61722]' : 'bg-zinc-300'}`}>
+                                <div className={`w-4 h-4 bg-white shadow transform transition-transform duration-300 ${theme === 'dark' ? 'translate-x-5' : 'translate-x-0'}`}></div>
                             </div>
                         </button>
                     </div>
                 </div>
 
-                {/* Menu Footer */}
-                <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50">
-                    <p className="text-xs text-center text-gray-500 dark:text-gray-400">
+                {/* Footer */}
+                <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-zinc-200 dark:border-zinc-800">
+                    <p className="text-xs text-center text-zinc-400 font-['Manrope'] uppercase tracking-widest">
                         © 2024 Erick Rodríguez
                     </p>
                 </div>

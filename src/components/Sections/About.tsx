@@ -9,87 +9,99 @@ export const About: React.FC = () => {
     const { t } = useLanguage();
 
     return (
-        <section id="sobre-mi" className="enhanced-section section-tech-bg py-12 sm:py-16 md:py-20 bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+        <section id="sobre-mi" className="section-tech-bg py-16 sm:py-20 md:py-24 bg-[#f9f9f9] dark:bg-zinc-950 transition-colors duration-300 relative">
             <SectionParticles />
 
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="max-w-6xl mx-auto px-6 lg:px-8 relative z-10">
                 <SectionTitle
                     title={t.about.title}
                     subtitle={t.about.subtitle}
                 />
 
-                <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
+                <div className="grid md:grid-cols-2 gap-10 md:gap-14 items-start">
                     <div>
-                        <h3 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-gray-800 dark:text-gray-200">
+                        <h3 className="text-xl sm:text-2xl font-black mb-5 text-zinc-900 dark:text-zinc-100 font-['Manrope'] uppercase tracking-tight">
                             {t.about.roleTitle}
                         </h3>
-                        {/* Safe: content comes from local static translations without user input */}
-                        <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300 mb-4 sm:mb-6 leading-relaxed" dangerouslySetInnerHTML={{ __html: t.about.description1 }}></p>
-                        <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300 mb-6 sm:mb-8 leading-relaxed" dangerouslySetInnerHTML={{ __html: t.about.description2 }}></p>
+                        <p className="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 mb-5 leading-relaxed font-['Inter']" dangerouslySetInnerHTML={{ __html: t.about.description1 }}></p>
+                        <p className="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 mb-8 leading-relaxed font-['Inter']" dangerouslySetInnerHTML={{ __html: t.about.description2 }}></p>
 
-                        <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                        <div className="grid grid-cols-2 gap-3">
                             {[
                                 { value: '3+', label: t.about.stats.experience },
                                 { value: '20+', label: t.about.stats.technologies },
                                 { value: '15+', label: t.about.stats.projects },
                                 { value: '40%', label: t.about.stats.optimization }
                             ].map((stat, index) => (
-                                <GlassCard key={index} className="stat-item p-3 sm:p-4">
-                                    <div className="text-2xl sm:text-3xl font-bold text-blue-600">{stat.value}</div>
-                                    <div className="text-sm sm:text-base text-gray-600 dark:text-gray-400">{stat.label}</div>
+                                <GlassCard key={index} className="p-4 border-l-2 border-[#b61722]">
+                                    <div className="text-2xl sm:text-3xl font-black text-[#b61722] font-['Manrope']">{stat.value}</div>
+                                    <div className="text-sm text-zinc-500 dark:text-zinc-400 mt-1 font-['Inter']">{stat.label}</div>
                                 </GlassCard>
                             ))}
                         </div>
                     </div>
 
-                    <div className="space-y-4 sm:space-y-5">
-                        <GlassCard className="info-card p-4 sm:p-6">
+                    <div className="space-y-4">
+                        <GlassCard className="p-5 sm:p-6">
                             <div className="flex items-center mb-4">
-                                <FaGraduationCap aria-hidden="true" className="text-blue-600 text-2xl mr-3" />
-                                <h4 className="text-lg font-semibold text-gray-800 dark:text-gray-200">{t.about.education.title}</h4>
+                                <div className="w-8 h-8 bg-[#b61722] flex items-center justify-center mr-3 flex-shrink-0">
+                                    <FaGraduationCap aria-hidden="true" className="text-white text-sm" />
+                                </div>
+                                <h4 className="text-base font-black text-zinc-900 dark:text-zinc-100 font-['Manrope'] uppercase tracking-tight">{t.about.education.title}</h4>
                             </div>
-                            <div className="space-y-3">
+                            <div className="space-y-3 pl-11">
                                 <div>
-                                    <p className="font-semibold text-gray-800 dark:text-gray-200">{t.about.education.degree1}</p>
-                                    <p className="text-gray-600 dark:text-gray-400 text-sm">{t.about.education.school1}</p>
+                                    <p className="font-bold text-zinc-800 dark:text-zinc-200 text-sm font-['Inter']">{t.about.education.degree1}</p>
+                                    <p className="text-zinc-500 dark:text-zinc-500 text-xs mt-0.5 font-['Inter']">{t.about.education.school1}</p>
                                 </div>
-                                <div className="pt-2 border-t border-gray-200 dark:border-gray-700">
-                                    <p className="font-semibold text-gray-800 dark:text-gray-200">{t.about.education.degree2}</p>
-                                    <p className="text-gray-600 dark:text-gray-400 text-sm">{t.about.education.school2}</p>
-                                    <p className="text-blue-600 text-sm font-medium">{t.about.education.status2}</p>
+                                <div className="pt-3 border-t border-zinc-200 dark:border-zinc-800">
+                                    <p className="font-bold text-zinc-800 dark:text-zinc-200 text-sm font-['Inter']">{t.about.education.degree2}</p>
+                                    <p className="text-zinc-500 dark:text-zinc-500 text-xs mt-0.5 font-['Inter']">{t.about.education.school2}</p>
+                                    <p className="text-[#b61722] text-xs font-bold mt-1 font-['Inter']">{t.about.education.status2}</p>
                                 </div>
                             </div>
                         </GlassCard>
 
-                        <GlassCard className="info-card p-4 sm:p-6">
+                        <GlassCard className="p-5 sm:p-6">
                             <div className="flex items-center mb-4">
-                                <FaBriefcase aria-hidden="true" className="text-blue-600 text-2xl mr-3" />
-                                <h4 className="text-lg font-semibold text-gray-800 dark:text-gray-200">{t.about.availability.title}</h4>
+                                <div className="w-8 h-8 bg-orange-500 flex items-center justify-center mr-3 flex-shrink-0">
+                                    <FaBriefcase aria-hidden="true" className="text-white text-sm" />
+                                </div>
+                                <h4 className="text-base font-black text-zinc-900 dark:text-zinc-100 font-['Manrope'] uppercase tracking-tight">{t.about.availability.title}</h4>
                             </div>
-                            <p className="text-gray-600 dark:text-gray-300">
-                                <strong>{t.about.availability.status.split(' • ')[0]}</strong> • {t.about.availability.status.split(' • ')[1]}<br />
-                                <span className="text-sm text-blue-600">{t.about.availability.note}</span>
-                            </p>
+                            <div className="pl-11">
+                                <p className="text-zinc-700 dark:text-zinc-300 text-sm font-['Inter']">
+                                    <strong>{t.about.availability.status.split(' • ')[0]}</strong>
+                                    {' • '}
+                                    {t.about.availability.status.split(' • ')[1]}
+                                </p>
+                                <p className="text-xs text-[#b61722] font-semibold mt-1 font-['Inter']">{t.about.availability.note}</p>
+                            </div>
                         </GlassCard>
 
-                        <GlassCard className="info-card p-4 sm:p-6">
+                        <GlassCard className="p-5 sm:p-6">
                             <div className="flex items-center mb-4">
-                                <FaMapMarkerAlt aria-hidden="true" className="text-blue-600 text-2xl mr-3" />
-                                <h4 className="text-lg font-semibold text-gray-800 dark:text-gray-200">{t.about.location.title}</h4>
+                                <div className="w-8 h-8 bg-zinc-800 dark:bg-zinc-700 flex items-center justify-center mr-3 flex-shrink-0">
+                                    <FaMapMarkerAlt aria-hidden="true" className="text-white text-sm" />
+                                </div>
+                                <h4 className="text-base font-black text-zinc-900 dark:text-zinc-100 font-['Manrope'] uppercase tracking-tight">{t.about.location.title}</h4>
                             </div>
-                            <p className="text-gray-600 dark:text-gray-300">
-                                {t.about.location.city}
-                            </p>
+                            <p className="text-zinc-600 dark:text-zinc-400 text-sm pl-11 font-['Inter']">{t.about.location.city}</p>
                         </GlassCard>
 
-                        <GlassCard className="info-card p-4 sm:p-6">
+                        <GlassCard className="p-5 sm:p-6">
                             <div className="flex items-center mb-4">
-                                <FaRobot aria-hidden="true" className="text-blue-600 text-2xl mr-3" />
-                                <h4 className="text-lg font-semibold text-gray-800 dark:text-gray-200">{t.about.interests.title}</h4>
+                                <div className="w-8 h-8 bg-[#b61722] flex items-center justify-center mr-3 flex-shrink-0">
+                                    <FaRobot aria-hidden="true" className="text-white text-sm" />
+                                </div>
+                                <h4 className="text-base font-black text-zinc-900 dark:text-zinc-100 font-['Manrope'] uppercase tracking-tight">{t.about.interests.title}</h4>
                             </div>
-                            <ul className="text-gray-600 dark:text-gray-300 space-y-1 text-sm">
+                            <ul className="text-zinc-600 dark:text-zinc-400 space-y-1.5 text-sm pl-11 font-['Inter']">
                                 {t.about.interests.list.map((interest, i) => (
-                                    <li key={i}>• {interest}</li>
+                                    <li key={i} className="flex items-start gap-2">
+                                        <span className="w-1 h-1 bg-[#b61722] rounded-full mt-2 flex-shrink-0"></span>
+                                        {interest}
+                                    </li>
                                 ))}
                             </ul>
                         </GlassCard>

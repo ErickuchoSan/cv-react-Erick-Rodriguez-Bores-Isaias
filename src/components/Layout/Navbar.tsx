@@ -57,12 +57,12 @@ export const Navbar: React.FC = () => {
                         </a>
 
                         {/* Desktop Nav Links */}
-                        <div className="hidden md:flex items-center gap-1">
+                        <div className="hidden md:flex items-center gap-0">
                             {NAV_LINKS_KEYS.map((link) => (
                                 <a
                                     key={link.href}
                                     href={link.href}
-                                    className={`relative px-4 py-2 text-xs font-black tracking-[0.12em] uppercase font-['Manrope'] transition-colors duration-200 ${
+                                    className={`relative px-3 lg:px-4 py-2 text-xs font-black tracking-[0.06em] lg:tracking-[0.12em] uppercase font-['Manrope'] transition-colors duration-200 ${
                                         isLinkActive(link.href)
                                             ? 'text-[#b61722]'
                                             : 'text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100'
@@ -70,7 +70,7 @@ export const Navbar: React.FC = () => {
                                 >
                                     {t.nav[link.key]}
                                     {isLinkActive(link.href) && (
-                                        <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-[#b61722]"></span>
+                                        <span className="absolute bottom-0 left-3 lg:left-4 right-3 lg:right-4 h-0.5 bg-[#b61722]"></span>
                                     )}
                                 </a>
                             ))}

@@ -26,9 +26,9 @@ const styles = StyleSheet.create({
         paddingHorizontal: 30,
     },
     headerBg: {
-        backgroundColor: '#1e293b', // slate-800
+        backgroundColor: '#09090b', // zinc-950
         padding: 25,
-        borderRadius: 8,
+        borderRadius: 0,
         flexDirection: 'row',
         alignItems: 'center',
         color: 'white',
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
         height: 80,
         borderRadius: 40,
         borderWidth: 2,
-        borderColor: '#3b82f6',
+        borderColor: '#b61722',
         marginRight: 20,
         objectFit: 'cover'
     },
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 14,
-        color: '#60a5fa',
+        color: '#f97316',
         fontWeight: 500,
         letterSpacing: 1,
         marginBottom: 8,
@@ -79,12 +79,12 @@ const styles = StyleSheet.create({
     sectionTitle: {
         fontSize: 14,
         fontWeight: 700,
-        color: '#1e293b',
+        color: '#09090b',
         textTransform: 'uppercase',
         marginBottom: 8,
         marginTop: 14,
         borderBottomWidth: 2,
-        borderBottomColor: '#3b82f6',
+        borderBottomColor: '#b61722',
         paddingBottom: 4,
         minPresenceAhead: 100,
     },
@@ -127,11 +127,11 @@ const styles = StyleSheet.create({
     jobTitle: {
         fontSize: 12,
         fontWeight: 700,
-        color: '#1e293b',
+        color: '#09090b',
     },
     company: {
         fontSize: 11,
-        color: '#3b82f6',
+        color: '#b61722',
         fontWeight: 500,
         marginTop: 1,
     },
@@ -169,7 +169,7 @@ const styles = StyleSheet.create({
     achievementsTitle: {
         fontSize: 10,
         fontWeight: 700,
-        color: '#1e293b',
+        color: '#09090b',
         marginTop: 6,
         marginBottom: 4,
     },
@@ -184,7 +184,7 @@ const styles = StyleSheet.create({
     projectTitle: {
         fontSize: 11,
         fontWeight: 700,
-        color: '#1e293b',
+        color: '#09090b',
         marginBottom: 3,
     },
     projectDesc: {
@@ -200,8 +200,8 @@ const styles = StyleSheet.create({
     },
     projectTechBadge: {
         fontSize: 9,
-        backgroundColor: '#eff6ff',
-        color: '#2563eb',
+        backgroundColor: '#fff1f2',
+        color: '#b61722',
         paddingHorizontal: 6,
         paddingVertical: 3,
         borderRadius: 4,
@@ -221,7 +221,7 @@ const styles = StyleSheet.create({
     eduDegree: {
         fontSize: 10,
         fontWeight: 700,
-        color: '#1e293b',
+        color: '#09090b',
         marginBottom: 2,
     },
     eduSchool: {
@@ -244,7 +244,7 @@ const styles = StyleSheet.create({
     langName: {
         fontSize: 10,
         fontWeight: 700,
-        color: '#1e293b',
+        color: '#09090b',
     },
     langLevel: {
         fontSize: 9,

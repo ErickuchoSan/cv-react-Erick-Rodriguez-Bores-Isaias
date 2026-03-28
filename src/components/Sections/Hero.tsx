@@ -104,7 +104,7 @@ export const Hero: React.FC = () => {
 
                     {/* CTA Buttons */}
                     <div
-                        className="flex flex-wrap gap-4 mb-10 animate-fade-in-up opacity-0"
+                        className="flex flex-wrap gap-4 mb-10 animate-fade-in-up opacity-0 relative z-[2]"
                         style={{ animationDelay: '250ms' }}
                     >
                         <a

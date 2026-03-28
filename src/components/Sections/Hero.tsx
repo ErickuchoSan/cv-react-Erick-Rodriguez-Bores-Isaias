@@ -11,7 +11,7 @@ import { useLanguage } from '../../context/LanguageContext';
 import { CONTACT_INFO } from '../../data/contact';
 
 const TECH_STACK = [
-    { name: '.NET Core 8', color: '#7c3aed' },
+    { name: '.NET Core 10', color: '#7c3aed' },
     { name: 'React 19', color: '#06b6d4' },
     { name: 'PostgreSQL', color: '#3b82f6' },
     { name: 'Docker', color: '#60a5fa' },

@@ -113,7 +113,7 @@ export const translations = {
                     functions: [
                         "Arquitectura modular monorepo con NestJS 11 + Next.js 15 + PostgreSQL/Prisma aplicando SOLID y Clean Architecture.",
                         "Sistema de autenticación dual: JWT para administradores y OTP para clientes con control de acceso RBAC.",
-                        "Integración de mensajería con Azure Service Bus (colas, topics y suscripciones) para eventos asincrónicos.",
+                        "Deploy automatizado en Digital Ocean con Docker, health checks y CI/CD vía GitHub Actions.",
                         "Cifrado AES/RSA para datos sensibles y seguridad de servidor (fail2ban, UFW, SSH hardening).",
                         "CI/CD con GitHub Actions + SonarCloud para análisis de código y Docker con health checks.",
                         "Sistema de facturación con auto-numeración y versionado automático de archivos con MinIO.",
@@ -333,7 +333,7 @@ export const translations = {
                     functions: [
                         "Modular monorepo architecture with NestJS 11 + Next.js 15 + PostgreSQL/Prisma applying SOLID and Clean Architecture.",
                         "Dual authentication system: JWT for admins and OTP for clients with RBAC access control.",
-                        "Azure Service Bus integration (queues, topics and subscriptions) for async event messaging.",
+                        "Automated deploy on Digital Ocean with Docker, health checks and CI/CD via GitHub Actions.",
                         "AES/RSA encryption for sensitive data and server security (fail2ban, UFW, SSH hardening).",
                         "CI/CD with GitHub Actions + SonarCloud for code analysis and Docker with health checks.",
                         "Billing system with auto-numbering and automatic file versioning with MinIO.",

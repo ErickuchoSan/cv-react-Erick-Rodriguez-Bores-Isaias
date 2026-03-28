@@ -12,7 +12,7 @@ export const translations = {
             title: 'Erick Rodríguez',
             subtitle: 'Bores Isaías',
             role: 'Desarrollador Full Stack .NET & React',
-            description: 'Especialista en C#/.NET Core, React 19, SQL Server y Azure. 3 años desarrollando arquitecturas escalables y soluciones empresariales.',
+            description: 'Especialista en C#/.NET Core 8/10, React 19, SQL Server y Azure. 3 años desarrollando arquitecturas escalables y soluciones empresariales.',
             contactBtn: 'Contáctame',
             projectsBtn: 'Ver Proyectos',
             downloadBtn: 'Descargar CV',
@@ -22,8 +22,8 @@ export const translations = {
             title: 'Sobre Mí',
             subtitle: 'Transformando ideas en soluciones empresariales de alto impacto',
             roleTitle: 'Desarrollador Full Stack .NET & React',
-            description1: 'Con 3 años de experiencia en desarrollo de software empresarial, diseño e implemento arquitecturas escalables con C#/.NET Core (3 años), React 19 (2 años), SQL Server (3 años), y Azure Service Bus (2 años). Experiencia sólida en REST APIs, Entity Framework, OAuth2/JWT, y algoritmos de cifrado AES/RSA (3.5 años).',
-            description2: 'Actualmente como Programador de Auditoría Senior en Grupo Salinas, lidero el desarrollo de sistemas críticos de auditoría interna (ADA/HONESTEL) utilizando .NET Core, React, y Azure Functions. Me distingo por mi capacidad autodidacta, conocimiento en arquitecturas limpias (Clean Architecture, DDD), microservicios, y programación asistida por IA sin sacrificar la calidad del código.',
+            description1: 'Con 3 años de experiencia en desarrollo de software empresarial, diseño e implemento arquitecturas escalables con C#/.NET Core 6/8/10 (3 años), React 19 / Next.js 15 (2 años), SQL Server / PostgreSQL (3 años), y Node.js / NestJS 11 (3 años). Experiencia sólida en REST APIs, Entity Framework, OAuth2/JWT, cifrado AES/RSA, Docker y Python.',
+            description2: 'Actualmente como Programador de Auditoría Senior en Grupo Salinas, lidero el desarrollo de sistemas críticos de auditoría interna (ADA/HONESTEL) con .NET Core 8, React 19 y SQL Server. Paralelamente desarrollo la plataforma Align Designs (freelance) con NestJS 11, Next.js 15, PostgreSQL y Docker. Me distingo por Clean Architecture, DDD y desarrollo asistido por IA.',
             stats: {
                 experience: 'Años de Experiencia',
                 technologies: 'Tecnologías Dominadas',
@@ -68,21 +68,19 @@ export const translations = {
                     role: "Programador de Auditoría Senior",
                     company: "Grupo Salinas",
                     period: "Mayo 2024 - Actual",
-                    duration: "~2 años",
-                    description: "Líder técnico responsable de la arquitectura, desarrollo y evolución de sistemas críticos de auditoría interna (ADA/HONESTEL). Stack: .NET Core, C#, React, SQL Server, Azure Functions, Azure Service Bus.",
+                    duration: "~1 año",
+                    description: "Líder técnico responsable de la arquitectura, desarrollo y evolución de sistemas críticos de auditoría interna (ADA/HONESTEL). Stack: .NET Core 8, C#, React 19, SQL Server, OAuth2/JWT, Entity Framework.",
                     functions: [
                         "Desarrollo de API REST con .NET Core 8 integrando OAuth2 y tokenización JWT para autenticación segura.",
-                        "Implementación de Azure Functions y Azure Service Bus para mensajería (colas, topics/subscriptions, retry, backoff).",
                         "Desarrollo Frontend con React 19 y JavaScript, aplicando diseño responsivo con CSS y Bootstrap.",
                         "Optimización de consultas SQL Server con T-SQL, procedimientos almacenados y funciones.",
                         "Implementación de algoritmos de cifrado (AES, RSA, SHA-256) para protección de datos sensibles.",
                         "Arquitectura Backend basada en SOLID, Clean Architecture y principios DDD.",
-                        "Integración CI/CD con Azure DevOps y control de código con GitHub.",
                         "Refactorización de arquitectura legacy hacia proyecto con Entity Framework y principios limpios.",
                         "Documentación técnica con Swagger y pruebas de API con Postman/Insomnia."
                     ],
                     achievements: [
-                        "Creación de API v2 de Honestel desde cero (6 endpoints principales) con CI/CD y documentación Swagger.",
+                        "Creación de API v2 de Honestel desde cero (6 endpoints principales) con documentación Swagger.",
                         "Reducción del 40% en tiempo de ejecución de consultas críticas mediante optimización de procedimientos almacenados.",
                         "Automatización de 5 procesos operativos mediante scripts, eliminando ~8 hrs/semana de trabajo manual."
                     ]
@@ -108,21 +106,23 @@ export const translations = {
                 },
                 {
                     role: "Desarrollador Full Stack",
-                    company: "Freelance / Proyectos Propios",
-                    period: "2022 - 2023",
-                    duration: "1 año",
-                    description: "Desarrollo profesional autodidacta con enfoque en .NET Core, React, Node.js y arquitecturas de microservicios.",
+                    company: "Freelance · Align Designs Platform",
+                    period: "2023 - Actual",
+                    duration: "~2 años",
+                    description: "Desarrollo de plataforma B2B/B2C cloud con arquitectura monorepo profesional. Stack: NestJS 11, Next.js 15, PostgreSQL 16, Prisma ORM, Docker, GitHub Actions, JWT/OTP, RBAC.",
                     functions: [
-                        "Desarrollo de aplicaciones web con .NET Core, Entity Framework y SQL Server.",
-                        "Construcción de APIs RESTful aplicando arquitectura limpia y principios SOLID.",
-                        "Implementación de algoritmos de cifrado (AES, RSA, SHA-256) para seguridad de datos.",
-                        "Desarrollo Frontend con React, TypeScript y Node.js.",
-                        "Exploración de microservicios y Azure Functions para arquitecturas cloud."
+                        "Arquitectura modular monorepo con NestJS 11 + Next.js 15 + PostgreSQL/Prisma aplicando SOLID y Clean Architecture.",
+                        "Sistema de autenticación dual: JWT para administradores y OTP para clientes con control de acceso RBAC.",
+                        "Integración de mensajería con Azure Service Bus (colas, topics y suscripciones) para eventos asincrónicos.",
+                        "Cifrado AES/RSA para datos sensibles y seguridad de servidor (fail2ban, UFW, SSH hardening).",
+                        "CI/CD con GitHub Actions + SonarCloud para análisis de código y Docker con health checks.",
+                        "Sistema de facturación con auto-numeración y versionado automático de archivos con MinIO.",
+                        "Rate limiting, validación de inputs y prácticas de seguridad a nivel aplicación."
                     ],
                     achievements: [
-                        "Dominio autodidacta de 10+ tecnologías (C#, .NET Core, React, SQL Server, Azure) en 12 meses.",
-                        "Desarrollo de 3 aplicaciones completas con código limpio y arquitectura SOLID.",
-                        "Implementación de cifrado AES/RSA y autenticación JWT en proyectos personales."
+                        "Plataforma productiva con +15 módulos: autenticación, facturación, almacenamiento de archivos y mensajería.",
+                        "Pipeline CI/CD completo con análisis de calidad SonarCloud y Docker containerización con health checks.",
+                        "Implementación de cifrado AES/RSA y autenticación dual JWT/OTP desde cero con arquitectura limpia."
                     ]
                 }
             ]
@@ -158,15 +158,15 @@ export const translations = {
             items: [
                 {
                     title: "Align Designs Platform",
-                    description: "Plataforma B2B/B2C cloud con arquitectura monorepo (NestJS + Next.js 15 + PostgreSQL/Prisma). Autenticación dual JWT/OTP, mensajería con colas y topics, cifrado AES/RSA, CI/CD con GitHub Actions, Docker y arquitectura Clean/SOLID con RBAC."
+                    description: "Plataforma B2B/B2C cloud con arquitectura monorepo (NestJS 11 + Next.js 15 + PostgreSQL/Prisma). Autenticación dual JWT/OTP, mensajería asincrónica, cifrado AES/RSA, CI/CD con GitHub Actions, Docker y arquitectura Clean/SOLID con RBAC."
                 },
                 {
                     title: "Sistema de Auditoría Interna (ADA/HONESTEL)",
-                    description: "Plataforma crítica para gestión de denuncias internas de todas las empresas del Grupo Salinas. Lideré la migración de .NET Framework a .NET Core con arquitectura de microfrontends, mejorando el rendimiento un 40%."
+                    description: "Plataforma crítica para gestión de denuncias internas de todas las empresas del Grupo Salinas. Lideré la migración de .NET Framework a .NET Core 8 con React 19, mejorando el rendimiento un 40% y reduciendo tiempos de consulta SQL Server."
                 },
                 {
                     title: "Sistema de Reclutamiento Empresarial",
-                    description: "Plataforma end-to-end para gestión del ciclo completo de reclutamiento con carga masiva de candidatos desde Excel/TXT, procesando miles de registros simultáneamente."
+                    description: "Plataforma end-to-end para gestión del ciclo completo de reclutamiento con carga masiva de candidatos desde Excel/TXT, procesando +5,000 registros en menos de 10 segundos."
                 }
             ]
         },
@@ -232,7 +232,7 @@ export const translations = {
             title: 'Erick Rodríguez',
             subtitle: 'Bores Isaías',
             role: 'Full Stack Developer .NET & React',
-            description: 'Specialist in C#/.NET Core, React 19, SQL Server, and Azure. 3 years building scalable architectures and enterprise solutions.',
+            description: 'Specialist in C#/.NET Core 8/10, React 19, SQL Server and Azure. 3 years building scalable architectures and enterprise solutions.',
             contactBtn: 'Contact Me',
             projectsBtn: 'View Projects',
             downloadBtn: 'Download CV',
@@ -242,8 +242,8 @@ export const translations = {
             title: 'About Me',
             subtitle: 'Transforming ideas into high-impact business solutions',
             roleTitle: 'Full Stack Developer .NET & React',
-            description1: 'With 3 years of experience in enterprise software development, I design and implement scalable architectures with C#/.NET Core (3 years), React 19 (2 years), SQL Server (3 years), and Azure Service Bus (2 years). Solid experience in REST APIs, Entity Framework, OAuth2/JWT, and AES/RSA encryption algorithms (3.5 years).',
-            description2: 'Currently as a Senior Audit Programmer at Grupo Salinas, I lead the development of critical internal audit systems (ADA/HONESTEL) using .NET Core, React, and Azure Functions. I distinguish myself by my self-taught ability, knowledge in clean architectures (Clean Architecture, DDD), microservices, and AI-assisted programming without sacrificing code quality.',
+            description1: 'With 3 years of experience in enterprise software development, I design and implement scalable architectures with C#/.NET Core 6/8/10 (3 years), React 19 / Next.js 15 (2 years), SQL Server / PostgreSQL (3 years), and Node.js / NestJS 11 (3 years). Solid experience in REST APIs, Entity Framework, OAuth2/JWT, AES/RSA encryption, Docker and Python.',
+            description2: 'Currently as a Senior Audit Programmer at Grupo Salinas, I lead the development of critical internal audit systems (ADA/HONESTEL) with .NET Core 8, React 19 and SQL Server. In parallel, I develop the Align Designs platform (freelance) with NestJS 11, Next.js 15, PostgreSQL and Docker. I stand out for Clean Architecture, DDD and AI-assisted development.',
             stats: {
                 experience: 'Years of Experience',
                 technologies: 'Technologies Mastered',
@@ -288,21 +288,19 @@ export const translations = {
                     role: "Senior Audit Programmer",
                     company: "Grupo Salinas",
                     period: "May 2024 - Present",
-                    duration: "~2 years",
-                    description: "Technical lead responsible for architecture, development and evolution of critical internal audit systems (ADA/HONESTEL). Stack: .NET Core, C#, React, SQL Server, Azure Functions, Azure Service Bus.",
+                    duration: "~1 year",
+                    description: "Technical lead responsible for architecture, development and evolution of critical internal audit systems (ADA/HONESTEL). Stack: .NET Core 8, C#, React 19, SQL Server, OAuth2/JWT, Entity Framework.",
                     functions: [
                         "REST API development with .NET Core 8 integrating OAuth2 and JWT tokenization for secure authentication.",
-                        "Implementation of Azure Functions and Azure Service Bus for messaging (queues, topics/subscriptions, retry, backoff).",
                         "Frontend development with React 19 and JavaScript, applying responsive design with CSS and Bootstrap.",
                         "SQL Server query optimization with T-SQL, stored procedures and functions.",
                         "Implementation of encryption algorithms (AES, RSA, SHA-256) for sensitive data protection.",
                         "Backend architecture based on SOLID, Clean Architecture and DDD principles.",
-                        "CI/CD integration with Azure DevOps and source control with GitHub.",
                         "Legacy architecture refactoring towards project with Entity Framework and clean principles.",
                         "Technical documentation with Swagger and API testing with Postman/Insomnia."
                     ],
                     achievements: [
-                        "Creation of Honestel v2 API from scratch (6 core endpoints) with CI/CD and Swagger documentation.",
+                        "Creation of Honestel v2 API from scratch (6 core endpoints) with Swagger documentation.",
                         "40% reduction in critical query execution time through stored procedure optimization.",
                         "Automation of 5 operational processes via scripts, eliminating ~8 hrs/week of manual work."
                     ]
@@ -328,21 +326,23 @@ export const translations = {
                 },
                 {
                     role: "Full Stack Developer",
-                    company: "Freelance / Own Projects",
-                    period: "2022 - 2023",
-                    duration: "1 year",
-                    description: "Self-taught professional development focused on .NET Core, React, Node.js and microservices architectures.",
+                    company: "Freelance · Align Designs Platform",
+                    period: "2023 - Present",
+                    duration: "~2 years",
+                    description: "Development of a cloud B2B/B2C platform with professional monorepo architecture. Stack: NestJS 11, Next.js 15, PostgreSQL 16, Prisma ORM, Docker, GitHub Actions, JWT/OTP, RBAC.",
                     functions: [
-                        "Web application development with .NET Core, Entity Framework and SQL Server.",
-                        "RESTful API construction applying clean architecture and SOLID principles.",
-                        "Implementation of encryption algorithms (AES, RSA, SHA-256) for data security.",
-                        "Frontend development with React, TypeScript and Node.js.",
-                        "Exploration of microservices and Azure Functions for cloud architectures."
+                        "Modular monorepo architecture with NestJS 11 + Next.js 15 + PostgreSQL/Prisma applying SOLID and Clean Architecture.",
+                        "Dual authentication system: JWT for admins and OTP for clients with RBAC access control.",
+                        "Azure Service Bus integration (queues, topics and subscriptions) for async event messaging.",
+                        "AES/RSA encryption for sensitive data and server security (fail2ban, UFW, SSH hardening).",
+                        "CI/CD with GitHub Actions + SonarCloud for code analysis and Docker with health checks.",
+                        "Billing system with auto-numbering and automatic file versioning with MinIO.",
+                        "Rate limiting, input validation and application-level security best practices."
                     ],
                     achievements: [
-                        "Self-taught mastery of 10+ technologies (C#, .NET Core, React, SQL Server, Azure) in 12 months.",
-                        "Development of 3 complete applications with clean code and SOLID architecture.",
-                        "Implementation of AES/RSA encryption and JWT authentication in personal projects."
+                        "Production platform with 15+ modules: authentication, billing, file storage and messaging.",
+                        "Complete CI/CD pipeline with SonarCloud quality analysis and Docker containerization with health checks.",
+                        "AES/RSA encryption and dual JWT/OTP authentication implemented from scratch with clean architecture."
                     ]
                 }
             ]
@@ -378,15 +378,15 @@ export const translations = {
             items: [
                 {
                     title: "Align Designs Platform",
-                    description: "Cloud B2B/B2C platform with monorepo architecture (NestJS + Next.js 15 + PostgreSQL/Prisma). Dual JWT/OTP authentication, messaging with queues and topics, AES/RSA encryption, CI/CD with GitHub Actions, Docker and Clean/SOLID architecture with RBAC."
+                    description: "Cloud B2B/B2C platform with monorepo architecture (NestJS 11 + Next.js 15 + PostgreSQL/Prisma). Dual JWT/OTP authentication, async messaging, AES/RSA encryption, CI/CD with GitHub Actions, Docker and Clean/SOLID architecture with RBAC."
                 },
                 {
                     title: "Internal Audit System (ADA/HONESTEL)",
-                    description: "Critical platform for internal whistleblowing management for all Grupo Salinas companies. I lead the migration from .NET Framework to .NET Core with micro-frontend architecture, improving performance by 40%."
+                    description: "Critical platform for internal whistleblowing management for all Grupo Salinas companies. Led the migration from .NET Framework to .NET Core 8 with React 19, improving performance by 40% and reducing SQL Server query times."
                 },
                 {
                     title: "Enterprise Recruitment System",
-                    description: "End-to-end platform for full recruitment cycle management with bulk candidate upload from Excel/TXT, processing thousands of records simultaneously."
+                    description: "End-to-end platform for full recruitment cycle management with bulk candidate upload from Excel/TXT, processing +5,000 records in under 10 seconds."
                 }
             ]
         },

@@ -1,6 +1,6 @@
 import React from 'react';
 import { SectionTitle } from '../UI/SectionTitle';
-import { FaFlagUsa } from 'react-icons/fa';
+import { FaFlagUsa, FaGlobeAmericas } from 'react-icons/fa';
 import { useLanguage } from '../../context/LanguageContext';
 import { SectionParticles } from '../UI/SectionParticles';
 import { GlassCard } from '../UI/GlassCard';
@@ -9,6 +9,11 @@ export const Languages: React.FC = () => {
     const { t } = useLanguage();
 
     const LANGUAGES_DATA = [
+        {
+            percentage: 100,
+            icon: FaGlobeAmericas,
+            color: 'bg-green-500'
+        },
         {
             percentage: 60,
             icon: FaFlagUsa,

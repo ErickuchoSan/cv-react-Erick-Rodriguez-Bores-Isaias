@@ -4,7 +4,6 @@ import { useLanguage } from '../../context/LanguageContext';
 import { PROJECTS_DATA } from '../../data/projects';
 import { SectionParticles } from '../UI/SectionParticles';
 import { GlassCard } from '../UI/GlassCard';
-import { FaExternalLinkAlt, FaGithub } from 'react-icons/fa';
 
 export const Projects: React.FC = () => {
     const { t } = useLanguage();
@@ -91,17 +90,6 @@ export const Projects: React.FC = () => {
                                     ))}
                                 </div>
 
-                                {/* Action Buttons */}
-                                <div className="flex gap-3 pt-2 border-t border-gray-100 dark:border-gray-800">
-                                    <button className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm font-medium hover:bg-gradient-to-r hover:from-blue-600 hover:to-purple-600 hover:text-white transition-all duration-300 group/btn">
-                                        <FaGithub aria-hidden="true" className="text-base group-hover/btn:rotate-12 transition-transform" />
-                                        <span>Code</span>
-                                    </button>
-                                    <button className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white text-sm font-medium hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 group/btn">
-                                        <FaExternalLinkAlt aria-hidden="true" className="text-xs group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
-                                        <span>Demo</span>
-                                    </button>
-                                </div>
                             </div>
                         </GlassCard>
                     ))}

@@ -29,7 +29,7 @@ export const About: React.FC = () => {
 
                         <div className="grid grid-cols-2 gap-3 sm:gap-4">
                             {[
-                                { value: '5+', label: t.about.stats.experience },
+                                { value: '3+', label: t.about.stats.experience },
                                 { value: '20+', label: t.about.stats.technologies },
                                 { value: '15+', label: t.about.stats.projects },
                                 { value: '40%', label: t.about.stats.optimization }

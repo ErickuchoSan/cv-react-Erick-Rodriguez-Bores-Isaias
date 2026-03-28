@@ -31,7 +31,7 @@ export const Hero: React.FC = () => {
     }, [showPhotoModal]);
 
     return (
-        <section id="inicio" className="min-h-screen flex items-center justify-center relative bg-gray-50 dark:bg-gray-900 transition-colors duration-300 pt-16 overflow-hidden">
+        <section id="inicio" className="min-h-screen flex items-center justify-center relative bg-gray-50 dark:bg-gray-900 transition-colors duration-300 pt-16">
             {/* Enhanced Background Effects */}
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
                 <div className="absolute top-20 right-10 w-72 h-72 bg-blue-500/30 dark:bg-blue-500/20 rounded-full blur-[100px] animate-float"></div>
@@ -148,7 +148,7 @@ export const Hero: React.FC = () => {
 
                             {/* Dropdown Menu */}
                             {showDownloadOptions && (
-                                <div className="absolute top-full left-0 mt-2 bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden z-20 animate-fade-in-up" style={{ minWidth: '220px' }}>
+                                <div className="absolute top-full left-0 mt-2 bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden z-50 animate-fade-in-up" style={{ minWidth: '220px' }}>
                                     {/* Diseño Visual */}
                                     <div className="px-3 py-2 bg-gray-50 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
                                         <span className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">Diseño Visual</span>
@@ -158,10 +158,10 @@ export const Hero: React.FC = () => {
                                         fileName="CV_Erick_Rodriguez_ES.pdf"
                                         className="block w-full px-4 py-3 text-left text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                                     >
-                                        {({ loading }) => (
+                                        {({ loading, error }) => (
                                             <span className="flex items-center">
                                                 {loading && <FaSpinner aria-hidden="true" className="animate-spin mr-2 text-blue-500" />}
-                                                {loading ? 'Español (Generando...)' : '🇲🇽 Español'}
+                                                {error ? '⚠️ Error — Reintenta' : loading ? 'Español (Generando...)' : '🇲🇽 Español'}
                                             </span>
                                         )}
                                     </PDFDownloadLink>

@@ -10,7 +10,7 @@ export const PROJECTS_DATA = [
     {
         title: "Sistema de Auditoría Interna (ADA/HONESTEL)",
         description: "",
-        tech: [".NET Core 10", "React 19", "SQL Server", "OAuth2/JWT", "Entity Framework", "C#"],
+        tech: [".NET Core 6", "C#", "SQL Server", "OAuth2/JWT", "Entity Framework", "HTML/Bootstrap"],
         icon: FaShieldAlt
     },
     {

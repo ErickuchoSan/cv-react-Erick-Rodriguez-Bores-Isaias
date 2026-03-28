@@ -5,10 +5,10 @@ export const EXPERIENCE_DATA = [
     {
         badgeType: 'primary',
         technologies: [
-            { name: ".NET Core 10", icon: FaMicrosoft, color: "text-blue-600 dark:text-blue-400" },
+            { name: ".NET Core 6", icon: FaMicrosoft, color: "text-blue-600 dark:text-blue-400" },
             { name: "C#", icon: FaCode, color: "text-purple-600 dark:text-purple-400" },
             { name: "SQL Server", icon: FaDatabase, color: "text-orange-500 dark:text-orange-400" },
-            { name: "React 19", icon: FaReact, color: "text-cyan-500 dark:text-cyan-400" },
+            { name: "HTML / Bootstrap", icon: FaJs, color: "text-orange-400 dark:text-orange-300" },
             { name: "OAuth2 / JWT", icon: FaLock, color: "text-green-500 dark:text-green-400" },
             { name: "Entity Framework", icon: FaLayerGroup, color: "text-indigo-600 dark:text-indigo-400" },
             { name: "Git / GitHub", icon: FaGitAlt, color: "text-orange-600" }

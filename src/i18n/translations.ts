@@ -23,7 +23,7 @@ export const translations = {
             subtitle: 'Transformando ideas en soluciones empresariales de alto impacto',
             roleTitle: 'Desarrollador Full Stack .NET & React',
             description1: 'Con 3 años de experiencia en desarrollo de software empresarial, diseño e implemento arquitecturas escalables con C#/.NET Core 6/8/10 (3 años), React 19 / Next.js 15 (2 años), SQL Server / PostgreSQL (3 años), y Node.js / NestJS 11 (3 años). Experiencia sólida en REST APIs, Entity Framework, OAuth2/JWT, cifrado AES/RSA, Docker y Python.',
-            description2: 'Actualmente como Programador de Auditoría Senior en Grupo Salinas, lidero el desarrollo de sistemas críticos de auditoría interna (ADA/HONESTEL) con .NET Core 10, React 19 y SQL Server. Paralelamente desarrollo la plataforma Align Designs (freelance) con NestJS 11, Next.js 15, PostgreSQL y Docker. Me distingo por Clean Architecture, DDD y desarrollo asistido por IA.',
+            description2: 'Actualmente como Programador de Auditoría Senior en Grupo Salinas, lidero el desarrollo de sistemas críticos de auditoría interna (ADA/HONESTEL) con .NET Core 6, C#, SQL Server y OAuth2/JWT. Paralelamente desarrollo la plataforma Align Designs (freelance) con NestJS 11, Next.js 15, PostgreSQL y Docker. Me distingo por Clean Architecture, DDD y desarrollo asistido por IA.',
             stats: {
                 experience: 'Años de Experiencia',
                 technologies: 'Tecnologías Dominadas',
@@ -69,10 +69,10 @@ export const translations = {
                     company: "Grupo Salinas",
                     period: "Mayo 2024 - Actual",
                     duration: "~1 año",
-                    description: "Líder técnico responsable de la arquitectura, desarrollo y evolución de sistemas críticos de auditoría interna (ADA/HONESTEL). Stack: .NET Core 10, C#, React 19, SQL Server, OAuth2/JWT, Entity Framework.",
+                    description: "Líder técnico responsable de la arquitectura, desarrollo y evolución de sistemas críticos de auditoría interna (ADA/HONESTEL). Stack: .NET Core 6, C#, HTML, Bootstrap, SQL Server, OAuth2/JWT, Entity Framework.",
                     functions: [
-                        "Desarrollo de API REST con .NET Core 10 integrando OAuth2 y tokenización JWT para autenticación segura.",
-                        "Desarrollo Frontend con React 19 y JavaScript, aplicando diseño responsivo con CSS y Bootstrap.",
+                        "Desarrollo de API REST con .NET Core 6 integrando OAuth2 y tokenización JWT para autenticación segura.",
+                        "Desarrollo Frontend con HTML, JavaScript y Bootstrap aplicando diseño responsivo.",
                         "Optimización de consultas SQL Server con T-SQL, procedimientos almacenados y funciones.",
                         "Implementación de algoritmos de cifrado (AES, RSA, SHA-256) para protección de datos sensibles.",
                         "Arquitectura Backend basada en SOLID, Clean Architecture y principios DDD.",
@@ -162,7 +162,7 @@ export const translations = {
                 },
                 {
                     title: "Sistema de Auditoría Interna (ADA/HONESTEL)",
-                    description: "Plataforma crítica para gestión de denuncias internas de todas las empresas del Grupo Salinas. Lideré la migración de .NET Framework a .NET Core 10 con React 19, mejorando el rendimiento un 40% y reduciendo tiempos de consulta SQL Server."
+                    description: "Plataforma crítica para gestión de denuncias internas de todas las empresas del Grupo Salinas. Lideré la migración de .NET Framework a .NET Core 6, mejorando el rendimiento un 40% y reduciendo tiempos de consulta SQL Server."
                 },
                 {
                     title: "Sistema de Reclutamiento Empresarial",
@@ -243,7 +243,7 @@ export const translations = {
             subtitle: 'Transforming ideas into high-impact business solutions',
             roleTitle: 'Full Stack Developer .NET & React',
             description1: 'With 3 years of experience in enterprise software development, I design and implement scalable architectures with C#/.NET Core 6/8/10 (3 years), React 19 / Next.js 15 (2 years), SQL Server / PostgreSQL (3 years), and Node.js / NestJS 11 (3 years). Solid experience in REST APIs, Entity Framework, OAuth2/JWT, AES/RSA encryption, Docker and Python.',
-            description2: 'Currently as a Senior Audit Programmer at Grupo Salinas, I lead the development of critical internal audit systems (ADA/HONESTEL) with .NET Core 10, React 19 and SQL Server. In parallel, I develop the Align Designs platform (freelance) with NestJS 11, Next.js 15, PostgreSQL and Docker. I stand out for Clean Architecture, DDD and AI-assisted development.',
+            description2: 'Currently as a Senior Audit Programmer at Grupo Salinas, I lead the development of critical internal audit systems (ADA/HONESTEL) with .NET Core 6, C#, SQL Server and OAuth2/JWT. In parallel, I develop the Align Designs platform (freelance) with NestJS 11, Next.js 15, PostgreSQL and Docker. I stand out for Clean Architecture, DDD and AI-assisted development.',
             stats: {
                 experience: 'Years of Experience',
                 technologies: 'Technologies Mastered',
@@ -289,10 +289,10 @@ export const translations = {
                     company: "Grupo Salinas",
                     period: "May 2024 - Present",
                     duration: "~1 year",
-                    description: "Technical lead responsible for architecture, development and evolution of critical internal audit systems (ADA/HONESTEL). Stack: .NET Core 10, C#, React 19, SQL Server, OAuth2/JWT, Entity Framework.",
+                    description: "Technical lead responsible for architecture, development and evolution of critical internal audit systems (ADA/HONESTEL). Stack: .NET Core 6, C#, HTML, Bootstrap, SQL Server, OAuth2/JWT, Entity Framework.",
                     functions: [
-                        "REST API development with .NET Core 10 integrating OAuth2 and JWT tokenization for secure authentication.",
-                        "Frontend development with React 19 and JavaScript, applying responsive design with CSS and Bootstrap.",
+                        "REST API development with .NET Core 6 integrating OAuth2 and JWT tokenization for secure authentication.",
+                        "Frontend development with HTML, JavaScript and Bootstrap applying responsive design.",
                         "SQL Server query optimization with T-SQL, stored procedures and functions.",
                         "Implementation of encryption algorithms (AES, RSA, SHA-256) for sensitive data protection.",
                         "Backend architecture based on SOLID, Clean Architecture and DDD principles.",
@@ -382,7 +382,7 @@ export const translations = {
                 },
                 {
                     title: "Internal Audit System (ADA/HONESTEL)",
-                    description: "Critical platform for internal whistleblowing management for all Grupo Salinas companies. Led the migration from .NET Framework to .NET Core 10 with React 19, improving performance by 40% and reducing SQL Server query times."
+                    description: "Critical platform for internal whistleblowing management for all Grupo Salinas companies. Led the migration from .NET Framework to .NET Core 6, improving performance by 40% and reducing SQL Server query times."
                 },
                 {
                     title: "Enterprise Recruitment System",

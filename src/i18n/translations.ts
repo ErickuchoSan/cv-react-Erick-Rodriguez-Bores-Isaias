@@ -109,20 +109,20 @@ export const translations = {
                     company: "Freelance · Align Designs Platform",
                     period: "Oct. 2025 - Actual",
                     duration: "~6 meses",
-                    description: "Desarrollo de plataforma B2B/B2C cloud con arquitectura monorepo profesional. Stack: NestJS 11, Next.js 15, PostgreSQL 16, Prisma ORM, Docker, GitHub Actions, JWT/OTP, RBAC.",
+                    description: "Plataforma B2B/B2C cloud con arquitectura monorepo profesional. Stack: NestJS 11, Next.js 16, PostgreSQL 15, Prisma ORM, Docker, GitHub Actions, Redis, DigitalOcean Spaces, Prometheus.",
                     functions: [
-                        "Arquitectura modular monorepo con NestJS 11 + Next.js 15 + PostgreSQL/Prisma aplicando SOLID y Clean Architecture.",
-                        "Sistema de autenticación dual: JWT para administradores y OTP para clientes con control de acceso RBAC.",
-                        "Deploy automatizado en Digital Ocean con Docker, health checks y CI/CD vía GitHub Actions.",
-                        "Cifrado AES/RSA para datos sensibles y seguridad de servidor (fail2ban, UFW, SSH hardening).",
-                        "CI/CD con GitHub Actions + SonarCloud para análisis de código y Docker con health checks.",
-                        "Sistema de facturación con auto-numeración y versionado automático de archivos con MinIO.",
-                        "Rate limiting, validación de inputs y prácticas de seguridad a nivel aplicación."
+                        "Arquitectura modular monorepo (pnpm workspaces) con NestJS 11 + Next.js 16 + PostgreSQL/Prisma aplicando SOLID y Clean Architecture.",
+                        "Sistema de autenticación dual: JWT con refresh token rotation para admins y OTP con bcrypt para clientes. RBAC con 3 roles (Admin, Client, Employee).",
+                        "Seguridad HTTP completa: CSRF (HMAC-SHA256), Helmet (CSP, HSTS), rate limiting por IP, account lockout tras 5 intentos, validación con Zod.",
+                        "Almacenamiento de archivos en DigitalOcean Spaces (S3-compatible) con presigned URLs de 15 min y validación por magic numbers.",
+                        "CI/CD con GitHub Actions + SonarCloud + Codecov + Lighthouse. Deploy automatizado con Docker en servidor DigitalOcean con backups automáticos a Spaces.",
+                        "Sistema de facturación con auto-numeración, versionado de archivos, notificaciones in-app, métricas Prometheus y logging estructurado con Pino.",
+                        "57 archivos de pruebas unitarias (Jest + Vitest) y suite E2E con Playwright."
                     ],
                     achievements: [
-                        "Plataforma productiva con +15 módulos: autenticación, facturación, almacenamiento de archivos y mensajería.",
-                        "Pipeline CI/CD completo con análisis de calidad SonarCloud y Docker containerización con health checks.",
-                        "Implementación de cifrado AES/RSA y autenticación dual JWT/OTP desde cero con arquitectura limpia."
+                        "Plataforma productiva con +16 módulos y 8 etapas de workflow: autenticación, facturación, pagos a empleados, almacenamiento y notificaciones.",
+                        "Pipeline CI/CD completo: lint → tests → SonarCloud → build → deploy → health checks → backup automático en cada push.",
+                        "Arquitectura de seguridad en capas: CSRF + Helmet + rate limiting + JWT rotation + OTP + AES/RSA + SSH hardening + fail2ban."
                     ]
                 }
             ]
@@ -329,20 +329,20 @@ export const translations = {
                     company: "Freelance · Align Designs Platform",
                     period: "Oct. 2025 - Present",
                     duration: "~6 months",
-                    description: "Development of a cloud B2B/B2C platform with professional monorepo architecture. Stack: NestJS 11, Next.js 15, PostgreSQL 16, Prisma ORM, Docker, GitHub Actions, JWT/OTP, RBAC.",
+                    description: "Cloud B2B/B2C platform with professional monorepo architecture. Stack: NestJS 11, Next.js 16, PostgreSQL 15, Prisma ORM, Docker, GitHub Actions, Redis, DigitalOcean Spaces, Prometheus.",
                     functions: [
-                        "Modular monorepo architecture with NestJS 11 + Next.js 15 + PostgreSQL/Prisma applying SOLID and Clean Architecture.",
-                        "Dual authentication system: JWT for admins and OTP for clients with RBAC access control.",
-                        "Automated deploy on Digital Ocean with Docker, health checks and CI/CD via GitHub Actions.",
-                        "AES/RSA encryption for sensitive data and server security (fail2ban, UFW, SSH hardening).",
-                        "CI/CD with GitHub Actions + SonarCloud for code analysis and Docker with health checks.",
-                        "Billing system with auto-numbering and automatic file versioning with MinIO.",
-                        "Rate limiting, input validation and application-level security best practices."
+                        "Modular monorepo architecture (pnpm workspaces) with NestJS 11 + Next.js 16 + PostgreSQL/Prisma applying SOLID and Clean Architecture.",
+                        "Dual auth system: JWT with refresh token rotation for admins and OTP with bcrypt for clients. RBAC with 3 roles (Admin, Client, Employee).",
+                        "Full HTTP security: CSRF (HMAC-SHA256), Helmet (CSP, HSTS), IP rate limiting, account lockout after 5 attempts, Zod schema validation.",
+                        "File storage on DigitalOcean Spaces (S3-compatible) with 15-min presigned URLs and magic number validation to prevent MIME spoofing.",
+                        "CI/CD with GitHub Actions + SonarCloud + Codecov + Lighthouse. Automated deploy with Docker on DigitalOcean with automatic backups to Spaces.",
+                        "Billing with auto-numbering, file versioning, in-app notifications, Prometheus metrics and structured logging with Pino.",
+                        "57 unit test files (Jest + Vitest) and full E2E test suite with Playwright."
                     ],
                     achievements: [
-                        "Production platform with 15+ modules: authentication, billing, file storage and messaging.",
-                        "Complete CI/CD pipeline with SonarCloud quality analysis and Docker containerization with health checks.",
-                        "AES/RSA encryption and dual JWT/OTP authentication implemented from scratch with clean architecture."
+                        "Production platform with 16+ modules and 8 workflow stages: auth, billing, employee payments, file storage and notifications.",
+                        "Complete CI/CD pipeline: lint → tests → SonarCloud → build → deploy → health checks → automatic backup on every push.",
+                        "Layered security architecture: CSRF + Helmet + rate limiting + JWT rotation + OTP + AES/RSA + SSH hardening + fail2ban."
                     ]
                 }
             ]

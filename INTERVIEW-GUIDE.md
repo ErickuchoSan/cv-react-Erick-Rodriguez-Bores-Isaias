@@ -65,11 +65,41 @@
 | Event-Driven Architecture | 1 | Intermedio | Align Designs — arquitectura basada en eventos/mensajes |
 | Microservicios | 1 | Intermedio | Proyectos personales |
 
+### Frontend Avanzado
+
+| Tecnologia | Anios | Nivel | Donde lo use |
+|------------|-------|-------|--------------|
+| TanStack Query | 6 meses | Intermedio | Align Designs — server state management |
+| React Hook Form + Zod | 6 meses | Intermedio | Align Designs — formularios type-safe |
+| Framer Motion | 6 meses | Intermedio | Align Designs + este CV |
+
+### Infraestructura / Observabilidad
+
+| Tecnologia | Anios | Nivel | Donde lo use |
+|------------|-------|-------|--------------|
+| DigitalOcean Spaces (S3) | 6 meses | Intermedio | Align Designs — almacenamiento de archivos |
+| Redis | 6 meses | Basico-Intermedio | Align Designs — cache en produccion |
+| Prometheus + Pino | 6 meses | Basico | Align Designs — metricas y logs estructurados |
+| SonarCloud | 6 meses | Basico | Align Designs — calidad de codigo en CI/CD |
+| Codecov | 6 meses | Basico | Align Designs — cobertura de tests |
+
+### Seguridad Avanzada
+
+| Tecnologia | Anios | Nivel | Donde lo use |
+|------------|-------|-------|--------------|
+| CSRF (HMAC-SHA256) | 6 meses | Intermedio | Align Designs — double-submit pattern |
+| Helmet / Security Headers | 6 meses | Intermedio | Align Designs — CSP, HSTS, X-Frame |
+| Refresh Token Rotation | 6 meses | Intermedio | Align Designs — tokens seguros |
+| Account Lockout | 6 meses | Intermedio | Align Designs — 5 intentos → bloqueo |
+| bcrypt | 6 meses | Intermedio | Align Designs — hashing de passwords |
+| Magic Number Validation | 6 meses | Basico | Align Designs — prevenir MIME spoofing |
+
 ### Testing / Metodologias
 
 | Tecnologia | Anios | Nivel | Donde lo use |
 |------------|-------|-------|--------------|
-| Pruebas Unitarias | 6 meses | Basico | Proyectos propios |
+| Jest + Vitest | 6 meses | Basico-Intermedio | Align Designs — 57 archivos de tests |
+| Playwright (E2E) | 6 meses | Basico | Align Designs — suite E2E completa |
 | SCRUM | 10 meses | Basico-Intermedio | Trabajo en equipo |
 
 ---
@@ -182,6 +212,52 @@
 **P: Que es Event-Driven Architecture?**
 > Arquitectura donde los componentes reaccionan a eventos en lugar de llamarse directamente. Beneficios: desacoplamiento, escalabilidad, resiliencia. En Align Designs los modulos publican eventos cuando cambia el estado, y otros modulos suscritos reaccionan de forma independiente y asincrona.
 
+### Seguridad Avanzada (Align Designs)
+
+**P: Como implementas CSRF protection?**
+> Uso el patron double-submit con HMAC-SHA256:
+> 1. El servidor genera un token firmado con HMAC-SHA256 usando una clave secreta
+> 2. El token va en una cookie httpOnly
+> 3. El cliente debe enviar el mismo token en el header X-CSRF-Token
+> 4. El servidor compara ambos con `crypto.timingSafeEqual` (previene timing attacks)
+> Endpoints publicos (login, OTP) estan excluidos de CSRF.
+
+**P: Que hace Helmet?**
+> Es un middleware que configura headers HTTP de seguridad automaticamente:
+> - **CSP**: Define de donde puede cargar recursos la pagina (previene XSS)
+> - **HSTS**: Fuerza HTTPS por 1 ano (incluye subdominios)
+> - **X-Frame-Options: DENY**: Previene clickjacking
+> - **X-Content-Type-Options: nosniff**: Previene MIME sniffing
+> - **Referrer-Policy**: Controla que informacion se envia en el header Referer
+
+**P: Como funciona tu Refresh Token Rotation?**
+> Cuando el access token expira (24h), el cliente usa el refresh token para obtener uno nuevo. Mi implementacion:
+> 1. El refresh token se guarda como hash SHA-256 (nunca en texto plano)
+> 2. Cada uso genera un nuevo refresh token y revoca el anterior
+> 3. El token viejo queda registrado como `replaced_by_token`
+> 4. Si alguien intenta usar un token ya rotado = posible robo → revocar toda la cadena
+> 5. JWT blacklist para logout inmediato
+
+**P: Como proteges el almacenamiento de archivos?**
+> - Archivos en DigitalOcean Spaces (S3-compatible), nunca expuestos directamente
+> - Presigned URLs con 15 minutos de expiracion para cada descarga
+> - Validacion por magic numbers: leo los primeros bytes del archivo para verificar el tipo real (un .jpg renombrado como .pdf no pasa)
+> - Paths con UUID aleatorio: `projects/{id}/{uuid}.ext` — no son predecibles
+
+**P: Tienes experiencia con SonarCloud?**
+> Si, esta integrado en mi pipeline de GitHub Actions de Align Designs. Se ejecuta en cada push, analiza calidad de codigo, deuda tecnica, code smells y vulnerabilidades de seguridad. Los resultados bloquean el merge si hay issues criticos.
+
+### Frontend (TanStack Query / React Hook Form)
+
+**P: Que es TanStack Query?**
+> Es una libreria de server state management para React. Maneja: fetching, caching, sincronizacion y actualizacion de datos del servidor. Beneficios: cache automatico, revalidacion en background, estados de loading/error, paginacion. Lo uso en Align Designs para todas las llamadas a la API.
+
+**P: Por que React Hook Form + Zod?**
+> - **React Hook Form**: Manejo de formularios con minimos re-renders (uncontrolled components)
+> - **Zod**: Validacion type-safe — el mismo schema valida en frontend Y backend
+> - La integracion via `@hookform/resolvers` conecta Zod con RHF automaticamente
+> - Beneficio: un solo schema de verdad, errores tipados, cero magic strings
+
 ### SQL Server
 
 **P: Como optimizas consultas?**
@@ -225,9 +301,13 @@
 - **50% reduccion** en tiempo de onboarding
 
 ### Align Designs (Oct. 2025 - Actual)
-- Arquitectura monorepo NestJS 11 + Next.js 15 + PostgreSQL + Docker
-- CI/CD automatizado con GitHub Actions en servidor Digital Ocean propio
-- Autenticacion dual JWT (admins) / OTP (clientes) con RBAC
+- Plataforma productiva con **16+ modulos** y 8 etapas de workflow
+- Arquitectura monorepo (pnpm workspaces): NestJS 11 + Next.js 16 + PostgreSQL 15 + Redis + Docker
+- **57 archivos de tests** (Jest + Vitest) + suite E2E con Playwright
+- CI/CD completo: lint → tests → **SonarCloud** → build → deploy → health checks → **backup automatico** en DigitalOcean Spaces
+- Seguridad en capas: CSRF (HMAC-SHA256) + Helmet (CSP/HSTS) + rate limiting + JWT rotation + OTP + AES/RSA + SSH hardening + fail2ban
+- Almacenamiento en **DigitalOcean Spaces** (S3-compatible) con presigned URLs de 15 min y validacion por magic numbers
+- Observabilidad: **Prometheus** (metricas) + **Pino** (logs estructurados) + **Codecov** (coverage)
 
 ---
 
@@ -240,7 +320,7 @@
 | Entra ID | No conozco |
 | Cascada | No he usado |
 | Kanban | No he usado formalmente |
-| SonarQube | No he usado |
+| SonarQube | No he usado (pero SÍ SonarCloud — es el mismo motor, diferente hosting) |
 | Pruebas integrales | 0 anios formales |
 | Arquitectura Serverless | Basico — conozco el concepto via Azure Functions |
 | SAML 2.0 | 2 meses, muy basico |

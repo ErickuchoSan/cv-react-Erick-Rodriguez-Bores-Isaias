@@ -89,7 +89,7 @@ export const PDF_SKILLS = {
         "React 19 / Next.js 16 (2 años)",
         "TanStack Query (6 meses)",
         "React Hook Form + Zod (6 meses)",
-        "Tailwind CSS v4 (2-3 años)",
+        "Tailwind CSS v4 (3 años)",
         "Framer Motion (6 meses)",
         "jQuery (2 años)",
         "Vue.js 3 (1 año)",

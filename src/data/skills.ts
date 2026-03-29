@@ -41,6 +41,7 @@ export const SKILLS_DATA_CATEGORIES = [
             { name: "JavaScript (ES2024)", icon: FaCode, color: "text-yellow-500" },
             { name: "TypeScript 5", icon: SiTypescript, color: "text-blue-600" },
             { name: "Node.js / NestJS 11", icon: FaCode, color: "text-green-600" },
+            { name: "Tailwind CSS", icon: FaCode, color: "text-cyan-400" },
             { name: "Bootstrap / CSS", icon: FaCode, color: "text-purple-500" }
         ]
     },
@@ -65,6 +66,8 @@ export const SKILLS_DATA_CATEGORIES = [
         icon: FaBrain,
         skills: [
             { name: "Claude (Anthropic)", icon: FaBrain, color: "text-purple-500" },
+            { name: "MCP (Model Context Protocol)", icon: FaBrain, color: "text-orange-500" },
+            { name: "Claude Code / AI Agents", icon: FaBrain, color: "text-pink-500" },
             { name: "Gemini", icon: FaBrain, color: "text-blue-500" },
             { name: "AI Integration", icon: FaBrain, color: "text-yellow-500" }
         ]
@@ -86,6 +89,7 @@ export const PDF_SKILLS = {
         "React 19 / Next.js 16 (2 años)",
         "TanStack Query (6 meses)",
         "React Hook Form + Zod (6 meses)",
+        "Tailwind CSS (1 año)",
         "Framer Motion (6 meses)",
         "jQuery (2 años)",
         "Vue.js 3 (1 año)",
@@ -119,7 +123,9 @@ export const PDF_SKILLS = {
         "Event-Driven Architecture (6 meses)",
         "Microservicios (1 año)",
         "pnpm Workspaces — Monorepo (6 meses)",
-        "Postman / Insomnia"
+        "Postman / Insomnia",
+        "Claude Code + MCP (Model Context Protocol)",
+        "Desarrollo asistido por IA (Claude, Gemini)"
     ],
     en: [
         "C# / .NET Core 6/8/10 (3 years)",
@@ -132,6 +138,7 @@ export const PDF_SKILLS = {
         "React 19 / Next.js 16 (2 years)",
         "TanStack Query (6 months)",
         "React Hook Form + Zod (6 months)",
+        "Tailwind CSS (1 year)",
         "Framer Motion (6 months)",
         "jQuery (2 years)",
         "Vue.js 3 (1 year)",
@@ -165,6 +172,8 @@ export const PDF_SKILLS = {
         "Event-Driven Architecture (6 months)",
         "Microservices (1 year)",
         "pnpm Workspaces — Monorepo (6 months)",
-        "Postman / Insomnia"
+        "Postman / Insomnia",
+        "Claude Code + MCP (Model Context Protocol)",
+        "AI-assisted development (Claude, Gemini)"
     ]
 };

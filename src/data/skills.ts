@@ -41,8 +41,8 @@ export const SKILLS_DATA_CATEGORIES = [
             { name: "JavaScript (ES2024)", icon: FaCode, color: "text-yellow-500" },
             { name: "TypeScript 5", icon: SiTypescript, color: "text-blue-600" },
             { name: "Node.js / NestJS 11", icon: FaCode, color: "text-green-600" },
-            { name: "Tailwind CSS", icon: FaCode, color: "text-cyan-400" },
-            { name: "Bootstrap / CSS", icon: FaCode, color: "text-purple-500" }
+            { name: "Tailwind CSS v4", icon: FaCode, color: "text-cyan-400" },
+            { name: "Bootstrap 5 / CSS", icon: FaCode, color: "text-purple-500" }
         ]
     },
     {
@@ -89,7 +89,7 @@ export const PDF_SKILLS = {
         "React 19 / Next.js 16 (2 años)",
         "TanStack Query (6 meses)",
         "React Hook Form + Zod (6 meses)",
-        "Tailwind CSS (1 año)",
+        "Tailwind CSS v4 (2-3 años)",
         "Framer Motion (6 meses)",
         "jQuery (2 años)",
         "Vue.js 3 (1 año)",
@@ -123,7 +123,7 @@ export const PDF_SKILLS = {
         "Event-Driven Architecture (6 meses)",
         "Microservicios (1 año)",
         "pnpm Workspaces — Monorepo (6 meses)",
-        "Postman / Insomnia",
+        "ApiDog / Postman / Insomnia",
         "Claude Code + MCP (Model Context Protocol)",
         "Desarrollo asistido por IA (Claude, Gemini)"
     ],
@@ -172,7 +172,7 @@ export const PDF_SKILLS = {
         "Event-Driven Architecture (6 months)",
         "Microservices (1 year)",
         "pnpm Workspaces — Monorepo (6 months)",
-        "Postman / Insomnia",
+        "ApiDog / Postman / Insomnia",
         "Claude Code + MCP (Model Context Protocol)",
         "AI-assisted development (Claude, Gemini)"
     ]

@@ -23,7 +23,7 @@ export const translations = {
             subtitle: 'Transformando ideas en soluciones empresariales de alto impacto',
             roleTitle: 'Desarrollador Full Stack .NET & React',
             description1: 'Con 3 años de experiencia en desarrollo de software empresarial, diseño e implemento arquitecturas escalables con C#/.NET Core 6/8/10 (3 años), React 19 / Next.js 15 (2 años), SQL Server / PostgreSQL (3 años), y Node.js / NestJS 11 (3 años). Experiencia sólida en REST APIs, Entity Framework, OAuth2/JWT, cifrado AES/RSA, Docker y Python.',
-            description2: 'Actualmente como Programador de Auditoría Senior en Grupo Salinas, lidero el desarrollo de sistemas críticos de auditoría interna (ADA/HONESTEL) con .NET Core 6, C#, SQL Server y OAuth2/JWT. Paralelamente desarrollo la plataforma Align Designs (freelance) con NestJS 11, Next.js 15, PostgreSQL y Docker. Me distingo por Clean Architecture, DDD y desarrollo asistido por IA.',
+            description2: 'Actualmente como Programador de Auditoría Senior en Grupo Salinas, lidero el desarrollo de sistemas críticos de auditoría interna (ADA/HONESTEL) con .NET Core 6, C#, SQL Server y OAuth2/JWT. Paralelamente desarrollo la plataforma Align Designs (freelance) con NestJS 11, Next.js 16, PostgreSQL y Docker. Me distingo por Clean Architecture, DDD y desarrollo asistido por IA.',
             stats: {
                 experience: 'Años de Experiencia',
                 technologies: 'Tecnologías Dominadas',
@@ -68,7 +68,7 @@ export const translations = {
                     role: "Programador de Auditoría Senior",
                     company: "Grupo Salinas",
                     period: "Mayo 2024 - Actual",
-                    duration: "~1 año",
+                    duration: "~2 años",
                     description: "Líder técnico responsable de la arquitectura, desarrollo y evolución de sistemas críticos de auditoría interna (ADA/HONESTEL). Stack: .NET Core 6, C#, HTML, Bootstrap, SQL Server, OAuth2/JWT, Entity Framework.",
                     functions: [
                         "Desarrollo de API REST con .NET Core 6 integrando OAuth2 y tokenización JWT para autenticación segura.",
@@ -243,7 +243,7 @@ export const translations = {
             subtitle: 'Transforming ideas into high-impact business solutions',
             roleTitle: 'Full Stack Developer .NET & React',
             description1: 'With 3 years of experience in enterprise software development, I design and implement scalable architectures with C#/.NET Core 6/8/10 (3 years), React 19 / Next.js 15 (2 years), SQL Server / PostgreSQL (3 years), and Node.js / NestJS 11 (3 years). Solid experience in REST APIs, Entity Framework, OAuth2/JWT, AES/RSA encryption, Docker and Python.',
-            description2: 'Currently as a Senior Audit Programmer at Grupo Salinas, I lead the development of critical internal audit systems (ADA/HONESTEL) with .NET Core 6, C#, SQL Server and OAuth2/JWT. In parallel, I develop the Align Designs platform (freelance) with NestJS 11, Next.js 15, PostgreSQL and Docker. I stand out for Clean Architecture, DDD and AI-assisted development.',
+            description2: 'Currently as a Senior Audit Programmer at Grupo Salinas, I lead the development of critical internal audit systems (ADA/HONESTEL) with .NET Core 6, C#, SQL Server and OAuth2/JWT. In parallel, I develop the Align Designs platform (freelance) with NestJS 11, Next.js 16, PostgreSQL and Docker. I stand out for Clean Architecture, DDD and AI-assisted development.',
             stats: {
                 experience: 'Years of Experience',
                 technologies: 'Technologies Mastered',
@@ -288,7 +288,7 @@ export const translations = {
                     role: "Senior Audit Programmer",
                     company: "Grupo Salinas",
                     period: "May 2024 - Present",
-                    duration: "~1 year",
+                    duration: "~2 years",
                     description: "Technical lead responsible for architecture, development and evolution of critical internal audit systems (ADA/HONESTEL). Stack: .NET Core 6, C#, HTML, Bootstrap, SQL Server, OAuth2/JWT, Entity Framework.",
                     functions: [
                         "REST API development with .NET Core 6 integrating OAuth2 and JWT tokenization for secure authentication.",

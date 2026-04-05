@@ -112,11 +112,11 @@ Al modificar estilos usa las clases editoriales en `index.css` antes de agregar 
 - **Inglés**: A2-B1 (60% — lectura técnica fluida)
 
 ### Experiencia Laboral
-1. **Grupo Salinas** (Mayo 2024 - Actual) - Programador de Auditoría Senior (~1 año)
+1. **Grupo Salinas** (Mayo 2024 - Actual) - Programador de Auditoría Senior (~2 años)
 2. **Digital Solutions** (Mayo 2023 - Mayo 2024) - Desarrollador Full Stack (~1 año)
-3. **Freelance · Align Designs Platform** (2023 - Actual) - Desarrollador Full Stack
+3. **Freelance · Align Designs Platform** (Oct. 2025 - Actual) - Desarrollador Full Stack (~6 meses)
 
-> ⚠️ Grupo Salinas: **NO** incluir Azure Functions, Azure Service Bus ni CI/CD en el CV (apenas usados). Sí incluir: .NET Core 8, C#, React 19, SQL Server, OAuth2/JWT, Entity Framework.
+> ⚠️ Grupo Salinas: **NO** incluir Azure Functions, Azure Service Bus ni CI/CD en el CV (apenas usados). Sí incluir: .NET Core 6, C#, HTML/Bootstrap, SQL Server, OAuth2/JWT, Entity Framework.
 
 ### Stack Tecnológico Principal (con años)
 
@@ -137,28 +137,27 @@ Al modificar estilos usa las clases editoriales en `index.css` antes de agregar 
 | Vue.js 3 | 1 | Intermedio |
 | Angular 17+ | 1 | Intermedio |
 | NestJS 11 | 1 | Intermedio |
-| Next.js 15 | 1 | Intermedio |
+| Next.js 16 | 1 | Intermedio |
 | Docker | 1 | Intermedio |
 | GitHub Actions | 1 | Intermedio |
-| Azure Service Bus | 2 | Intermedio |
+| Tailwind CSS v4 | 3 | Intermedio-Avanzado |
 | Prisma ORM | 1 | Intermedio |
 
 ### Proyecto Destacado: Align Designs Platform
 
 Plataforma B2B/B2C cloud con arquitectura monorepo profesional:
 
-**Stack**: NestJS 11 + Next.js 15 + PostgreSQL + Prisma + MinIO + Docker
+**Stack**: NestJS 11 + Next.js 16 + PostgreSQL 15 + Prisma + Redis + Docker + DigitalOcean
 
 **Características implementadas**:
-- Arquitectura modular con SOLID y Clean Architecture
-- Sistema de autenticación dual (JWT para admins, OTP para clientes)
-- Azure Service Bus para mensajería (colas, topics, suscripciones)
-- Cifrado AES/RSA para datos sensibles
-- CI/CD con GitHub Actions + SonarCloud
-- Docker containerización con health checks
-- Sistema de facturación con auto-numeración
-- Versionado de archivos automático
-- Rate limiting y seguridad (fail2ban, UFW, SSH hardening)
+- Arquitectura modular monorepo (pnpm workspaces) con SOLID y Clean Architecture
+- Sistema de autenticación dual: JWT + refresh token rotation (admins) / OTP bcrypt (clientes)
+- Seguridad HTTP: CSRF (HMAC-SHA256), Helmet (CSP/HSTS), rate limiting, account lockout
+- Almacenamiento DigitalOcean Spaces (S3) con presigned URLs y validación por magic numbers
+- CI/CD con GitHub Actions + SonarCloud + Codecov + Lighthouse
+- Docker containerización con health checks y backups automáticos
+- Sistema de facturación con auto-numeración y versionado de archivos
+- Métricas Prometheus + Pino, 57 archivos de tests (Jest + Vitest), E2E Playwright
 
 ## Flujo de Trabajo
 

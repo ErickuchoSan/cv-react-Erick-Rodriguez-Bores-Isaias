@@ -139,8 +139,8 @@ const s = StyleSheet.create({
     body: {
         marginLeft: SIDEBAR_W,
         paddingHorizontal: 20,
-        paddingTop: 22,
-        paddingBottom: 28,
+        paddingTop: 20,
+        paddingBottom: 10,
     },
     bodySectionTitle: {
         fontSize: 9.5,
@@ -151,15 +151,15 @@ const s = StyleSheet.create({
         borderBottomWidth: 1.5,
         borderBottomColor: RED,
         paddingBottom: 3,
-        marginBottom: 7,
-        marginTop: 12,
+        marginBottom: 6,
+        marginTop: 10,
     },
     summary: {
         fontSize: 8.5,
         color: '#374151',
-        lineHeight: 1.45,
+        lineHeight: 1.4,
         textAlign: 'justify',
-        marginBottom: 4,
+        marginBottom: 3,
     },
     jobRole: {
         fontSize: 10,
@@ -212,7 +212,7 @@ const s = StyleSheet.create({
         marginBottom: 3,
     },
     jobItem: {
-        marginBottom: 10,
+        marginBottom: 7,
     },
     jobHeaderRow: {
         flexDirection: 'row',

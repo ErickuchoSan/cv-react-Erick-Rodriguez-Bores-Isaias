@@ -16,7 +16,6 @@ Font.register({
     ],
 });
 
-// A4: 595.28 × 841.89 pt — sidebar = 30% ≈ 179pt
 const SIDEBAR_W = 179;
 const RED = '#b61722';
 const DARK = '#09090b';
@@ -37,21 +36,19 @@ const CORE_SKILLS = [
 ];
 
 const s = StyleSheet.create({
+    /* ── Page: flex-row, sin padding global ── */
     page: {
         fontFamily: 'Roboto',
         backgroundColor: '#FFFFFF',
+        flexDirection: 'row',
     },
-    /* ── Sidebar (fixed = repeats every page) ── */
+    /* ── Sidebar: columna izquierda natural, sin height fijo ── */
     sidebar: {
-        position: 'absolute',
-        top: 0,
-        left: 0,
         width: SIDEBAR_W,
-        height: 842,
         backgroundColor: DARK,
         paddingHorizontal: 14,
-        paddingTop: 0,
-        paddingBottom: 14,
+        paddingBottom: 20,
+        flexShrink: 0,
     },
     photo: {
         width: SIDEBAR_W,
@@ -61,7 +58,7 @@ const s = StyleSheet.create({
         marginBottom: 14,
     },
     name: {
-        fontSize: 14,
+        fontSize: 13,
         fontWeight: 700,
         color: '#FFFFFF',
         textTransform: 'uppercase',
@@ -70,7 +67,7 @@ const s = StyleSheet.create({
         marginBottom: 3,
     },
     jobTitle: {
-        fontSize: 8.5,
+        fontSize: 8,
         color: RED,
         fontWeight: 500,
         letterSpacing: 0.3,
@@ -79,7 +76,7 @@ const s = StyleSheet.create({
     sidebarDivider: {
         borderBottomWidth: 1,
         borderBottomColor: '#27272a',
-        marginBottom: 8,
+        marginBottom: 7,
     },
     sidebarSectionLabel: {
         fontSize: 7,
@@ -92,14 +89,14 @@ const s = StyleSheet.create({
     contactItem: {
         fontSize: 7.5,
         color: '#a1a1aa',
-        marginBottom: 4,
+        marginBottom: 3,
         lineHeight: 1.3,
     },
     contactLink: {
         fontSize: 7.5,
         color: '#a1a1aa',
         textDecoration: 'none',
-        marginBottom: 4,
+        marginBottom: 3,
         lineHeight: 1.3,
     },
     skillPill: {
@@ -126,7 +123,7 @@ const s = StyleSheet.create({
     eduYear: {
         fontSize: 7,
         color: '#52525b',
-        marginBottom: 6,
+        marginBottom: 5,
     },
     langName: {
         fontSize: 7.5,
@@ -136,15 +133,14 @@ const s = StyleSheet.create({
     langLevel: {
         fontSize: 7,
         color: '#71717a',
-        marginBottom: 5,
+        marginBottom: 4,
     },
-
-    /* ── Body ── */
+    /* ── Body: columna derecha, flex 1 ── */
     body: {
-        marginLeft: SIDEBAR_W,
+        flex: 1,
         paddingHorizontal: 20,
         paddingTop: 20,
-        paddingBottom: 10,
+        paddingBottom: 30,
     },
     bodySectionTitle: {
         fontSize: 9.5,
@@ -181,14 +177,6 @@ const s = StyleSheet.create({
         color: '#6b7280',
         fontWeight: 500,
     },
-    jobDesc: {
-        fontSize: 8,
-        color: '#6b7280',
-        fontStyle: 'italic',
-        lineHeight: 1.3,
-        marginTop: 3,
-        marginBottom: 4,
-    },
     bullet: {
         flexDirection: 'row',
         marginBottom: 2.5,
@@ -208,13 +196,6 @@ const s = StyleSheet.create({
         flex: 1,
         lineHeight: 1.35,
     },
-    achievementLabel: {
-        fontSize: 8,
-        fontWeight: 700,
-        color: DARK,
-        marginTop: 4,
-        marginBottom: 3,
-    },
     jobItem: {
         marginBottom: 7,
     },
@@ -222,7 +203,7 @@ const s = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'flex-start',
-        marginBottom: 1,
+        marginBottom: 2,
     },
     jobHeaderLeft: { flex: 1 },
     projectCard: {
@@ -274,9 +255,9 @@ export const CVDocumentLeaf_ES: React.FC = () => {
 
     return (
         <Document>
-            <Page size="A4" style={s.page} wrap={true}>
+            <Page size="A4" style={s.page} wrap={false}>
 
-                {/* ── SIDEBAR (page 1 only) ── */}
+                {/* ── SIDEBAR ── */}
                 <View style={s.sidebar}>
                     <Image src={profileImage} style={s.photo} />
 
@@ -319,17 +300,15 @@ export const CVDocumentLeaf_ES: React.FC = () => {
                 {/* ── BODY ── */}
                 <View style={s.body}>
 
-                    {/* Perfil Profesional — 1 párrafo */}
-                    <View wrap={false}>
+                    <View>
                         <Text style={[s.bodySectionTitle, { marginTop: 0 }]}>Perfil Profesional</Text>
                         <Text style={s.summary}>{t.about.description1}</Text>
                     </View>
 
-                    {/* Experiencia — 2 bullets por trabajo, sin logros separados */}
                     <Text style={s.bodySectionTitle}>Experiencia Profesional</Text>
 
                     {t.experience.jobs.map((job, idx) => (
-                        <View key={idx} style={s.jobItem} wrap={false}>
+                        <View key={idx} style={s.jobItem}>
                             <View style={s.jobHeaderRow}>
                                 <View style={s.jobHeaderLeft}>
                                     <Text style={s.jobRole}>{job.role}</Text>
@@ -345,7 +324,6 @@ export const CVDocumentLeaf_ES: React.FC = () => {
                                 </View>
                             ))}
 
-                            {/* Logro principal integrado como bullet destacado */}
                             {job.achievements && job.achievements.length > 0 && (
                                 <View style={s.bullet}>
                                     <View style={[s.bulletDot, { backgroundColor: RED }]} />
@@ -355,10 +333,9 @@ export const CVDocumentLeaf_ES: React.FC = () => {
                         </View>
                     ))}
 
-                    {/* Proyecto principal */}
                     <Text style={s.bodySectionTitle}>Proyecto Destacado</Text>
 
-                    <View style={s.projectCard} wrap={false}>
+                    <View style={s.projectCard}>
                         <Text style={s.projectTitle}>{t.projects.items[0].title}</Text>
                         <Text style={s.projectDesc}>{t.projects.items[0].description}</Text>
                         {PROJECTS_DATA[0] && (
@@ -371,14 +348,10 @@ export const CVDocumentLeaf_ES: React.FC = () => {
                     </View>
                 </View>
 
-                {/* ── FOOTER (fixed) ── */}
-                <Text
-                    style={s.footer}
-                    fixed
-                    render={({ pageNumber, totalPages }) =>
-                        `${t.hero.title} ${t.hero.subtitle}  •  ${CONTACT_INFO.email}  •  Página ${pageNumber} / ${totalPages}`
-                    }
-                />
+                {/* ── FOOTER ── */}
+                <Text style={s.footer} fixed render={({ pageNumber, totalPages }) =>
+                    `${t.hero.title} ${t.hero.subtitle}  •  ${CONTACT_INFO.email}  •  Página ${pageNumber} / ${totalPages}`
+                } />
             </Page>
         </Document>
     );

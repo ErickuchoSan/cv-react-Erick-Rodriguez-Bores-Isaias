@@ -319,14 +319,13 @@ export const CVDocumentLeaf_ES: React.FC = () => {
                 {/* ── BODY ── */}
                 <View style={s.body}>
 
-                    {/* Perfil Profesional */}
+                    {/* Perfil Profesional — 1 párrafo */}
                     <View wrap={false}>
                         <Text style={[s.bodySectionTitle, { marginTop: 0 }]}>Perfil Profesional</Text>
                         <Text style={s.summary}>{t.about.description1}</Text>
-                        <Text style={s.summary}>{t.about.description2}</Text>
                     </View>
 
-                    {/* Experiencia */}
+                    {/* Experiencia — 2 bullets por trabajo, sin logros separados */}
                     <Text style={s.bodySectionTitle}>Experiencia Profesional</Text>
 
                     {t.experience.jobs.map((job, idx) => (
@@ -338,47 +337,38 @@ export const CVDocumentLeaf_ES: React.FC = () => {
                                 </View>
                                 <Text style={s.jobPeriod}>{job.period}</Text>
                             </View>
-                            <Text style={s.jobDesc}>{job.description}</Text>
 
-                            {/* Top 3 bullets */}
-                            {job.functions.slice(0, 3).map((fn, i) => (
+                            {job.functions.slice(0, 2).map((fn, i) => (
                                 <View key={i} style={s.bullet}>
                                     <View style={s.bulletDot} />
                                     <Text style={s.bulletText}>{fn}</Text>
                                 </View>
                             ))}
 
-                            {/* Achievements */}
+                            {/* Logro principal integrado como bullet destacado */}
                             {job.achievements && job.achievements.length > 0 && (
-                                <View>
-                                    <Text style={s.achievementLabel}>Logros Destacados:</Text>
-                                    {job.achievements.slice(0, 2).map((a, i) => (
-                                        <View key={i} style={s.bullet}>
-                                            <View style={[s.bulletDot, { backgroundColor: RED }]} />
-                                            <Text style={s.bulletText}>{a}</Text>
-                                        </View>
-                                    ))}
+                                <View style={s.bullet}>
+                                    <View style={[s.bulletDot, { backgroundColor: RED }]} />
+                                    <Text style={s.bulletText}>{job.achievements[0]}</Text>
                                 </View>
                             )}
                         </View>
                     ))}
 
-                    {/* Proyectos */}
-                    <Text style={s.bodySectionTitle}>Proyectos Destacados</Text>
+                    {/* Proyecto principal */}
+                    <Text style={s.bodySectionTitle}>Proyecto Destacado</Text>
 
-                    {t.projects.items.slice(0, 2).map((proj, idx) => (
-                        <View key={idx} style={s.projectCard} wrap={false}>
-                            <Text style={s.projectTitle}>{proj.title}</Text>
-                            <Text style={s.projectDesc}>{proj.description}</Text>
-                            {PROJECTS_DATA[idx] && (
-                                <View style={s.techRow}>
-                                    {PROJECTS_DATA[idx].tech.slice(0, 6).map((tag, ti) => (
-                                        <Text key={ti} style={s.techBadge}>{tag}</Text>
-                                    ))}
-                                </View>
-                            )}
-                        </View>
-                    ))}
+                    <View style={s.projectCard} wrap={false}>
+                        <Text style={s.projectTitle}>{t.projects.items[0].title}</Text>
+                        <Text style={s.projectDesc}>{t.projects.items[0].description}</Text>
+                        {PROJECTS_DATA[0] && (
+                            <View style={s.techRow}>
+                                {PROJECTS_DATA[0].tech.slice(0, 6).map((tag, ti) => (
+                                    <Text key={ti} style={s.techBadge}>{tag}</Text>
+                                ))}
+                            </View>
+                        )}
+                    </View>
                 </View>
 
                 {/* ── FOOTER (fixed) ── */}

@@ -3,8 +3,8 @@ import { FaGithub, FaLinkedin, FaEnvelope, FaFileDownload, FaArrowRight, FaSpinn
 import { SiDotnet } from 'react-icons/si';
 import { FaReact, FaDatabase, FaDocker } from 'react-icons/fa';
 import { PDFDownloadLink } from '@react-pdf/renderer';
-import { CVDocument } from '../PDF/CVDocument';
-import { CVDocumentEN } from '../PDF/CVDocumentEN';
+import { CVDocumentLeaf_ES } from '../PDF/CVDocumentLeaf_ES';
+import { CVDocumentLeaf_EN } from '../PDF/CVDocumentLeaf_EN';
 import { CVDocumentATS_ES } from '../PDF/CVDocumentATS_ES';
 import { CVDocumentATS_EN } from '../PDF/CVDocumentATS_EN';
 import { useLanguage } from '../../context/LanguageContext';
@@ -145,7 +145,7 @@ export const Hero: React.FC = () => {
                                         <span className="text-xs font-bold text-zinc-400 uppercase tracking-wider font-['Manrope']">Diseño Visual</span>
                                     </div>
                                     <PDFDownloadLink
-                                        document={<CVDocument />}
+                                        document={<CVDocumentLeaf_ES />}
                                         fileName="CV_Erick_Rodriguez_ES.pdf"
                                         style={{ display: 'block', width: '100%', padding: '12px 16px', textDecoration: 'none', boxSizing: 'border-box' }}
                                         className="text-zinc-700 dark:text-zinc-200 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
@@ -158,7 +158,7 @@ export const Hero: React.FC = () => {
                                         )}
                                     </PDFDownloadLink>
                                     <PDFDownloadLink
-                                        document={<CVDocumentEN />}
+                                        document={<CVDocumentLeaf_EN />}
                                         fileName="CV_Erick_Rodriguez_EN.pdf"
                                         style={{ display: 'block', width: '100%', padding: '12px 16px', textDecoration: 'none', borderTop: '1px solid #f4f4f5', boxSizing: 'border-box' }}
                                         className="text-zinc-700 dark:text-zinc-200 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"

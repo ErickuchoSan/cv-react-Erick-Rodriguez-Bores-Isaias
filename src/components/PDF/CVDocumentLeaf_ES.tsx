@@ -276,8 +276,8 @@ export const CVDocumentLeaf_ES: React.FC = () => {
         <Document>
             <Page size="A4" style={s.page} wrap={true}>
 
-                {/* ── SIDEBAR (fixed: repeats every page) ── */}
-                <View fixed style={s.sidebar}>
+                {/* ── SIDEBAR (page 1 only) ── */}
+                <View style={s.sidebar}>
                     <Image src={profileImage} style={s.photo} />
 
                     <Text style={s.name}>{t.hero.title}{'\n'}{t.hero.subtitle}</Text>

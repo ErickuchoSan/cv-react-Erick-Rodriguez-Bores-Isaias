@@ -5,6 +5,7 @@ import { useLanguage } from '../../context/LanguageContext';
 import { SectionParticles } from '../UI/SectionParticles';
 import { GlassCard } from '../UI/GlassCard';
 import { EXPERIENCE_DATA } from '../../data/experience';
+import { Reveal, RevealGroup } from '../UI/Reveal';
 
 export const Experience: React.FC = () => {
     const { t } = useLanguage();
@@ -34,18 +35,20 @@ export const Experience: React.FC = () => {
             <SectionParticles />
 
             <div className="max-w-6xl mx-auto px-6 lg:px-8 relative z-10">
-                <SectionTitle
-                    title={t.experience.title}
-                    subtitle={t.experience.subtitle}
-                />
+                <Reveal y={40}>
+                    <SectionTitle
+                        title={t.experience.title}
+                        subtitle={t.experience.subtitle}
+                    />
+                </Reveal>
 
                 <div className="space-y-8 sm:space-y-10">
-                    {experiencePoints.map((exp, index) => (
-                        <GlassCard
-                            key={index}
-                            className="experience-card p-6 sm:p-8 group animate-fade-in-up opacity-0 relative overflow-hidden"
-                            style={{ animationDelay: `${index * 200}ms` }}
-                        >
+                    <RevealGroup stagger={100} baseDelay={80}>
+                        {experiencePoints.map((exp, index) => (
+                            <Reveal key={index} y={40}>
+                                <GlassCard
+                                    className="experience-card p-6 sm:p-8 group relative overflow-hidden"
+                                >
                             {/* Top accent line */}
                             <div className="absolute top-0 left-0 right-0 h-0.5 bg-[#b61722] opacity-0 group-hover:opacity-100 transition-opacity duration-400"></div>
 
@@ -119,8 +122,10 @@ export const Experience: React.FC = () => {
                                     </div>
                                 </div>
                             </div>
-                        </GlassCard>
-                    ))}
+                                </GlassCard>
+                            </Reveal>
+                        ))}
+                    </RevealGroup>
                 </div>
             </div>
         </section>

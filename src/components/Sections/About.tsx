@@ -4,6 +4,7 @@ import { FaGraduationCap, FaMapMarkerAlt, FaBriefcase, FaRobot } from 'react-ico
 import { useLanguage } from '../../context/LanguageContext';
 import { SectionParticles } from '../UI/SectionParticles';
 import { GlassCard } from '../UI/GlassCard';
+import { Reveal, RevealGroup } from '../UI/Reveal';
 
 export const About: React.FC = () => {
     const { t } = useLanguage();
@@ -13,31 +14,39 @@ export const About: React.FC = () => {
             <SectionParticles />
 
             <div className="max-w-6xl mx-auto px-6 lg:px-8 relative z-10">
-                <SectionTitle
-                    title={t.about.title}
-                    subtitle={t.about.subtitle}
-                />
+                <Reveal y={40}>
+                    <SectionTitle
+                        title={t.about.title}
+                        subtitle={t.about.subtitle}
+                    />
+                </Reveal>
 
                 <div className="grid md:grid-cols-2 gap-10 md:gap-14 items-start">
                     <div>
-                        <h3 className="text-xl sm:text-2xl font-black mb-5 text-zinc-900 dark:text-zinc-100 font-['Manrope'] uppercase tracking-tight">
-                            {t.about.roleTitle}
-                        </h3>
-                        <p className="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 mb-5 leading-relaxed font-['Inter']" dangerouslySetInnerHTML={{ __html: t.about.description1 }}></p>
-                        <p className="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 mb-8 leading-relaxed font-['Inter']" dangerouslySetInnerHTML={{ __html: t.about.description2 }}></p>
+                        <Reveal y={40} delay={80}>
+                            <h3 className="text-xl sm:text-2xl font-black mb-5 text-zinc-900 dark:text-zinc-100 font-['Manrope'] uppercase tracking-tight">
+                                {t.about.roleTitle}
+                            </h3>
+                            <p className="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 mb-5 leading-relaxed font-['Inter']" dangerouslySetInnerHTML={{ __html: t.about.description1 }}></p>
+                            <p className="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 mb-8 leading-relaxed font-['Inter']" dangerouslySetInnerHTML={{ __html: t.about.description2 }}></p>
+                        </Reveal>
 
                         <div className="grid grid-cols-2 gap-3">
-                            {[
-                                { value: '3+', label: t.about.stats.experience },
-                                { value: '20+', label: t.about.stats.technologies },
-                                { value: '15+', label: t.about.stats.projects },
-                                { value: '40%', label: t.about.stats.optimization }
-                            ].map((stat, index) => (
-                                <GlassCard key={index} className="p-4 border-l-2 border-[#b61722]">
-                                    <div className="text-2xl sm:text-3xl font-black text-[#b61722] font-['Manrope']">{stat.value}</div>
-                                    <div className="text-sm text-zinc-500 dark:text-zinc-400 mt-1 font-['Inter']">{stat.label}</div>
-                                </GlassCard>
-                            ))}
+                            <RevealGroup stagger={80} baseDelay={160}>
+                                {[
+                                    { value: '3+', label: t.about.stats.experience },
+                                    { value: '20+', label: t.about.stats.technologies },
+                                    { value: '15+', label: t.about.stats.projects },
+                                    { value: '40%', label: t.about.stats.optimization }
+                                ].map((stat, index) => (
+                                    <Reveal key={index} y={20}>
+                                        <GlassCard className="p-4 border-l-2 border-[#b61722]">
+                                            <div className="text-2xl sm:text-3xl font-black text-[#b61722] font-['Manrope']">{stat.value}</div>
+                                            <div className="text-sm text-zinc-500 dark:text-zinc-400 mt-1 font-['Inter']">{stat.label}</div>
+                                        </GlassCard>
+                                    </Reveal>
+                                ))}
+                            </RevealGroup>
                         </div>
                     </div>
 

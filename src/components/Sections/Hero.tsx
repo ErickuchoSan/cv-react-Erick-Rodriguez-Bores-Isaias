@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { FaGithub, FaLinkedin, FaEnvelope, FaFileDownload, FaArrowRight, FaSpinner, FaTimes } from 'react-icons/fa';
 import { SiDotnet } from 'react-icons/si';
 import { FaReact, FaDatabase, FaDocker } from 'react-icons/fa';
@@ -22,6 +22,7 @@ export const Hero: React.FC = () => {
     const { t } = useLanguage();
     const [showDownloadOptions, setShowDownloadOptions] = useState(false);
     const [showPhotoModal, setShowPhotoModal] = useState(false);
+    const downloadRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const handleEscape = (e: KeyboardEvent) => {
@@ -33,6 +34,17 @@ export const Hero: React.FC = () => {
         document.addEventListener('keydown', handleEscape);
         return () => document.removeEventListener('keydown', handleEscape);
     }, []);
+
+    useEffect(() => {
+        if (!showDownloadOptions) return;
+        const handleClickOutside = (e: MouseEvent) => {
+            if (downloadRef.current && !downloadRef.current.contains(e.target as Node)) {
+                setShowDownloadOptions(false);
+            }
+        };
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, [showDownloadOptions]);
 
     useEffect(() => {
         if (showPhotoModal) {
@@ -124,84 +136,105 @@ export const Hero: React.FC = () => {
                             {t.hero.projectsBtn}
                         </a>
 
-                        {/* Download CV Dropdown */}
-                        <div className="relative inline-flex">
+                        {/* Download CV Dropdown
+                            Convención de color de spinner:
+                            - text-[#b61722] (rojo editorial) → variantes Visuales (identidad de marca)
+                            - text-emerald-600 → variantes ATS (verde = sistema/utilitario) */}
+                        <div ref={downloadRef} className="relative inline-flex">
                             <button
                                 onClick={() => setShowDownloadOptions(!showDownloadOptions)}
                                 aria-label="Opciones para descargar CV"
                                 aria-expanded={showDownloadOptions}
+                                aria-haspopup="menu"
                                 className="flex items-center gap-2 px-6 py-4 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 font-bold uppercase tracking-widest text-sm font-['Manrope'] hover:bg-zinc-700 dark:hover:bg-white transition-colors duration-200"
                             >
                                 <FaFileDownload aria-hidden="true" />
-                                <span>{t.hero.downloadBtn}</span>
+                                <span>{t.download.cta}</span>
                             </button>
 
-                            {showDownloadOptions && (
-                                <div
-                                    className="absolute top-full left-0 mt-1 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 shadow-xl z-50"
-                                    style={{ minWidth: '230px' }}
-                                >
-                                    <div className="px-3 py-2 bg-zinc-50 dark:bg-zinc-800 border-b border-zinc-200 dark:border-zinc-700">
-                                        <span className="text-xs font-bold text-zinc-400 uppercase tracking-wider font-['Manrope']">Diseño Visual</span>
-                                    </div>
-                                    <PDFDownloadLink
-                                        document={<CVDocumentLeaf_ES />}
-                                        fileName="CV_Erick_Rodriguez_ES.pdf"
-                                        style={{ display: 'block', width: '100%', padding: '12px 16px', textDecoration: 'none', boxSizing: 'border-box' }}
-                                        className="text-zinc-700 dark:text-zinc-200 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
+                            <div
+                                role="menu"
+                                aria-hidden={!showDownloadOptions}
+                                className={`absolute top-full left-0 mt-2 min-w-[230px] bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 shadow-xl z-50 transition-all duration-200 ease-out ${
+                                    showDownloadOptions
+                                        ? 'opacity-100 translate-y-0 pointer-events-auto'
+                                        : 'opacity-0 -translate-y-2 pointer-events-none'
+                                }`}
+                            >
+                                <div className="px-3 py-2 bg-zinc-50 dark:bg-zinc-800 border-b border-zinc-200 dark:border-zinc-700">
+                                    <span
+                                        className="text-[10px] font-bold text-zinc-500 dark:text-zinc-400 uppercase font-['Manrope']"
+                                        style={{ letterSpacing: '0.24em' }}
                                     >
-                                        {({ loading, error }) => (
-                                            <span style={{ display: 'flex', alignItems: 'center', pointerEvents: 'none', fontSize: '14px' }}>
-                                                {loading && <FaSpinner aria-hidden="true" className="animate-spin mr-2 text-[#b61722]" />}
-                                                {error ? '⚠️ Error — Reintenta' : loading ? 'Español (Generando...)' : '🇲🇽 Español'}
-                                            </span>
-                                        )}
-                                    </PDFDownloadLink>
-                                    <PDFDownloadLink
-                                        document={<CVDocumentLeaf_EN />}
-                                        fileName="CV_Erick_Rodriguez_EN.pdf"
-                                        style={{ display: 'block', width: '100%', padding: '12px 16px', textDecoration: 'none', borderTop: '1px solid #f4f4f5', boxSizing: 'border-box' }}
-                                        className="text-zinc-700 dark:text-zinc-200 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
-                                    >
-                                        {({ loading }) => (
-                                            <span style={{ display: 'flex', alignItems: 'center', pointerEvents: 'none', fontSize: '14px' }}>
-                                                {loading && <FaSpinner aria-hidden="true" className="animate-spin mr-2 text-[#b61722]" />}
-                                                {loading ? 'English (Generating...)' : '🇺🇸 English'}
-                                            </span>
-                                        )}
-                                    </PDFDownloadLink>
-
-                                    <div className="px-3 py-2 bg-zinc-50 dark:bg-zinc-800 border-t border-b border-zinc-200 dark:border-zinc-700">
-                                        <span className="text-xs font-bold text-zinc-400 uppercase tracking-wider font-['Manrope']">Formato ATS</span>
-                                    </div>
-                                    <PDFDownloadLink
-                                        document={<CVDocumentATS_ES />}
-                                        fileName="CV_Erick_Rodriguez_ATS_ES.pdf"
-                                        style={{ display: 'block', width: '100%', padding: '12px 16px', textDecoration: 'none', boxSizing: 'border-box' }}
-                                        className="text-zinc-700 dark:text-zinc-200 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
-                                    >
-                                        {({ loading }) => (
-                                            <span style={{ display: 'flex', alignItems: 'center', pointerEvents: 'none', fontSize: '14px' }}>
-                                                {loading && <FaSpinner aria-hidden="true" className="animate-spin mr-2 text-green-500" />}
-                                                {loading ? 'ATS Español (Generando...)' : '🇲🇽 ATS Español'}
-                                            </span>
-                                        )}
-                                    </PDFDownloadLink>
-                                    <PDFDownloadLink
-                                        document={<CVDocumentATS_EN />}
-                                        fileName="CV_Erick_Rodriguez_ATS_EN.pdf"
-                                        style={{ display: 'block', width: '100%', padding: '12px 16px', textDecoration: 'none', borderTop: '1px solid #f4f4f5', boxSizing: 'border-box' }}
-                                        className="text-zinc-700 dark:text-zinc-200 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
-                                    >
-                                        {({ loading }) => (
-                                            <span style={{ display: 'flex', alignItems: 'center', pointerEvents: 'none', fontSize: '14px' }}>
-                                                {loading && <FaSpinner aria-hidden="true" className="animate-spin mr-2 text-green-500" />}
-                                                {loading ? 'ATS English (Generating...)' : '🇺🇸 ATS English'}
-                                            </span>
-                                        )}
-                                    </PDFDownloadLink>
+                                        {t.download.groupVisual}
+                                    </span>
                                 </div>
-                            )}
+                                <PDFDownloadLink
+                                    document={<CVDocumentLeaf_ES />}
+                                    fileName="CV_Erick_Rodriguez_ES.pdf"
+                                    onClick={() => setShowDownloadOptions(false)}
+                                    style={{ display: 'block', width: '100%', padding: '12px 16px', textDecoration: 'none', boxSizing: 'border-box' }}
+                                    className="text-zinc-700 dark:text-zinc-200 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
+                                >
+                                    {({ loading, error }) => (
+                                        <span style={{ display: 'flex', alignItems: 'center', pointerEvents: 'none', fontSize: '14px' }}>
+                                            {loading && <FaSpinner aria-hidden="true" className="animate-spin mr-2 text-[#b61722]" />}
+                                            {error ? `⚠️ ${t.download.visualEs}` : loading ? `${t.download.visualEs} (${t.hero.generating})` : `🇲🇽 ${t.download.visualEs}`}
+                                        </span>
+                                    )}
+                                </PDFDownloadLink>
+                                <PDFDownloadLink
+                                    document={<CVDocumentLeaf_EN />}
+                                    fileName="CV_Erick_Rodriguez_EN.pdf"
+                                    onClick={() => setShowDownloadOptions(false)}
+                                    style={{ display: 'block', width: '100%', padding: '12px 16px', textDecoration: 'none', boxSizing: 'border-box' }}
+                                    className="border-t border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-200 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
+                                >
+                                    {({ loading }) => (
+                                        <span style={{ display: 'flex', alignItems: 'center', pointerEvents: 'none', fontSize: '14px' }}>
+                                            {loading && <FaSpinner aria-hidden="true" className="animate-spin mr-2 text-[#b61722]" />}
+                                            {loading ? `${t.download.visualEn} (${t.hero.generating})` : `🇺🇸 ${t.download.visualEn}`}
+                                        </span>
+                                    )}
+                                </PDFDownloadLink>
+
+                                <div className="px-3 py-2 bg-zinc-50 dark:bg-zinc-800 border-t border-b border-zinc-200 dark:border-zinc-700">
+                                    <span
+                                        className="text-[10px] font-bold text-zinc-500 dark:text-zinc-400 uppercase font-['Manrope']"
+                                        style={{ letterSpacing: '0.24em' }}
+                                    >
+                                        {t.download.groupAts}
+                                    </span>
+                                </div>
+                                <PDFDownloadLink
+                                    document={<CVDocumentATS_ES />}
+                                    fileName="CV_Erick_Rodriguez_ATS_ES.pdf"
+                                    onClick={() => setShowDownloadOptions(false)}
+                                    style={{ display: 'block', width: '100%', padding: '12px 16px', textDecoration: 'none', boxSizing: 'border-box' }}
+                                    className="text-zinc-700 dark:text-zinc-200 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
+                                >
+                                    {({ loading }) => (
+                                        <span style={{ display: 'flex', alignItems: 'center', pointerEvents: 'none', fontSize: '14px' }}>
+                                            {loading && <FaSpinner aria-hidden="true" className="animate-spin mr-2 text-emerald-600" />}
+                                            {loading ? `${t.download.atsEs} (${t.hero.generating})` : `🇲🇽 ${t.download.atsEs}`}
+                                        </span>
+                                    )}
+                                </PDFDownloadLink>
+                                <PDFDownloadLink
+                                    document={<CVDocumentATS_EN />}
+                                    fileName="CV_Erick_Rodriguez_ATS_EN.pdf"
+                                    onClick={() => setShowDownloadOptions(false)}
+                                    style={{ display: 'block', width: '100%', padding: '12px 16px', textDecoration: 'none', boxSizing: 'border-box' }}
+                                    className="border-t border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-200 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
+                                >
+                                    {({ loading }) => (
+                                        <span style={{ display: 'flex', alignItems: 'center', pointerEvents: 'none', fontSize: '14px' }}>
+                                            {loading && <FaSpinner aria-hidden="true" className="animate-spin mr-2 text-emerald-600" />}
+                                            {loading ? `${t.download.atsEn} (${t.hero.generating})` : `🇺🇸 ${t.download.atsEn}`}
+                                        </span>
+                                    )}
+                                </PDFDownloadLink>
+                            </div>
                         </div>
                     </div>
 

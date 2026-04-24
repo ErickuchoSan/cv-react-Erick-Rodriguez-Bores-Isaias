@@ -15,8 +15,16 @@ export const translations = {
             description: 'Especialista en C#/.NET Core 10, React 19, SQL Server y Azure. 3 años desarrollando arquitecturas escalables y soluciones empresariales.',
             contactBtn: 'Contáctame',
             projectsBtn: 'Ver Proyectos',
-            downloadBtn: 'Descargar CV',
             generating: 'Generando...'
+        },
+        download: {
+            cta: 'Descargar CV',
+            groupVisual: 'Diseño visual',
+            groupAts: 'Formato ATS',
+            visualEs: 'Español',
+            visualEn: 'Inglés',
+            atsEs: 'ATS Español',
+            atsEn: 'ATS Inglés',
         },
         about: {
             title: 'Sobre Mí',
@@ -235,8 +243,16 @@ export const translations = {
             description: 'Specialist in C#/.NET Core 10/10, React 19, SQL Server and Azure. 3 years building scalable architectures and enterprise solutions.',
             contactBtn: 'Contact Me',
             projectsBtn: 'View Projects',
-            downloadBtn: 'Download CV',
             generating: 'Generating...'
+        },
+        download: {
+            cta: 'Download CV',
+            groupVisual: 'Visual design',
+            groupAts: 'ATS format',
+            visualEs: 'Spanish',
+            visualEn: 'English',
+            atsEs: 'ATS Spanish',
+            atsEn: 'ATS English',
         },
         about: {
             title: 'About Me',

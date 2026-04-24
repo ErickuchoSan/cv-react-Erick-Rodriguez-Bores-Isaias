@@ -1,4 +1,5 @@
 
+import { Analytics } from '@vercel/analytics/react';
 import { Navbar } from './components/Layout/Navbar';
 import { Hero } from './components/Sections/Hero';
 import { About } from './components/Sections/About';
@@ -10,8 +11,6 @@ import { Contact } from './components/Sections/Contact';
 import { Footer } from './components/Sections/Footer';
 
 function App() {
-
-
   return (
     <div className="min-h-screen">
       <Navbar />
@@ -25,6 +24,7 @@ function App() {
         <Contact />
       </main>
       <Footer />
+      <Analytics />
     </div>
   );
 }

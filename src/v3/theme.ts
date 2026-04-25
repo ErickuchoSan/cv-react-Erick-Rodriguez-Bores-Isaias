@@ -13,57 +13,75 @@ export interface Theme {
   lineStrong: string;
   mode: 'dark' | 'light';
   swatch: [string, string];
+  // Per-theme typography — gives each palette its own essence
+  display: string;
+  sans: string;
+  mono: string;
 }
 
 export const THEMES: Record<ThemeName, Theme> = {
+  // Editorial dark — high-contrast magazine, serif italic + clean sans
   noir: {
-    label: 'Noir', hint: 'Oscuro carbón',
-    bg: '#0a0a0a', bg2: '#121212', bg3: '#1a1a1a',
+    label: 'Noir', hint: 'Editorial carbón',
+    bg: '#0a0a0a', bg2: '#161616', bg3: '#202020',
     fg: '#fafaf7', fgMuted: '#a8a49e', fgDim: '#6a6762',
     line: 'rgba(250,250,247,0.08)', lineStrong: 'rgba(250,250,247,0.18)',
     mode: 'dark', swatch: ['#0a0a0a', '#fafaf7'],
+    display: 'Fraunces', sans: 'Inter', mono: 'JetBrains Mono',
   },
+  // Magazine print — clean white paper, classic serif
   paper: {
-    label: 'Paper', hint: 'Claro papel',
-    bg: '#f6f3ec', bg2: '#eeeae0', bg3: '#e4dfd1',
-    fg: '#1a1613', fgMuted: '#5a4f44', fgDim: '#8a7f73',
-    line: 'rgba(26,22,19,0.12)', lineStrong: 'rgba(26,22,19,0.28)',
-    mode: 'light', swatch: ['#f6f3ec', '#1a1613'],
+    label: 'Paper', hint: 'Print clásico',
+    bg: '#fafaf5', bg2: '#f0ede4', bg3: '#e6e1d3',
+    fg: '#16140f', fgMuted: '#5a4f3f', fgDim: '#8a7e6a',
+    line: 'rgba(22,20,15,0.10)', lineStrong: 'rgba(22,20,15,0.26)',
+    mode: 'light', swatch: ['#fafaf5', '#16140f'],
+    display: 'Fraunces', sans: 'Inter', mono: 'JetBrains Mono',
   },
+  // Vintage warm — antique book, Instrument Serif elegance
   ivory: {
-    label: 'Ivory', hint: 'Crema cálido',
-    bg: '#eee6d4', bg2: '#e4dcc6', bg3: '#d9cfb5',
-    fg: '#1f1a13', fgMuted: '#6b5d4a', fgDim: '#9a8a72',
-    line: 'rgba(31,26,19,0.12)', lineStrong: 'rgba(31,26,19,0.28)',
-    mode: 'light', swatch: ['#eee6d4', '#1f1a13'],
+    label: 'Ivory', hint: 'Vintage cálido',
+    bg: '#efe1bf', bg2: '#e3d4a8', bg3: '#d6c590',
+    fg: '#2a1d09', fgMuted: '#6e5a37', fgDim: '#9a865d',
+    line: 'rgba(42,29,9,0.13)', lineStrong: 'rgba(42,29,9,0.30)',
+    mode: 'light', swatch: ['#efe1bf', '#2a1d09'],
+    display: 'Instrument Serif', sans: 'Inter', mono: 'IBM Plex Mono',
   },
+  // Tech corporate — sharp blue steel, geometric sans throughout
   slate: {
-    label: 'Slate', hint: 'Azul pizarra',
-    bg: '#0d1520', bg2: '#14202f', bg3: '#1c2a3d',
-    fg: '#e8eef5', fgMuted: '#8fa1b8', fgDim: '#5a6a80',
-    line: 'rgba(232,238,245,0.08)', lineStrong: 'rgba(232,238,245,0.18)',
-    mode: 'dark', swatch: ['#0d1520', '#e8eef5'],
+    label: 'Slate', hint: 'Tech corporativo',
+    bg: '#0a1424', bg2: '#0f1d33', bg3: '#172843',
+    fg: '#dce9ff', fgMuted: '#7e9bcd', fgDim: '#4a6694',
+    line: 'rgba(220,233,255,0.09)', lineStrong: 'rgba(220,233,255,0.20)',
+    mode: 'dark', swatch: ['#0a1424', '#dce9ff'],
+    display: 'Space Grotesk', sans: 'Space Grotesk', mono: 'JetBrains Mono',
   },
+  // Organic — deep forest, warm serif
   forest: {
-    label: 'Forest', hint: 'Verde bosque',
-    bg: '#0c140f', bg2: '#14201a', bg3: '#1e2e25',
-    fg: '#ecf2ec', fgMuted: '#8ea598', fgDim: '#5a6e62',
-    line: 'rgba(236,242,236,0.08)', lineStrong: 'rgba(236,242,236,0.18)',
-    mode: 'dark', swatch: ['#0c140f', '#ecf2ec'],
+    label: 'Forest', hint: 'Bosque orgánico',
+    bg: '#081a10', bg2: '#102a1c', bg3: '#1a3d2a',
+    fg: '#dcefdc', fgMuted: '#7da890', fgDim: '#4a6e57',
+    line: 'rgba(220,239,220,0.09)', lineStrong: 'rgba(220,239,220,0.20)',
+    mode: 'dark', swatch: ['#081a10', '#dcefdc'],
+    display: 'Fraunces', sans: 'Inter', mono: 'JetBrains Mono',
   },
+  // Swiss minimal — flat off-white, all-sans rigor (NO serif anywhere)
   linen: {
-    label: 'Linen', hint: 'Blanco lino',
-    bg: '#ece7de', bg2: '#e0dace', bg3: '#d3ccbc',
-    fg: '#141210', fgMuted: '#58504a', fgDim: '#857e76',
-    line: 'rgba(20,18,16,0.12)', lineStrong: 'rgba(20,18,16,0.28)',
-    mode: 'light', swatch: ['#ece7de', '#141210'],
+    label: 'Linen', hint: 'Suizo minimal',
+    bg: '#e8e6dd', bg2: '#dcd9cd', bg3: '#cec9b9',
+    fg: '#0c0c0a', fgMuted: '#4a4742', fgDim: '#7a766f',
+    line: 'rgba(12,12,10,0.12)', lineStrong: 'rgba(12,12,10,0.30)',
+    mode: 'light', swatch: ['#e8e6dd', '#0c0c0a'],
+    display: 'Inter', sans: 'Inter', mono: 'JetBrains Mono',
   },
+  // Synthwave — cyber violet night, futurist geometric
   midnight: {
-    label: 'Midnight', hint: 'Violeta noche',
-    bg: '#0e0b1a', bg2: '#17132a', bg3: '#221c3d',
-    fg: '#ecebf5', fgMuted: '#9b95b8', fgDim: '#625c80',
-    line: 'rgba(236,235,245,0.08)', lineStrong: 'rgba(236,235,245,0.2)',
-    mode: 'dark', swatch: ['#0e0b1a', '#ecebf5'],
+    label: 'Midnight', hint: 'Cyber violeta',
+    bg: '#0d061f', bg2: '#1a0f38', bg3: '#291c52',
+    fg: '#ece4ff', fgMuted: '#a193d4', fgDim: '#665593',
+    line: 'rgba(236,228,255,0.08)', lineStrong: 'rgba(236,228,255,0.22)',
+    mode: 'dark', swatch: ['#0d061f', '#ece4ff'],
+    display: 'Space Grotesk', sans: 'Space Grotesk', mono: 'JetBrains Mono',
   },
 };
 
@@ -79,7 +97,4 @@ export const ACCENT_OPTIONS = [
 export const DEFAULTS = {
   theme: 'noir' as ThemeName,
   accent: '#ff5b2e',
-  display_font: 'Fraunces',
-  sans_font: 'Inter',
-  mono_font: 'JetBrains Mono',
 };

@@ -50,6 +50,9 @@ export function AppV3() {
     r.style.setProperty('--line', th.line);
     r.style.setProperty('--line-strong', th.lineStrong);
     r.style.setProperty('--accent', tweaks.accent);
+    r.style.setProperty('--font-display', `'${th.display}', serif`);
+    r.style.setProperty('--font-sans', `'${th.sans}', sans-serif`);
+    r.style.setProperty('--font-mono', `'${th.mono}', monospace`);
     try { localStorage.setItem(STORAGE_KEY, JSON.stringify(tweaks)); } catch { /* noop */ }
   }, [tweaks]);
 

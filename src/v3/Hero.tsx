@@ -6,7 +6,10 @@ import type { CVData } from './data';
 
 function ShaderBG() {
   const ref = useRef<HTMLCanvasElement>(null);
+  const isMobile = typeof window !== 'undefined'
+    && (matchMedia('(pointer: coarse)').matches || window.innerWidth < 768);
   useEffect(() => {
+    if (isMobile) return;
     const canvas = ref.current;
     if (!canvas) return;
     const gl = (canvas.getContext('webgl') || canvas.getContext('experimental-webgl')) as WebGLRenderingContext | null;
@@ -100,7 +103,17 @@ function ShaderBG() {
       window.removeEventListener('mousemove', onMove);
       window.removeEventListener('resize', resize);
     };
-  }, []);
+  }, [isMobile]);
+
+  if (isMobile) {
+    return (
+      <div style={{
+        position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none',
+        background: 'radial-gradient(ellipse at 30% 20%, color-mix(in oklab, var(--accent) 22%, transparent), transparent 55%), radial-gradient(ellipse at 80% 90%, color-mix(in oklab, var(--accent) 14%, transparent), transparent 60%), var(--bg)',
+        opacity: 0.85,
+      }} />
+    );
+  }
 
   return <canvas ref={ref} style={{
     position: 'absolute', inset: 0, width: '100%', height: '100%',
@@ -114,6 +127,7 @@ function Terminal({ name, role }: { name: string; role: string }) {
   const [blink, setBlink] = useState(true);
 
   useEffect(() => {
+    if (window.innerWidth < 768) return;
     const script: { cmd: string; out: string[] }[] = [
       { cmd: 'whoami', out: [name, role] },
       { cmd: 'stack --json', out: ['[', '  ".NET Core 10",', '  "React 19 · Next.js 16",', '  "PostgreSQL · SQL Server",', '  "NestJS 11 · Docker"', ']'] },
@@ -357,7 +371,9 @@ export function HeroV3({ data, lang }: { data: CVData; lang: 'es' | 'en' }) {
           </Reveal>
 
           <Reveal delay={1100} y={60}>
-            <Terminal name={D.name} role={D.role} />
+            <div className="hero-terminal-wrap">
+              <Terminal name={D.name} role={D.role} />
+            </div>
           </Reveal>
         </div>
       </div>
@@ -365,6 +381,9 @@ export function HeroV3({ data, lang }: { data: CVData; lang: 'es' | 'en' }) {
       <style>{`
         @media (max-width: 1000px) {
           .hero-grid { grid-template-columns: 1fr !important; gap: 30px !important; }
+        }
+        @media (max-width: 768px) {
+          .hero-terminal-wrap { display: none !important; }
         }
       `}</style>
     </section>

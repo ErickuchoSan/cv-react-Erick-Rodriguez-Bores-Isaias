@@ -5,15 +5,21 @@ import {
 
 const scrollListeners = new Set<(y: number, v: number) => void>();
 let _lastY = 0;
+let _ticking = false;
 if (typeof window !== 'undefined') {
-  const tick = () => {
+  const fire = () => {
     const y = window.scrollY;
     const v = y - _lastY;
     _lastY = y;
     scrollListeners.forEach((fn) => fn(y, v));
-    requestAnimationFrame(tick);
+    _ticking = false;
   };
-  tick();
+  window.addEventListener('scroll', () => {
+    if (!_ticking) {
+      _ticking = true;
+      requestAnimationFrame(fire);
+    }
+  }, { passive: true });
 }
 
 export function useInView(opts: { threshold?: number; rootMargin?: string; once?: boolean } = {}) {
@@ -146,6 +152,7 @@ export function Magnetic({
 }: { children: ReactNode; strength?: number; style?: CSSProperties }) {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
+    if (matchMedia('(pointer: coarse)').matches) return;
     const el = ref.current;
     if (!el) return;
     let rx = 0, ry = 0, tx = 0, ty = 0, raf = 0;
@@ -178,6 +185,7 @@ export function Parallax({
 }: { children: ReactNode; speed?: number; style?: CSSProperties }) {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
+    if (matchMedia('(pointer: coarse)').matches) return;
     const el = ref.current;
     if (!el) return;
     const fn = () => {
@@ -198,6 +206,7 @@ export function Tilt({
   const ref = useRef<HTMLDivElement>(null);
   const glareRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
+    if (matchMedia('(pointer: coarse)').matches) return;
     const el = ref.current;
     if (!el) return;
     const onMove = (e: MouseEvent) => {

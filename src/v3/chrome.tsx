@@ -8,7 +8,7 @@ export function CursorV3() {
   const [state, setState] = useState({ hover: false, label: '' });
 
   useEffect(() => {
-    if (matchMedia('(pointer: coarse)').matches) return;
+    if (matchMedia('(pointer: coarse)').matches || window.innerWidth < 768) return;
     const dot = dotRef.current, ring = ringRef.current;
     let mx = window.innerWidth / 2, my = window.innerHeight / 2;
     let rx = mx, ry = my, dx = mx, dy = my;

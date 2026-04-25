@@ -6,9 +6,14 @@ export function CursorV3() {
   const dotRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
   const [state, setState] = useState({ hover: false, label: '' });
+  const [enabled, setEnabled] = useState(false);
 
   useEffect(() => {
-    if (matchMedia('(pointer: coarse)').matches || window.innerWidth < 768) return;
+    setEnabled(!matchMedia('(pointer: coarse)').matches && window.innerWidth >= 768);
+  }, []);
+
+  useEffect(() => {
+    if (!enabled) return;
     const dot = dotRef.current, ring = ringRef.current;
     let mx = window.innerWidth / 2, my = window.innerHeight / 2;
     let rx = mx, ry = my, dx = mx, dy = my;
@@ -39,7 +44,9 @@ export function CursorV3() {
       window.removeEventListener('mousemove', onMove);
       document.removeEventListener('mouseover', onOver);
     };
-  }, []);
+  }, [enabled]);
+
+  if (!enabled) return null;
 
   const big = state.hover && state.label.length > 0;
   return (

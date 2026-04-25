@@ -22,28 +22,40 @@ if (typeof window !== 'undefined') {
   }, { passive: true });
 }
 
-export function useInView(opts: { threshold?: number; rootMargin?: string; once?: boolean } = {}) {
+// One shared observer for all reveals — drastically cheaper than N observers.
+type Cb = (inView: boolean) => void;
+const cbs = new WeakMap<Element, Cb>();
+let _io: IntersectionObserver | null = null;
+function getIO() {
+  if (_io || typeof window === 'undefined') return _io;
+  _io = new IntersectionObserver((entries) => {
+    for (const e of entries) {
+      const cb = cbs.get(e.target);
+      if (cb && e.isIntersecting) {
+        cb(true);
+        _io?.unobserve(e.target);
+        cbs.delete(e.target);
+      }
+    }
+  }, { threshold: 0.01, rootMargin: '0px 0px 20% 0px' });
+  return _io;
+}
+
+export function useInView(_opts: { threshold?: number; rootMargin?: string; once?: boolean } = {}) {
   const ref = useRef<HTMLElement | null>(null);
   const [inView, setInView] = useState(false);
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            setInView(true);
-            if (opts.once !== false) io.unobserve(el);
-          } else if (opts.once === false) {
-            setInView(false);
-          }
-        });
-      },
-      { threshold: opts.threshold ?? 0.01, rootMargin: opts.rootMargin ?? '0px 0px 20% 0px' }
-    );
+    const io = getIO();
+    if (!io) { setInView(true); return; }
+    cbs.set(el, setInView);
     io.observe(el);
-    return () => io.disconnect();
-  }, [opts.threshold, opts.rootMargin, opts.once]);
+    return () => {
+      io.unobserve(el);
+      cbs.delete(el);
+    };
+  }, []);
   return [ref, inView] as const;
 }
 
@@ -70,7 +82,7 @@ export function Reveal({
         transform: inView ? 'translate3d(0,0,0)' : `translate3d(0,${y}px,0)`,
         opacity: inView ? 1 : 0,
         transition: `transform ${duration}ms cubic-bezier(.2,.8,.2,1) ${delay}ms, opacity ${duration}ms ease ${delay}ms`,
-        willChange: 'transform, opacity',
+        willChange: inView ? 'auto' : 'transform, opacity',
       }}
     >
       {children}
@@ -92,7 +104,7 @@ export function MaskReveal({
           display: 'inline-block',
           transform: inView ? 'translate3d(0,0,0)' : 'translate3d(0,105%,0)',
           transition: `transform ${duration}ms cubic-bezier(.19,1,.22,1) ${delay}ms`,
-          willChange: 'transform',
+          willChange: inView ? 'auto' : 'transform',
         }}
       >
         {children}
@@ -118,7 +130,7 @@ export function WordsMask({
             fontStyle: italic ? 'italic' : 'inherit',
             transform: inView ? 'translate3d(0,0,0)' : 'translate3d(0,110%,0)',
             transition: `transform ${duration}ms cubic-bezier(.19,1,.22,1) ${delay + i * step}ms`,
-            willChange: 'transform',
+            willChange: inView ? 'auto' : 'transform',
           }}>{w}</span>
         </span>
       ))}

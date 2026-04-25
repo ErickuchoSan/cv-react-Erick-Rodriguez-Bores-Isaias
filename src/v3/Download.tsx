@@ -1,12 +1,27 @@
 import { lazy, Suspense, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
+import { THEMES, ACCENT_OPTIONS, type ThemeName } from './theme';
+import type { PdfTheme } from '../components/PDF/leafStyles';
 
-// Lazy-load the heavy PDF runtime + documents — only when dropdown opens.
 const PdfMenu = lazy(() => import('./PdfMenu'));
 
-interface Props { lang: 'es' | 'en' }
+interface Props {
+  lang: 'es' | 'en';
+  themeName: ThemeName;
+  accent: string;
+}
 
-export function DownloadV3({ lang }: Props) {
+function toPdfTheme(name: ThemeName): PdfTheme {
+  const th = THEMES[name];
+  return {
+    bg: th.bg, bg2: th.bg2, bg3: th.bg3,
+    fg: th.fg, fgMuted: th.fgMuted, fgDim: th.fgDim,
+    line: th.line, lineStrong: th.lineStrong,
+    mode: th.mode,
+  };
+}
+
+export function DownloadV3({ lang, themeName, accent }: Props) {
   const [open, setOpen] = useState(false);
   const [pos, setPos] = useState<{ left: number; top: number; width: number } | null>(null);
   const ref = useRef<HTMLDivElement>(null);
@@ -35,9 +50,6 @@ export function DownloadV3({ lang }: Props) {
     };
   }, [open]);
 
-  // Pre-warm the PdfMenu chunk on hover/focus so click feels instant
-  const prewarm = () => { import('./PdfMenu'); };
-
   useEffect(() => {
     const onClick = (e: MouseEvent) => {
       const t = e.target as Node;
@@ -54,9 +66,14 @@ export function DownloadV3({ lang }: Props) {
     };
   }, []);
 
-  const t = lang === 'es'
-    ? { cta: 'Descargar CV' }
-    : { cta: 'Download CV' };
+  const prewarm = () => { import('./PdfMenu'); };
+
+  const t = lang === 'es' ? { cta: 'Descargar CV' } : { cta: 'Download CV' };
+  const accentLabel = ACCENT_OPTIONS.find((a) => a.value === accent)?.label ?? accent;
+  const theme = THEMES[themeName];
+  const fontLabel = theme.display === theme.sans
+    ? `${theme.display} (sans)`
+    : `${theme.display} + ${theme.sans}`;
 
   return (
     <div ref={ref} style={{ position: 'relative', display: 'inline-block' }}>
@@ -91,7 +108,15 @@ export function DownloadV3({ lang }: Props) {
           }}
         >
           <Suspense fallback={null}>
-            <PdfMenu lang={lang} onClose={() => setOpen(false)} />
+            <PdfMenu
+              lang={lang}
+              onClose={() => setOpen(false)}
+              themeName={theme.label}
+              theme={toPdfTheme(themeName)}
+              accent={accent}
+              accentLabel={accentLabel}
+              fontLabel={fontLabel}
+            />
           </Suspense>
         </div>,
         document.body,

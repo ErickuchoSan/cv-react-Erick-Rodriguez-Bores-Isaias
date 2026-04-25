@@ -3,6 +3,7 @@ import { Reveal, MaskReveal, Magnetic, Parallax, Tilt } from './primitives';
 import { TechIcon } from './TechIcon';
 import { DownloadV3 } from './Download';
 import type { CVData } from './data';
+import type { ThemeName } from './theme';
 
 function ShaderBG() {
   const ref = useRef<HTMLCanvasElement>(null);
@@ -211,7 +212,7 @@ function Terminal({ name, role }: { name: string; role: string }) {
   );
 }
 
-export function HeroV3({ data, lang }: { data: CVData; lang: 'es' | 'en' }) {
+export function HeroV3({ data, lang, themeName, accent }: { data: CVData; lang: 'es' | 'en'; themeName: ThemeName; accent: string }) {
   const D = data;
   const labels = lang === 'es'
     ? { portfolio: 'portfolio / curriculum / 2026', bio: '— Bio',
@@ -372,7 +373,7 @@ export function HeroV3({ data, lang }: { data: CVData; lang: 'es' | 'en' }) {
                     border: '1px solid var(--fg)',
                   }}>{labels.cta2}</a>
                 </Magnetic>
-                <DownloadV3 lang={lang} />
+                <DownloadV3 lang={lang} themeName={themeName} accent={accent} />
               </div>
             </div>
           </Reveal>

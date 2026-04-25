@@ -39,7 +39,7 @@ export function useInView(opts: { threshold?: number; rootMargin?: string; once?
           }
         });
       },
-      { threshold: opts.threshold ?? 0.15, rootMargin: opts.rootMargin ?? '0px' }
+      { threshold: opts.threshold ?? 0.01, rootMargin: opts.rootMargin ?? '0px 0px 20% 0px' }
     );
     io.observe(el);
     return () => io.disconnect();
@@ -58,9 +58,9 @@ interface RevealProps {
 }
 
 export function Reveal({
-  children, delay = 0, y = 40, duration = 1200, as: Tag = 'div', style, className,
+  children, delay = 0, y = 40, duration = 600, as: Tag = 'div', style, className,
 }: RevealProps) {
-  const [ref, inView] = useInView({ threshold: 0.12 });
+  const [ref, inView] = useInView();
   return (
     <Tag
       ref={ref as never}
@@ -79,9 +79,9 @@ export function Reveal({
 }
 
 export function MaskReveal({
-  children, delay = 0, duration = 1400, style,
+  children, delay = 0, duration = 700, style,
 }: { children: ReactNode; delay?: number; duration?: number; style?: CSSProperties }) {
-  const [ref, inView] = useInView({ threshold: 0.25 });
+  const [ref, inView] = useInView();
   return (
     <span
       ref={ref as never}
@@ -102,9 +102,9 @@ export function MaskReveal({
 }
 
 export function WordsMask({
-  text, delay = 0, step = 80, duration = 1200, italic = false, style,
+  text, delay = 0, step = 35, duration = 600, italic = false, style,
 }: { text: string; delay?: number; step?: number; duration?: number; italic?: boolean; style?: CSSProperties }) {
-  const [ref, inView] = useInView({ threshold: 0.2 });
+  const [ref, inView] = useInView();
   const words = text.split(' ');
   return (
     <span ref={ref as never} style={style}>

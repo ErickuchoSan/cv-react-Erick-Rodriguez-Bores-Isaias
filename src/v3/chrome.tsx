@@ -88,14 +88,15 @@ export function NavV3({ active, sections, onNav }: { active: string; sections: S
   }, [active]);
 
   return (
-    <div style={{
+    <div className="nav-v3" style={{
       position: 'fixed', top: 20, left: '50%', transform: 'translateX(-50%)',
-      zIndex: 80, padding: 6,
+      zIndex: 80, padding: 4,
       background: 'color-mix(in oklab, var(--bg) 70%, transparent)',
       backdropFilter: 'blur(24px) saturate(180%)',
       WebkitBackdropFilter: 'blur(24px) saturate(180%)',
       border: '1px solid var(--line-strong)',
       borderRadius: 100, fontFamily: 'var(--font-mono)', fontSize: 11,
+      maxWidth: 'calc(100vw - 24px)', overflow: 'hidden',
     }}>
       <div ref={navRef} style={{ display: 'flex', position: 'relative' }}>
         <div style={{
@@ -108,18 +109,25 @@ export function NavV3({ active, sections, onNav }: { active: string; sections: S
         {sections.map((s) => (
           <button key={s.id} data-sid={s.id} data-cursor="ir"
             onClick={() => onNav(s.id)}
+            className="nav-v3-btn"
             style={{
-              position: 'relative', zIndex: 1, padding: '9px 18px',
+              position: 'relative', zIndex: 1, padding: '9px 14px',
               background: 'transparent', border: 'none',
               color: active === s.id ? 'var(--bg)' : 'var(--fg)',
-              fontFamily: 'inherit', fontSize: 11, letterSpacing: 1.4,
+              fontFamily: 'inherit', fontSize: 11, letterSpacing: 1.2,
               textTransform: 'uppercase', fontWeight: 600,
-              transition: 'color 0.3s',
+              transition: 'color 0.3s', whiteSpace: 'nowrap',
             }}>
             {s.label}
           </button>
         ))}
       </div>
+      <style>{`
+        @media (max-width: 640px) {
+          .nav-v3 { top: 12px !important; }
+          .nav-v3-btn { padding: 7px 9px !important; font-size: 9px !important; letter-spacing: 0.8px !important; }
+        }
+      `}</style>
     </div>
   );
 }
@@ -166,12 +174,12 @@ export function CornerTools({ theme, onCycleTheme, onCycleAccent, onToggleLang, 
   };
 
   return (
-    <div style={{
-      position: 'fixed', top: 28, right: 28, zIndex: 80,
-      display: 'flex', gap: 10, alignItems: 'center',
-      fontFamily: 'var(--font-mono)', fontSize: 11, flexWrap: 'wrap',
+    <div className="corner-tools" style={{
+      position: 'fixed', top: 70, right: 16, zIndex: 80,
+      display: 'flex', gap: 8, alignItems: 'center',
+      fontFamily: 'var(--font-mono)', fontSize: 11,
     }}>
-      <div style={pillStyle}>
+      <div className="corner-clock" style={pillStyle}>
         <span style={{
           width: 6, height: 6, borderRadius: '50%',
           background: 'var(--success)', boxShadow: '0 0 8px var(--success)',
@@ -195,6 +203,14 @@ export function CornerTools({ theme, onCycleTheme, onCycleAccent, onToggleLang, 
       }}>
         <ThemeGlyph theme={theme} />
       </button>
+      <style>{`
+        @media (min-width: 641px) {
+          .corner-tools { top: 28px !important; right: 28px !important; gap: 10px !important; }
+        }
+        @media (max-width: 640px) {
+          .corner-clock { display: none !important; }
+        }
+      `}</style>
     </div>
   );
 }

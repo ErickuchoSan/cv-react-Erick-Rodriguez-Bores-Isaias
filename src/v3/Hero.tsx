@@ -12,6 +12,10 @@ function ShaderBG() {
     if (isMobile) return;
     const canvas = ref.current;
     if (!canvas) return;
+    // Pause shader when hero is offscreen — saves GPU + battery.
+    let paused = false;
+    const io = new IntersectionObserver(([e]) => { paused = !e.isIntersecting; }, { threshold: 0 });
+    io.observe(canvas);
     const gl = (canvas.getContext('webgl') || canvas.getContext('experimental-webgl')) as WebGLRenderingContext | null;
     if (!gl) return;
 
@@ -84,22 +88,25 @@ function ShaderBG() {
 
     let raf = 0; const t0 = performance.now();
     const tick = () => {
-      const cs = getComputedStyle(document.documentElement);
-      const accent = cs.getPropertyValue('--accent').trim() || '#ff5b2e';
-      const bg = cs.getPropertyValue('--bg').trim() || '#0a0a0a';
-      const [r, g, b] = hex(accent);
-      const [br, bg_, bb] = hex(bg);
-      gl.uniform2f(u_res, canvas.width, canvas.height);
-      gl.uniform1f(u_t, (performance.now() - t0) / 1000);
-      gl.uniform2f(u_m, mx, my);
-      gl.uniform3f(u_accent, r, g, b);
-      gl.uniform3f(u_base, br, bg_, bb);
-      gl.drawArrays(gl.TRIANGLES, 0, 6);
+      if (!paused && document.visibilityState !== 'hidden') {
+        const cs = getComputedStyle(document.documentElement);
+        const accent = cs.getPropertyValue('--accent').trim() || '#ff5b2e';
+        const bg = cs.getPropertyValue('--bg').trim() || '#0a0a0a';
+        const [r, g, b] = hex(accent);
+        const [br, bg_, bb] = hex(bg);
+        gl.uniform2f(u_res, canvas.width, canvas.height);
+        gl.uniform1f(u_t, (performance.now() - t0) / 1000);
+        gl.uniform2f(u_m, mx, my);
+        gl.uniform3f(u_accent, r, g, b);
+        gl.uniform3f(u_base, br, bg_, bb);
+        gl.drawArrays(gl.TRIANGLES, 0, 6);
+      }
       raf = requestAnimationFrame(tick);
     };
     tick();
     return () => {
       cancelAnimationFrame(raf);
+      io.disconnect();
       window.removeEventListener('mousemove', onMove);
       window.removeEventListener('resize', resize);
     };

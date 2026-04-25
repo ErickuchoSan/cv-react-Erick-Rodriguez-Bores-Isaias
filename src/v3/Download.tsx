@@ -1,4 +1,5 @@
-import { lazy, Suspense, useEffect, useRef, useState } from 'react';
+import { lazy, Suspense, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 
 // Lazy-load the heavy PDF runtime + documents — only when dropdown opens.
 const PdfMenu = lazy(() => import('./PdfMenu'));
@@ -7,11 +8,31 @@ interface Props { lang: 'es' | 'en' }
 
 export function DownloadV3({ lang }: Props) {
   const [open, setOpen] = useState(false);
+  const [pos, setPos] = useState<{ left: number; top: number; width: number } | null>(null);
   const ref = useRef<HTMLDivElement>(null);
+  const btnRef = useRef<HTMLButtonElement>(null);
+
+  useLayoutEffect(() => {
+    if (!open || !btnRef.current) return;
+    const measure = () => {
+      const r = btnRef.current!.getBoundingClientRect();
+      setPos({ left: r.left, top: r.bottom + 8, width: Math.max(r.width, 260) });
+    };
+    measure();
+    window.addEventListener('resize', measure);
+    window.addEventListener('scroll', measure, true);
+    return () => {
+      window.removeEventListener('resize', measure);
+      window.removeEventListener('scroll', measure, true);
+    };
+  }, [open]);
 
   useEffect(() => {
     const onClick = (e: MouseEvent) => {
-      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+      const t = e.target as Node;
+      if (ref.current && !ref.current.contains(t) && !document.getElementById('pdf-menu-portal')?.contains(t)) {
+        setOpen(false);
+      }
     };
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setOpen(false); };
     document.addEventListener('mousedown', onClick);
@@ -29,6 +50,7 @@ export function DownloadV3({ lang }: Props) {
   return (
     <div ref={ref} style={{ position: 'relative', display: 'inline-block' }}>
       <button
+        ref={btnRef}
         data-cursor={t.cta}
         aria-expanded={open}
         aria-haspopup="menu"
@@ -45,10 +67,20 @@ export function DownloadV3({ lang }: Props) {
         ↓ {t.cta}
       </button>
 
-      {open && (
-        <Suspense fallback={null}>
-          <PdfMenu lang={lang} onClose={() => setOpen(false)} />
-        </Suspense>
+      {open && pos && createPortal(
+        <div
+          id="pdf-menu-portal"
+          style={{
+            position: 'fixed',
+            left: pos.left, top: pos.top, minWidth: pos.width,
+            zIndex: 9999,
+          }}
+        >
+          <Suspense fallback={null}>
+            <PdfMenu lang={lang} onClose={() => setOpen(false)} />
+          </Suspense>
+        </div>,
+        document.body,
       )}
     </div>
   );

@@ -23,10 +23,8 @@ const headerStyle = {
 };
 
 const wrapStyle = {
-  position: 'absolute', top: 'calc(100% + 8px)', left: 0,
-  minWidth: 260, zIndex: 60,
-  background: 'color-mix(in oklab, var(--bg) 92%, transparent)',
-  backdropFilter: 'blur(24px) saturate(140%)',
+  minWidth: 260,
+  background: 'var(--bg)',
   border: '1px solid var(--line-strong)',
   boxShadow: '0 20px 60px rgba(0,0,0,0.45), 0 0 0 1px color-mix(in oklab, var(--accent) 12%, transparent)',
 } as const;

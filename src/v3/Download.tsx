@@ -14,18 +14,29 @@ export function DownloadV3({ lang }: Props) {
 
   useLayoutEffect(() => {
     if (!open || !btnRef.current) return;
+    let raf = 0;
     const measure = () => {
       const r = btnRef.current!.getBoundingClientRect();
-      setPos({ left: r.left, top: r.bottom + 8, width: Math.max(r.width, 260) });
+      const width = Math.min(Math.max(r.width, 280), window.innerWidth - 24);
+      const left = Math.max(12, Math.min(r.left, window.innerWidth - width - 12));
+      setPos({ left, top: r.bottom + 8, width });
     };
     measure();
-    window.addEventListener('resize', measure);
-    window.addEventListener('scroll', measure, true);
+    const onScroll = () => {
+      if (raf) return;
+      raf = requestAnimationFrame(() => { raf = 0; measure(); });
+    };
+    window.addEventListener('resize', onScroll);
+    window.addEventListener('scroll', onScroll, true);
     return () => {
-      window.removeEventListener('resize', measure);
-      window.removeEventListener('scroll', measure, true);
+      cancelAnimationFrame(raf);
+      window.removeEventListener('resize', onScroll);
+      window.removeEventListener('scroll', onScroll, true);
     };
   }, [open]);
+
+  // Pre-warm the PdfMenu chunk on hover/focus so click feels instant
+  const prewarm = () => { import('./PdfMenu'); };
 
   useEffect(() => {
     const onClick = (e: MouseEvent) => {
@@ -54,6 +65,9 @@ export function DownloadV3({ lang }: Props) {
         data-cursor={t.cta}
         aria-expanded={open}
         aria-haspopup="menu"
+        onMouseEnter={prewarm}
+        onFocus={prewarm}
+        onTouchStart={prewarm}
         onClick={() => setOpen((v) => !v)}
         style={{
           display: 'inline-flex', alignItems: 'center', gap: 10,

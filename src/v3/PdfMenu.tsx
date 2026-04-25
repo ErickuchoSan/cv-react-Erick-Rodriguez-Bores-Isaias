@@ -46,17 +46,17 @@ export default function PdfMenu({ lang, onClose }: Props) {
   return (
     <div role="menu" style={wrapStyle}>
       <div style={headerStyle}>{t.visual}</div>
-      <PDFDownloadLink document={<CVDocumentLeaf_ES />} fileName="CV_Erick_Rodriguez_ES.pdf" onClick={onClose} style={itemStyle} data-cursor="ES">
+      <PDFDownloadLink document={<CVDocumentLeaf_ES />} fileName="CV_Erick_Rodriguez_ES.pdf" onClick={() => setTimeout(onClose, 600)} style={itemStyle} data-cursor="ES">
         {({ loading, error }) => item(t.es, loading, error, '🇲🇽', t.gen)}
       </PDFDownloadLink>
-      <PDFDownloadLink document={<CVDocumentLeaf_EN />} fileName="CV_Erick_Rodriguez_EN.pdf" onClick={onClose} style={itemStyle} data-cursor="EN">
+      <PDFDownloadLink document={<CVDocumentLeaf_EN />} fileName="CV_Erick_Rodriguez_EN.pdf" onClick={() => setTimeout(onClose, 600)} style={itemStyle} data-cursor="EN">
         {({ loading, error }) => item(t.en, loading, error, '🇺🇸', t.gen)}
       </PDFDownloadLink>
       <div style={headerStyle}>{t.ats}</div>
-      <PDFDownloadLink document={<CVDocumentATS_ES />} fileName="CV_Erick_Rodriguez_ATS_ES.pdf" onClick={onClose} style={itemStyle} data-cursor="ATS">
+      <PDFDownloadLink document={<CVDocumentATS_ES />} fileName="CV_Erick_Rodriguez_ATS_ES.pdf" onClick={() => setTimeout(onClose, 600)} style={itemStyle} data-cursor="ATS">
         {({ loading, error }) => item(t.atsEs, loading, error, '🇲🇽', t.gen)}
       </PDFDownloadLink>
-      <PDFDownloadLink document={<CVDocumentATS_EN />} fileName="CV_Erick_Rodriguez_ATS_EN.pdf" onClick={onClose} style={itemStyle} data-cursor="ATS">
+      <PDFDownloadLink document={<CVDocumentATS_EN />} fileName="CV_Erick_Rodriguez_ATS_EN.pdf" onClick={() => setTimeout(onClose, 600)} style={itemStyle} data-cursor="ATS">
         {({ loading, error }) => item(t.atsEn, loading, error, '🇺🇸', t.gen)}
       </PDFDownloadLink>
     </div>

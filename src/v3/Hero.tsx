@@ -4,6 +4,7 @@ import { TechIcon } from './TechIcon';
 import { DownloadV3 } from './Download';
 import type { CVData } from './data';
 import type { ThemeName } from './theme';
+import { translations } from '../i18n/translations';
 
 function ShaderBG() {
   const ref = useRef<HTMLCanvasElement>(null);
@@ -214,6 +215,7 @@ function Terminal({ name, role }: { name: string; role: string }) {
 
 export function HeroV3({ data, lang, themeName, accent }: { data: CVData; lang: 'es' | 'en'; themeName: ThemeName; accent: string }) {
   const D = data;
+  const heroT = translations[lang].hero;
   const labels = lang === 'es'
     ? { portfolio: 'portfolio / curriculum / 2026', bio: '— Bio',
         bioText: ['años', 'construyendo arquitecturas empresariales críticas. Actualmente en'],
@@ -263,6 +265,36 @@ export function HeroV3({ data, lang, themeName, accent }: { data: CVData; lang: 
             <MaskReveal delay={420}>Bores.</MaskReveal>
           </div>
         </h1>
+
+        <Reveal delay={600} duration={900}>
+          <div style={{
+            display: 'flex', flexDirection: 'column', gap: 4,
+            marginTop: 18, marginBottom: 24,
+          }}>
+            <p style={{
+              margin: 0,
+              fontFamily: 'var(--font-mono)',
+              fontSize: 'clamp(13px, 1.1vw, 15px)',
+              letterSpacing: 1.2,
+              textTransform: 'uppercase',
+              color: 'var(--accent)',
+              fontWeight: 500,
+            }}>
+              {heroT.subtitle1}
+            </p>
+            <p style={{
+              margin: 0,
+              fontFamily: 'var(--font-mono)',
+              fontSize: 'clamp(11px, 0.95vw, 13px)',
+              letterSpacing: 1.6,
+              textTransform: 'uppercase',
+              color: 'var(--fg-muted)',
+              fontWeight: 400,
+            }}>
+              {heroT.subtitle2}
+            </p>
+          </div>
+        </Reveal>
 
         <Reveal delay={800} duration={1100}>
           <div className="hero-stack-strip" style={{

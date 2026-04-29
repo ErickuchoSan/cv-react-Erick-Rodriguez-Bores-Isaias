@@ -3,6 +3,7 @@ import { Reveal, MaskReveal, WordsMask, Counter, Magnetic, Tilt, useInView } fro
 import { SectionHead, SectionTitle } from './chrome';
 import { TechIcon } from './TechIcon';
 import type { CVData } from './data';
+import { ProjectModal } from './projects/ProjectModal';
 
 // ═══ ABOUT ════════════════════════════════════════════════════════════════
 export function AboutV3({ data, lang }: { data: CVData; lang: 'es' | 'en' }) {
@@ -514,6 +515,8 @@ export function SkillsV3({ data, lang }: { data: CVData; lang: 'es' | 'en' }) {
 export function ProjectsV3({ data, lang }: { data: CVData; lang: 'es' | 'en' }) {
   const D = data;
   const [active, setActive] = useState(0);
+  const [openId, setOpenId] = useState<string | null>(null);
+  const openProject = openId ? D.projects.find(p => p.id === openId) ?? null : null;
   const t = lang === 'es'
     ? { label: 'Obra seleccionada', hint: `${D.projects.length} case studies`, t1: 'Proyectos que', t2: 'mueven números' }
     : { label: 'Selected work', hint: `${D.projects.length} case studies`, t1: 'Projects that', t2: 'move numbers' };
@@ -522,7 +525,7 @@ export function ProjectsV3({ data, lang }: { data: CVData; lang: 'es' | 'en' }) 
     <section id="projects" style={{
       padding: '180px 5vw', background: 'var(--bg-2)', position: 'relative',
     }}>
-      <SectionHead num="05" label={t.label} hint={t.hint} />
+      <SectionHead num="06" label={t.label} hint={t.hint} />
       <SectionTitle>
         <WordsMask text={t.t1} step={60} />{' '}
         <em style={{ color: 'var(--accent)' }}>
@@ -611,6 +614,33 @@ export function ProjectsV3({ data, lang }: { data: CVData; lang: 'es' | 'en' }) 
                   }}>{tg}</span>
                 ))}
               </div>
+              <div style={{
+                marginTop: 28, display: 'flex', gap: 14, flexWrap: 'wrap', alignItems: 'center',
+              }}>
+                <button
+                  onClick={() => setOpenId(p.id)}
+                  aria-haspopup="dialog"
+                  aria-label={(lang === 'es' ? 'Ver case study: ' : 'View case study: ') + p.name}
+                  style={{
+                    padding: '12px 24px', cursor: 'pointer',
+                    background: p.color, color: 'var(--bg)',
+                    fontFamily: 'var(--font-mono)', fontSize: 11,
+                    letterSpacing: 1.4, textTransform: 'uppercase',
+                    border: 'none',
+                  }}
+                >
+                  {lang === 'es' ? 'Ver case study →' : 'View case study →'}
+                </button>
+                <span style={{
+                  padding: '8px 14px',
+                  fontFamily: 'var(--font-mono)', fontSize: 10,
+                  letterSpacing: 1.4, textTransform: 'uppercase',
+                  color: 'var(--fg-muted)',
+                  border: '1px dashed var(--line-strong)',
+                }}>
+                  <span aria-hidden="true">🚧 </span>{lang === 'es' ? 'Demo en construcción' : 'Demo in construction'}
+                </span>
+              </div>
             </div>
           ))}
           <div style={{
@@ -628,6 +658,8 @@ export function ProjectsV3({ data, lang }: { data: CVData; lang: 'es' | 'en' }) 
           .proj-preview { position: relative !important; top: auto !important; min-height: auto !important; }
         }
       `}</style>
+
+      <ProjectModal project={openProject} lang={lang} onClose={() => setOpenId(null)} />
     </section>
   );
 }
@@ -645,7 +677,7 @@ export function ContactV3({ data, lang }: { data: CVData; lang: 'es' | 'en' }) {
 
   return (
     <section id="contact" style={{ padding: '180px 5vw 80px', position: 'relative' }}>
-      <SectionHead num="06" label={t.label} hint={t.hint} />
+      <SectionHead num="07" label={t.label} hint={t.hint} />
 
       <Reveal>
         <h2 style={{

@@ -14,7 +14,27 @@ export interface Job {
   stack: string[];
 }
 
+export type DemoStatus = 'in-construction' | 'live' | 'private';
+
+export interface CaseStudyHighlight {
+  title: string;
+  summary: string;
+}
+
+export interface CaseStudyStack {
+  backend?: string[];
+  frontend?: string[];
+  infra?: string[];
+  testing?: string[];
+}
+
+export interface CaseStudyMetric {
+  value: string;
+  label: string;
+}
+
 export interface ProjectV3 {
+  id: 'platform-b2b' | 'pos-cloud' | 'cms-3d';
   name: string;
   kind: string;
   year: string;
@@ -22,6 +42,17 @@ export interface ProjectV3 {
   color: string;
   desc: string;
   tags: string[];
+  // case study extension
+  tagline: string;
+  problem: string;
+  solution: string[];
+  architecturePatterns: string[];
+  highlights: CaseStudyHighlight[];
+  stack: CaseStudyStack;
+  metrics: CaseStudyMetric[];
+  role: string;
+  demoStatus: DemoStatus;
+  demoUrl?: string;
 }
 
 export interface SkillCategory {
@@ -60,14 +91,10 @@ const STACK_BY_JOB_ES: string[][] = [
 
 const PROJECT_COLORS = ['#ff5b2e', '#22d3ee', '#a78bfa'];
 const PROJECT_ICONS = ['◐', '◇', '◈'];
-const PROJECT_KINDS = ['Plataforma B2B/B2C', 'Sistema Crítico Empresarial', 'Sistema de Reclutamiento'];
-const PROJECT_KINDS_EN = ['B2B/B2C Platform', 'Enterprise Critical System', 'Recruitment System'];
-const PROJECT_YEARS = ['2025—', '2024—', '2023'];
-const PROJECT_TAGS: string[][] = [
-  ['NestJS', 'Next.js 16', 'PostgreSQL', 'Prisma', 'Docker', 'JWT/OTP', 'RBAC', 'CI/CD'],
-  ['.NET Core 6', 'C#', 'SQL Server', 'OAuth2/JWT', 'EF Core'],
-  ['.NET Framework', 'JavaScript', 'Bootstrap', 'SQL'],
-];
+const PROJECT_KINDS = ['Plataforma B2B/B2C', 'POS Multi-Sucursal', 'CMS + 3D Interactivo'];
+const PROJECT_KINDS_EN = ['B2B/B2C Platform', 'Multi-Branch POS', 'Headless CMS + 3D'];
+const PROJECT_YEARS = ['2025—', '2024—', '2024'];
+const PROJECT_IDS = ['platform-b2b', 'pos-cloud', 'cms-3d'] as const;
 
 export function buildData(lang: Lang): CVData {
   const t = translations[lang];
@@ -142,15 +169,33 @@ export function buildData(lang: Lang): CVData {
     stack: STACK_BY_JOB_ES[i] ?? [],
   }));
 
-  const projects: ProjectV3[] = t.projects.items.map((p, i) => ({
-    name: p.title,
-    kind: (lang === 'es' ? PROJECT_KINDS : PROJECT_KINDS_EN)[i] ?? '',
-    year: PROJECT_YEARS[i] ?? '',
-    icon: PROJECT_ICONS[i] ?? '◆',
-    color: PROJECT_COLORS[i] ?? 'var(--accent)',
-    desc: p.description,
-    tags: PROJECT_TAGS[i] ?? [],
-  }));
+  const projects: ProjectV3[] = t.projects.items.map((p, i) => {
+    const stackFlat = [
+      ...(p.stack?.backend ?? []),
+      ...(p.stack?.frontend ?? []),
+      ...(p.stack?.infra ?? []),
+      ...(p.stack?.testing ?? []),
+    ].slice(0, 8);
+    return {
+      id: PROJECT_IDS[i] ?? 'platform-b2b',
+      name: p.title,
+      kind: (lang === 'es' ? PROJECT_KINDS : PROJECT_KINDS_EN)[i] ?? '',
+      year: PROJECT_YEARS[i] ?? '',
+      icon: PROJECT_ICONS[i] ?? '◆',
+      color: PROJECT_COLORS[i] ?? 'var(--accent)',
+      desc: p.description,
+      tags: stackFlat,
+      tagline: p.tagline ?? '',
+      problem: p.problem ?? '',
+      solution: p.solution ?? [],
+      architecturePatterns: p.architecturePatterns ?? [],
+      highlights: p.highlights ?? [],
+      stack: p.stack ?? {},
+      metrics: p.metrics ?? [],
+      role: p.role ?? '',
+      demoStatus: (p.demoStatus as DemoStatus) ?? 'in-construction',
+    };
+  });
 
   const stats = lang === 'es'
     ? [

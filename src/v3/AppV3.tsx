@@ -5,6 +5,7 @@ import { buildData } from './data';
 import { CursorV3, NavV3, CornerTools, BottomHUD, MarqueeV3 } from './chrome';
 import { HeroV3 } from './Hero';
 import { AboutV3, ExperienceV3, SkillsV3, ProjectsV3, ContactV3 } from './sections';
+import { ClaudeEngineeringV3 } from './sections/ClaudeEngineering';
 import { useScrollProgress } from './primitives';
 import { useLanguage } from '../context/LanguageContext';
 
@@ -57,7 +58,7 @@ export function AppV3() {
   }, [tweaks]);
 
   useEffect(() => {
-    const ids = ['hero', 'about', 'experience', 'skills', 'projects', 'contact'];
+    const ids = ['hero', 'about', 'experience', 'skills', 'claude-engineering', 'projects', 'contact'];
     const on = () => {
       let cur = 'hero';
       for (const id of ids) {
@@ -79,6 +80,7 @@ export function AppV3() {
         { id: 'about', label: 'Sobre' },
         { id: 'experience', label: 'Exp' },
         { id: 'skills', label: 'Stack' },
+        { id: 'claude-engineering', label: 'Claude' },
         { id: 'projects', label: 'Obra' },
         { id: 'contact', label: 'Contacto' },
       ]
@@ -87,6 +89,7 @@ export function AppV3() {
         { id: 'about', label: 'About' },
         { id: 'experience', label: 'Exp' },
         { id: 'skills', label: 'Stack' },
+        { id: 'claude-engineering', label: 'Claude' },
         { id: 'projects', label: 'Work' },
         { id: 'contact', label: 'Contact' },
       ];
@@ -129,6 +132,7 @@ export function AppV3() {
         <AboutV3 data={data} lang={language} />
         <ExperienceV3 data={data} lang={language} />
         <SkillsV3 data={data} lang={language} />
+        <ClaudeEngineeringV3 lang={language} />
         <ProjectsV3 data={data} lang={language} />
         <MarqueeV3 items={data.marquee2} reverse speed={40} />
         <ContactV3 data={data} lang={language} />

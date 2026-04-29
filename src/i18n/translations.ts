@@ -11,6 +11,9 @@ export const translations = {
         hero: {
             title: 'Erick Rodríguez',
             subtitle: 'Bores Isaías',
+            // intentional: brand strings, kept identical in ES and EN — do not translate
+            subtitle1: 'Full Stack Developer · .NET & React',
+            subtitle2: 'Claude Code Power User',
             role: 'Desarrollador Full Stack .NET & React',
             description: 'Especialista en C#/.NET Core 10, React 19, SQL Server y Azure. 3 años desarrollando arquitecturas escalables y soluciones empresariales.',
             contactBtn: 'Contáctame',
@@ -165,18 +168,121 @@ export const translations = {
             subtitle: 'Soluciones Innovadoras y Aplicaciones Modernas',
             items: [
                 {
-                    title: "Align Designs Platform",
-                    description: "Plataforma B2B/B2C cloud con arquitectura monorepo (NestJS 11 + Next.js 15 + PostgreSQL/Prisma). Autenticación dual JWT/OTP, mensajería asincrónica, cifrado AES/RSA, CI/CD con GitHub Actions, Docker y arquitectura Clean/SOLID con RBAC."
+                    title: 'Plataforma B2B/B2C de Gestión de Proyectos',
+                    description: 'Plataforma cloud monorepo con autenticación diferenciada admins/clientes, almacenamiento S3, billing y observabilidad.',
+                    tagline: 'Cloud · Monorepo · Auth Dual',
+                    problem: 'Empresas de diseño y consultoría necesitaban un único punto de control para entregables, archivos por cliente, facturación y comunicación, sin sacrificar seguridad ni separar permisos entre staff interno y clientes externos.',
+                    solution: [
+                        'Diseñé arquitectura monorepo con NestJS 11 (API) + Next.js 16 (Web) y pnpm workspaces.',
+                        'Implementé sistema de autenticación dual: JWT + refresh rotation para administradores, OTP bcrypt para clientes.',
+                        'Construí pipeline CI/CD con GitHub Actions + SonarCloud + Codecov + Lighthouse.',
+                        'Integré DigitalOcean Spaces (S3) con presigned URLs y validación por magic numbers.',
+                        'Levanté observabilidad con Prometheus + Pino y backups automáticos en Docker.',
+                    ],
+                    architecturePatterns: ['Clean Architecture', 'DDD', 'SOLID', 'Modular Monorepo', 'Repository Pattern', 'Domain Events'],
+                    highlights: [
+                        { title: 'Autenticación', summary: 'JWT + refresh rotation (admins) y OTP bcrypt (clientes). CSRF HMAC-SHA256, Helmet (CSP/HSTS), rate limiting y account lockout.' },
+                        { title: 'Storage', summary: 'DigitalOcean Spaces con presigned URLs, validación por magic numbers y versionado de archivos.' },
+                        { title: 'CI/CD', summary: 'GitHub Actions multi-stage con SonarCloud, Codecov, Lighthouse y Playwright E2E.' },
+                    ],
+                    stack: {
+                        backend: ['NestJS 11', 'Prisma', 'PostgreSQL 15', 'Redis', 'TypeScript 5'],
+                        frontend: ['Next.js 16', 'React 19', 'TanStack Query', 'Tailwind v4', 'Zod'],
+                        infra: ['Docker', 'DigitalOcean', 'GitHub Actions', 'Nginx'],
+                        testing: ['Jest', 'Vitest', 'Playwright'],
+                    },
+                    metrics: [
+                        { value: '57', label: 'Suites de tests' },
+                        { value: '2', label: 'Flujos de auth' },
+                        { value: '1', label: 'Monorepo · 2 apps' },
+                    ],
+                    role: 'Solo developer · End-to-end · Diseño, arquitectura, implementación, deployment y mantenimiento.',
+                    demoStatus: 'in-construction',
                 },
                 {
-                    title: "Sistema de Auditoría Interna (ADA/HONESTEL)",
-                    description: "Plataforma crítica para gestión de denuncias internas de todas las empresas del Grupo Salinas. Lideré la migración de .NET Framework a .NET Core 6, mejorando el rendimiento un 40% y reduciendo tiempos de consulta SQL Server."
+                    title: 'Sistema POS Multi-Sucursal Cloud',
+                    description: 'Plataforma POS multi-tenant con gestión de inventarios, ventas y reportes en tiempo real para múltiples sucursales.',
+                    tagline: 'POS · Multi-tenant · Realtime',
+                    problem: 'Negocios con varias sucursales operaban con sistemas POS desconectados — inventarios desincronizados, reportes manuales y sin visibilidad consolidada de ventas en tiempo real.',
+                    solution: [
+                        'Diseñé arquitectura monorepo con apps separadas para terminal de venta, panel admin y reportería.',
+                        'Implementé sincronización de inventarios entre sucursales vía Supabase realtime.',
+                        'Construí flujos de venta offline-first con reconciliación al reconectar.',
+                        'Levanté pipeline E2E con Playwright para flujos críticos (cobro, devolución, corte de caja).',
+                        'Containericé todo el stack con Docker + Nginx + healthchecks.',
+                    ],
+                    architecturePatterns: ['Modular Monorepo', 'Multi-tenant', 'Offline-first', 'Event-driven sync', 'CQRS-light'],
+                    highlights: [
+                        { title: 'Multi-sucursal', summary: 'Aislamiento por tenant + sincronización en tiempo real de inventarios y ventas vía Supabase.' },
+                        { title: 'Offline-first', summary: 'Terminal opera sin conexión y reconcilia transacciones al recuperar red.' },
+                        { title: 'E2E Testing', summary: 'Playwright cubriendo cobros, devoluciones y cortes de caja con fixtures por tenant.' },
+                    ],
+                    stack: {
+                        backend: ['Node.js', 'Supabase', 'PostgreSQL', 'TypeScript'],
+                        frontend: ['React', 'Tailwind', 'Vite'],
+                        infra: ['Docker', 'Nginx', 'Husky', 'pnpm workspaces'],
+                        testing: ['Playwright', 'Vitest'],
+                    },
+                    metrics: [
+                        { value: '∞', label: 'Sucursales soportadas' },
+                        { value: 'RT', label: 'Sync tiempo real' },
+                        { value: 'E2E', label: 'Cobertura crítica' },
+                    ],
+                    role: 'Solo developer · End-to-end · Arquitectura, implementación, testing y deployment.',
+                    demoStatus: 'in-construction',
                 },
                 {
-                    title: "Sistema de Reclutamiento Empresarial",
-                    description: "Plataforma end-to-end para gestión del ciclo completo de reclutamiento con carga masiva de candidatos desde Excel/TXT, procesando +5,000 registros en menos de 10 segundos."
-                }
-            ]
+                    title: 'Sitio Corporativo con CMS Headless + 3D Interactivo',
+                    description: 'Sitio corporativo de alto impacto visual con escena 3D interactiva, CMS headless y formularios validados.',
+                    tagline: 'Headless CMS · 3D · GSAP',
+                    problem: 'Marca buscaba un sitio que comunicara innovación con experiencia visual fuera del molde, pero manteniendo capacidad de edición de contenido por equipo no técnico y carga rápida en mobile.',
+                    solution: [
+                        'Diseñé arquitectura Next.js 15 con CMS headless Sanity para edición visual del contenido.',
+                        'Integré escena 3D interactiva con Spline + animaciones de scroll con GSAP.',
+                        'Construí formularios validados con React Hook Form + Zod, envío vía Resend.',
+                        'Optimicé bundle con dynamic imports para 3D y carga progresiva de assets.',
+                        'Levanté autenticación admin con Supabase para áreas privadas.',
+                    ],
+                    architecturePatterns: ['JAMstack', 'Headless CMS', 'Server Components', 'Progressive Enhancement'],
+                    highlights: [
+                        { title: '3D + Scroll', summary: 'Spline embebido con GSAP ScrollTrigger para storytelling visual sin sacrificar performance.' },
+                        { title: 'CMS Headless', summary: 'Sanity con Portable Text para que equipo no técnico edite secciones, autores y posts.' },
+                        { title: 'Forms + Email', summary: 'React Hook Form + Zod validation + Resend para entrega transaccional.' },
+                    ],
+                    stack: {
+                        backend: ['Sanity CMS', 'Supabase', 'Resend'],
+                        frontend: ['Next.js 15', 'React 19', 'GSAP', 'Spline 3D', 'TanStack Query', 'Tailwind'],
+                        infra: ['Vercel', 'Docker (dev)'],
+                        testing: ['QA Manual'],
+                    },
+                    metrics: [
+                        { value: '3D', label: 'Escena interactiva' },
+                        { value: 'CMS', label: 'Edición visual' },
+                        { value: 'A+', label: 'Lighthouse target' },
+                    ],
+                    role: 'Solo developer · End-to-end · Diseño técnico, integración 3D, CMS y deployment.',
+                    demoStatus: 'in-construction',
+                },
+            ],
+        },
+        claudeEngineering: {
+            hint: 'Especialización · AI-assisted engineering',
+            num: '05',
+            label: 'Claude Code Engineering',
+            title1: 'Dominio del ecosistema',
+            title2: 'de ingeniería AI-assisted.',
+            paragraph: 'Diseño y operación de pipelines de desarrollo asistido por Claude Code: skills custom, agents especializados, integración MCP, automatización por hooks, sistemas de memoria persistente y orquestación multi-agente para acelerar entrega sin perder calidad ni control.',
+            capabilities: [
+                { title: 'Skill Engineering', desc: 'Skills reutilizables con eval loops y métricas.' },
+                { title: 'Custom Agents', desc: 'Agents especializados para review, archivo y research.' },
+                { title: 'MCP Integration', desc: 'Conexión con servidores MCP externos y propios.' },
+                { title: 'Hook Automation', desc: 'Hooks PreTool/PostTool para validación y compresión.' },
+                { title: 'Memory Systems', desc: 'Memoria persistente cross-session multi-capa.' },
+                { title: 'Plugin Ecosystem', desc: 'Plugins integrados con flujos productivos completos.' },
+                { title: 'Multi-LLM Orchestration', desc: 'Orquestación de Claude, Codex y Gemini en paralelo.' },
+                { title: 'Eval-driven Optimization', desc: 'Optimización basada en métricas de rendimiento.' },
+            ],
+            stat: '6 SKILLS · 3 AGENTS · 4 PLUGINS · MULTI-LLM',
         },
         languages: {
             title: 'Idiomas',
@@ -239,6 +345,9 @@ export const translations = {
         hero: {
             title: 'Erick Rodríguez',
             subtitle: 'Bores Isaías',
+            // intentional: brand strings, kept identical in ES and EN — do not translate
+            subtitle1: 'Full Stack Developer · .NET & React',
+            subtitle2: 'Claude Code Power User',
             role: 'Full Stack Developer .NET & React',
             description: 'Specialist in C#/.NET Core 10/10, React 19, SQL Server and Azure. 3 years building scalable architectures and enterprise solutions.',
             contactBtn: 'Contact Me',
@@ -393,18 +502,121 @@ export const translations = {
             subtitle: 'Innovative Solutions and Modern Applications',
             items: [
                 {
-                    title: "Align Designs Platform",
-                    description: "Cloud B2B/B2C platform with monorepo architecture (NestJS 11 + Next.js 15 + PostgreSQL/Prisma). Dual JWT/OTP authentication, async messaging, AES/RSA encryption, CI/CD with GitHub Actions, Docker and Clean/SOLID architecture with RBAC."
+                    title: 'B2B/B2C Project & Asset Management Platform',
+                    description: 'Cloud monorepo platform with differentiated admin/client auth, S3 storage, billing and observability.',
+                    tagline: 'Cloud · Monorepo · Dual Auth',
+                    problem: 'Design and consulting firms needed a single control point for deliverables, per-client files, billing and communication — without sacrificing security or blending staff and client permissions.',
+                    solution: [
+                        'Designed monorepo architecture with NestJS 11 (API) + Next.js 16 (Web) and pnpm workspaces.',
+                        'Implemented dual auth: JWT + refresh rotation for admins, OTP bcrypt for clients.',
+                        'Built CI/CD pipeline with GitHub Actions + SonarCloud + Codecov + Lighthouse.',
+                        'Integrated DigitalOcean Spaces (S3) with presigned URLs and magic-number validation.',
+                        'Set up observability with Prometheus + Pino and automated Docker backups.',
+                    ],
+                    architecturePatterns: ['Clean Architecture', 'DDD', 'SOLID', 'Modular Monorepo', 'Repository Pattern', 'Domain Events'],
+                    highlights: [
+                        { title: 'Authentication', summary: 'JWT + refresh rotation (admins) and OTP bcrypt (clients). CSRF HMAC-SHA256, Helmet (CSP/HSTS), rate limiting and account lockout.' },
+                        { title: 'Storage', summary: 'DigitalOcean Spaces with presigned URLs, magic-number validation and file versioning.' },
+                        { title: 'CI/CD', summary: 'Multi-stage GitHub Actions with SonarCloud, Codecov, Lighthouse and Playwright E2E.' },
+                    ],
+                    stack: {
+                        backend: ['NestJS 11', 'Prisma', 'PostgreSQL 15', 'Redis', 'TypeScript 5'],
+                        frontend: ['Next.js 16', 'React 19', 'TanStack Query', 'Tailwind v4', 'Zod'],
+                        infra: ['Docker', 'DigitalOcean', 'GitHub Actions', 'Nginx'],
+                        testing: ['Jest', 'Vitest', 'Playwright'],
+                    },
+                    metrics: [
+                        { value: '57', label: 'Test suites' },
+                        { value: '2', label: 'Auth flows' },
+                        { value: '1', label: 'Monorepo · 2 apps' },
+                    ],
+                    role: 'Solo developer · End-to-end · Design, architecture, implementation, deployment and maintenance.',
+                    demoStatus: 'in-construction',
                 },
                 {
-                    title: "Internal Audit System (ADA/HONESTEL)",
-                    description: "Critical platform for internal whistleblowing management for all Grupo Salinas companies. Led the migration from .NET Framework to .NET Core 6, improving performance by 40% and reducing SQL Server query times."
+                    title: 'Multi-Branch Cloud POS System',
+                    description: 'Multi-tenant POS platform with inventory management, sales and real-time reports across multiple branches.',
+                    tagline: 'POS · Multi-tenant · Realtime',
+                    problem: 'Businesses with multiple branches operated disconnected POS systems — out-of-sync inventories, manual reports and no consolidated real-time sales visibility.',
+                    solution: [
+                        'Designed monorepo architecture with separate apps for sales terminal, admin panel and reporting.',
+                        'Implemented inventory sync across branches via Supabase realtime.',
+                        'Built offline-first sales flows with reconciliation on reconnect.',
+                        'Set up E2E pipeline with Playwright for critical flows (checkout, refund, cash close).',
+                        'Containerized the full stack with Docker + Nginx + healthchecks.',
+                    ],
+                    architecturePatterns: ['Modular Monorepo', 'Multi-tenant', 'Offline-first', 'Event-driven sync', 'CQRS-light'],
+                    highlights: [
+                        { title: 'Multi-branch', summary: 'Tenant isolation + real-time inventory and sales sync via Supabase.' },
+                        { title: 'Offline-first', summary: 'Terminal operates without connection and reconciles transactions on reconnect.' },
+                        { title: 'E2E Testing', summary: 'Playwright covering checkouts, refunds and cash closes with per-tenant fixtures.' },
+                    ],
+                    stack: {
+                        backend: ['Node.js', 'Supabase', 'PostgreSQL', 'TypeScript'],
+                        frontend: ['React', 'Tailwind', 'Vite'],
+                        infra: ['Docker', 'Nginx', 'Husky', 'pnpm workspaces'],
+                        testing: ['Playwright', 'Vitest'],
+                    },
+                    metrics: [
+                        { value: '∞', label: 'Branches supported' },
+                        { value: 'RT', label: 'Real-time sync' },
+                        { value: 'E2E', label: 'Critical coverage' },
+                    ],
+                    role: 'Solo developer · End-to-end · Architecture, implementation, testing and deployment.',
+                    demoStatus: 'in-construction',
                 },
                 {
-                    title: "Enterprise Recruitment System",
-                    description: "End-to-end platform for full recruitment cycle management with bulk candidate upload from Excel/TXT, processing +5,000 records in under 10 seconds."
-                }
-            ]
+                    title: 'Corporate Site with Headless CMS + Interactive 3D',
+                    description: 'High-visual-impact corporate site with interactive 3D scene, headless CMS and validated forms.',
+                    tagline: 'Headless CMS · 3D · GSAP',
+                    problem: 'Brand needed a site that communicated innovation with out-of-the-box visual experience, while keeping content edition for non-technical teams and fast mobile loading.',
+                    solution: [
+                        'Designed Next.js 15 architecture with Sanity headless CMS for visual content editing.',
+                        'Integrated interactive 3D scene with Spline + scroll animations with GSAP.',
+                        'Built validated forms with React Hook Form + Zod, delivery via Resend.',
+                        'Optimized bundle with dynamic imports for 3D and progressive asset loading.',
+                        'Set up admin authentication with Supabase for private areas.',
+                    ],
+                    architecturePatterns: ['JAMstack', 'Headless CMS', 'Server Components', 'Progressive Enhancement'],
+                    highlights: [
+                        { title: '3D + Scroll', summary: 'Embedded Spline with GSAP ScrollTrigger for visual storytelling without sacrificing performance.' },
+                        { title: 'Headless CMS', summary: 'Sanity with Portable Text so non-technical teams can edit sections, authors and posts.' },
+                        { title: 'Forms + Email', summary: 'React Hook Form + Zod validation + Resend for transactional delivery.' },
+                    ],
+                    stack: {
+                        backend: ['Sanity CMS', 'Supabase', 'Resend'],
+                        frontend: ['Next.js 15', 'React 19', 'GSAP', 'Spline 3D', 'TanStack Query', 'Tailwind'],
+                        infra: ['Vercel', 'Docker (dev)'],
+                        testing: ['Manual QA'],
+                    },
+                    metrics: [
+                        { value: '3D', label: 'Interactive scene' },
+                        { value: 'CMS', label: 'Visual editing' },
+                        { value: 'A+', label: 'Lighthouse target' },
+                    ],
+                    role: 'Solo developer · End-to-end · Technical design, 3D integration, CMS and deployment.',
+                    demoStatus: 'in-construction',
+                },
+            ],
+        },
+        claudeEngineering: {
+            hint: 'Specialization · AI-assisted engineering',
+            num: '05',
+            label: 'Claude Code Engineering',
+            title1: 'Mastery of the ecosystem',
+            title2: 'of AI-assisted engineering.',
+            paragraph: 'Design and operation of Claude-Code-assisted development pipelines: custom skills, specialized agents, MCP integration, hook automation, persistent memory systems and multi-agent orchestration to accelerate delivery without losing quality or control.',
+            capabilities: [
+                { title: 'Skill Engineering', desc: 'Reusable skills with eval loops and metrics.' },
+                { title: 'Custom Agents', desc: 'Specialized agents for review, archiving and research.' },
+                { title: 'MCP Integration', desc: 'Connecting external and custom MCP servers.' },
+                { title: 'Hook Automation', desc: 'PreTool/PostTool hooks for validation and compression.' },
+                { title: 'Memory Systems', desc: 'Multi-layer cross-session persistent memory.' },
+                { title: 'Plugin Ecosystem', desc: 'Plugins integrated with full productive flows.' },
+                { title: 'Multi-LLM Orchestration', desc: 'Orchestrating Claude, Codex and Gemini in parallel.' },
+                { title: 'Eval-driven Optimization', desc: 'Optimization based on performance metrics.' },
+            ],
+            stat: '6 SKILLS · 3 AGENTS · 4 PLUGINS · MULTI-LLM',
         },
         languages: {
             title: 'Languages',

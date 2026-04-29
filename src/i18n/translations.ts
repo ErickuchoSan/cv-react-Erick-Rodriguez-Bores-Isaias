@@ -11,6 +11,8 @@ export const translations = {
         hero: {
             title: 'Erick Rodríguez',
             subtitle: 'Bores Isaías',
+            subtitle1: 'Full Stack Developer · .NET & React',
+            subtitle2: 'Claude Code Power User',
             role: 'Desarrollador Full Stack .NET & React',
             description: 'Especialista en C#/.NET Core 10, React 19, SQL Server y Azure. 3 años desarrollando arquitecturas escalables y soluciones empresariales.',
             contactBtn: 'Contáctame',
@@ -239,6 +241,8 @@ export const translations = {
         hero: {
             title: 'Erick Rodríguez',
             subtitle: 'Bores Isaías',
+            subtitle1: 'Full Stack Developer · .NET & React',
+            subtitle2: 'Claude Code Power User',
             role: 'Full Stack Developer .NET & React',
             description: 'Specialist in C#/.NET Core 10/10, React 19, SQL Server and Azure. 3 years building scalable architectures and enterprise solutions.',
             contactBtn: 'Contact Me',

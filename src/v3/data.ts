@@ -184,7 +184,7 @@ export function buildData(lang: Lang): CVData {
     phone: CONTACT_INFO.phone,
     location: CONTACT_INFO.location,
     github: 'github.com/ErickuchoSan',
-    linkedin: 'linkedin.com/in/erick-rodriguez-bores',
+    linkedin: 'www.linkedin.com/in/erick-rodriguez-bores-isaias',
     site: 'eboresi.dev',
     photo: '/assets/images/profile.jpg',
     availability: lang === 'es'

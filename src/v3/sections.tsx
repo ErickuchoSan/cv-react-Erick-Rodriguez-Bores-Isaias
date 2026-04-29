@@ -712,8 +712,7 @@ export function ContactV3({ data, lang }: { data: CVData; lang: 'es' | 'en' }) {
             <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: 1.6, textTransform: 'uppercase', color: 'var(--fg-muted)', marginBottom: 20 }}>{t.red}</div>
             {[
               { label: 'GitHub', url: `https://${D.github}`, hint: '@ErickuchoSan' },
-              { label: 'LinkedIn', url: `https://${D.linkedin}`, hint: 'in/erick-rodriguez-bores' },
-              { label: t.site, url: `https://${D.site}`, hint: D.site },
+              { label: 'LinkedIn', url: `https://${D.linkedin}`, hint: 'in/erick-rodriguez-bores-isaias' },
             ].map((l, i) => (
               <a key={i} href={l.url} target="_blank" rel="noopener" data-cursor={lang === 'es' ? 'abrir' : 'open'} style={{
                 display: 'flex', justifyContent: 'space-between', alignItems: 'baseline',

@@ -11,6 +11,7 @@ export const translations = {
         hero: {
             title: 'Erick Rodríguez',
             subtitle: 'Bores Isaías',
+            // intentional: brand strings, kept identical in ES and EN — do not translate
             subtitle1: 'Full Stack Developer · .NET & React',
             subtitle2: 'Claude Code Power User',
             role: 'Desarrollador Full Stack .NET & React',
@@ -241,6 +242,7 @@ export const translations = {
         hero: {
             title: 'Erick Rodríguez',
             subtitle: 'Bores Isaías',
+            // intentional: brand strings, kept identical in ES and EN — do not translate
             subtitle1: 'Full Stack Developer · .NET & React',
             subtitle2: 'Claude Code Power User',
             role: 'Full Stack Developer .NET & React',

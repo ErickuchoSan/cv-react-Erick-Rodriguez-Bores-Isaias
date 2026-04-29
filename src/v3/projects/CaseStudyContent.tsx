@@ -36,7 +36,7 @@ export function CaseStudyContent({ project: p, lang }: Props) {
           fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: 1.6,
           textTransform: 'uppercase', color: p.color, marginBottom: 14,
         }}>// case-study</div>
-        <h2 style={{
+        <h2 id={`cs-title-${p.id}`} style={{
           fontFamily: 'var(--font-display)',
           fontSize: 'clamp(32px, 4.5vw, 56px)',
           lineHeight: 1.0, fontWeight: 300, fontStyle: 'italic',
@@ -135,7 +135,7 @@ export function CaseStudyContent({ project: p, lang }: Props) {
       {p.metrics.length > 0 && (
         <CaseStudySection prefix={c.metrics} accent={p.color}>
           <div style={{
-            display: 'grid', gridTemplateColumns: `repeat(${p.metrics.length}, 1fr)`,
+            display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))',
             gap: 14, paddingTop: 8,
           }}>
             {p.metrics.map((m, i) => (
@@ -166,7 +166,7 @@ export function CaseStudyContent({ project: p, lang }: Props) {
         {p.demoStatus === 'live' && p.demoUrl ? (
           <a href={p.demoUrl} target="_blank" rel="noreferrer" style={{
             display: 'inline-block', padding: '14px 28px',
-            background: p.color, color: '#000',
+            background: p.color, color: 'var(--bg)',
             fontFamily: 'var(--font-mono)', fontSize: 12,
             letterSpacing: 1.4, textTransform: 'uppercase',
             textDecoration: 'none',

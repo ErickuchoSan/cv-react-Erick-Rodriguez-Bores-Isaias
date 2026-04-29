@@ -1,4 +1,4 @@
-import { useEffect, lazy, Suspense } from 'react';
+import { useEffect, useRef, lazy, Suspense } from 'react';
 import { createPortal } from 'react-dom';
 import type { ProjectV3 } from '../data';
 
@@ -13,26 +13,73 @@ interface Props {
 }
 
 export function ProjectModal({ project, lang, onClose }: Props) {
+  const sheetRef = useRef<HTMLDivElement>(null);
+  const closeBtnRef = useRef<HTMLButtonElement>(null);
+  const downOnBackdropRef = useRef(false);
+
   useEffect(() => {
     if (!project) return;
-    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };
+    const previouslyFocused = document.activeElement as HTMLElement | null;
+
+    const raf = requestAnimationFrame(() => {
+      closeBtnRef.current?.focus();
+    });
+
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') { onClose(); return; }
+      if (e.key === 'Tab' && sheetRef.current) {
+        const focusables = sheetRef.current.querySelectorAll<HTMLElement>(
+          'button, a, [tabindex]:not([tabindex="-1"]), input, select, textarea'
+        );
+        if (focusables.length === 0) return;
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+        const active = document.activeElement;
+        if (e.shiftKey && active === first) {
+          e.preventDefault(); last.focus();
+        } else if (!e.shiftKey && active === last) {
+          e.preventDefault(); first.focus();
+        }
+      }
+    };
     document.addEventListener('keydown', onKey);
+
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
     const prevOverflow = document.body.style.overflow;
+    const prevPadding = document.body.style.paddingRight;
     document.body.style.overflow = 'hidden';
+    if (scrollbarWidth > 0) document.body.style.paddingRight = `${scrollbarWidth}px`;
+
     return () => {
+      cancelAnimationFrame(raf);
       document.removeEventListener('keydown', onKey);
       document.body.style.overflow = prevOverflow;
+      document.body.style.paddingRight = prevPadding;
+      if (previouslyFocused && document.body.contains(previouslyFocused)) {
+        previouslyFocused.focus?.();
+      }
     };
   }, [project, onClose]);
 
   if (!project) return null;
 
+  const onMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+    downOnBackdropRef.current = e.target === e.currentTarget;
+  };
+  const onMouseUp = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (downOnBackdropRef.current && e.target === e.currentTarget) {
+      onClose();
+    }
+    downOnBackdropRef.current = false;
+  };
+
   return createPortal(
     <div
-      onClick={onClose}
+      onMouseDown={onMouseDown}
+      onMouseUp={onMouseUp}
       role="dialog"
       aria-modal="true"
-      aria-label={project.name}
+      aria-labelledby={`cs-title-${project.id}`}
       style={{
         position: 'fixed', inset: 0, zIndex: 9999,
         background: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(8px)',
@@ -43,6 +90,7 @@ export function ProjectModal({ project, lang, onClose }: Props) {
       }}
     >
       <div
+        ref={sheetRef}
         onClick={(e) => e.stopPropagation()}
         style={{
           width: '100%', maxWidth: 980,
@@ -53,6 +101,7 @@ export function ProjectModal({ project, lang, onClose }: Props) {
         }}
       >
         <button
+          ref={closeBtnRef}
           onClick={onClose}
           aria-label={lang === 'es' ? 'Cerrar' : 'Close'}
           style={{
@@ -73,13 +122,6 @@ export function ProjectModal({ project, lang, onClose }: Props) {
           <CaseStudyContent project={project} lang={lang} />
         </Suspense>
       </div>
-      <style>{`
-        @keyframes cs-fade-in { from { opacity: 0 } to { opacity: 1 } }
-        @keyframes cs-scale-in {
-          from { opacity: 0; transform: scale(0.96); }
-          to { opacity: 1; transform: scale(1); }
-        }
-      `}</style>
     </div>,
     document.body
   );

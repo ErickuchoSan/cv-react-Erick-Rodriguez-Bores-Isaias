@@ -137,3 +137,9 @@ em {
     scroll-behavior: auto !important;
   }
 }
+
+@keyframes cs-fade-in { from { opacity: 0 } to { opacity: 1 } }
+@keyframes cs-scale-in {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}

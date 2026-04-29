@@ -64,8 +64,44 @@ src/
 │   └── useContactForm.ts           # Formulario de contacto con validación
 ├── i18n/
 │   └── translations.ts             # Traducciones ES/EN (fuente de verdad de texto)
-└── index.css                       # Design system editorial (Manrope + Inter)
+├── index.css                       # Design system editorial (Manrope + Inter)
+└── v3/                             # Versión activa del CV (multi-theme editorial)
+    ├── AppV3.tsx                   # Root v3 con HUD + scroll-spy + tweaks (theme/accent)
+    ├── Hero.tsx                    # Hero con shader WebGL + tagline doble
+    ├── chrome.tsx                  # CornerTools, BottomHUD, SectionHead, SectionTitle
+    ├── primitives.tsx              # Reveal, MaskReveal, WordsMask, Counter, Tilt
+    ├── sections.tsx                # AboutV3, ExperienceV3, SkillsV3, ProjectsV3, ContactV3
+    ├── data.ts                     # buildData(lang) → CVData con ProjectV3 case-study fields
+    ├── theme.ts                    # ThemeName, accents, paletas
+    ├── Download.tsx + PdfMenu.tsx  # Dropdown PDF (portal, lazy chunk 1.6MB)
+    ├── projects/                   # Showcase modal de case study
+    │   ├── ProjectModal.tsx        # Portal + focus trap + ESC + scroll lock + a11y
+    │   ├── CaseStudyContent.tsx    # 8 secciones (lazy chunk ~5kB gzip)
+    │   └── CaseStudySection.tsx    # Primitive `// titulo` + slot
+    └── sections/
+        └── ClaudeEngineering.tsx   # Sección Claude Code expertise (8 capabilities)
 ```
+
+### Showcase de proyectos (v3)
+
+Los 3 proyectos del showcase usan **nombres genéricos** (sin marcas de empresa):
+- `platform-b2b` — Plataforma B2B/B2C de Gestión de Proyectos
+- `pos-cloud` — Sistema POS Multi-Sucursal Cloud
+- `cms-3d` — Sitio Corporativo con CMS Headless + 3D Interactivo
+
+Datos completos del case study viven en `src/i18n/translations.ts` bajo `projects.items[i]` (campos: `tagline`, `problem`, `solution[]`, `architecturePatterns[]`, `highlights[]`, `stack`, `metrics[]`, `role`, `demoStatus`). Mapeados a tipo `ProjectV3` en `src/v3/data.ts`. Cada card → CTA `Ver case study` → modal portal con full case study + badge "Demo en construcción". Cuando un demo esté listo, cambiar `demoStatus: 'live'` y agregar `demoUrl` en translations.
+
+### Numeración de secciones
+
+Orden en `AppV3`: Hero → About(02) → Experience(03) → Skills(04) → **ClaudeEngineering(05)** → Projects(06) → Contact(07). El número de ClaudeEngineering vive en i18n (`claudeEngineering.num`); los demás están hardcoded en `sections.tsx`. Si insertas otra sección, **renumera todos los `<SectionHead num="NN">` y la clave i18n** para preservar la secuencia editorial.
+
+### Especialización Claude Code
+
+Hero tiene tagline doble:
+- Línea 1 (accent): `Full Stack Developer · .NET & React`
+- Línea 2 (muted): `Claude Code Power User`
+
+Strings idénticos en ES y EN — son labels de marca, marcadas en `translations.ts` con comentario `// intentional: brand strings, kept identical in ES and EN — do not translate`.
 
 ## Design System — Editorial Bold (Architect.DEV)
 

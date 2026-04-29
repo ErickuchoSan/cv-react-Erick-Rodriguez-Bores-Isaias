@@ -267,7 +267,7 @@ export const translations = {
         },
         claudeEngineering: {
             hint: 'Especialización · AI-assisted engineering',
-            num: '06',
+            num: '05',
             label: 'Claude Code Engineering',
             title1: 'Dominio del ecosistema',
             title2: 'de ingeniería AI-assisted.',
@@ -601,7 +601,7 @@ export const translations = {
         },
         claudeEngineering: {
             hint: 'Specialization · AI-assisted engineering',
-            num: '06',
+            num: '05',
             label: 'Claude Code Engineering',
             title1: 'Mastery of the ecosystem',
             title2: 'of AI-assisted engineering.',

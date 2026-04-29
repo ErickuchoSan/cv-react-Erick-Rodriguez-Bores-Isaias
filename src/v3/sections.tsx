@@ -525,7 +525,7 @@ export function ProjectsV3({ data, lang }: { data: CVData; lang: 'es' | 'en' }) 
     <section id="projects" style={{
       padding: '180px 5vw', background: 'var(--bg-2)', position: 'relative',
     }}>
-      <SectionHead num="05" label={t.label} hint={t.hint} />
+      <SectionHead num="06" label={t.label} hint={t.hint} />
       <SectionTitle>
         <WordsMask text={t.t1} step={60} />{' '}
         <em style={{ color: 'var(--accent)' }}>
@@ -619,6 +619,8 @@ export function ProjectsV3({ data, lang }: { data: CVData; lang: 'es' | 'en' }) 
               }}>
                 <button
                   onClick={() => setOpenId(p.id)}
+                  aria-haspopup="dialog"
+                  aria-label={(lang === 'es' ? 'Ver case study: ' : 'View case study: ') + p.name}
                   style={{
                     padding: '12px 24px', cursor: 'pointer',
                     background: p.color, color: 'var(--bg)',
@@ -636,7 +638,7 @@ export function ProjectsV3({ data, lang }: { data: CVData; lang: 'es' | 'en' }) 
                   color: 'var(--fg-muted)',
                   border: '1px dashed var(--line-strong)',
                 }}>
-                  🚧 {lang === 'es' ? 'Demo en construcción' : 'Demo in construction'}
+                  <span aria-hidden="true">🚧 </span>{lang === 'es' ? 'Demo en construcción' : 'Demo in construction'}
                 </span>
               </div>
             </div>
@@ -675,7 +677,7 @@ export function ContactV3({ data, lang }: { data: CVData; lang: 'es' | 'en' }) {
 
   return (
     <section id="contact" style={{ padding: '180px 5vw 80px', position: 'relative' }}>
-      <SectionHead num="06" label={t.label} hint={t.hint} />
+      <SectionHead num="07" label={t.label} hint={t.hint} />
 
       <Reveal>
         <h2 style={{

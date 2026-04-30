@@ -1,0 +1,7 @@
+{
+  "tool_name": "mcp__vercel__list_deployments",
+  "tool_input_preview": "{\"projectId\":\"prj_VfQVvtV7SAPMGeaZp6jwkNvulPXN\",\"teamId\":\"team_14Gj8m0GSi6GRbrXxhepiIhV\"}",
+  "error": "API request failed: 403 Forbidden",
+  "timestamp": "2026-04-29T23:44:06.941Z",
+  "retry_count": 1
+}

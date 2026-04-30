@@ -1,22 +1,22 @@
-import { FaShieldAlt, FaUsers, FaCloud } from 'react-icons/fa';
+import { FaCloud, FaStore, FaCube } from 'react-icons/fa';
 
 export const PROJECTS_DATA = [
     {
-        title: "Align Designs Platform",
+        title: "Plataforma B2B/B2C de Gestión de Proyectos",
         description: "",
-        tech: ["NestJS", "Next.js 15", "PostgreSQL", "Prisma", "Docker", "GitHub Actions", "JWT/OTP", "RBAC"],
+        tech: ["NestJS 11", "Next.js 16", "PostgreSQL 15", "Prisma", "Redis", "Docker", "DigitalOcean", "JWT/OTP"],
         icon: FaCloud
     },
     {
-        title: "Sistema de Auditoría Interna (ADA/HONESTEL)",
+        title: "Sistema POS Multi-Sucursal Cloud",
         description: "",
-        tech: [".NET Core 6", "C#", "SQL Server", "OAuth2/JWT", "Entity Framework", "HTML/Bootstrap"],
-        icon: FaShieldAlt
+        tech: ["Node.js", "Supabase", "PostgreSQL", "React", "TypeScript", "Vite", "Docker", "Playwright"],
+        icon: FaStore
     },
     {
-        title: "Sistema de Reclutamiento Empresarial",
+        title: "Sitio Corporativo con CMS Headless + 3D Interactivo",
         description: "",
-        tech: [".NET Framework", "JavaScript", "Bootstrap", "SQL"],
-        icon: FaUsers
+        tech: ["Next.js 15", "Sanity CMS", "GSAP", "Spline 3D", "Supabase", "Resend", "React Query", "Tailwind"],
+        icon: FaCube
     }
 ];

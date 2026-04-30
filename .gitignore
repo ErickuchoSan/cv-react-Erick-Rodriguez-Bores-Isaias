@@ -31,3 +31,10 @@ dist-ssr
 
 # Interview documents (confidential)
 *.pdf
+
+# OMC state and sessions
+.omc/
+
+# Local CV exports
+Erick Bores CV.html
+

@@ -127,7 +127,7 @@ export function AppV3() {
       <BottomHUD progress={progress} active={active} sections={sections} />
 
       <main>
-        <HeroV3 data={data} lang={language} themeName={tweaks.theme} accent={tweaks.accent} />
+        <HeroV3 data={data} lang={language} themeName={tweaks.theme} accent={tweaks.accent} onNav={onNav} />
         <MarqueeV3 items={data.marquee1} />
         <AboutV3 data={data} lang={language} />
         <ExperienceV3 data={data} lang={language} />

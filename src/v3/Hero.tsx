@@ -213,7 +213,7 @@ function Terminal({ name, role }: { name: string; role: string }) {
   );
 }
 
-export function HeroV3({ data, lang, themeName, accent }: { data: CVData; lang: 'es' | 'en'; themeName: ThemeName; accent: string }) {
+export function HeroV3({ data, lang, themeName, accent, onNav }: { data: CVData; lang: 'es' | 'en'; themeName: ThemeName; accent: string; onNav?: (id: string) => void }) {
   const D = data;
   const heroT = translations[lang].hero;
   const labels = lang === 'es'
@@ -388,22 +388,24 @@ export function HeroV3({ data, lang, themeName, accent }: { data: CVData; lang: 
 
               <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginTop: 28 }}>
                 <Magnetic strength={0.25}>
-                  <a href="#contact" data-cursor={lang === 'es' ? 'escribir' : 'write'} style={{
+                  <button onClick={() => onNav?.('contact')} data-cursor={lang === 'es' ? 'escribir' : 'write'} style={{
                     display: 'inline-flex', alignItems: 'center', gap: 10,
                     padding: '14px 24px', background: 'var(--accent)', color: 'var(--bg)',
                     fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: 1.6,
                     textTransform: 'uppercase', fontWeight: 700, border: '1px solid var(--accent)',
-                  }}>{labels.cta1}</a>
+                    cursor: 'pointer',
+                  }}>{labels.cta1}</button>
                 </Magnetic>
                 <Magnetic strength={0.2}>
-                  <a href="#projects" data-cursor={lang === 'es' ? 'ver' : 'view'} style={{
+                  <button onClick={() => onNav?.('projects')} data-cursor={lang === 'es' ? 'ver' : 'view'} style={{
                     display: 'inline-flex', alignItems: 'center', gap: 10,
                     padding: '14px 24px',
                     background: 'var(--bg)', color: 'var(--fg)',
                     fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: 1.6,
                     textTransform: 'uppercase', fontWeight: 700,
                     border: '1px solid var(--fg)',
-                  }}>{labels.cta2}</a>
+                    cursor: 'pointer',
+                  }}>{labels.cta2}</button>
                 </Magnetic>
                 <DownloadV3 lang={lang} themeName={themeName} accent={accent} />
               </div>

@@ -80,7 +80,7 @@ export const translations = {
                     company: "Grupo Salinas",
                     period: "Mayo 2024 - Actual",
                     duration: "~2 años",
-                    description: "Líder técnico responsable de la arquitectura, desarrollo y evolución de sistemas críticos de auditoría interna (ADA/HONESTEL). Stack: .NET Core 6, C#, HTML, Bootstrap, SQL Server, OAuth2/JWT, Entity Framework, Python 3.10+.",
+                    description: "Líder técnico responsable de la arquitectura, desarrollo y evolución de sistemas críticos de auditoría interna (ADA/HONESTEL) y aplicaciones de atención a fraudes. Stack: .NET Core 6, C#, Tauri 2.x, Rust, React 19, SQL Server, OAuth2/JWT, Entity Framework, Python 3.10+.",
                     functions: [
                         "Desarrollo de API REST con .NET Core 6 integrando OAuth2 y tokenización JWT para autenticación segura.",
                         "Desarrollo Frontend con HTML, JavaScript y Bootstrap aplicando diseño responsivo.",
@@ -89,12 +89,15 @@ export const translations = {
                         "Arquitectura Backend basada en SOLID, Clean Architecture y principios DDD.",
                         "Refactorización de arquitectura legacy hacia proyecto con Entity Framework y principios limpios.",
                         "Documentación técnica con Swagger y pruebas de API con Postman/Insomnia.",
-                        "Desarrollo de pipelines de automatización con Python 3.10+ (pandas, pywin32/COM, pyodbc, Selenium): ingesta desde Outlook, extracción Excel, generación SQL transaccional y automatización de portales web internos."
+                        "Desarrollo de pipelines de automatización con Python 3.10+ (pandas, pywin32/COM, pyodbc, Selenium): ingesta desde Outlook, extracción Excel, generación SQL transaccional y automatización de portales web internos.",
+                        "Diseñé y desarrollé aplicación de escritorio Windows (Tauri 2.x + React 19 + TypeScript) para el área de fraudes: reconocimiento facial contra tres bases internas (general, listas rojas, empleados) vía API BAZ de Identidad Digital.",
+                        "Implementé cifrado AES-256-GCM en Rust para protección de imágenes biométricas en tránsito y descifrado RSA-OAEP SHA-256 de IDs retornados, cumpliendo estándares de seguridad corporativos."
                     ],
                     achievements: [
                         "Creación de API v2 de Honestel desde cero (6 endpoints principales) con documentación Swagger.",
                         "Reducción del 40% en tiempo de ejecución de consultas críticas mediante optimización de procedimientos almacenados.",
-                        "Automatización de 5+ procesos críticos con Python (alta SAP, reportes, extracción de datos) — pipelines modulares con pywin32, pandas, pyodbc y Selenium, eliminando ~8 hrs/semana de trabajo manual."
+                        "Automatización de 5+ procesos críticos con Python (alta SAP, reportes, extracción de datos) — pipelines modulares con pywin32, pandas, pyodbc y Selenium, eliminando ~8 hrs/semana de trabajo manual.",
+                        "Desarrollo de aplicación de escritorio con Tauri 2.x + Rust para reconocimiento facial biométrico — único proyecto con Rust en el área, cubriendo cifrado end-to-end de datos biométricos."
                     ]
                 },
                 {
@@ -416,7 +419,7 @@ export const translations = {
                     company: "Grupo Salinas",
                     period: "May 2024 - Present",
                     duration: "~2 years",
-                    description: "Technical lead responsible for architecture, development and evolution of critical internal audit systems (ADA/HONESTEL). Stack: .NET Core 6, C#, HTML, Bootstrap, SQL Server, OAuth2/JWT, Entity Framework, Python 3.10+.",
+                    description: "Technical lead responsible for architecture, development and evolution of critical internal audit systems (ADA/HONESTEL) and fraud-response applications. Stack: .NET Core 6, C#, Tauri 2.x, Rust, React 19, SQL Server, OAuth2/JWT, Entity Framework, Python 3.10+.",
                     functions: [
                         "REST API development with .NET Core 6 integrating OAuth2 and JWT tokenization for secure authentication.",
                         "Frontend development with HTML, JavaScript and Bootstrap applying responsive design.",
@@ -425,12 +428,15 @@ export const translations = {
                         "Backend architecture based on SOLID, Clean Architecture and DDD principles.",
                         "Legacy architecture refactoring towards project with Entity Framework and clean principles.",
                         "Technical documentation with Swagger and API testing with Postman/Insomnia.",
-                        "Built automation pipelines with Python 3.10+ (pandas, pywin32/COM, pyodbc, Selenium): Outlook ingestion, Excel extraction, transactional SQL generation and internal web portal automation."
+                        "Built automation pipelines with Python 3.10+ (pandas, pywin32/COM, pyodbc, Selenium): Outlook ingestion, Excel extraction, transactional SQL generation and internal web portal automation.",
+                        "Designed and developed a Windows desktop application (Tauri 2.x + React 19 + TypeScript) for the fraud team: facial recognition against three internal databases (general, blacklists, employees) via the BAZ Digital Identity API.",
+                        "Implemented AES-256-GCM encryption in Rust to protect biometric images in transit and RSA-OAEP SHA-256 decryption of returned IDs, meeting corporate security standards."
                     ],
                     achievements: [
                         "Creation of Honestel v2 API from scratch (6 core endpoints) with Swagger documentation.",
                         "40% reduction in critical query execution time through stored procedure optimization.",
-                        "Automated 5+ critical processes with Python (SAP onboarding, reports, data extraction) — modular pipelines with pywin32, pandas, pyodbc and Selenium, eliminating ~8 hrs/week of manual work."
+                        "Automated 5+ critical processes with Python (SAP onboarding, reports, data extraction) — modular pipelines with pywin32, pandas, pyodbc and Selenium, eliminating ~8 hrs/week of manual work.",
+                        "Built desktop app with Tauri 2.x + Rust for biometric facial recognition — only Rust project in the department, covering end-to-end encryption of biometric data."
                     ]
                 },
                 {

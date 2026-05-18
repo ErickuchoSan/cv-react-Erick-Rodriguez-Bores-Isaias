@@ -113,8 +113,7 @@ export function buildData(lang: Lang): CVData {
         ],
         DevOps: [
           'GitHub Actions', 'CI/CD', 'SonarCloud', 'Docker', 'DigitalOcean',
-          'Prometheus', 'Pino', 'Playwright', 'Git / GitHub',
-          'CRON', 'OWASP', 'SCRUM',
+          'Git / GitHub', 'OWASP', 'SCRUM',
         ],
         IA: [
           'Claude (Anthropic)', 'MCP', 'Claude Code / AI Agents',
@@ -134,8 +133,7 @@ export function buildData(lang: Lang): CVData {
         ],
         DevOps: [
           'GitHub Actions', 'CI/CD', 'SonarCloud', 'Docker', 'DigitalOcean',
-          'Prometheus', 'Pino', 'Playwright', 'Git / GitHub',
-          'CRON', 'OWASP', 'SCRUM',
+          'Git / GitHub', 'OWASP', 'SCRUM',
         ],
         AI: [
           'Claude (Anthropic)', 'MCP', 'Claude Code / AI Agents',

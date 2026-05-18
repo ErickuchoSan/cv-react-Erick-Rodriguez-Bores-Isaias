@@ -34,7 +34,7 @@ export const translations = {
             subtitle: 'Transformando ideas en soluciones empresariales de alto impacto',
             roleTitle: 'Desarrollador Full Stack .NET & React',
             description1: 'Con 3 años de experiencia en desarrollo de software empresarial, diseño e implemento arquitecturas escalables con C#/.NET Core 6/8/10 (3 años), React 19 / Next.js 15 (2 años), SQL Server / PostgreSQL (3 años), y Node.js / NestJS 11 (3 años). Experiencia sólida en REST APIs, Entity Framework, OAuth2/JWT, cifrado AES/RSA, Docker y Python.',
-            description2: 'Actualmente como Programador de Auditoría Senior en Grupo Salinas, lidero el desarrollo de sistemas críticos de auditoría interna (ADA/HONESTEL) con .NET Core 6, C#, SQL Server y OAuth2/JWT. Paralelamente desarrollo la plataforma Align Designs (freelance) con NestJS 11, Next.js 16, PostgreSQL y Docker. Me distingo por Clean Architecture, DDD y desarrollo asistido por IA.',
+            description2: 'Actualmente como Programador de Auditoría Senior en Grupo Salinas, lidero el desarrollo de sistemas críticos de auditoría interna (ADA/HONESTEL) con .NET Core 6, C#, SQL Server y OAuth2/JWT. Paralelamente desarrollo la plataforma Align Designs (freelance) con NestJS 11, Next.js 16, PostgreSQL y Docker. Trabajo con un flujo AI-assisted estructurado: fases de proyecto con skills especializadas por tecnología, seguimiento en ClickUp, pruebas manuales + unitarias por fase, y CI/CD con SonarCloud, health checks y backups automáticos.',
             stats: {
                 experience: 'Años de Experiencia',
                 technologies: 'Tecnologías Dominadas',
@@ -159,7 +159,7 @@ export const translations = {
                     { title: 'Pruebas y QA', desc: 'Pruebas unitarias, pruebas de usuario y documentación técnica (Swagger)' },
                     { title: 'Aprendizaje Autodidacta', desc: 'Capacidad demostrada para dominar nuevas tecnologías de forma independiente' },
                     { title: 'Trabajo en Equipo', desc: 'Comunicación asertiva, adaptabilidad y colaboración efectiva' },
-                    { title: 'Desarrollo Asistido por IA', desc: 'Programo con Claude y Gemini optimizando cada línea con buenas prácticas' },
+                    { title: 'Flujo AI-Assisted', desc: 'Proyecto en fases con skills por stack, ClickUp para trazabilidad, pruebas por fase y CI/CD con SonarCloud automatizado' },
                     { title: 'Disponibilidad Inmediata', desc: 'Disponible para incorporación en 1 semana o 3 días' }
                 ]
             }
@@ -369,7 +369,7 @@ export const translations = {
             subtitle: 'Transforming ideas into high-impact business solutions',
             roleTitle: 'Full Stack Developer .NET & React',
             description1: 'With 3 years of experience in enterprise software development, I design and implement scalable architectures with C#/.NET Core 6/8/10 (3 years), React 19 / Next.js 15 (2 years), SQL Server / PostgreSQL (3 years), and Node.js / NestJS 11 (3 years). Solid experience in REST APIs, Entity Framework, OAuth2/JWT, AES/RSA encryption, Docker and Python.',
-            description2: 'Currently as a Senior Audit Programmer at Grupo Salinas, I lead the development of critical internal audit systems (ADA/HONESTEL) with .NET Core 6, C#, SQL Server and OAuth2/JWT. In parallel, I develop the Align Designs platform (freelance) with NestJS 11, Next.js 16, PostgreSQL and Docker. I stand out for Clean Architecture, DDD and AI-assisted development.',
+            description2: 'Currently as a Senior Audit Programmer at Grupo Salinas, I lead the development of critical internal audit systems (ADA/HONESTEL) with .NET Core 6, C#, SQL Server and OAuth2/JWT. In parallel, I develop the Align Designs platform (freelance) with NestJS 11, Next.js 16, PostgreSQL and Docker. I work with a structured AI-assisted workflow: project phases with tech-specific skills, ClickUp for task tracking, manual + unit testing per phase, and CI/CD with SonarCloud, health checks and automated backups.',
             stats: {
                 experience: 'Years of Experience',
                 technologies: 'Technologies Mastered',
@@ -494,7 +494,7 @@ export const translations = {
                     { title: 'Testing & QA', desc: 'Unit testing, user testing and technical documentation (Swagger)' },
                     { title: 'Self-Taught Learning', desc: 'Demonstrated ability to master new technologies independently' },
                     { title: 'Teamwork', desc: 'Assertive communication, adaptability and effective collaboration' },
-                    { title: 'AI-Assisted Development', desc: 'Programming with Claude and Gemini optimizing every line with best practices' },
+                    { title: 'AI-Assisted Workflow', desc: 'Project phases with tech-specific skills, ClickUp tracking, per-phase testing and automated CI/CD with SonarCloud' },
                     { title: 'Immediate Availability', desc: 'Available for onboarding in 1 week or 3 days' }
                 ]
             }

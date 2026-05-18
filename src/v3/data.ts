@@ -34,7 +34,7 @@ export interface CaseStudyMetric {
 }
 
 export interface ProjectV3 {
-  id: 'platform-b2b' | 'pos-cloud' | 'cms-3d';
+  id: 'align-designs' | 'comal-pos' | 'mdg-investment';
   name: string;
   kind: string;
   year: string;
@@ -91,10 +91,10 @@ const STACK_BY_JOB_ES: string[][] = [
 
 const PROJECT_COLORS = ['#ff5b2e', '#22d3ee', '#a78bfa'];
 const PROJECT_ICONS = ['◐', '◇', '◈'];
-const PROJECT_KINDS = ['Plataforma B2B/B2C', 'POS Multi-Sucursal', 'CMS + 3D Interactivo'];
-const PROJECT_KINDS_EN = ['B2B/B2C Platform', 'Multi-Branch POS', 'Headless CMS + 3D'];
-const PROJECT_YEARS = ['2025—', '2024—', '2024'];
-const PROJECT_IDS = ['platform-b2b', 'pos-cloud', 'cms-3d'] as const;
+const PROJECT_KINDS = ['SaaS · Diseño de Interiores', 'POS · Restaurantes', 'Real Estate · 3D'];
+const PROJECT_KINDS_EN = ['SaaS · Interior Design', 'POS · Restaurants', 'Real Estate · 3D'];
+const PROJECT_YEARS = ['2025—', '2025—', '2025—'];
+const PROJECT_IDS = ['align-designs', 'comal-pos', 'mdg-investment'] as const;
 
 export function buildData(lang: Lang): CVData {
   const t = translations[lang];
@@ -177,7 +177,7 @@ export function buildData(lang: Lang): CVData {
       ...(p.stack?.testing ?? []),
     ].slice(0, 8);
     return {
-      id: PROJECT_IDS[i] ?? 'platform-b2b',
+      id: PROJECT_IDS[i] ?? 'align-designs',
       name: p.title,
       kind: (lang === 'es' ? PROJECT_KINDS : PROJECT_KINDS_EN)[i] ?? '',
       year: PROJECT_YEARS[i] ?? '',

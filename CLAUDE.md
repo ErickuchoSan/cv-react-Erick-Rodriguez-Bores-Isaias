@@ -84,10 +84,10 @@ src/
 
 ### Showcase de proyectos (v3)
 
-Los 3 proyectos del showcase usan **nombres genéricos** (sin marcas de empresa):
-- `platform-b2b` — Plataforma B2B/B2C de Gestión de Proyectos
-- `pos-cloud` — Sistema POS Multi-Sucursal Cloud
-- `cms-3d` — Sitio Corporativo con CMS Headless + 3D Interactivo
+Los 3 proyectos del showcase usan los **nombres reales**:
+- `align-designs` — Align Designs Platform (SaaS gestión proyectos diseño de interiores)
+- `comal-pos` — Comal POS (SaaS POS para restaurantes, offline-first)
+- `mdg-investment` — MDG Investment Group (web premium bienes raíces Texas, 3D interactivo)
 
 Datos completos del case study viven en `src/i18n/translations.ts` bajo `projects.items[i]` (campos: `tagline`, `problem`, `solution[]`, `architecturePatterns[]`, `highlights[]`, `stack`, `metrics[]`, `role`, `demoStatus`). Mapeados a tipo `ProjectV3` en `src/v3/data.ts`. Cada card → CTA `Ver case study` → modal portal con full case study + badge "Demo en construcción". Cuando un demo esté listo, cambiar `demoStatus: 'live'` y agregar `demoUrl` en translations.
 

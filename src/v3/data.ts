@@ -194,6 +194,7 @@ export function buildData(lang: Lang): CVData {
       metrics: p.metrics ?? [],
       role: p.role ?? '',
       demoStatus: (p.demoStatus as DemoStatus) ?? 'in-construction',
+      demoUrl: p.demoUrl,
     };
   });
 

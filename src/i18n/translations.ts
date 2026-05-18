@@ -198,7 +198,8 @@ export const translations = {
                         { value: '5', label: 'Fases de pipeline' },
                     ],
                     role: 'Solo developer · End-to-end · Diseño, arquitectura, implementación, deployment y mantenimiento.',
-                    demoStatus: 'in-construction',
+                    demoStatus: 'live',
+                    demoUrl: 'https://aligndesignsllc-dev.org/',
                 },
                 {
                     title: 'Comal POS',
@@ -533,7 +534,8 @@ export const translations = {
                         { value: '5', label: 'Pipeline phases' },
                     ],
                     role: 'Solo developer · End-to-end · Design, architecture, implementation, deployment and maintenance.',
-                    demoStatus: 'in-construction',
+                    demoStatus: 'live',
+                    demoUrl: 'https://aligndesignsllc-dev.org/',
                 },
                 {
                     title: 'Comal POS',

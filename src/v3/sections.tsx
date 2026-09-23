@@ -183,6 +183,8 @@ export function ExperienceV3({ data: D, lang, num }: SectionProps) {
 
         {D.experience.map((job, i) => {
           const isOpen = open === i;
+          const headId = `job-${job.id}-head`;
+          const panelId = `job-${job.id}-panel`;
           return (
             <Reveal key={job.id} delay={i * 120}>
               <div className="timeline-row" style={{
@@ -210,8 +212,6 @@ export function ExperienceV3({ data: D, lang, num }: SectionProps) {
                 </div>
 
                 <div
-                  data-cursor={isOpen ? cursor.close : cursor.open}
-                  onClick={() => setOpen(isOpen ? -1 : i)}
                   style={{
                     background: isOpen ? 'var(--bg-3)' : 'var(--bg)',
                     border: `1px solid ${isOpen ? 'var(--accent)' : 'var(--line)'}`,
@@ -220,39 +220,58 @@ export function ExperienceV3({ data: D, lang, num }: SectionProps) {
                     boxShadow: isOpen ? '0 30px 80px rgba(0,0,0,0.35)' : 'none',
                   }}
                 >
-                  <div className="job-head" style={{
-                    display: 'grid',
-                    gridTemplateColumns: 'minmax(0, 1.4fr) 1fr 180px 40px',
-                    gap: 24, alignItems: 'baseline',
-                  }}>
-                    <div style={{
+                  <button
+                    type="button"
+                    id={headId}
+                    className="job-head"
+                    aria-expanded={isOpen}
+                    aria-controls={panelId}
+                    data-cursor={isOpen ? cursor.close : cursor.open}
+                    onClick={() => setOpen(isOpen ? -1 : i)}
+                    style={{
+                      display: 'grid',
+                      gridTemplateColumns: 'minmax(0, 1.4fr) 1fr 180px 40px',
+                      gap: 24, alignItems: 'baseline',
+                      width: '100%', padding: 0, margin: 0, border: 'none',
+                      background: 'transparent', color: 'inherit', font: 'inherit',
+                      textAlign: 'left', cursor: 'pointer',
+                    }}>
+                    <span style={{
+                      display: 'block',
                       fontFamily: 'var(--font-display)',
                       fontSize: 'clamp(26px, 2.8vw, 42px)',
                       lineHeight: 1.05, fontWeight: 300, letterSpacing: '-0.025em',
                       fontStyle: isOpen ? 'italic' : 'normal',
                       color: isOpen ? 'var(--accent)' : 'var(--fg)',
                       transition: 'color 0.3s, font-style 0.3s',
-                    }}>{job.role}</div>
-                    <div style={{ fontSize: 15, color: 'var(--fg-muted)' }}>
+                    }}>{job.role}</span>
+                    <span style={{ display: 'block', fontSize: 15, color: 'var(--fg-muted)' }}>
                       {job.company}
-                    </div>
-                    <div style={{
+                    </span>
+                    <span style={{
+                      display: 'block',
                       fontFamily: 'var(--font-mono)', fontSize: 10,
                       letterSpacing: 1.4, color: 'var(--fg-muted)', textAlign: 'right',
                     }}>
                       {job.period}<br />
                       <span style={{ color: 'var(--accent)', fontWeight: 600 }}>{job.duration}</span>
-                    </div>
-                    <div style={{
+                    </span>
+                    <span aria-hidden="true" style={{
+                      display: 'block',
                       fontFamily: 'var(--font-mono)', fontSize: 26,
                       textAlign: 'right', color: 'var(--accent)',
                       transform: isOpen ? 'rotate(45deg)' : 'rotate(0deg)',
                       transition: 'transform 0.5s cubic-bezier(.2,.8,.2,1)',
                       lineHeight: 1,
-                    }}>+</div>
-                  </div>
+                    }}>+</span>
+                  </button>
 
-                  <div style={{
+                  <div
+                    id={panelId}
+                    role="region"
+                    aria-labelledby={headId}
+                    inert={!isOpen}
+                    style={{
                     maxHeight: isOpen ? 1800 : 0,
                     overflow: 'hidden',
                     transition: 'max-height 0.9s cubic-bezier(.2,.8,.2,1), margin-top 0.4s',
@@ -327,7 +346,7 @@ export function ExperienceV3({ data: D, lang, num }: SectionProps) {
           .timeline-row { grid-template-columns: 1fr !important; }
           .timeline-row > :first-child { display: none; }
           .job-head { grid-template-columns: 1fr 40px !important; gap: 14px !important; }
-          .job-head > :nth-child(2), .job-head > :nth-child(3) { display: none; }
+          .job-head > :nth-child(2), .job-head > :nth-child(3) { display: none !important; }
         }
       `}</style>
     </section>
@@ -372,7 +391,9 @@ export function SkillsV3({ data: D, lang, num }: SectionProps) {
         marginBottom: 40, flexWrap: 'wrap',
       }}>
         {categories.map((cat, i) => (
-          <button key={cat.id} data-cursor={cursor.view}
+          <button key={cat.id} type="button" data-cursor={cursor.view}
+            aria-pressed={active === i}
+            aria-controls="skills-panel"
             onClick={() => setActive(i)}
             style={{
               padding: '18px 26px', background: 'transparent', border: 'none',
@@ -383,7 +404,7 @@ export function SkillsV3({ data: D, lang, num }: SectionProps) {
               marginBottom: -1, transition: 'all 0.3s',
               display: 'flex', alignItems: 'center', gap: 10,
             }}>
-            <span style={{ color: 'var(--fg-muted)' }}>0{i + 1}</span>
+            <span aria-hidden="true" style={{ color: 'var(--fg-muted)' }}>0{i + 1}</span>
             {cat.label}
             <span style={{
               fontSize: 10, padding: '2px 8px',
@@ -394,7 +415,7 @@ export function SkillsV3({ data: D, lang, num }: SectionProps) {
         ))}
       </div>
 
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, marginBottom: 100 }}>
+      <div id="skills-panel" role="group" aria-label={current?.label} style={{ display: 'flex', flexWrap: 'wrap', gap: 10, marginBottom: 100 }}>
         {current?.items.map((s, i) => (
           <Reveal key={`${current.id}-${s}`} delay={i * 30} duration={700}>
             <Magnetic strength={0.15}>
@@ -526,10 +547,15 @@ export function ProjectsV3({ data: D, lang, num }: SectionProps) {
             const isActive = active === i;
             return (
               <Reveal key={p.id} delay={i * 80}>
-                <div data-cursor={cursor.view}
+                <button type="button" data-cursor={cursor.view}
+                  aria-pressed={isActive}
+                  aria-controls="project-preview"
                   onClick={() => setActive(i)}
+                  onFocus={() => setActive(i)}
                   onMouseEnter={() => setActive(i)}
                   style={{
+                    display: 'block', width: '100%', textAlign: 'left',
+                    color: 'inherit', font: 'inherit', cursor: 'pointer',
                     padding: 28,
                     background: isActive ? 'var(--bg-3)' : 'var(--bg)',
                     border: `1px solid ${isActive ? p.color : 'var(--line)'}`,
@@ -537,36 +563,38 @@ export function ProjectsV3({ data: D, lang, num }: SectionProps) {
                     transform: isActive ? 'translateX(16px)' : 'translateX(0)',
                     boxShadow: isActive ? `0 20px 60px ${p.color}40` : 'none',
                   }}>
-                  <div style={{ display: 'flex', alignItems: 'baseline', gap: 14, marginBottom: 12 }}>
+                  <span aria-hidden="true" style={{ display: 'flex', alignItems: 'baseline', gap: 14, marginBottom: 12 }}>
                     <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: p.color, letterSpacing: 1.4 }}>◆ 0{i + 1}</span>
                     <span style={{ fontSize: 28, lineHeight: 1 }}>{p.icon}</span>
                     <span style={{ marginLeft: 'auto', fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--fg-muted)', letterSpacing: 1.4 }}>{p.year}</span>
-                  </div>
-                  <h4 style={{
+                  </span>
+                  <span style={{
+                    display: 'block',
                     fontFamily: 'var(--font-display)',
                     fontSize: 'clamp(22px, 2.2vw, 30px)',
                     lineHeight: 1.12, fontWeight: 300, letterSpacing: '-0.02em',
                     fontStyle: isActive ? 'italic' : 'normal',
                     color: isActive ? p.color : 'var(--fg)',
                     transition: 'all 0.4s', marginBottom: 6,
-                  }}>{p.name}</h4>
-                  <div style={{
+                  }}>{p.name}</span>
+                  <span style={{
+                    display: 'block',
                     fontFamily: 'var(--font-mono)', fontSize: 10,
                     color: 'var(--fg-muted)', letterSpacing: 1.4, textTransform: 'uppercase',
-                  }}>{p.kind}</div>
-                </div>
+                  }}>{p.kind}</span>
+                </button>
               </Reveal>
             );
           })}
         </div>
 
-        <div className="proj-preview" style={{
+        <div id="project-preview" className="proj-preview" style={{
           position: 'sticky', top: 40, alignSelf: 'start',
           border: '1px solid var(--line-strong)', background: 'var(--bg)',
           padding: 48, minHeight: 520, overflow: 'hidden',
         }}>
           {D.projects.map((p, i) => (
-            <div key={p.id} style={{
+            <div key={p.id} inert={active !== i} aria-hidden={active !== i} style={{
               position: active === i ? 'relative' : 'absolute',
               inset: active === i ? 'auto' : 48 as never,
               opacity: active === i ? 1 : 0,

@@ -92,7 +92,21 @@ export function AppV3() {
     return () => window.removeEventListener('scroll', on);
   }, []);
 
-  const navSections = SECTION_ORDER.map((id) => ({ id, label: t.nav.sections[NAV_KEY[id]] }));
+  const sectionTitles: Record<SectionId, string> = {
+    hero: t.nav.home,
+    about: t.about.label,
+    experience: t.experience.label,
+    skills: t.skills.label,
+    'claude-engineering': t.claudeEngineering.label,
+    projects: t.projects.label,
+    contact: t.contact.label,
+  };
+  const navSections = SECTION_ORDER.map((id) => {
+    const label = t.nav.sections[NAV_KEY[id]];
+    const title = sectionTitles[id];
+    // WCAG 2.5.3: the accessible name must contain the visible label.
+    return { id, label, title: title.toLowerCase().includes(label.toLowerCase()) ? title : `${label} · ${title}` };
+  });
   const year = new Date().getFullYear();
 
   const onNav = (id: string) => {
@@ -113,6 +127,9 @@ export function AppV3() {
   };
 
   const toggleLang = () => setLanguage(language === 'es' ? 'en' : 'es');
+
+  const accentKey = ACCENT_OPTIONS.find((a) => a.value === tweaks.accent)?.key;
+  const accentLabel = accentKey ? t.accents[accentKey] : tweaks.accent;
 
   const sections: Record<SectionId, ReactNode> = {
     hero: (
@@ -140,6 +157,9 @@ export function AppV3() {
       <NavV3 active={active} sections={navSections} onNav={onNav} lang={language} />
       <CornerTools
         theme={tweaks.theme}
+        themeLabel={THEMES[tweaks.theme].label}
+        accentLabel={accentLabel}
+        city={data.contact.city}
         onCycleTheme={cycleTheme}
         onCycleAccent={cycleAccent}
         onToggleLang={toggleLang}

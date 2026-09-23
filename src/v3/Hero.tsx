@@ -119,7 +119,7 @@ function ShaderBG() {
 
   if (isMobile) {
     return (
-      <div style={{
+      <div aria-hidden="true" style={{
         position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none',
         background: 'radial-gradient(ellipse at 30% 20%, color-mix(in oklab, var(--accent) 22%, transparent), transparent 55%), radial-gradient(ellipse at 80% 90%, color-mix(in oklab, var(--accent) 14%, transparent), transparent 60%), var(--bg)',
         opacity: 0.85,
@@ -127,7 +127,7 @@ function ShaderBG() {
     );
   }
 
-  return <canvas ref={ref} style={{
+  return <canvas ref={ref} aria-hidden="true" style={{
     position: 'absolute', inset: 0, width: '100%', height: '100%',
     opacity: 0.55, pointerEvents: 'none', zIndex: 0,
   }} />;
@@ -422,7 +422,7 @@ export function HeroV3({ data: D, lang, themeName, accent, onNav }: HeroProps) {
           </Reveal>
 
           <Reveal delay={1100} y={60}>
-            <div className="hero-terminal-wrap">
+            <div className="hero-terminal-wrap" aria-hidden="true">
               <Terminal name={D.name.display} role={D.role} stack={D.terminal.stack} log={D.terminal.log} status={t.terminalStatus} />
             </div>
           </Reveal>

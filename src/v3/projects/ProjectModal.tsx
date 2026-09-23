@@ -31,7 +31,7 @@ export function ProjectModal({ project, lang, onClose }: Props) {
       if (e.key === 'Escape') { onClose(); return; }
       if (e.key === 'Tab' && sheetRef.current) {
         const focusables = sheetRef.current.querySelectorAll<HTMLElement>(
-          'button, a, [tabindex]:not([tabindex="-1"]), input, select, textarea'
+          'button:not([disabled]), a[href], [tabindex]:not([tabindex="-1"]), input, select, textarea'
         );
         if (focusables.length === 0) return;
         const first = focusables[0];

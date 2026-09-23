@@ -17,6 +17,7 @@ const es = {
   },
   nav: {
     label: 'Secciones',
+    home: 'Inicio',
     sections: {
       hero: '00',
       about: 'Sobre',
@@ -178,6 +179,7 @@ const en: Translations = {
   },
   nav: {
     label: 'Sections',
+    home: 'Home',
     sections: {
       hero: '00',
       about: 'About',

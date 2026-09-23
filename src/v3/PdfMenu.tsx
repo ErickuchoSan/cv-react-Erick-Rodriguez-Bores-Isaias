@@ -1,13 +1,18 @@
-import { PDFDownloadLink } from '@react-pdf/renderer';
+import { useEffect, useRef, type KeyboardEvent, type ReactElement } from 'react';
+import { usePDF, type DocumentProps } from '@react-pdf/renderer';
 import { CVDocumentLeaf } from '../components/PDF/CVDocumentLeaf';
 import { CVDocumentATS } from '../components/PDF/CVDocumentATS';
 import type { PdfTheme } from '../components/PDF/leafStyles';
 import type { Lang } from '../i18n/lang';
-import { translations } from '../i18n/translations';
+import { translations, type Translations } from '../i18n/translations';
+
+/** Keeps the menu open long enough for the browser to start the download. */
+const CLOSE_AFTER_DOWNLOAD_MS = 600;
 
 interface Props {
   lang: Lang;
-  onClose: () => void;
+  /** `returnFocus`: move focus back to the trigger (keyboard close / after a download). */
+  onClose: (returnFocus: boolean) => void;
   themeName: string;
   theme: PdfTheme;
   accent: string;
@@ -16,9 +21,10 @@ interface Props {
 }
 
 const itemStyle = {
-  display: 'block', padding: '12px 18px', textDecoration: 'none',
+  display: 'block', width: '100%', padding: '12px 18px', textDecoration: 'none', textAlign: 'left',
   fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: 0.6,
-  color: 'var(--fg)', borderTop: '1px solid var(--line)',
+  color: 'var(--fg)', background: 'transparent',
+  border: 'none', borderTop: '1px solid var(--line)',
   transition: 'background 0.2s',
 } as const;
 
@@ -46,45 +52,94 @@ const wrapStyle = {
   boxShadow: '0 20px 60px rgba(0,0,0,0.45), 0 0 0 1px color-mix(in oklab, var(--accent) 12%, transparent)',
 } as const;
 
-const item = (label: string, loading: boolean, error: Error | null | undefined, flag: string, gen: string) => (
-  <span style={{ display: 'flex', alignItems: 'center', gap: 10, pointerEvents: 'none' }}>
-    <span style={{ color: 'var(--accent)', minWidth: 18 }}>{loading ? '◐' : error ? '⚠' : flag}</span>
-    <span>{loading ? `${label} · ${gen}` : label}</span>
-  </span>
-);
+interface PdfLinkProps {
+  doc: ReactElement<DocumentProps>;
+  fileName: string;
+  label: string;
+  flag: string;
+  cursor: string;
+  t: Translations['download'];
+  onDownloaded: () => void;
+}
+
+/** Generates one PDF on mount; a failed generation turns into a retry button. */
+function PdfLink({ doc, fileName, label, flag, cursor, t, onDownloaded }: PdfLinkProps) {
+  const [instance, update] = usePDF();
+  useEffect(() => { update(doc); }, [doc, update]);
+
+  const icon = instance.loading ? '◐' : instance.error ? '⚠' : flag;
+  const content = (text: string) => (
+    <span style={{ display: 'flex', alignItems: 'center', gap: 10, pointerEvents: 'none' }}>
+      <span aria-hidden="true" style={{ color: 'var(--accent)', minWidth: 18 }}>{icon}</span>
+      <span>{text}</span>
+    </span>
+  );
+
+  if (instance.error) {
+    return (
+      <button type="button" style={{ ...itemStyle, cursor: 'pointer' }} data-cursor={cursor} onClick={() => update(doc)}>
+        {content(`${label} · ${t.failed}`)}
+      </button>
+    );
+  }
+  if (instance.loading || !instance.url) {
+    return <span style={{ ...itemStyle, opacity: 0.7 }}>{content(`${label} · ${t.generating}`)}</span>;
+  }
+  return (
+    <a href={instance.url} download={fileName} style={itemStyle} data-cursor={cursor} onClick={onDownloaded}>
+      {content(label)}
+    </a>
+  );
+}
 
 export default function PdfMenu({ lang, onClose, themeName, theme, accent, accentLabel, fontLabel }: Props) {
   const t = translations[lang].download;
+  const rootRef = useRef<HTMLDivElement>(null);
+
+  // Keyboard users land inside the menu (it's portaled to the end of <body>).
+  useEffect(() => { rootRef.current?.focus(); }, []);
+
+  // Tabbing past either end closes the menu and returns to the trigger instead of
+  // jumping to the bottom of the page.
+  const onKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+    if (e.key !== 'Tab' || !rootRef.current) return;
+    const items = [...rootRef.current.querySelectorAll<HTMLElement>('a[href], button')];
+    const active = document.activeElement;
+    const leavingBackward = e.shiftKey && (active === rootRef.current || active === items[0]);
+    const leavingForward = !e.shiftKey && (items.length === 0 || active === items[items.length - 1]);
+    if (leavingBackward || leavingForward) {
+      e.preventDefault();
+      onClose(true);
+    }
+  };
+
+  const onDownloaded = () => { setTimeout(() => onClose(true), CLOSE_AFTER_DOWNLOAD_MS); };
 
   return (
-    <div role="menu" style={wrapStyle}>
+    <div ref={rootRef} role="group" aria-label={t.cta} tabIndex={-1} onKeyDown={onKeyDown} style={{ ...wrapStyle, outline: 'none' }}>
       <div style={headerStyle}>{t.visual}</div>
       <div style={noteStyle}>
         <div style={{ marginBottom: 4, opacity: 0.7 }}>{t.themeNote}</div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: 'var(--fg)' }}>
-          <span style={{ width: 10, height: 10, borderRadius: '50%', background: accent, border: '1px solid var(--line-strong)', flexShrink: 0 }} />
+          <span aria-hidden="true" style={{ width: 10, height: 10, borderRadius: '50%', background: accent, border: '1px solid var(--line-strong)', flexShrink: 0 }} />
           <span style={{ textTransform: 'capitalize', fontWeight: 600 }}>{themeName}</span>
-          <span style={{ opacity: 0.5 }}>·</span>
+          <span aria-hidden="true" style={{ opacity: 0.5 }}>·</span>
           <span>{accentLabel}</span>
-          <span style={{ opacity: 0.5 }}>·</span>
+          <span aria-hidden="true" style={{ opacity: 0.5 }}>·</span>
           <span style={{ fontStyle: 'italic' }}>{fontLabel}</span>
         </div>
       </div>
-      <PDFDownloadLink document={<CVDocumentLeaf lang="es" theme={theme} accent={accent} />} fileName="CV_Erick_Rodriguez_ES.pdf" onClick={() => setTimeout(onClose, 600)} style={itemStyle} data-cursor="ES">
-        {({ loading, error }) => item(t.es, loading, error, '🇲🇽', t.generating)}
-      </PDFDownloadLink>
-      <PDFDownloadLink document={<CVDocumentLeaf lang="en" theme={theme} accent={accent} />} fileName="CV_Erick_Rodriguez_EN.pdf" onClick={() => setTimeout(onClose, 600)} style={itemStyle} data-cursor="EN">
-        {({ loading, error }) => item(t.en, loading, error, '🇺🇸', t.generating)}
-      </PDFDownloadLink>
+      <PdfLink doc={<CVDocumentLeaf lang="es" theme={theme} accent={accent} />} fileName="CV_Erick_Rodriguez_ES.pdf"
+        label={t.es} flag="🇲🇽" cursor="ES" t={t} onDownloaded={onDownloaded} />
+      <PdfLink doc={<CVDocumentLeaf lang="en" theme={theme} accent={accent} />} fileName="CV_Erick_Rodriguez_EN.pdf"
+        label={t.en} flag="🇺🇸" cursor="EN" t={t} onDownloaded={onDownloaded} />
 
       <div style={headerStyle}>{t.ats}</div>
       <div style={noteStyle}>{t.atsNote}</div>
-      <PDFDownloadLink document={<CVDocumentATS lang="es" />} fileName="CV_Erick_Rodriguez_ATS_ES.pdf" onClick={() => setTimeout(onClose, 600)} style={itemStyle} data-cursor="ATS">
-        {({ loading, error }) => item(t.atsEs, loading, error, '🇲🇽', t.generating)}
-      </PDFDownloadLink>
-      <PDFDownloadLink document={<CVDocumentATS lang="en" />} fileName="CV_Erick_Rodriguez_ATS_EN.pdf" onClick={() => setTimeout(onClose, 600)} style={itemStyle} data-cursor="ATS">
-        {({ loading, error }) => item(t.atsEn, loading, error, '🇺🇸', t.generating)}
-      </PDFDownloadLink>
+      <PdfLink doc={<CVDocumentATS lang="es" />} fileName="CV_Erick_Rodriguez_ATS_ES.pdf"
+        label={t.atsEs} flag="🇲🇽" cursor="ATS" t={t} onDownloaded={onDownloaded} />
+      <PdfLink doc={<CVDocumentATS lang="en" />} fileName="CV_Erick_Rodriguez_ATS_EN.pdf"
+        label={t.atsEn} flag="🇺🇸" cursor="ATS" t={t} onDownloaded={onDownloaded} />
     </div>
   );
 }

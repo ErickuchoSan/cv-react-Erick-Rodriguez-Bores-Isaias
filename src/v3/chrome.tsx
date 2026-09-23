@@ -53,12 +53,12 @@ export function CursorV3() {
   const big = state.hover && state.label.length > 0;
   return (
     <>
-      <div ref={dotRef} style={{
+      <div ref={dotRef} aria-hidden="true" style={{
         position: 'fixed', top: 0, left: 0, zIndex: 10000, pointerEvents: 'none',
         width: big ? 0 : 6, height: big ? 0 : 6, borderRadius: '50%',
         background: 'var(--accent)', transition: 'width 0.2s, height 0.2s',
       }} />
-      <div ref={ringRef} style={{
+      <div ref={ringRef} aria-hidden="true" style={{
         position: 'fixed', top: 0, left: 0, zIndex: 9998, pointerEvents: 'none',
         width: big ? 56 : (state.hover ? 30 : 24),
         height: big ? 56 : (state.hover ? 30 : 24),
@@ -81,10 +81,16 @@ export function CursorV3() {
 }
 
 // ─── Nav ─────────────────────────────────────────────────────────────────
-export interface NavSection { id: string; label: string }
+export interface NavSection {
+  id: string;
+  /** Short visible label ("Exp", "00"). */
+  label: string;
+  /** Accessible name; must contain the visible label. */
+  title: string;
+}
 
 export function NavV3({ active, sections, onNav, lang }: { active: string; sections: NavSection[]; onNav: (id: string) => void; lang: Lang }) {
-  const cursor = translations[lang].cursor;
+  const t = translations[lang];
   const navRef = useRef<HTMLDivElement>(null);
   const [indicator, setIndicator] = useState({ left: 0, width: 0 });
 
@@ -99,7 +105,7 @@ export function NavV3({ active, sections, onNav, lang }: { active: string; secti
   }, [active]);
 
   return (
-    <div className="nav-v3" style={{
+    <nav aria-label={t.nav.label} className="nav-v3" style={{
       position: 'fixed', top: 20, left: '50%', transform: 'translateX(-50%)',
       zIndex: 80, padding: 4,
       background: 'color-mix(in oklab, var(--bg) 70%, transparent)',
@@ -110,7 +116,7 @@ export function NavV3({ active, sections, onNav, lang }: { active: string; secti
       maxWidth: 'calc(100vw - 24px)', overflow: 'hidden',
     }}>
       <div ref={navRef} style={{ display: 'flex', position: 'relative' }}>
-        <div style={{
+        <div aria-hidden="true" style={{
           position: 'absolute', top: 0, bottom: 0,
           left: indicator.left, width: indicator.width,
           background: 'var(--accent)', borderRadius: 100,
@@ -118,7 +124,9 @@ export function NavV3({ active, sections, onNav, lang }: { active: string; secti
           zIndex: 0,
         }} />
         {sections.map((s) => (
-          <button key={s.id} data-sid={s.id} data-cursor={cursor.go}
+          <button key={s.id} type="button" data-sid={s.id} data-cursor={t.cursor.go}
+            aria-label={s.title}
+            aria-current={active === s.id ? 'location' : undefined}
             onClick={() => onNav(s.id)}
             className="nav-v3-btn"
             style={{
@@ -139,13 +147,13 @@ export function NavV3({ active, sections, onNav, lang }: { active: string; secti
           .nav-v3-btn { padding: 7px 9px !important; font-size: 9px !important; letter-spacing: 0.8px !important; }
         }
       `}</style>
-    </div>
+    </nav>
   );
 }
 
 // ─── Theme glyph ─────────────────────────────────────────────────────────
 function ThemeGlyph({ theme }: { theme: ThemeName }) {
-  const base = { width: 16, height: 16, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 1.6, strokeLinecap: 'round' as const, strokeLinejoin: 'round' as const };
+  const base = { 'aria-hidden': true, focusable: false, width: 16, height: 16, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 1.6, strokeLinecap: 'round' as const, strokeLinejoin: 'round' as const };
   switch (theme) {
     case 'noir': return (<svg {...base}><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" /></svg>);
     case 'paper': return (<svg {...base}><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l1.4 1.4M17.6 17.6 19 19M5 19l1.4-1.4M17.6 6.4 19 5" /></svg>);
@@ -158,14 +166,17 @@ function ThemeGlyph({ theme }: { theme: ThemeName }) {
 }
 
 // ─── CornerTools ─────────────────────────────────────────────────────────
-export function CornerTools({ theme, onCycleTheme, onCycleAccent, onToggleLang, lang }: {
+export function CornerTools({ theme, themeLabel, accentLabel, city, onCycleTheme, onCycleAccent, onToggleLang, lang }: {
   theme: ThemeName;
+  themeLabel: string;
+  accentLabel: string;
+  city: string;
   onCycleTheme: () => void;
   onCycleAccent: () => void;
   onToggleLang: () => void;
   lang: Lang;
 }) {
-  const cursor = translations[lang].cursor;
+  const t = translations[lang];
   const [clock, setClock] = useState('');
   useEffect(() => {
     const t = () => {
@@ -191,25 +202,28 @@ export function CornerTools({ theme, onCycleTheme, onCycleAccent, onToggleLang, 
       display: 'flex', gap: 8, alignItems: 'center',
       fontFamily: 'var(--font-mono)', fontSize: 11,
     }}>
-      <div className="corner-clock" style={pillStyle}>
+      <div className="corner-clock" aria-hidden="true" style={pillStyle}>
         <span style={{
           width: 6, height: 6, borderRadius: '50%',
           background: 'var(--success)', boxShadow: '0 0 8px var(--success)',
           animation: 'ping 2s infinite',
         }} />
-        CDMX · {clock}
+        {city} · {clock}
       </div>
-      <button onClick={onToggleLang} data-cursor={lang === 'es' ? 'EN' : 'ES'} style={{
+      <button type="button" onClick={onToggleLang} data-cursor={lang === 'es' ? 'EN' : 'ES'}
+        aria-label={`${lang.toUpperCase()} · ${t.controls.switchLang}`} style={{
         ...pillStyle, padding: 0, width: 38, height: 38, borderRadius: '50%',
         justifyContent: 'center', fontWeight: 700,
       }}>{lang.toUpperCase()}</button>
-      <button onClick={onCycleAccent} data-cursor={cursor.accent} style={{
+      <button type="button" onClick={onCycleAccent} data-cursor={t.cursor.accent}
+        aria-label={`${t.controls.accent}: ${accentLabel}`} style={{
         ...pillStyle, padding: 0, width: 38, height: 38, borderRadius: '50%',
         justifyContent: 'center',
       }}>
-        <span style={{ width: 14, height: 14, borderRadius: '50%', background: 'var(--accent)' }} />
+        <span aria-hidden="true" style={{ width: 14, height: 14, borderRadius: '50%', background: 'var(--accent)' }} />
       </button>
-      <button onClick={onCycleTheme} data-cursor={cursor.theme} style={{
+      <button type="button" onClick={onCycleTheme} data-cursor={t.cursor.theme}
+        aria-label={`${t.controls.theme}: ${themeLabel}`} style={{
         ...pillStyle, padding: 0, width: 38, height: 38, borderRadius: '50%',
         justifyContent: 'center',
       }}>
@@ -231,7 +245,7 @@ export function CornerTools({ theme, onCycleTheme, onCycleAccent, onToggleLang, 
 export function BottomHUD({ progress, active, sections }: { progress: number; active: string; sections: NavSection[] }) {
   const idx = sections.findIndex((s) => s.id === active);
   return (
-    <div style={{
+    <div aria-hidden="true" style={{
       position: 'fixed', bottom: 24, left: 28, right: 28, zIndex: 70,
       display: 'flex', alignItems: 'center', gap: 24,
       fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: 1.4,
@@ -261,7 +275,7 @@ export function BottomHUD({ progress, active, sections }: { progress: number; ac
 export function MarqueeV3({ items, reverse = false, speed = 50 }: { items: string[]; reverse?: boolean; speed?: number }) {
   const full = [...items, ...items, ...items, ...items];
   return (
-    <div style={{
+    <div aria-hidden="true" style={{
       overflow: 'hidden',
       borderTop: '1px solid var(--line)',
       borderBottom: '1px solid var(--line)',

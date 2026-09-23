@@ -72,6 +72,12 @@ button {
   font-family: inherit;
 }
 
+/* Keyboard focus stays visible everywhere — the custom cursor replaces the pointer, not focus. */
+:focus-visible {
+  outline: 2px solid var(--accent-ink, var(--accent));
+  outline-offset: 3px;
+}
+
 ::selection {
   background: var(--accent);
   color: var(--bg);

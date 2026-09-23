@@ -7,6 +7,8 @@ import { translations } from '../i18n/translations';
 
 const PdfMenu = lazy(() => import('./PdfMenu'));
 
+const MENU_ID = 'pdf-menu';
+
 interface Props {
   lang: Lang;
   themeName: ThemeName;
@@ -28,6 +30,11 @@ export function DownloadV3({ lang, themeName, accent }: Props) {
   const [pos, setPos] = useState<{ left: number; top: number; width: number } | null>(null);
   const ref = useRef<HTMLDivElement>(null);
   const btnRef = useRef<HTMLButtonElement>(null);
+
+  const close = (returnFocus: boolean) => {
+    setOpen(false);
+    if (returnFocus) btnRef.current?.focus();
+  };
 
   useLayoutEffect(() => {
     if (!open || !btnRef.current) return;
@@ -53,20 +60,25 @@ export function DownloadV3({ lang, themeName, accent }: Props) {
   }, [open]);
 
   useEffect(() => {
+    if (!open) return;
     const onClick = (e: MouseEvent) => {
       const t = e.target as Node;
-      if (ref.current && !ref.current.contains(t) && !document.getElementById('pdf-menu-portal')?.contains(t)) {
+      if (ref.current && !ref.current.contains(t) && !document.getElementById(MENU_ID)?.contains(t)) {
         setOpen(false);
       }
     };
-    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setOpen(false); };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== 'Escape') return;
+      setOpen(false);
+      btnRef.current?.focus();
+    };
     document.addEventListener('mousedown', onClick);
     document.addEventListener('keydown', onKey);
     return () => {
       document.removeEventListener('mousedown', onClick);
       document.removeEventListener('keydown', onKey);
     };
-  }, []);
+  }, [open]);
 
   const prewarm = () => { import('./PdfMenu'); };
 
@@ -83,8 +95,9 @@ export function DownloadV3({ lang, themeName, accent }: Props) {
       <button
         ref={btnRef}
         data-cursor={t.cta}
+        type="button"
         aria-expanded={open}
-        aria-haspopup="menu"
+        aria-controls={MENU_ID}
         onMouseEnter={prewarm}
         onFocus={prewarm}
         onTouchStart={prewarm}
@@ -103,7 +116,7 @@ export function DownloadV3({ lang, themeName, accent }: Props) {
 
       {open && pos && createPortal(
         <div
-          id="pdf-menu-portal"
+          id={MENU_ID}
           style={{
             position: 'fixed',
             left: pos.left, top: pos.top, minWidth: pos.width,
@@ -113,7 +126,7 @@ export function DownloadV3({ lang, themeName, accent }: Props) {
           <Suspense fallback={null}>
             <PdfMenu
               lang={lang}
-              onClose={() => setOpen(false)}
+              onClose={close}
               themeName={theme.label}
               theme={toPdfTheme(themeName)}
               accent={accent}

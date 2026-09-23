@@ -9,7 +9,7 @@
  * Projects live in `projects.ts`, skills in `skills.ts`. UI labels live in
  * `src/i18n/translations.ts`.
  */
-import type { Localized } from '../i18n/lang';
+import type { Localizable, Localized } from '../i18n/lang';
 import type { YearMonth } from '../lib/format';
 
 export const PERSON = {
@@ -46,8 +46,8 @@ export const PROFILE = {
     en: 'With {years} of experience in enterprise software development, I design and implement scalable architectures with C#/.NET Core 6/8/10 (3 years), React 19 / Next.js 16 (2 years), SQL Server / PostgreSQL (3 years), and Node.js / NestJS 11 (3 years). Solid experience in REST APIs, Entity Framework, OAuth2/JWT, AES/RSA encryption, Docker and Python.',
   },
   current: {
-    es: 'Actualmente como Programador de Auditoría Senior en Grupo Salinas, lidero el desarrollo de sistemas críticos de auditoría interna (ADA/HONESTEL) con .NET Core 6, C#, SQL Server y OAuth2/JWT. Paralelamente desarrollo la plataforma Align Designs (freelance) con NestJS 11, Next.js 16, PostgreSQL y Docker. Trabajo con un flujo AI-assisted estructurado: fases de proyecto con skills especializadas por tecnología, seguimiento en ClickUp, pruebas manuales + unitarias por fase, y CI/CD con SonarCloud, health checks y backups automáticos.',
-    en: 'Currently as a Senior Audit Programmer at Grupo Salinas, I lead the development of critical internal audit systems (ADA/HONESTEL) with .NET Core 6, C#, SQL Server and OAuth2/JWT. In parallel, I develop the Align Designs platform (freelance) with NestJS 11, Next.js 16, PostgreSQL and Docker. I work with a structured AI-assisted workflow: project phases with tech-specific skills, ClickUp for task tracking, manual + unit testing per phase, and CI/CD with SonarCloud, health checks and automated backups.',
+    es: 'Actualmente como Programador de Auditoría Senior en Grupo Salinas, lidero el desarrollo de sistemas críticos de auditoría interna (ADA/HONESTEL) con .NET Core 6, C#, SQL Server y OAuth2/JWT. Paralelamente desarrollo la plataforma Align Designs (freelance) con NestJS 11, Next.js 16, PostgreSQL y Docker. Trabajo con un flujo AI-assisted estructurado: fases de proyecto con skills especializadas por tecnología, seguimiento en ClickUp, pruebas manuales + unitarias por fase, y CI/CD con SonarCloud, health checks y backups automáticos. Además opero un homelab self-hosted (Docker, Forgejo Actions, SonarQube, Trivy, Cloudflare) y reviso código con un marco de 133 principios de diseño (OWASP Top 10, WCAG 2.2, Core Web Vitals).',
+    en: 'Currently as a Senior Audit Programmer at Grupo Salinas, I lead the development of critical internal audit systems (ADA/HONESTEL) with .NET Core 6, C#, SQL Server and OAuth2/JWT. In parallel, I develop the Align Designs platform (freelance) with NestJS 11, Next.js 16, PostgreSQL and Docker. I work with a structured AI-assisted workflow: project phases with tech-specific skills, ClickUp for task tracking, manual + unit testing per phase, and CI/CD with SonarCloud, health checks and automated backups. I also run a self-hosted homelab (Docker, Forgejo Actions, SonarQube, Trivy, Cloudflare) and review code against a 133-principle design framework (OWASP Top 10, WCAG 2.2, Core Web Vitals).',
   },
   availability: {
     es: 'Tiempo completo · Híbrido / Remoto · Abierto a oportunidades internacionales',
@@ -367,13 +367,37 @@ export const TERMINAL_STACK = ['.NET Core 10', 'React 19 · Next.js 16', 'Postgr
 export const CLAUDE_ENGINEERING = {
   capabilities: [
     { title: 'Skill Engineering', desc: { es: 'Skills reutilizables con eval loops y métricas.', en: 'Reusable skills with eval loops and metrics.' } },
-    { title: 'Custom Agents', desc: { es: 'Agents especializados para review, archivo y research.', en: 'Specialized agents for review, archiving and research.' } },
+    { title: 'Custom Agents', desc: { es: 'Agents para code review, seguridad, migraciones, research y ADRs.', en: 'Agents for code review, security, migrations, research and ADRs.' } },
     { title: 'MCP Integration', desc: { es: 'Conexión con servidores MCP externos y propios.', en: 'Connecting external and custom MCP servers.' } },
-    { title: 'Hook Automation', desc: { es: 'Hooks PreTool/PostTool para validación y compresión.', en: 'PreTool/PostTool hooks for validation and compression.' } },
+    { title: 'Hook Automation', desc: { es: 'Hooks PreToolUse y Stop: bloqueo de comandos, compresión y verificación obligatoria.', en: 'PreToolUse and Stop hooks: command blocking, compression and enforced verification.' } },
     { title: 'Memory Systems', desc: { es: 'Memoria persistente cross-session multi-capa.', en: 'Multi-layer cross-session persistent memory.' } },
     { title: 'Plugin Ecosystem', desc: { es: 'Plugins integrados con flujos productivos completos.', en: 'Plugins integrated with full productive flows.' } },
     { title: 'Multi-LLM Orchestration', desc: { es: 'Orquestación de Claude, Codex y Gemini en paralelo.', en: 'Orchestrating Claude, Codex and Gemini in parallel.' } },
     { title: 'Eval-driven Optimization', desc: { es: 'Optimización basada en métricas de rendimiento.', en: 'Optimization based on performance metrics.' } },
   ],
-  stat: '6 SKILLS · 3 AGENTS · 4 PLUGINS · MULTI-LLM',
-} as const satisfies { capabilities: readonly { title: string; desc: Localized }[]; stat: string };
+  /** Counted from ~/.claude on 2026-09-22: local skills, agents, distinct hooks, MCP servers. */
+  stat: '10 SKILLS · 5 AGENTS · 6 HOOKS · 7 MCP · MULTI-LLM',
+  framework: {
+    principles: 133,
+    summary: {
+      es: 'Escribo y reviso código contra un marco de principios de diseño de software: cada uno tiene ID estable, severidad y excepciones válidas, así una revisión cita reglas concretas en vez de opiniones. Lo complementan 40 principios de proceso para requisitos, tickets y reportes de bugs.',
+      en: 'I write and review code against a software design framework: every principle has a stable ID, a severity and its valid exceptions, so a review cites concrete rules instead of opinions. It is complemented by 40 process principles for requirements, tickets and bug reports.',
+    },
+    domains: [
+      { es: 'Fundamentos y código limpio', en: 'Fundamentals & clean code' },
+      { es: 'Arquitectura', en: 'Architecture' },
+      { es: 'Backend y concurrencia', en: 'Backend & concurrency' },
+      { es: 'Datos y transacciones', en: 'Data & transactions' },
+      { es: 'APIs y eventos · RFC 9457', en: 'APIs & events · RFC 9457' },
+      { es: 'Seguridad · OWASP Top 10 2025', en: 'Security · OWASP Top 10 2025' },
+      { es: 'Frontend y UX · WCAG 2.2', en: 'Frontend & UX · WCAG 2.2' },
+      'Performance · Core Web Vitals',
+      'Testing',
+      { es: 'Infraestructura y Git', en: 'Infrastructure & Git' },
+    ],
+  },
+} as const satisfies {
+  capabilities: readonly { title: string; desc: Localized }[];
+  stat: string;
+  framework: { principles: number; summary: Localized; domains: readonly Localizable[] };
+};

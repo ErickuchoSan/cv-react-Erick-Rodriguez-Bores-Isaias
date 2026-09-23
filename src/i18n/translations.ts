@@ -106,6 +106,9 @@ const es = {
     title1: 'Dominio del ecosistema',
     title2: 'de ingeniería AI-assisted.',
     paragraph: 'Diseño y operación de pipelines de desarrollo asistido por Claude Code: skills custom, agents especializados, integración MCP, automatización por hooks, sistemas de memoria persistente y orquestación multi-agente para acelerar entrega sin perder calidad ni control.',
+    frameworkLabel: '// marco de buenas prácticas',
+    frameworkUnit: 'principios de diseño · ID + severidad',
+    frameworkDomains: 'Dominios del marco',
   },
   projects: {
     label: 'Obra seleccionada',
@@ -273,6 +276,9 @@ const en: Translations = {
     title1: 'Mastery of the ecosystem',
     title2: 'of AI-assisted engineering.',
     paragraph: 'Design and operation of Claude-Code-assisted development pipelines: custom skills, specialized agents, MCP integration, hook automation, persistent memory systems and multi-agent orchestration to accelerate delivery without losing quality or control.',
+    frameworkLabel: '// best-practices framework',
+    frameworkUnit: 'design principles · ID + severity',
+    frameworkDomains: 'Framework domains',
   },
   projects: {
     label: 'Selected work',

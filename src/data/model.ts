@@ -95,7 +95,12 @@ export interface CV {
   languages: { name: string; level: string; pct: number; details: string[] }[];
   education: { degree: string; school: string; period: string }[];
   projects: Project[];
-  claude: { capabilities: { title: string; desc: string }[]; stat: string };
+  claude: {
+    capabilities: { title: string; desc: string }[];
+    stat: string;
+    /** The best-practices framework code is written and reviewed against. */
+    framework: { principles: number; summary: string; domains: string[] };
+  };
 }
 
 const FEATURED_FUNCTIONS = 2;
@@ -250,6 +255,11 @@ export function buildCV(lang: Lang, now = new Date()): CV {
     claude: {
       capabilities: CLAUDE_ENGINEERING.capabilities.map((c) => ({ title: c.title, desc: tr(c.desc) })),
       stat: CLAUDE_ENGINEERING.stat,
+      framework: {
+        principles: CLAUDE_ENGINEERING.framework.principles,
+        summary: tr(CLAUDE_ENGINEERING.framework.summary),
+        domains: CLAUDE_ENGINEERING.framework.domains.map((d) => pick(d, lang)),
+      },
     },
   };
 }

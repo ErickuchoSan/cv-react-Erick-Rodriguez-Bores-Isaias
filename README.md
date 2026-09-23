@@ -1,73 +1,44 @@
-# React + TypeScript + Vite
+# CV — Erick Rodríguez Bores Isaías
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Portfolio y CV de un desarrollador Full Stack .NET & React: una web bilingüe (ES/EN) y dos PDFs
+generados en el navegador (visual de 1 página y formato ATS), todos a partir de los mismos datos.
 
-Currently, two official plugins are available:
+## Requisitos
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Node.js 20+
+- pnpm 10 (`packageManager` en `package.json`)
 
-## React Compiler
+## Levantar el proyecto
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+pnpm install
+pnpm run dev        # http://localhost:5173  ·  ?lang=en abre la versión en inglés
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Scripts
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+| Script | Qué hace |
+| --- | --- |
+| `pnpm run dev` | Servidor de desarrollo |
+| `pnpm run build` | Type-check (`tsc -b`) + build de producción en `dist/` |
+| `pnpm run lint` | ESLint (debe quedar en 0 problemas) |
+| `pnpm run preview` | Sirve el build de `dist/` |
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Editar el contenido
+
+Todo el contenido vive en `src/data/`, con cada texto en español e inglés lado a lado:
+
+| Archivo | Contenido |
+| --- | --- |
+| `src/data/cv.ts` | Perfil, contacto, trabajos, educación, idiomas, competencias, métricas |
+| `src/data/projects.ts` | Proyectos del showcase y sus case studies |
+| `src/data/skills.ts` | Skills de la web, del PDF ATS (con años) y del PDF visual |
+| `src/i18n/translations.ts` | Textos de interfaz (títulos, botones, etiquetas de los PDFs) |
+
+La web (`src/v3/`) y los PDFs (`src/components/PDF/`) leen del mismo modelo (`src/data/model.ts`).
+Las duraciones de cada trabajo y los años de experiencia se calculan a partir de las fechas.
+
+## Stack
+
+React 19 · TypeScript 5.9 (strict) · Vite 7 · @react-pdf/renderer 4 · Vercel Analytics.
+Despliegue en Vercel.

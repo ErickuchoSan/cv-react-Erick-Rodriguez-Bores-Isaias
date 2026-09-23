@@ -4,20 +4,20 @@
 
 **IMPORTANTE**: Este proyecto contiene el CV web y PDF de Erick Rodriguez Bores Isaias, un Desarrollador Full Stack especializado en .NET/C# y React.
 
-### Versiones del CV
+### Salidas del CV
 
-| Tipo | Idioma | Archivo/Componente |
-|------|--------|-------------------|
-| **Web** | ES/EN | `src/` (React + Vite + Tailwind) |
-| **PDF Visual** | ES | `CVDocument.tsx` |
-| **PDF Visual** | EN | `CVDocumentEN.tsx` |
-| **PDF ATS** | ES | `CVDocumentATS_ES.tsx` |
-| **PDF ATS** | EN | `CVDocumentATS_EN.tsx` |
+Las tres salidas se generan desde **el mismo modelo** (`buildCV(lang)` en `src/data/model.ts`), así que no pueden contradecirse.
+
+| Salida | Idiomas | Componente |
+| --- | --- | --- |
+| **Web** | ES/EN (`?lang=en`) | `src/v3/` (React 19 + Vite) |
+| **PDF visual (1 página)** | ES/EN | `src/components/PDF/CVDocumentLeaf.tsx` (`lang`) + `leafStyles.ts` |
+| **PDF ATS** | ES/EN | `src/components/PDF/CVDocumentATS.tsx` (`lang`) |
 
 ## Skills del Proyecto CV
 
 | Skill | Cuándo Usar |
-|-------|-------------|
+| --- | --- |
 | `/cv-update` | Actualizar experiencia, habilidades o proyectos |
 | `/cv-pdf` | Modificar diseño de PDFs (visual o ATS) |
 | `/cv-ats` | Optimizar para sistemas ATS |
@@ -25,264 +25,145 @@
 | `/cv-translate` | Sincronizar ES/EN |
 | `/cv-review` | Revisar consistencia y calidad |
 
+## Dónde vive cada cosa (fuente de verdad)
+
+| Qué | Archivo |
+| --- | --- |
+| Nombre, rol, taglines, contacto, LinkedIn/GitHub | `src/data/cv.ts` → `PERSON`, `CONTACT` |
+| Resumen del perfil (PDFs) y disponibilidad | `src/data/cv.ts` → `PROFILE` |
+| Trabajos: fechas, stack, rol, bullets, logros | `src/data/cv.ts` → `JOBS` |
+| Educación, idiomas, competencias | `src/data/cv.ts` → `EDUCATION`, `LANGUAGES`, `COMPETENCIES` |
+| Números destacados (40%, 57, 5K+, endpoints) | `src/data/cv.ts` → `METRICS`, `STATS` |
+| Stack del hero y de la terminal | `src/data/cv.ts` → `HERO_STACK`, `TERMINAL_STACK` |
+| Proyectos del showcase + case studies | `src/data/projects.ts` → `PROJECTS` |
+| Skills (web, ATS con años, 12 del PDF visual) | `src/data/skills.ts` → `WEB_SKILLS`, `ATS_SKILLS`, `CORE_SKILLS` |
+| Textos de interfaz (títulos, botones, etiquetas de PDF) | `src/i18n/translations.ts` |
+
+Reglas del modelo:
+
+- **Cada texto lleva `es` y `en` juntos** (`{ es, en }`): si falta una traducción, el build falla.
+- **Nunca escribas duraciones ni años**: `period`, `duration` y los años totales se calculan de `start`/`end` (`'YYYY-MM'`, `end: null` = actual). En textos, usa `{years}`.
+- **PDF de 1 página**: muestra las funciones y el logro marcados con `highlight: true` (2 funciones + 1 logro por trabajo). El orden de los bullets ya no importa.
+- **Años por skill**: viven solo en `ATS_SKILLS` (`months`). No se calculan: actualízalos a mano.
+- **`CORE_SKILLS` debe quedar en 12** o el PDF visual se pasa a 2 páginas.
+- **Demo de un proyecto**: `demo: { status: 'live', url }` actualiza todos los badges y links.
+
 ## Estructura del Proyecto
 
 ```
 src/
-├── components/
-│   ├── Layout/
-│   │   └── Navbar.tsx              # Navbar fija con ES/EN, tema, contacto
-│   ├── PDF/                        # Componentes de generación PDF
-│   │   ├── CVDocument.tsx          # PDF Visual ES
-│   │   ├── CVDocumentEN.tsx        # PDF Visual EN
-│   │   ├── CVDocumentATS_ES.tsx    # PDF ATS ES
-│   │   ├── CVDocumentATS_EN.tsx    # PDF ATS EN
-│   │   └── CVDocumentATSBase.tsx   # Base compartida ATS
-│   ├── Sections/                   # Secciones de la web (mayúscula)
-│   │   ├── Hero.tsx                # Banner split: 60% white / 40% dark
-│   │   ├── About.tsx               # Sobre mí
-│   │   ├── Experience.tsx          # Experiencia laboral
-│   │   ├── Skills.tsx              # Habilidades técnicas
-│   │   ├── Languages.tsx           # Idiomas (Español nativo, Inglés A2-B1)
-│   │   ├── Projects.tsx            # Proyectos destacados
-│   │   ├── Contact.tsx             # Contacto + formulario WhatsApp
-│   │   └── Footer.tsx              # Pie de página dark
-│   └── UI/                         # Componentes reutilizables
-│       ├── SectionTitle.tsx        # Título editorial con prefijo //
-│       ├── GlassCard.tsx           # Card editorial con borde rojo en hover
-│       └── SectionParticles.tsx    # Partículas decorativas
-├── context/
-│   └── LanguageContext.tsx         # Proveedor de idioma ES/EN
+├── App.tsx / main.tsx              # Monta AppV3 dentro de LanguageProvider
+├── context/LanguageContext.tsx     # Idioma: ?lang=en en la URL, <html lang> y <title>
 ├── data/
-│   ├── skills.ts                   # Habilidades técnicas + PDF_SKILLS
-│   ├── experience.ts               # Tecnologías por trabajo (iconos + colores)
-│   ├── projects.ts                 # Proyectos con icon, tech[]
-│   ├── contact.ts                  # Email, teléfono, redes sociales
-│   └── navigation.ts               # Links del navbar
-├── hooks/
-│   ├── useTheme.ts                 # Toggle dark/light
-│   └── useContactForm.ts           # Formulario de contacto con validación
+│   ├── cv.ts                       # Hechos + textos es/en del CV (fuente de verdad)
+│   ├── projects.ts                 # Showcase y case studies
+│   ├── skills.ts                   # Skills por salida
+│   └── model.ts                    # buildCV(lang): modelo resuelto para web y PDFs
 ├── i18n/
-│   └── translations.ts             # Traducciones ES/EN (fuente de verdad de texto)
-├── index.css                       # Design system editorial (Manrope + Inter)
-└── v3/                             # Versión activa del CV (multi-theme editorial)
-    ├── AppV3.tsx                   # Root v3 con HUD + scroll-spy + tweaks (theme/accent)
-    ├── Hero.tsx                    # Hero con shader WebGL + tagline doble
-    ├── chrome.tsx                  # CornerTools, BottomHUD, SectionHead, SectionTitle
-    ├── primitives.tsx              # Reveal, MaskReveal, WordsMask, Counter, Tilt
-    ├── sections.tsx                # AboutV3, ExperienceV3, SkillsV3, ProjectsV3, ContactV3
-    ├── data.ts                     # buildData(lang) → CVData con ProjectV3 case-study fields
-    ├── theme.ts                    # ThemeName, accents, paletas
-    ├── Download.tsx + PdfMenu.tsx  # Dropdown PDF (portal, lazy chunk 1.6MB)
-    ├── projects/                   # Showcase modal de case study
-    │   ├── ProjectModal.tsx        # Portal + focus trap + ESC + scroll lock + a11y
-    │   ├── CaseStudyContent.tsx    # 8 secciones (lazy chunk ~5kB gzip)
-    │   └── CaseStudySection.tsx    # Primitive `// titulo` + slot
-    └── sections/
-        └── ClaudeEngineering.tsx   # Sección Claude Code expertise (8 capabilities)
+│   ├── lang.ts                     # Lang, Localized, pick()
+│   └── translations.ts             # Textos de interfaz (en tipado contra es)
+├── lib/
+│   ├── format.ts                   # Períodos, duraciones, plurales, {placeholders}
+│   ├── color.ts                    # Contraste WCAG: readableOn(), textOn()
+│   └── richText.tsx                # Frases traducidas con partes resaltadas
+├── components/PDF/
+│   ├── CVDocumentLeaf.tsx          # PDF visual (hereda tema y acento de la web)
+│   ├── CVDocumentATS.tsx           # PDF ATS (Helvetica, sin colores)
+│   └── leafStyles.ts               # Estilos del PDF visual por tema
+├── index.css                       # Tokens base, foco visible, cursor, reduced motion
+└── v3/
+    ├── AppV3.tsx                   # SECTION_ORDER, temas, scroll-spy
+    ├── Hero.tsx                    # Shader WebGL + terminal
+    ├── sections.tsx                # About, Experience, Skills, Projects, Contact
+    ├── sections/ClaudeEngineering.tsx
+    ├── chrome.tsx                  # Cursor, Nav, CornerTools, BottomHUD, Marquee
+    ├── primitives.tsx              # Reveal, MaskReveal, WordsMask, Counter, Magnetic, Parallax, Tilt
+    ├── hooks.ts                    # useInView, useMediaQuery, useReducedMotion, useScrollProgress
+    ├── theme.ts                    # 7 temas + 6 acentos
+    ├── Download.tsx + PdfMenu.tsx  # Menú de descarga (chunk lazy de ~1.6 MB)
+    └── projects/                   # Modal del case study
 ```
 
-### Showcase de proyectos (v3)
+`public/fonts/roboto/` tiene las fuentes del PDF visual (servidas localmente, Apache 2.0).
 
-Los 3 proyectos del showcase usan los **nombres reales**:
-- `align-designs` — Align Designs Platform (SaaS gestión proyectos diseño de interiores)
-- `comal-pos` — Comal POS (SaaS POS para restaurantes, offline-first)
-- `mdg-investment` — MDG Investment Group (web premium bienes raíces Texas, 3D interactivo)
+### Orden y numeración de secciones
 
-Datos completos del case study viven en `src/i18n/translations.ts` bajo `projects.items[i]` (campos: `tagline`, `problem`, `solution[]`, `architecturePatterns[]`, `highlights[]`, `stack`, `metrics[]`, `role`, `demoStatus`). Mapeados a tipo `ProjectV3` en `src/v3/data.ts`. Cada card → CTA `Ver case study` → modal portal con full case study + badge "Demo en construcción". Cuando un demo esté listo, cambiar `demoStatus: 'live'` y agregar `demoUrl` en translations.
+`SECTION_ORDER` en `src/v3/AppV3.tsx` es la única fuente: de ahí salen el orden del DOM, el menú, el scroll-spy y los números `02 / …`. Para agregar una sección: sumarla a `SECTION_ORDER`, `NAV_KEY` y al mapa `sections`, y agregar su etiqueta en `translations.nav.sections`.
 
-### Numeración de secciones
+## Design System (v3 — editorial multi-tema)
 
-Orden en `AppV3`: Hero → About(02) → Experience(03) → Skills(04) → **ClaudeEngineering(05)** → Projects(06) → Contact(07). El número de ClaudeEngineering vive en i18n (`claudeEngineering.num`); los demás están hardcoded en `sections.tsx`. Si insertas otra sección, **renumera todos los `<SectionHead num="NN">` y la clave i18n** para preservar la secuencia editorial.
+- **Temas**: 7 paletas en `src/v3/theme.ts` (noir por defecto), cada una con su tipografía (display/sans/mono). **Acentos**: 6 opciones; sus nombres se traducen en `translations.accents`.
+- **Tokens de color** (los calcula `AppV3` al cambiar tema o acento):
+  - `--accent`: solo para bordes, puntos, barras y brillos (decoración).
+  - `--accent-ink`: **para cualquier texto** en color de acento; garantiza 4.5:1 en `bg`, `bg-2` y `bg-3`.
+  - `--on-accent`: texto sobre un fondo de acento.
+  - `--ink-<project-id>` / `--on-<project-id>`: lo mismo para el color de cada proyecto.
+  - Nunca uses `color: 'var(--accent)'`, ni hex o rgba del acento en los componentes; para tintes usa `color-mix(in oklab, var(--accent) N%, transparent)`.
+- **Movimiento**: los efectos JS (parallax, tilt, magnetic, cursor, shader) leen `useMediaQuery` / `useReducedMotion`; respetan `prefers-reduced-motion` y solo corren con puntero fino. Los bucles de animación se detienen en reposo.
+- **Accesibilidad**: controles con `<button>`, `aria-expanded`/`aria-pressed`, paneles ocultos con `inert`, nombres accesibles que contienen el texto visible (WCAG 2.5.3), foco visible global.
 
-### Especialización Claude Code
+## Reglas de contenido
 
-Hero tiene tagline doble:
-- Línea 1 (accent): `Full Stack Developer · .NET & React`
-- Línea 2 (muted): `Claude Code Power User`
-
-Strings idénticos en ES y EN — son labels de marca, marcadas en `translations.ts` con comentario `// intentional: brand strings, kept identical in ES and EN — do not translate`.
-
-## Design System — Editorial Bold (Architect.DEV)
-
-El diseño actual usa un sistema editorial profesional implementado en **2025-Q1**:
-
-### Tipografía
-- **Headlines**: `font-['Manrope']` — `font-black tracking-tighter uppercase`
-- **Body**: `font-['Inter']` — texto regular/medium
-
-### Colores
-| Token | Valor | Uso |
-|-------|-------|-----|
-| Editorial Red | `#b61722` | Primario, botones, acentos, hover |
-| Orange Accent | `#f97316` | Estadísticas, logros, acentos secundarios |
-| Editorial Dark | `#09090b` (zinc-950) | Panel hero derecho, footer |
-| Surface | `#f9f9f9` | Fondo de secciones claras |
-
-### Componentes Clave
-- **Hero**: Split layout — left 60% `bg-white` (nombre gigante + CTA) / right 40% `bg-zinc-950` (foto grayscale + tech pills + stats)
-- **Cards** (`glass-card`): Borde `border-zinc-200` con hover `border-[#b61722]/30` + sombra editorial
-- **SectionTitle**: Prefijo `// sección` en rojo + línea de acento
-- **Botones**: Sharp (sin border-radius), clases `.btn-editorial-primary` y `.btn-editorial-outline`
-- **Footer**: Siempre dark (`bg-zinc-950`) independiente del tema
-
-### ¿Quieres cambiar el diseño?
-Al modificar estilos usa las clases editoriales en `index.css` antes de agregar clases Tailwind inline.
-
-## Datos del Candidato (Fuente de Verdad)
-
-### Información Personal
-- **Nombre**: Erick Rodriguez Bores Isaias
-- **Rol**: Desarrollador Full Stack .NET & React
-- **Experiencia**: 3 años en desarrollo empresarial
-- **Ubicación**: Cuajimalpa de Morelos, CDMX, México
-- **Disponibilidad**: Inmediata (1 semana o 3 días)
-- **Modalidad**: Remoto / Híbrido
-
-### Educación
-- **Grado**: Ing. Sistemas Computacionales - UTEL (2019-2023)
-- **Posgrado**: Maestría en IA - UNIR (En curso, 2025)
-
-### Idiomas
-- **Español**: Nativo (100%)
-- **Inglés**: A2-B1 (60% — lectura técnica fluida)
-
-### Experiencia Laboral
-1. **Grupo Salinas** (Mayo 2024 - Actual) - Programador de Auditoría Senior (~2 años)
-2. **Digital Solutions** (Mayo 2023 - Mayo 2024) - Desarrollador Full Stack (~1 año)
-3. **Freelance · Align Designs Platform** (Oct. 2025 - Actual) - Desarrollador Full Stack (~6 meses)
-
-> ⚠️ Grupo Salinas: **NO** incluir Azure Functions, Azure Service Bus ni CI/CD en el CV (apenas usados). Sí incluir: .NET Core 6, C#, HTML/Bootstrap, SQL Server, OAuth2/JWT, Entity Framework.
-
-### Stack Tecnológico Principal (con años)
-
-| Tecnología | Años | Nivel |
-|------------|------|-------|
-| C# / .NET Core 6/8/10 | 3 | Avanzado |
-| SQL Server / T-SQL | 3 | Avanzado |
-| React 19 | 2 | Avanzado |
-| Entity Framework | 3 | Avanzado |
-| JavaScript ES2024 | 3 | Avanzado |
-| Node.js 18/20 | 3 | Intermedio-Avanzado |
-| OAuth2 / JWT | 2 | Intermedio |
-| Cifrado AES/RSA | 3.5 | Intermedio |
-| TypeScript 5 | 1 | Intermedio |
-| Clean Architecture/DDD | 2 | Intermedio |
-| PostgreSQL 15/16 | 1 | Intermedio |
-| Python 3.x | 1 | Intermedio |
-| Vue.js 3 | 1 | Intermedio |
-| Angular 17+ | 1 | Intermedio |
-| NestJS 11 | 1 | Intermedio |
-| Next.js 16 | 1 | Intermedio |
-| Docker | 1 | Intermedio |
-| GitHub Actions | 1 | Intermedio |
-| Tailwind CSS v4 | 3 | Intermedio-Avanzado |
-| Prisma ORM | 1 | Intermedio |
-
-### Proyecto Destacado: Align Designs Platform
-
-Plataforma B2B/B2C cloud con arquitectura monorepo profesional:
-
-**Stack**: NestJS 11 + Next.js 16 + PostgreSQL 15 + Prisma + Redis + Docker + DigitalOcean
-
-**Características implementadas**:
-- Arquitectura modular monorepo (pnpm workspaces) con SOLID y Clean Architecture
-- Sistema de autenticación dual: JWT + refresh token rotation (admins) / OTP bcrypt (clientes)
-- Seguridad HTTP: CSRF (HMAC-SHA256), Helmet (CSP/HSTS), rate limiting, account lockout
-- Almacenamiento DigitalOcean Spaces (S3) con presigned URLs y validación por magic numbers
-- CI/CD con GitHub Actions + SonarCloud + Codecov + Lighthouse
-- Docker containerización con health checks y backups automáticos
-- Sistema de facturación con auto-numeración y versionado de archivos
-- Métricas Prometheus + Pino, 57 archivos de tests (Jest + Vitest), E2E Playwright
+- **Experiencia**: Grupo Salinas (Mayo 2024 – actual), Digital Solutions (Mayo 2023 – Mayo 2024), Freelance Align Designs (Oct 2025 – actual). Las duraciones se calculan.
+- ⚠️ **Grupo Salinas: NO incluir Azure Functions, Azure Service Bus ni CI/CD** (apenas usados). Sí: .NET Core 6, C#, HTML/Bootstrap, SQL Server, OAuth2/JWT, Entity Framework.
+- **Taglines del hero**: `Full Stack Developer · .NET & React` / `Claude Code Power User` son marca: idénticas en ES y EN, no se traducen.
+- **Showcase**: nombres reales (`align-designs`, `comal-pos`, `mdg-investment`); cada card abre un modal con el case study completo.
 
 ## Flujo de Trabajo
 
-### Actualizar CV
+### Actualizar contenido
 ```
-1. Identificar qué cambiar (experiencia, skills, proyecto)
-2. Usar skill apropiada (/cv-update, /cv-pdf, etc.)
-3. Actualizar translations.ts para ambos idiomas (ES + EN)
-4. Actualizar data/*.ts si aplica (skills.ts, experience.ts, projects.ts)
-5. Verificar que build pase: npm run build
-6. Commit y push (especificar archivos, NO usar git add .)
-```
-
-### Añadir Nueva Experiencia
-```
-1. Editar translations.ts → experience.jobs (ES + EN)
-2. Editar data/experience.ts → tecnologías del badge (iconos + colores)
-3. Verificar PDF ATS y Visual
-4. npm run build
+1. Editar el dato en src/data/ (cv.ts, projects.ts o skills.ts), con es y en juntos
+2. Si es texto de interfaz, src/i18n/translations.ts
+3. pnpm run build && pnpm run lint
+4. Revisar los 4 PDFs desde el menú "Descargar CV" (el visual debe quedar en 1 página)
+5. Commit con archivos explícitos (NO git add .)
 ```
 
-### Añadir Nueva Habilidad
+### Cambiar diseño web
 ```
-1. Editar data/skills.ts → PDF_SKILLS, SKILLS_DATA_CATEGORIES, SKILLS_DATA_MAIN
-2. Verificar que los iconos existan (react-icons/fa o react-icons/si)
-3. npm run build
-```
-
-### Cambiar Diseño Web
-```
-1. Revisar design system en src/index.css (clases editoriales)
-2. Usar colores del sistema: #b61722 (rojo), #f97316 (naranja)
-3. Usar font-['Manrope'] para headers, font-['Inter'] para body
-4. npm run build para verificar
+1. Colores: tokens de theme.ts / index.css; texto de acento siempre con --accent-ink
+2. Movimiento nuevo: usar los hooks de v3/hooks.ts (reduced motion + puntero fino)
+3. pnpm run build && pnpm run lint
 ```
 
 ## Buenas Prácticas para CV de Programador
 
 ### Contenido
+
 - Usar verbos de acción: "Desarrollé", "Implementé", "Optimicé"
 - Cuantificar logros: "40% reducción", "6 endpoints", "miles de registros"
 - Mencionar tecnologías específicas con versiones
-- Incluir años de experiencia por tecnología
 - Destacar arquitecturas y patrones (SOLID, DDD, Clean Architecture)
 
 ### Formato ATS
-- Sin columnas, tablas complejas o gráficos
+
+- Sin columnas, tablas complejas ni gráficos
 - Fuentes estándar (Helvetica, Arial)
 - Keywords del job description
-- Secciones claramente etiquetadas
-- Formato de fechas consistente
-
-### Diseño Web Editorial
-- Manrope Black uppercase para headings
-- Cards con hover en rojo `#b61722`
-- Hero siempre split layout (no centrado)
-- Footer siempre oscuro (zinc-950)
+- Secciones claramente etiquetadas y con acentos correctos ("HABILIDADES TÉCNICAS", "EDUCACIÓN")
+- Fechas como `Mayo 2024 - Actual` / `May 2024 - Present` (las genera `formatPeriod`)
 
 ## Comandos Útiles
 
 ```bash
-# Desarrollo
-npm run dev
-
-# Build (verificar errores — obligatorio antes de commit)
-npm run build
-
-# Preview build
-npm run preview
-
-# Lint
-npm run lint
+pnpm install      # dependencias (npm está bloqueado en esta máquina)
+pnpm run dev      # desarrollo
+pnpm run build    # tsc + vite build (obligatorio antes de commit)
+pnpm run lint     # debe quedar en 0 problemas
+pnpm run preview  # servir el build
 ```
 
 ## Git
 
 ```bash
-# Commit de actualización CV
-git add src/i18n/translations.ts src/data/skills.ts  # especificar archivos
+git add src/data/cv.ts src/i18n/translations.ts   # especificar archivos
 git commit -m "feat(cv): [descripción del cambio]"
-git push
 ```
 
 ## Notas Importantes
 
-1. **Sincronización ES/EN**: Siempre actualizar ambos idiomas en `translations.ts`
-2. **Build obligatorio**: Antes de commit, verificar que `npm run build` pase sin errores
-3. **Consistencia**: Los datos en `skills.ts`, `experience.ts` y `translations.ts` deben coincidir
-4. **ATS vs Visual**: El PDF ATS debe tener el mismo contenido pero sin formato complejo
-5. **NO usar `git add .`**: Siempre especificar archivos para evitar incluir archivos sensibles
-6. **Grupo Salinas**: No incluir Azure Functions/Service Bus/CI/CD en las bullets (barely used)
-7. **Secciones**: El directorio es `Sections/` con S mayúscula (no `sections/`)
+1. **Una sola fuente**: si un dato aparece en la web y en un PDF, se edita en un solo lugar (`src/data/`).
+2. **Build y lint obligatorios** antes de commit: `pnpm run build && pnpm run lint`.
+3. **NO usar `git add .`**: especificar archivos para no incluir archivos sensibles.
+4. **Grupo Salinas**: no incluir Azure Functions/Service Bus/CI/CD en los bullets.

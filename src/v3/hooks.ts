@@ -96,6 +96,45 @@ export function useInView<T extends Element = HTMLElement>(options: InViewOption
   return [ref, inView] as const;
 }
 
+// ─── Reveal queue ────────────────────────────────────────────────────────
+// Reveals that come into view together (a menu jump, a tall screen) start one after another
+// in document order — the order the shared observer reports them — while one that scrolls in
+// alone starts at once. One queue per section: sections a menu jump scrolls past don't hold
+// up the one it lands on. The wait is capped so a fast scroll never builds a backlog.
+const MAX_WAIT = 700;
+const queueEnds = new WeakMap<Element, number>();
+
+function queueReveal(el: Element, slot: number): number {
+  const group = el.closest('section') ?? document.body;
+  const now = performance.now();
+  const start = Math.min(Math.max(now, queueEnds.get(group) ?? 0), now + MAX_WAIT);
+  queueEnds.set(group, start + slot);
+  return Math.round(start - now);
+}
+
+/**
+ * useInView for reveals: also returns how long to wait before starting, fixed the moment the
+ * element comes into view. `slot` is how long it holds the queue (null: don't queue, wait 0).
+ */
+export function useReveal<T extends Element = HTMLElement>(slot: number | null) {
+  const ref = useRef<T | null>(null);
+  const [state, setState] = useState(() => ({ shown: typeof IntersectionObserver === 'undefined', wait: 0 }));
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || typeof IntersectionObserver === 'undefined') return;
+    const io = observerFor(REVEAL.threshold, REVEAL.rootMargin);
+    callbacks.set(el, () => setState({ shown: true, wait: slot === null ? 0 : queueReveal(el, slot) }));
+    io.observe(el);
+    return () => {
+      io.unobserve(el);
+      callbacks.delete(el);
+    };
+  }, [slot]);
+
+  return [ref, state.shown, state.wait] as const;
+}
+
 // ─── Scroll progress ─────────────────────────────────────────────────────
 function readScrollProgress(): number {
   const h = document.documentElement;

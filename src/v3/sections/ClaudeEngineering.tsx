@@ -1,4 +1,4 @@
-import { Reveal, WordsMask } from '../primitives';
+import { Reveal, TitleWords } from '../primitives';
 import { SectionHead, SectionTitle } from '../chrome';
 import type { CV } from '../../data/model';
 import type { Lang } from '../../i18n/lang';
@@ -20,13 +20,10 @@ export function ClaudeEngineeringV3({ data, lang, num }: Props) {
     }}>
       <SectionHead num={num} label={t.label} hint={t.hint} />
       <SectionTitle>
-        <WordsMask text={t.title1} step={60} />{' '}
-        <em style={{ color: 'var(--accent-ink)' }}>
-          <WordsMask text={t.title2} italic step={60} delay={400} />
-        </em>
+        <TitleWords parts={[{ text: t.title1 }, { text: t.title2, accent: true }]} />
       </SectionTitle>
 
-      <Reveal delay={200}>
+      <Reveal>
         <p style={{
           fontSize: 17, lineHeight: 1.7, color: 'var(--fg-muted)',
           maxWidth: 760, marginBottom: 60, marginTop: 24,
@@ -40,8 +37,8 @@ export function ClaudeEngineeringV3({ data, lang, num }: Props) {
         gridTemplateColumns: 'repeat(4, 1fr)',
         gap: 16, marginBottom: 60,
       }}>
-        {data.claude.capabilities.map((c, i) => (
-          <Reveal key={c.title} delay={i * 60}>
+        {data.claude.capabilities.map((c) => (
+          <Reveal key={c.title}>
             <div style={{
               padding: 24, background: 'var(--bg-2)',
               border: '1px solid var(--line)',
@@ -61,7 +58,7 @@ export function ClaudeEngineeringV3({ data, lang, num }: Props) {
         ))}
       </div>
 
-      <Reveal delay={200}>
+      <Reveal>
         <div className="cce-framework" style={{
           display: 'grid', gridTemplateColumns: 'minmax(220px, 1fr) 2fr', gap: 48,
           padding: 'clamp(24px, 3vw, 40px)', marginBottom: 60,
@@ -102,7 +99,7 @@ export function ClaudeEngineeringV3({ data, lang, num }: Props) {
         </div>
       </Reveal>
 
-      <Reveal delay={300}>
+      <Reveal>
         <div style={{
           textAlign: 'center', padding: '24px 0',
           borderTop: '1px solid var(--line)',

@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { Reveal, WordsMask, Counter, Magnetic, Tilt } from './primitives';
-import { useInView } from './hooks';
+import { Reveal, TitleWords, Counter, Magnetic, Tilt } from './primitives';
+import { useInView, useReveal } from './hooks';
 import { SectionHead, SectionTitle } from './chrome';
 import { TechIcon } from './TechIcon';
 import { ProjectModal } from './projects/ProjectModal';
@@ -39,14 +39,10 @@ export function AboutV3({ data: D, lang, num }: SectionProps) {
       }}>
         <div>
           <SectionTitle>
-            <WordsMask text={t.title1} step={60} />{' '}
-            <em style={{ color: 'var(--accent-ink)' }}>
-              <WordsMask text={t.title2} step={60} delay={400} italic />
-            </em>{' '}
-            <WordsMask text={t.title3} step={60} delay={800} />
+            <TitleWords parts={[{ text: t.title1 }, { text: t.title2, accent: true }, { text: t.title3 }]} />
           </SectionTitle>
 
-          <Reveal delay={200}>
+          <Reveal>
             <p style={{
               fontSize: 19, lineHeight: 1.6, marginBottom: 24,
               color: 'var(--fg)', maxWidth: 640,
@@ -60,14 +56,14 @@ export function AboutV3({ data: D, lang, num }: SectionProps) {
             </p>
           </Reveal>
 
-          <Reveal delay={300}>
+          <Reveal>
             <p style={{ fontSize: 17, lineHeight: 1.65, color: 'var(--fg-muted)', maxWidth: 640 }}>
               {t.para2}
             </p>
           </Reveal>
         </div>
 
-        <Reveal delay={400} y={60}>
+        <Reveal y={60}>
           <Tilt max={6}>
             <div style={{
               padding: 32, background: 'var(--bg-2)',
@@ -122,7 +118,7 @@ export function AboutV3({ data: D, lang, num }: SectionProps) {
           const value = parseFloat(s.value);
           const suffix = s.value.replace(/[0-9.]/g, '');
           return (
-            <Reveal key={s.label} delay={i * 80}>
+            <Reveal key={s.label}>
               <div data-cursor="" style={{
                 padding: '48px 28px',
                 borderRight: i < D.stats.length - 1 ? '1px solid var(--line-strong)' : 'none',
@@ -171,10 +167,7 @@ export function ExperienceV3({ data: D, lang, num }: SectionProps) {
     }}>
       <SectionHead num={num} label={t.label} hint={t.hint(D.yearsText, D.experience.length)} />
       <SectionTitle>
-        <WordsMask text={t.title1} step={60} />{' '}
-        <em style={{ color: 'var(--accent-ink)' }}>
-          <WordsMask text={t.title2} italic step={60} delay={400} />
-        </em>.
+        <TitleWords parts={[{ text: t.title1 }, { text: t.title2, accent: true }]} />
       </SectionTitle>
 
       <div style={{ position: 'relative' }}>
@@ -188,7 +181,7 @@ export function ExperienceV3({ data: D, lang, num }: SectionProps) {
           const headId = `job-${job.id}-head`;
           const panelId = `job-${job.id}-panel`;
           return (
-            <Reveal key={job.id} delay={i * 120}>
+            <Reveal key={job.id}>
               <div className="timeline-row" style={{
                 display: 'grid', gridTemplateColumns: '80px 1fr',
                 gap: 24, marginBottom: 24, position: 'relative',
@@ -381,45 +374,43 @@ export function SkillsV3({ data: D, lang, num }: SectionProps) {
     <section id="skills" style={{ padding: '180px 5vw', position: 'relative' }}>
       <SectionHead num={num} label={t.label} hint={t.hint} />
       <SectionTitle>
-        <WordsMask text={t.title1} step={60} />{' '}
-        <em style={{ color: 'var(--accent-ink)' }}>
-          <WordsMask text={t.title2} italic step={60} delay={250} />
-        </em>{' '}
-        <WordsMask text={t.title3} step={60} delay={500} />
+        <TitleWords parts={[{ text: t.title1 }, { text: t.title2, accent: true }, { text: t.title3 }]} />
       </SectionTitle>
 
-      <div style={{
-        display: 'flex', borderBottom: '1px solid var(--line-strong)',
-        marginBottom: 40, flexWrap: 'wrap',
-      }}>
-        {categories.map((cat, i) => (
-          <button key={cat.id} type="button" data-cursor={cursor.view}
-            aria-pressed={active === i}
-            aria-controls="skills-panel"
-            onClick={() => setActive(i)}
-            style={{
-              padding: '18px 26px', background: 'transparent', border: 'none',
-              fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: 1.6,
-              textTransform: 'uppercase',
-              color: active === i ? 'var(--accent-ink)' : 'var(--fg-muted)',
-              borderBottom: active === i ? '2px solid var(--accent)' : '2px solid transparent',
-              marginBottom: -1, transition: 'all 0.3s',
-              display: 'flex', alignItems: 'center', gap: 10,
-            }}>
-            <span aria-hidden="true" style={{ color: 'var(--fg-muted)' }}>0{i + 1}</span>
-            {cat.label}
-            <span style={{
-              fontSize: 10, padding: '2px 8px',
-              background: active === i ? 'var(--accent)' : 'var(--line)',
-              color: active === i ? 'var(--on-accent)' : 'var(--fg-muted)',
-            }}>{cat.items.length}</span>
-          </button>
-        ))}
-      </div>
+      <Reveal>
+        <div style={{
+          display: 'flex', borderBottom: '1px solid var(--line-strong)',
+          marginBottom: 40, flexWrap: 'wrap',
+        }}>
+          {categories.map((cat, i) => (
+            <button key={cat.id} type="button" data-cursor={cursor.view}
+              aria-pressed={active === i}
+              aria-controls="skills-panel"
+              onClick={() => setActive(i)}
+              style={{
+                padding: '18px 26px', background: 'transparent', border: 'none',
+                fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: 1.6,
+                textTransform: 'uppercase',
+                color: active === i ? 'var(--accent-ink)' : 'var(--fg-muted)',
+                borderBottom: active === i ? '2px solid var(--accent)' : '2px solid transparent',
+                marginBottom: -1, transition: 'all 0.3s',
+                display: 'flex', alignItems: 'center', gap: 10,
+              }}>
+              <span aria-hidden="true" style={{ color: 'var(--fg-muted)' }}>0{i + 1}</span>
+              {cat.label}
+              <span style={{
+                fontSize: 10, padding: '2px 8px',
+                background: active === i ? 'var(--accent)' : 'var(--line)',
+                color: active === i ? 'var(--on-accent)' : 'var(--fg-muted)',
+              }}>{cat.items.length}</span>
+            </button>
+          ))}
+        </div>
+      </Reveal>
 
       <div id="skills-panel" role="group" aria-label={current?.label} style={{ display: 'flex', flexWrap: 'wrap', gap: 10, marginBottom: 100 }}>
-        {current?.items.map((s, i) => (
-          <Reveal key={`${current.id}-${s}`} delay={i * 30} duration={700}>
+        {current?.items.map((s) => (
+          <Reveal key={`${current.id}-${s}`} slot={30} duration={700}>
             <Magnetic strength={0.15}>
               <div data-cursor="" style={{
                 fontFamily: 'var(--font-mono)', fontSize: 13,
@@ -453,7 +444,7 @@ export function SkillsV3({ data: D, lang, num }: SectionProps) {
         border: '1px solid var(--line-strong)', marginBottom: 100,
       }}>
         {D.competencies.map((c, i) => (
-          <Reveal key={c.title} delay={i * 50}>
+          <Reveal key={c.title}>
             <div data-cursor="" style={{
               padding: '36px 28px',
               borderRight: (i % 3 !== 2) ? '1px solid var(--line-strong)' : 'none',
@@ -482,8 +473,8 @@ export function SkillsV3({ data: D, lang, num }: SectionProps) {
         }}>{t.languages}</div>
       </Reveal>
       <div className="lang-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 24 }}>
-        {D.languages.map((l, i) => (
-          <Reveal key={l.name} delay={i * 100}>
+        {D.languages.map((l) => (
+          <Reveal key={l.name}>
             <Tilt max={5}>
               <div data-cursor="" style={{
                 padding: 36, border: '1px solid var(--line-strong)',
@@ -530,6 +521,8 @@ export function ProjectsV3({ data: D, lang, num }: SectionProps) {
   const activeColor = D.projects[active]?.color ?? 'var(--accent)';
   const t = translations[lang].projects;
   const cursor = translations[lang].cursor;
+  // Revealed in place: wrapping the sticky preview in <Reveal> would pin it to the wrapper.
+  const [previewRef, previewIn, previewWait] = useReveal<HTMLDivElement>(60);
 
   return (
     <section id="projects" style={{
@@ -537,10 +530,7 @@ export function ProjectsV3({ data: D, lang, num }: SectionProps) {
     }}>
       <SectionHead num={num} label={t.label} hint={t.hint(D.projects.length)} />
       <SectionTitle>
-        <WordsMask text={t.title1} step={60} />{' '}
-        <em style={{ color: 'var(--accent-ink)' }}>
-          <WordsMask text={t.title2} italic step={60} delay={400} />
-        </em>.
+        <TitleWords parts={[{ text: t.title1 }, { text: t.title2, accent: true }]} />
       </SectionTitle>
 
       <div className="proj-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1.4fr', gap: 48 }}>
@@ -548,7 +538,7 @@ export function ProjectsV3({ data: D, lang, num }: SectionProps) {
           {D.projects.map((p, i) => {
             const isActive = active === i;
             return (
-              <Reveal key={p.id} delay={i * 80}>
+              <Reveal key={p.id}>
                 <button type="button" data-cursor={cursor.view}
                   aria-pressed={isActive}
                   aria-controls="project-preview"
@@ -590,10 +580,13 @@ export function ProjectsV3({ data: D, lang, num }: SectionProps) {
           })}
         </div>
 
-        <div id="project-preview" className="proj-preview" style={{
+        <div ref={previewRef} id="project-preview" className="proj-preview" style={{
           position: 'sticky', top: 40, alignSelf: 'start',
           border: '1px solid var(--line-strong)', background: 'var(--bg)',
           padding: 48, minHeight: 520, overflow: 'hidden',
+          opacity: previewIn ? 1 : 0,
+          transform: previewIn ? 'none' : 'translate3d(0,40px,0)',
+          transition: `opacity 600ms ease ${previewWait}ms, transform 600ms cubic-bezier(.2,.8,.2,1) ${previewWait}ms`,
         }}>
           {D.projects.map((p, i) => (
             <div key={p.id} inert={active !== i} aria-hidden={active !== i} style={{
@@ -712,20 +705,16 @@ export function ContactV3({ data: D, lang, num }: SectionProps) {
     <section id="contact" style={{ padding: '180px 5vw 80px', position: 'relative' }}>
       <SectionHead num={num} label={t.label} hint={t.hint} />
 
-      <Reveal>
-        <h2 style={{
-          fontFamily: 'var(--font-display)',
-          fontSize: 'clamp(60px, 12vw, 200px)',
-          lineHeight: 0.85, letterSpacing: '-0.05em',
-          fontWeight: 300, marginBottom: 50,
-        }}>
-          <WordsMask text={t.title1} step={60} />{' '}
-          <em style={{ color: 'var(--accent-ink)' }}><WordsMask text={t.title2} italic step={60} delay={300} /></em><br />
-          <WordsMask text={t.title3} step={60} delay={600} />
-        </h2>
-      </Reveal>
+      <h2 style={{
+        fontFamily: 'var(--font-display)',
+        fontSize: 'clamp(60px, 12vw, 200px)',
+        lineHeight: 0.85, letterSpacing: '-0.05em',
+        fontWeight: 300, marginBottom: 50,
+      }}>
+        <TitleWords parts={[{ text: t.title1 }, { text: t.title2, accent: true }, { text: t.title3, newLine: true }]} />
+      </h2>
 
-      <Reveal delay={500}>
+      <Reveal>
         <Magnetic strength={0.2}>
           <a href={`mailto:${D.contact.email}`} data-cursor={cursor.send} style={{
             display: 'inline-block', fontFamily: 'var(--font-display)',
@@ -759,7 +748,7 @@ export function ContactV3({ data: D, lang, num }: SectionProps) {
           </div>
         </Reveal>
 
-        <Reveal delay={100}>
+        <Reveal>
           <div>
             <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: 1.6, textTransform: 'uppercase', color: 'var(--fg-muted)', marginBottom: 20 }}>{t.education}</div>
             {D.education.map((e) => (
@@ -772,7 +761,7 @@ export function ContactV3({ data: D, lang, num }: SectionProps) {
           </div>
         </Reveal>
 
-        <Reveal delay={200}>
+        <Reveal>
           <div>
             <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: 1.6, textTransform: 'uppercase', color: 'var(--fg-muted)', marginBottom: 20 }}>{t.online}</div>
             {links.map((l) => (

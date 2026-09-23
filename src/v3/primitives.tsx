@@ -1,12 +1,15 @@
 import {
-  useEffect, useRef, useState,
+  Fragment, useEffect, useRef, useState,
   type CSSProperties, type ReactNode, type ElementType,
 } from 'react';
-import { onScrollFrame, useInView, usePointerEffects, useReducedMotion } from './hooks';
+import { onScrollFrame, useInView, usePointerEffects, useReducedMotion, useReveal } from './hooks';
 
 interface RevealProps {
   children: ReactNode;
+  /** Fixed start, for a hand-timed sequence (the hero). Without it the reveal joins the queue. */
   delay?: number;
+  /** How long it holds the queue before the next reveal may start. */
+  slot?: number;
   y?: number;
   duration?: number;
   as?: ElementType;
@@ -15,19 +18,20 @@ interface RevealProps {
 }
 
 export function Reveal({
-  children, delay = 0, y = 40, duration = 600, as: Tag = 'div', style, className,
+  children, delay, slot = 60, y = 40, duration = 600, as: Tag = 'div', style, className,
 }: RevealProps) {
-  const [ref, inView] = useInView();
+  const [ref, shown, wait] = useReveal(delay === undefined ? slot : null);
+  const start = delay ?? wait;
   return (
     <Tag
       ref={ref}
       className={className}
       style={{
         ...style,
-        transform: inView ? 'translate3d(0,0,0)' : `translate3d(0,${y}px,0)`,
-        opacity: inView ? 1 : 0,
-        transition: `transform ${duration}ms cubic-bezier(.2,.8,.2,1) ${delay}ms, opacity ${duration}ms ease ${delay}ms`,
-        willChange: inView ? 'auto' : 'transform, opacity',
+        transform: shown ? 'translate3d(0,0,0)' : `translate3d(0,${y}px,0)`,
+        opacity: shown ? 1 : 0,
+        transition: `transform ${duration}ms cubic-bezier(.2,.8,.2,1) ${start}ms, opacity ${duration}ms ease ${start}ms`,
+        willChange: shown ? 'auto' : 'transform, opacity',
       }}
     >
       {children}
@@ -35,50 +39,84 @@ export function Reveal({
   );
 }
 
-export function MaskReveal({
-  children, delay = 0, duration = 700, style,
-}: { children: ReactNode; delay?: number; duration?: number; style?: CSSProperties }) {
-  const [ref, inView] = useInView<HTMLSpanElement>();
+/**
+ * The clipping box of a mask, grown past the text so italic overhang, descenders and accents
+ * aren't cut, then taken back with negative margins so the text sits where it would unmasked.
+ * Hidden text must travel past the grown bottom edge, hence the 140%.
+ */
+const MASK: CSSProperties = {
+  display: 'inline-block', overflow: 'hidden',
+  padding: '0.12em 0.3em 0.22em 0.12em',
+  margin: '-0.12em -0.3em -0.22em -0.12em',
+};
+const HIDDEN = 'translate3d(0,140%,0)';
+
+function Masked({ children, shown, delay, duration, style }: {
+  children: ReactNode; shown: boolean; delay: number; duration: number; style: CSSProperties;
+}) {
   return (
-    <span
-      ref={ref}
-      style={{ display: 'inline-block', overflow: 'hidden', verticalAlign: 'bottom', ...style }}
-    >
-      <span
-        style={{
-          display: 'inline-block',
-          transform: inView ? 'translate3d(0,0,0)' : 'translate3d(0,105%,0)',
-          transition: `transform ${duration}ms cubic-bezier(.19,1,.22,1) ${delay}ms`,
-          willChange: inView ? 'auto' : 'transform',
-        }}
-      >
-        {children}
-      </span>
+    <span style={{ ...MASK, ...style }}>
+      <span style={{
+        display: 'inline-block',
+        transform: shown ? 'none' : HIDDEN,
+        transition: `transform ${duration}ms cubic-bezier(.19,1,.22,1) ${delay}ms`,
+        willChange: shown ? 'auto' : 'transform',
+      }}>{children}</span>
     </span>
   );
 }
 
-export function WordsMask({
-  text, delay = 0, step = 35, duration = 600, italic = false, style,
-}: { text: string; delay?: number; step?: number; duration?: number; italic?: boolean; style?: CSSProperties }) {
+export function MaskReveal({
+  children, delay = 0, duration = 700,
+}: { children: ReactNode; delay?: number; duration?: number }) {
   const [ref, inView] = useInView<HTMLSpanElement>();
-  const words = text.split(' ');
   return (
-    <span ref={ref} style={style}>
-      {words.map((w, i) => (
-        <span key={i} style={{
-          display: 'inline-block', overflow: 'hidden',
-          verticalAlign: 'baseline', marginRight: '0.27em', lineHeight: 1,
-        }}>
-          <span style={{
-            display: 'inline-block',
-            fontStyle: italic ? 'italic' : 'inherit',
-            transform: inView ? 'translate3d(0,0,0)' : 'translate3d(0,110%,0)',
-            transition: `transform ${duration}ms cubic-bezier(.19,1,.22,1) ${delay + i * step}ms`,
-            willChange: inView ? 'auto' : 'transform',
-          }}>{w}</span>
-        </span>
-      ))}
+    <span ref={ref}>
+      <Masked shown={inView} delay={delay} duration={duration} style={{ verticalAlign: 'bottom' }}>{children}</Masked>
+    </span>
+  );
+}
+
+// Same box as the words had before the mask grew: baseline-aligned, line-height 1, and a
+// 0.27em gap after each word (-0.3em takes back the mask's right padding). A margin instead of
+// a space character: display fonts' spaces range from 0.14em (Fraunces) to 0.25em (Inter).
+const WORD: CSSProperties = { verticalAlign: 'baseline', lineHeight: 1, marginRight: 'calc(0.27em - 0.3em)' };
+
+export interface TitlePart {
+  text: string;
+  /** Italic, in the accent color. */
+  accent?: boolean;
+  /** Starts on a new line. */
+  newLine?: boolean;
+}
+
+/**
+ * Headline whose words slide up in reading order. One observer drives every part, so a lower
+ * line can't start first (it used to when the page scrolled up to a title), and the title holds
+ * the reveal queue until its last word starts. Screen readers get the plain sentence; the
+ * animated words, spaced by margins, are hidden from them.
+ */
+export function TitleWords({ parts, step = 55, duration = 650 }: { parts: readonly TitlePart[]; step?: number; duration?: number }) {
+  const total = parts.reduce((n, part) => n + part.text.split(' ').length, 0);
+  const [ref, shown, wait] = useReveal<HTMLSpanElement>(total * step);
+  let index = 0;
+  return (
+    <span ref={ref}>
+      <span className="sr-only">{parts.map((part) => part.text).join(' ')}</span>
+      <span aria-hidden="true">
+        {parts.map((part, p) => {
+          const words = part.text.split(' ').map((word) => {
+            const i = index++;
+            return <Masked key={i} shown={shown} delay={wait + i * step} duration={duration} style={WORD}>{word}</Masked>;
+          });
+          return (
+            <Fragment key={p}>
+              {part.newLine && <br />}
+              {part.accent ? <em style={{ color: 'var(--accent-ink)' }}>{words}</em> : words}
+            </Fragment>
+          );
+        })}
+      </span>
     </span>
   );
 }

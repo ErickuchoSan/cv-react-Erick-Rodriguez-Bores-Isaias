@@ -32,7 +32,6 @@ export function CVDocumentLeaf({ lang, theme, accent }: Props) {
   const s = useMemo(() => makeLeafStyles(theme, accent), [theme, accent]);
   const t = translations[lang].pdf;
   const profileImage = `${window.location.origin}${cv.photo}`;
-  const featuredProject = cv.projects[0];
 
   return (
     <Document>
@@ -103,29 +102,27 @@ export function CVDocumentLeaf({ lang, theme, accent }: Props) {
                 </View>
               ))}
 
-              {job.featured.achievement && (
-                <View style={s.bullet}>
+              {job.featured.achievements.map((achievement) => (
+                <View key={achievement} style={s.bullet}>
                   <View style={s.bulletDotAccent} />
-                  <Text style={s.bulletText}>{job.featured.achievement}</Text>
+                  <Text style={s.bulletText}>{achievement}</Text>
                 </View>
-              )}
+              ))}
             </View>
           ))}
 
-          {featuredProject && (
-            <>
-              <Text style={s.bodySectionTitle}>{t.featuredProject}</Text>
-              <View style={s.projectCard}>
-                <Text style={s.projectTitle}>{featuredProject.name}</Text>
-                <Text style={s.projectDesc}>{featuredProject.description}</Text>
-                <View style={s.techRow}>
-                  {featuredProject.tech.slice(0, FEATURED_TECH_LIMIT).map((tag) => (
-                    <Text key={tag} style={s.techBadge}>{tag}</Text>
-                  ))}
-                </View>
+          <Text style={s.bodySectionTitle}>{t.featuredProjects}</Text>
+          {cv.projects.map((project) => (
+            <View key={project.id} style={s.projectCard}>
+              <Text style={s.projectTitle}>{project.name}</Text>
+              <Text style={s.projectDesc}>{project.description}</Text>
+              <View style={s.techRow}>
+                {project.tech.slice(0, FEATURED_TECH_LIMIT).map((tag) => (
+                  <Text key={tag} style={s.techBadge}>{tag}</Text>
+                ))}
               </View>
-            </>
-          )}
+            </View>
+          ))}
         </View>
 
         <Text style={s.footer} fixed render={({ pageNumber, totalPages }) =>

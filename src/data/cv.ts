@@ -64,7 +64,7 @@ export const METRICS = {
 } as const;
 
 export interface Bullet extends Localized {
-  /** Shown on the one-page visual PDF (2 functions + 1 achievement per job). */
+  /** Shown on the one-page visual PDF (3 functions + 2 achievements per job). */
   highlight?: true;
 }
 
@@ -113,6 +113,7 @@ export const JOBS = [
         en: 'REST API development with .NET Core 6 integrating OAuth2 and JWT tokenization for secure authentication.',
       },
       {
+        highlight: true,
         es: 'Diseñé y desarrollé aplicación de escritorio Windows (Tauri 2.x + React 19 + TypeScript) para el área de fraudes: reconocimiento facial contra tres bases internas (general, listas rojas, empleados) vía API BAZ de Identidad Digital.',
         en: 'Designed and developed a Windows desktop application (Tauri 2.x + React 19 + TypeScript) for the fraud team: facial recognition against three internal databases (general, blacklists, employees) via the BAZ Digital Identity API.',
       },
@@ -152,6 +153,7 @@ export const JOBS = [
         en: 'Creation of Honestel v2 API from scratch (6 core endpoints) with Swagger documentation.',
       },
       {
+        highlight: true,
         es: 'Reducción del 40% en tiempo de ejecución de consultas críticas mediante optimización de procedimientos almacenados.',
         en: '40% reduction in critical query execution time through stored procedure optimization.',
       },
@@ -188,6 +190,7 @@ export const JOBS = [
         en: 'Dual auth system: JWT with refresh token rotation for admins and OTP with bcrypt for clients. RBAC with 3 roles (Admin, Client, Employee).',
       },
       {
+        highlight: true,
         es: 'Seguridad HTTP completa: CSRF (HMAC-SHA256), Helmet (CSP, HSTS), rate limiting por IP, account lockout tras 5 intentos, validación con Zod.',
         en: 'Full HTTP security: CSRF (HMAC-SHA256), Helmet (CSP, HSTS), IP rate limiting, account lockout after 5 attempts, Zod schema validation.',
       },
@@ -215,8 +218,9 @@ export const JOBS = [
         en: 'Production platform with 16+ modules and 8 workflow stages: auth, billing, employee payments, file storage and notifications.',
       },
       {
-        es: 'Pipeline CI/CD completo: lint → tests → SonarCloud → build → deploy → health checks → backup automático en cada push.',
-        en: 'Complete CI/CD pipeline: lint → tests → SonarCloud → build → deploy → health checks → automatic backup on every push.',
+        highlight: true,
+        es: 'Pipeline CI/CD completo: lint › tests › SonarCloud › build › deploy › health checks › backup automático en cada push.',
+        en: 'Complete CI/CD pipeline: lint › tests › SonarCloud › build › deploy › health checks › automatic backup on every push.',
       },
       {
         es: 'Arquitectura de seguridad en capas: CSRF + Helmet + rate limiting + JWT rotation + OTP + AES/RSA + SSH hardening + fail2ban.',

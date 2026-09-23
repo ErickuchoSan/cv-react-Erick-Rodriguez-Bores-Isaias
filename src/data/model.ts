@@ -24,7 +24,7 @@ export interface Job {
   functions: string[];
   achievements: string[];
   /** What the one-page visual PDF shows for this job. */
-  featured: { functions: string[]; achievement: string | undefined };
+  featured: { functions: string[]; achievements: string[] };
   stack: readonly string[];
 }
 
@@ -103,7 +103,9 @@ export interface CV {
   };
 }
 
-const FEATURED_FUNCTIONS = 2;
+// With two jobs, 3 + 2 bullets each fill the one-page PDF without overflowing it.
+const FEATURED_FUNCTIONS = 3;
+const FEATURED_ACHIEVEMENTS = 2;
 
 function featured(bullets: readonly Bullet[], count: number): readonly Bullet[] {
   const flagged = bullets.filter((b) => b.highlight);
@@ -204,7 +206,7 @@ export function buildCV(lang: Lang, now = new Date()): CV {
       achievements: job.achievements.map(tr),
       featured: {
         functions: featured(job.functions, FEATURED_FUNCTIONS).map(tr),
-        achievement: featured(job.achievements, 1).map(tr)[0],
+        achievements: featured(job.achievements, FEATURED_ACHIEVEMENTS).map(tr),
       },
       stack: job.stack,
     })),

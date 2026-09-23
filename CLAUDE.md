@@ -35,7 +35,7 @@ Publicado en **<https://eboresi.com>** (dominio en Vercel; cada push a `master` 
 | Resumen del perfil (PDFs) y disponibilidad | `src/data/cv.ts` → `PROFILE` |
 | Trabajos: fechas, stack, rol, bullets, logros | `src/data/cv.ts` → `JOBS` |
 | Educación, idiomas, competencias | `src/data/cv.ts` → `EDUCATION`, `LANGUAGES`, `COMPETENCIES` |
-| Números destacados (40%, 57, 5K+, endpoints) | `src/data/cv.ts` → `METRICS`, `STATS` |
+| Números destacados (40%, 57, 8h, endpoints) | `src/data/cv.ts` → `METRICS`, `STATS` |
 | Stack del hero y de la terminal | `src/data/cv.ts` → `HERO_STACK`, `TERMINAL_STACK` |
 | Proyectos del showcase + case studies | `src/data/projects.ts` → `PROJECTS` |
 | Skills (web, ATS con años, 12 del PDF visual) | `src/data/skills.ts` → `WEB_SKILLS`, `ATS_SKILLS`, `CORE_SKILLS` |
@@ -44,8 +44,9 @@ Publicado en **<https://eboresi.com>** (dominio en Vercel; cada push a `master` 
 Reglas del modelo:
 
 - **Cada texto lleva `es` y `en` juntos** (`{ es, en }`): si falta una traducción, el build falla.
-- **Nunca escribas duraciones ni años**: `period`, `duration` y los años totales se calculan de `start`/`end` (`'YYYY-MM'`, `end: null` = actual). En textos, usa `{years}`.
-- **PDF de 1 página**: muestra las funciones y el logro marcados con `highlight: true` (2 funciones + 1 logro por trabajo). El orden de los bullets ya no importa.
+- **Nunca escribas duraciones ni años**: `period`, `duration` y los años totales se calculan de `start`/`end` (`'YYYY-MM'`, `end: null` = actual). Los años totales cuentan desde `CAREER_START` (mayo 2023), así que quitar un empleo no los baja. En textos, usa `{years}`.
+- **PDF de 1 página**: muestra las funciones y los logros marcados con `highlight: true` (3 funciones + 2 logros por trabajo, pensado para 2 trabajos) y todos los proyectos. El orden de los bullets ya no importa.
+- **Texto que llega a los PDFs**: solo caracteres de cp1252 (Helvetica en el ATS; la Roboto local tampoco trae flechas). Usa `›` en vez de `→`.
 - **Años por skill**: viven solo en `ATS_SKILLS` (`months`). No se calculan: actualízalos a mano.
 - **`CORE_SKILLS` debe quedar en 12** o el PDF visual se pasa a 2 páginas.
 - **Demo de un proyecto**: `demo: { status: 'live', url }` actualiza todos los badges y links; `{ status: 'private' }` es para lo que nunca se publica (infraestructura), sin promesa de demo.
@@ -80,7 +81,7 @@ src/
     ├── sections.tsx                # About, Experience, Skills, Projects, Contact
     ├── sections/ClaudeEngineering.tsx
     ├── chrome.tsx                  # Cursor, Nav, CornerTools, BottomHUD, Marquee
-    ├── primitives.tsx              # Reveal, MaskReveal, WordsMask, Counter, Magnetic, Parallax, Tilt
+    ├── primitives.tsx              # Reveal, MaskReveal, TitleWords, Counter, Magnetic, Parallax, Tilt
     ├── hooks.ts                    # useInView, useMediaQuery, useReducedMotion, useScrollProgress
     ├── theme.ts                    # 7 temas + 6 acentos
     ├── Download.tsx + PdfMenu.tsx  # Menú de descarga (chunk lazy de ~1.6 MB)
@@ -103,14 +104,16 @@ src/
   - `--ink-<project-id>` / `--on-<project-id>`: lo mismo para el color de cada proyecto.
   - Nunca uses `color: 'var(--accent)'`, ni hex o rgba del acento en los componentes; para tintes usa `color-mix(in oklab, var(--accent) N%, transparent)`.
 - **Movimiento**: los efectos JS (parallax, tilt, magnetic, cursor, shader) leen `useMediaQuery` / `useReducedMotion`; respetan `prefers-reduced-motion` y solo corren con puntero fino. Los bucles de animación se detienen en reposo.
+- **Orden de aparición**: `Reveal` sin `delay` entra en la cola de su sección (`useReveal` en `hooks.ts`): lo que aparece junto sale en orden de documento y lo que aparece solo sale ya. `delay` fijo solo para secuencias a mano (el hero). Los títulos van con `<TitleWords parts={…}>`: una sola animación por título, con la puntuación dentro del texto.
+- **Sin `content-visibility` en las secciones**: con alturas estimadas, el menú aterrizaba cientos de px antes de la sección.
 - **Accesibilidad**: controles con `<button>`, `aria-expanded`/`aria-pressed`, paneles ocultos con `inert`, nombres accesibles que contienen el texto visible (WCAG 2.5.3), foco visible global.
 
 ## Reglas de contenido
 
-- **Experiencia**: Grupo Salinas (Mayo 2024 – actual), Digital Solutions (Mayo 2023 – Mayo 2024), Freelance Align Designs (Oct 2025 – actual). Las duraciones se calculan.
+- **Experiencia**: Grupo Salinas (Mayo 2024 – actual) y Freelance Align Designs (Oct 2025 – actual). Digital Solutions (May 2023 – May 2024) ya no se lista, pero cuenta para los 3 años (`CAREER_START`). Las duraciones se calculan.
 - ⚠️ **Grupo Salinas: NO incluir Azure Functions, Azure Service Bus ni CI/CD** (apenas usados). Sí: .NET Core 6, C#, HTML/Bootstrap, SQL Server, OAuth2/JWT, Entity Framework.
 - **Taglines del hero**: `Full Stack Developer · .NET & React` / `Claude Code Power User` son marca: idénticas en ES y EN, no se traducen.
-- **Showcase**: nombres reales (`align-designs`, `comal-pos`, `mdg-investment`) más `homelab-devsecops`; cada card abre un modal con el case study completo. `align-designs` va primero: el PDF visual y la terminal del hero usan `PROJECTS[0]`.
+- **Showcase**: `align-designs` y `homelab-devsecops` (Comal POS y MDG se quitaron el 2026-09-23); cada card abre un modal con el case study completo. `align-designs` va primero: la terminal del hero usa `PROJECTS[0]`.
 - **Homelab DevSecOps**: las cifras (16 contenedores, 166 ejecuciones de CI) se midieron en el servidor el 2026-09-22; se actualizan a mano. La propuesta DevSecOps es para un empleador: publicar solo el diseño genérico (herramientas y flujo), **nunca** nombres de empresa o personas, costos, topología interna ni nada de la carpeta "NO compartir". No presentarla como implementada.
 - **Marco de buenas prácticas** (sección Claude): se menciona el marco (133 principios de diseño + 40 de proceso) sin atribuir autoría.
 

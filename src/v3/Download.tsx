@@ -2,11 +2,13 @@ import { lazy, Suspense, useEffect, useLayoutEffect, useRef, useState } from 're
 import { createPortal } from 'react-dom';
 import { THEMES, ACCENT_OPTIONS, type ThemeName } from './theme';
 import type { PdfTheme } from '../components/PDF/leafStyles';
+import type { Lang } from '../i18n/lang';
+import { translations } from '../i18n/translations';
 
 const PdfMenu = lazy(() => import('./PdfMenu'));
 
 interface Props {
-  lang: 'es' | 'en';
+  lang: Lang;
   themeName: ThemeName;
   accent: string;
 }
@@ -68,8 +70,9 @@ export function DownloadV3({ lang, themeName, accent }: Props) {
 
   const prewarm = () => { import('./PdfMenu'); };
 
-  const t = lang === 'es' ? { cta: 'Descargar CV' } : { cta: 'Download CV' };
-  const accentLabel = ACCENT_OPTIONS.find((a) => a.value === accent)?.label ?? accent;
+  const t = translations[lang].download;
+  const accentKey = ACCENT_OPTIONS.find((a) => a.value === accent)?.key;
+  const accentLabel = accentKey ? translations[lang].accents[accentKey] : accent;
   const theme = THEMES[themeName];
   const fontLabel = theme.display === theme.sans
     ? `${theme.display} (sans)`

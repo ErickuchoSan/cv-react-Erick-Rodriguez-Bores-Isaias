@@ -1,12 +1,12 @@
 import { PDFDownloadLink } from '@react-pdf/renderer';
-import { CVDocumentLeaf_ES } from '../components/PDF/CVDocumentLeaf_ES';
-import { CVDocumentLeaf_EN } from '../components/PDF/CVDocumentLeaf_EN';
-import { CVDocumentATS_ES } from '../components/PDF/CVDocumentATS_ES';
-import { CVDocumentATS_EN } from '../components/PDF/CVDocumentATS_EN';
+import { CVDocumentLeaf } from '../components/PDF/CVDocumentLeaf';
+import { CVDocumentATS } from '../components/PDF/CVDocumentATS';
 import type { PdfTheme } from '../components/PDF/leafStyles';
+import type { Lang } from '../i18n/lang';
+import { translations } from '../i18n/translations';
 
 interface Props {
-  lang: 'es' | 'en';
+  lang: Lang;
   onClose: () => void;
   themeName: string;
   theme: PdfTheme;
@@ -54,13 +54,7 @@ const item = (label: string, loading: boolean, error: Error | null | undefined, 
 );
 
 export default function PdfMenu({ lang, onClose, themeName, theme, accent, accentLabel, fontLabel }: Props) {
-  const t = lang === 'es'
-    ? { visual: 'Diseño visual', ats: 'Formato ATS',
-        es: 'Español', en: 'Inglés', atsEs: 'ATS Español', atsEn: 'ATS Inglés', gen: 'Generando…',
-        themeNote: 'El visual hereda el tema activo:', atsNote: 'Formato neutro · Helvetica · sin colores' }
-    : { visual: 'Visual design', ats: 'ATS format',
-        es: 'Spanish', en: 'English', atsEs: 'ATS Spanish', atsEn: 'ATS English', gen: 'Generating…',
-        themeNote: 'Visual inherits active theme:', atsNote: 'Neutral format · Helvetica · no colors' };
+  const t = translations[lang].download;
 
   return (
     <div role="menu" style={wrapStyle}>
@@ -76,20 +70,20 @@ export default function PdfMenu({ lang, onClose, themeName, theme, accent, accen
           <span style={{ fontStyle: 'italic' }}>{fontLabel}</span>
         </div>
       </div>
-      <PDFDownloadLink document={<CVDocumentLeaf_ES theme={theme} accent={accent} />} fileName="CV_Erick_Rodriguez_ES.pdf" onClick={() => setTimeout(onClose, 600)} style={itemStyle} data-cursor="ES">
-        {({ loading, error }) => item(t.es, loading, error, '🇲🇽', t.gen)}
+      <PDFDownloadLink document={<CVDocumentLeaf lang="es" theme={theme} accent={accent} />} fileName="CV_Erick_Rodriguez_ES.pdf" onClick={() => setTimeout(onClose, 600)} style={itemStyle} data-cursor="ES">
+        {({ loading, error }) => item(t.es, loading, error, '🇲🇽', t.generating)}
       </PDFDownloadLink>
-      <PDFDownloadLink document={<CVDocumentLeaf_EN theme={theme} accent={accent} />} fileName="CV_Erick_Rodriguez_EN.pdf" onClick={() => setTimeout(onClose, 600)} style={itemStyle} data-cursor="EN">
-        {({ loading, error }) => item(t.en, loading, error, '🇺🇸', t.gen)}
+      <PDFDownloadLink document={<CVDocumentLeaf lang="en" theme={theme} accent={accent} />} fileName="CV_Erick_Rodriguez_EN.pdf" onClick={() => setTimeout(onClose, 600)} style={itemStyle} data-cursor="EN">
+        {({ loading, error }) => item(t.en, loading, error, '🇺🇸', t.generating)}
       </PDFDownloadLink>
 
       <div style={headerStyle}>{t.ats}</div>
       <div style={noteStyle}>{t.atsNote}</div>
-      <PDFDownloadLink document={<CVDocumentATS_ES />} fileName="CV_Erick_Rodriguez_ATS_ES.pdf" onClick={() => setTimeout(onClose, 600)} style={itemStyle} data-cursor="ATS">
-        {({ loading, error }) => item(t.atsEs, loading, error, '🇲🇽', t.gen)}
+      <PDFDownloadLink document={<CVDocumentATS lang="es" />} fileName="CV_Erick_Rodriguez_ATS_ES.pdf" onClick={() => setTimeout(onClose, 600)} style={itemStyle} data-cursor="ATS">
+        {({ loading, error }) => item(t.atsEs, loading, error, '🇲🇽', t.generating)}
       </PDFDownloadLink>
-      <PDFDownloadLink document={<CVDocumentATS_EN />} fileName="CV_Erick_Rodriguez_ATS_EN.pdf" onClick={() => setTimeout(onClose, 600)} style={itemStyle} data-cursor="ATS">
-        {({ loading, error }) => item(t.atsEn, loading, error, '🇺🇸', t.gen)}
+      <PDFDownloadLink document={<CVDocumentATS lang="en" />} fileName="CV_Erick_Rodriguez_ATS_EN.pdf" onClick={() => setTimeout(onClose, 600)} style={itemStyle} data-cursor="ATS">
+        {({ loading, error }) => item(t.atsEn, loading, error, '🇺🇸', t.generating)}
       </PDFDownloadLink>
     </div>
   );

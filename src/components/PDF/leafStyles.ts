@@ -253,11 +253,3 @@ export function makeLeafStyles(theme: PdfTheme, accent: string) {
     },
   });
 }
-
-export const NEUTRAL_THEME: PdfTheme = {
-  bg: '#ffffff', bg2: '#f4f4f5', bg3: '#09090b',
-  fg: '#ffffff', fgMuted: '#a1a1aa', fgDim: '#71717a',
-  line: '#e5e5e5', lineStrong: '#d4d4d8',
-  mode: 'dark',
-};
-export const NEUTRAL_ACCENT = '#b61722';

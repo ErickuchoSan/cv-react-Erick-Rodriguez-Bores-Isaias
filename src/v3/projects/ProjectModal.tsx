@@ -1,14 +1,16 @@
 import { useEffect, useRef, lazy, Suspense } from 'react';
 import { createPortal } from 'react-dom';
-import type { ProjectV3 } from '../data';
+import type { Project } from '../../data/model';
+import type { Lang } from '../../i18n/lang';
+import { translations } from '../../i18n/translations';
 
 const CaseStudyContent = lazy(() =>
   import('./CaseStudyContent').then(m => ({ default: m.CaseStudyContent }))
 );
 
 interface Props {
-  project: ProjectV3 | null;
-  lang: 'es' | 'en';
+  project: Project | null;
+  lang: Lang;
   onClose: () => void;
 }
 
@@ -62,6 +64,7 @@ export function ProjectModal({ project, lang, onClose }: Props) {
   }, [project, onClose]);
 
   if (!project) return null;
+  const t = translations[lang].caseStudy;
 
   const onMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
     downOnBackdropRef.current = e.target === e.currentTarget;
@@ -103,7 +106,7 @@ export function ProjectModal({ project, lang, onClose }: Props) {
         <button
           ref={closeBtnRef}
           onClick={onClose}
-          aria-label={lang === 'es' ? 'Cerrar' : 'Close'}
+          aria-label={t.close}
           style={{
             position: 'absolute', top: 18, right: 18,
             width: 36, height: 36,
@@ -117,7 +120,7 @@ export function ProjectModal({ project, lang, onClose }: Props) {
             padding: 80, textAlign: 'center',
             fontFamily: 'var(--font-mono)', fontSize: 12,
             color: 'var(--fg-muted)', letterSpacing: 1.4,
-          }}>// loading case study…</div>
+          }}>{t.loading}</div>
         }>
           <CaseStudyContent project={project} lang={lang} />
         </Suspense>

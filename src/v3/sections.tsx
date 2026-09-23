@@ -2,39 +2,35 @@ import { useState } from 'react';
 import { Reveal, WordsMask, Counter, Magnetic, Tilt, useInView } from './primitives';
 import { SectionHead, SectionTitle } from './chrome';
 import { TechIcon } from './TechIcon';
-import type { CVData } from './data';
 import { ProjectModal } from './projects/ProjectModal';
+import type { CV } from '../data/model';
+import type { ProjectId } from '../data/projects';
+import type { Lang } from '../i18n/lang';
+import { translations } from '../i18n/translations';
+import { richText } from '../lib/richText';
+import { toRoman } from '../lib/format';
+
+interface SectionProps {
+  data: CV;
+  lang: Lang;
+  /** Two-digit position of the section, derived from the page order. */
+  num: string;
+}
 
 // ═══ ABOUT ════════════════════════════════════════════════════════════════
-export function AboutV3({ data, lang }: { data: CVData; lang: 'es' | 'en' }) {
-  const D = data;
-  const t = lang === 'es'
-    ? {
-        hint: 'Background · filosofía · enfoque',
-        title1: 'Transformando ideas en', title2: 'soluciones empresariales', title3: 'de alto impacto.',
-        para1Lead: 'C', para1Tail: 'on ',
-        para1Body: 'años construyendo arquitecturas con C#/.NET Core 6/8/10, React 19/Next.js 16, SQL Server/PostgreSQL y NestJS 11. Actualmente lidero el desarrollo de sistemas críticos en',
-        para1End: 'y paralelo desarrollo la plataforma',
-        align: 'Align Designs',
-        para2: 'Me distingo por aplicar Clean Architecture, DDD, principios SOLID y desarrollo asistido por IA — optimizando cada línea con buenas prácticas de seguridad y performance.',
-        statusLabel: 'Estado actual', available: 'Disponible',
-        loc: 'UBICACIÓN', joinLabel: 'INCORPORACIÓN', joinValue: '3 – 7 días',
-      }
-    : {
-        hint: 'Background · philosophy · approach',
-        title1: 'Turning ideas into', title2: 'high-impact enterprise', title3: 'solutions.',
-        para1Lead: 'W', para1Tail: 'ith ',
-        para1Body: 'years building architectures with C#/.NET Core 6/8/10, React 19/Next.js 16, SQL Server/PostgreSQL and NestJS 11. Currently leading critical system development at',
-        para1End: 'while building the',
-        align: 'Align Designs',
-        para2: 'I stand out for applying Clean Architecture, DDD, SOLID principles and AI-assisted development — optimizing every line with security and performance best practices.',
-        statusLabel: 'Current status', available: 'Available',
-        loc: 'LOCATION', joinLabel: 'JOIN-IN', joinValue: '3 – 7 days',
-      };
+export function AboutV3({ data: D, lang, num }: SectionProps) {
+  const t = translations[lang].about;
+  const accent = { color: 'var(--accent)' };
+  const [lead, ...rest] = t.para1;
+  const para1Rest = richText(rest.join(''), {
+    years: D.yearsText,
+    company: <strong style={accent}>{D.employer}</strong>,
+    project: <strong style={accent}>{t.project}</strong>,
+  });
 
   return (
     <section id="about" style={{ padding: '180px 5vw', position: 'relative' }}>
-      <SectionHead num="02" label={lang === 'es' ? 'Sobre mí' : 'About'} hint={t.hint} />
+      <SectionHead num={num} label={t.label} hint={t.hint} />
 
       <div className="about-grid" style={{
         display: 'grid', gridTemplateColumns: '1.3fr 1fr', gap: 100, alignItems: 'start',
@@ -57,11 +53,8 @@ export function AboutV3({ data, lang }: { data: CVData; lang: 'es' | 'en' }) {
                 fontFamily: 'var(--font-display)', fontSize: 72,
                 fontStyle: 'italic', fontWeight: 300, color: 'var(--accent)',
                 float: 'left', lineHeight: 0.85, marginRight: 14, marginTop: 6,
-              }}>{t.para1Lead}</span>
-              {t.para1Tail}{D.years} {t.para1Body}{' '}
-              <strong style={{ color: 'var(--accent)' }}>Grupo Salinas</strong>{' '}
-              {t.para1End}{' '}
-              <strong style={{ color: 'var(--accent)' }}>{t.align}</strong>.
+              }}>{lead}</span>
+              {para1Rest}
             </p>
           </Reveal>
 
@@ -105,8 +98,8 @@ export function AboutV3({ data, lang }: { data: CVData; lang: 'es' | 'en' }) {
                 display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14,
               }}>
                 <div>
-                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: 9, color: 'var(--fg-muted)', letterSpacing: 1.2, marginBottom: 4 }}>{t.loc}</div>
-                  <div style={{ fontSize: 13 }}>CDMX</div>
+                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: 9, color: 'var(--fg-muted)', letterSpacing: 1.2, marginBottom: 4 }}>{t.location}</div>
+                  <div style={{ fontSize: 13 }}>{D.contact.city}</div>
                 </div>
                 <div>
                   <div style={{ fontFamily: 'var(--font-mono)', fontSize: 9, color: 'var(--fg-muted)', letterSpacing: 1.2, marginBottom: 4 }}>{t.joinLabel}</div>
@@ -124,10 +117,10 @@ export function AboutV3({ data, lang }: { data: CVData; lang: 'es' | 'en' }) {
         borderBottom: '1px solid var(--line-strong)',
       }}>
         {D.stats.map((s, i) => {
-          const num = parseFloat(s.k);
-          const suffix = s.k.replace(/[0-9.]/g, '');
+          const value = parseFloat(s.value);
+          const suffix = s.value.replace(/[0-9.]/g, '');
           return (
-            <Reveal key={i} delay={i * 80}>
+            <Reveal key={s.label} delay={i * 80}>
               <div data-cursor="" style={{
                 padding: '48px 28px',
                 borderRight: i < D.stats.length - 1 ? '1px solid var(--line-strong)' : 'none',
@@ -141,13 +134,13 @@ export function AboutV3({ data, lang }: { data: CVData; lang: 'es' | 'en' }) {
                   lineHeight: 1, fontWeight: 300, letterSpacing: '-0.04em',
                   color: 'var(--accent)', marginBottom: 12,
                 }}>
-                  <Counter value={num} suffix={suffix} duration={2200} />
+                  <Counter value={value} suffix={suffix} duration={2200} />
                 </div>
                 <div style={{
                   fontFamily: 'var(--font-mono)', fontSize: 11,
                   letterSpacing: 1.4, textTransform: 'uppercase',
                   color: 'var(--fg-muted)',
-                }}>{s.v}</div>
+                }}>{s.label}</div>
               </div>
             </Reveal>
           );
@@ -165,22 +158,20 @@ export function AboutV3({ data, lang }: { data: CVData; lang: 'es' | 'en' }) {
 }
 
 // ═══ EXPERIENCE ═══════════════════════════════════════════════════════════
-export function ExperienceV3({ data, lang }: { data: CVData; lang: 'es' | 'en' }) {
-  const D = data;
+export function ExperienceV3({ data: D, lang, num }: SectionProps) {
   const [open, setOpen] = useState(0);
-  const t = lang === 'es'
-    ? { hint: `${D.years} años · 3 empresas`, t1: 'Trayectoria construyendo', t2: 'sistemas críticos', resp: '— Responsabilidades', ach: '★ Logros destacados' }
-    : { hint: `${D.years} years · 3 companies`, t1: 'Career building', t2: 'critical systems', resp: '— Responsibilities', ach: '★ Key achievements' };
+  const t = translations[lang].experience;
+  const cursor = translations[lang].cursor;
 
   return (
     <section id="experience" style={{
       padding: '180px 5vw', background: 'var(--bg-2)', position: 'relative',
     }}>
-      <SectionHead num="03" label={lang === 'es' ? 'Experiencia' : 'Experience'} hint={t.hint} />
+      <SectionHead num={num} label={t.label} hint={t.hint(D.yearsText, D.experience.length)} />
       <SectionTitle>
-        <WordsMask text={t.t1} step={60} />{' '}
+        <WordsMask text={t.title1} step={60} />{' '}
         <em style={{ color: 'var(--accent)' }}>
-          <WordsMask text={t.t2} italic step={60} delay={400} />
+          <WordsMask text={t.title2} italic step={60} delay={400} />
         </em>.
       </SectionTitle>
 
@@ -193,7 +184,7 @@ export function ExperienceV3({ data, lang }: { data: CVData; lang: 'es' | 'en' }
         {D.experience.map((job, i) => {
           const isOpen = open === i;
           return (
-            <Reveal key={i} delay={i * 120}>
+            <Reveal key={job.id} delay={i * 120}>
               <div className="timeline-row" style={{
                 display: 'grid', gridTemplateColumns: '80px 1fr',
                 gap: 24, marginBottom: 24, position: 'relative',
@@ -219,7 +210,7 @@ export function ExperienceV3({ data, lang }: { data: CVData; lang: 'es' | 'en' }
                 </div>
 
                 <div
-                  data-cursor={isOpen ? (lang === 'es' ? 'cerrar' : 'close') : (lang === 'es' ? 'abrir' : 'open')}
+                  data-cursor={isOpen ? cursor.close : cursor.open}
                   onClick={() => setOpen(isOpen ? -1 : i)}
                   style={{
                     background: isOpen ? 'var(--bg-3)' : 'var(--bg)',
@@ -278,10 +269,10 @@ export function ExperienceV3({ data, lang }: { data: CVData; lang: 'es' | 'en' }
                         fontFamily: 'var(--font-mono)', fontSize: 10,
                         letterSpacing: 1.6, textTransform: 'uppercase',
                         color: 'var(--fg-muted)', marginBottom: 12,
-                      }}>{t.resp}</div>
+                      }}>{t.responsibilities}</div>
                       <ul style={{ listStyle: 'none', marginBottom: 28, paddingLeft: 0 }}>
-                        {job.bullets.map((b, j) => (
-                          <li key={j} style={{ display: 'flex', gap: 14, fontSize: 14.5, lineHeight: 1.6, marginBottom: 10 }}>
+                        {job.functions.map((b) => (
+                          <li key={b} style={{ display: 'flex', gap: 14, fontSize: 14.5, lineHeight: 1.6, marginBottom: 10 }}>
                             <span style={{ color: 'var(--accent)', fontFamily: 'var(--font-mono)', fontSize: 12, marginTop: 3 }}>→</span>
                             <span>{b}</span>
                           </li>
@@ -294,10 +285,10 @@ export function ExperienceV3({ data, lang }: { data: CVData; lang: 'es' | 'en' }
                             fontFamily: 'var(--font-mono)', fontSize: 10,
                             letterSpacing: 1.6, textTransform: 'uppercase',
                             color: 'var(--accent)', marginBottom: 12,
-                          }}>{t.ach}</div>
+                          }}>{t.achievements}</div>
                           <ul style={{ listStyle: 'none', marginBottom: 28, paddingLeft: 0 }}>
-                            {job.achievements.map((a, j) => (
-                              <li key={j} style={{
+                            {job.achievements.map((a) => (
+                              <li key={a} style={{
                                 display: 'flex', gap: 14, fontSize: 14.5, lineHeight: 1.55,
                                 marginBottom: 10, padding: '12px 16px',
                                 background: 'rgba(255,91,46,0.08)',
@@ -312,8 +303,8 @@ export function ExperienceV3({ data, lang }: { data: CVData; lang: 'es' | 'en' }
                       )}
 
                       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-                        {job.stack.map((s, j) => (
-                          <span key={j} style={{
+                        {job.stack.map((s) => (
+                          <span key={s} style={{
                             fontFamily: 'var(--font-mono)', fontSize: 11,
                             padding: '7px 14px', border: '1px solid var(--line-strong)',
                             color: 'var(--fg)', letterSpacing: 0.6,
@@ -358,33 +349,30 @@ function LangBar({ pct }: { pct: number }) {
   );
 }
 
-export function SkillsV3({ data, lang }: { data: CVData; lang: 'es' | 'en' }) {
-  const D = data;
+export function SkillsV3({ data: D, lang, num }: SectionProps) {
   const [active, setActive] = useState(0);
-  const cats = Object.keys(D.skills);
-  const t = lang === 'es'
-    ? { hint: 'Tecnologías · Competencias · Idiomas', t1: 'Arsenal', t2: 'full stack', t3: 'completo.',
-        compTitle: '— Competencias clave', langsTitle: '— Idiomas' }
-    : { hint: 'Tech · Competencies · Languages', t1: 'Full', t2: 'stack', t3: 'arsenal.',
-        compTitle: '— Key competencies', langsTitle: '— Languages' };
+  const t = translations[lang].skills;
+  const cursor = translations[lang].cursor;
+  const categories = D.skills.web;
+  const current = categories[active] ?? categories[0];
 
   return (
     <section id="skills" style={{ padding: '180px 5vw', position: 'relative' }}>
-      <SectionHead num="04" label={lang === 'es' ? 'Stack técnico' : 'Tech stack'} hint={t.hint} />
+      <SectionHead num={num} label={t.label} hint={t.hint} />
       <SectionTitle>
-        <WordsMask text={t.t1} step={60} />{' '}
+        <WordsMask text={t.title1} step={60} />{' '}
         <em style={{ color: 'var(--accent)' }}>
-          <WordsMask text={t.t2} italic step={60} delay={250} />
+          <WordsMask text={t.title2} italic step={60} delay={250} />
         </em>{' '}
-        <WordsMask text={t.t3} step={60} delay={500} />
+        <WordsMask text={t.title3} step={60} delay={500} />
       </SectionTitle>
 
       <div style={{
         display: 'flex', borderBottom: '1px solid var(--line-strong)',
         marginBottom: 40, flexWrap: 'wrap',
       }}>
-        {cats.map((cat, i) => (
-          <button key={cat} data-cursor="ver"
+        {categories.map((cat, i) => (
+          <button key={cat.id} data-cursor={cursor.view}
             onClick={() => setActive(i)}
             style={{
               padding: '18px 26px', background: 'transparent', border: 'none',
@@ -396,19 +384,19 @@ export function SkillsV3({ data, lang }: { data: CVData; lang: 'es' | 'en' }) {
               display: 'flex', alignItems: 'center', gap: 10,
             }}>
             <span style={{ color: 'var(--fg-muted)' }}>0{i + 1}</span>
-            {cat}
+            {cat.label}
             <span style={{
               fontSize: 10, padding: '2px 8px',
               background: active === i ? 'var(--accent)' : 'var(--line)',
               color: active === i ? 'var(--bg)' : 'var(--fg-muted)',
-            }}>{D.skills[cat].length}</span>
+            }}>{cat.items.length}</span>
           </button>
         ))}
       </div>
 
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, marginBottom: 100 }}>
-        {D.skills[cats[active]].map((s, i) => (
-          <Reveal key={`${active}-${i}`} delay={i * 30} duration={700}>
+        {current?.items.map((s, i) => (
+          <Reveal key={`${current.id}-${s}`} delay={i * 30} duration={700}>
             <Magnetic strength={0.15}>
               <div data-cursor="" style={{
                 fontFamily: 'var(--font-mono)', fontSize: 13,
@@ -435,14 +423,14 @@ export function SkillsV3({ data, lang }: { data: CVData; lang: 'es' | 'en' }) {
         <div style={{
           fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: 1.6,
           textTransform: 'uppercase', color: 'var(--fg-muted)', marginBottom: 28,
-        }}>{t.compTitle}</div>
+        }}>{t.competencies}</div>
       </Reveal>
       <div className="comp-grid" style={{
         display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)',
         border: '1px solid var(--line-strong)', marginBottom: 100,
       }}>
         {D.competencies.map((c, i) => (
-          <Reveal key={i} delay={i * 50}>
+          <Reveal key={c.title} delay={i * 50}>
             <div data-cursor="" style={{
               padding: '36px 28px',
               borderRight: (i % 3 !== 2) ? '1px solid var(--line-strong)' : 'none',
@@ -468,18 +456,18 @@ export function SkillsV3({ data, lang }: { data: CVData; lang: 'es' | 'en' }) {
         <div style={{
           fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: 1.6,
           textTransform: 'uppercase', color: 'var(--fg-muted)', marginBottom: 28,
-        }}>{t.langsTitle}</div>
+        }}>{t.languages}</div>
       </Reveal>
       <div className="lang-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 24 }}>
         {D.languages.map((l, i) => (
-          <Reveal key={i} delay={i * 100}>
+          <Reveal key={l.name} delay={i * 100}>
             <Tilt max={5}>
               <div data-cursor="" style={{
                 padding: 36, border: '1px solid var(--line-strong)',
                 background: 'var(--bg-2)',
               }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 10 }}>
-                  <h4 style={{ fontFamily: 'var(--font-display)', fontSize: 44, fontWeight: 300, fontStyle: 'italic' }}>{l.lang}</h4>
+                  <h4 style={{ fontFamily: 'var(--font-display)', fontSize: 44, fontWeight: 300, fontStyle: 'italic' }}>{l.name}</h4>
                   <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--accent)', letterSpacing: 1.4 }}>{l.pct}%</span>
                 </div>
                 <div style={{
@@ -489,8 +477,8 @@ export function SkillsV3({ data, lang }: { data: CVData; lang: 'es' | 'en' }) {
                 }}>{l.level}</div>
                 <LangBar pct={l.pct} />
                 <ul style={{ listStyle: 'none', marginTop: 20, paddingLeft: 0 }}>
-                  {l.details.map((d, j) => (
-                    <li key={j} style={{ display: 'flex', gap: 10, fontSize: 13, color: 'var(--fg-muted)', marginBottom: 6 }}>
+                  {l.details.map((d) => (
+                    <li key={d} style={{ display: 'flex', gap: 10, fontSize: 13, color: 'var(--fg-muted)', marginBottom: 6 }}>
                       <span style={{ color: 'var(--accent)' }}>·</span>{d}
                     </li>
                   ))}
@@ -512,24 +500,23 @@ export function SkillsV3({ data, lang }: { data: CVData; lang: 'es' | 'en' }) {
 }
 
 // ═══ PROJECTS ═════════════════════════════════════════════════════════════
-export function ProjectsV3({ data, lang }: { data: CVData; lang: 'es' | 'en' }) {
-  const D = data;
+export function ProjectsV3({ data: D, lang, num }: SectionProps) {
   const [active, setActive] = useState(0);
-  const [openId, setOpenId] = useState<string | null>(null);
-  const openProject = openId ? D.projects.find(p => p.id === openId) ?? null : null;
-  const t = lang === 'es'
-    ? { label: 'Obra seleccionada', hint: `${D.projects.length} case studies`, t1: 'Proyectos que', t2: 'mueven números' }
-    : { label: 'Selected work', hint: `${D.projects.length} case studies`, t1: 'Projects that', t2: 'move numbers' };
+  const [openId, setOpenId] = useState<ProjectId | null>(null);
+  const openProject = openId ? D.projects.find((p) => p.id === openId) ?? null : null;
+  const activeColor = D.projects[active]?.color ?? 'var(--accent)';
+  const t = translations[lang].projects;
+  const cursor = translations[lang].cursor;
 
   return (
     <section id="projects" style={{
       padding: '180px 5vw', background: 'var(--bg-2)', position: 'relative',
     }}>
-      <SectionHead num="06" label={t.label} hint={t.hint} />
+      <SectionHead num={num} label={t.label} hint={t.hint(D.projects.length)} />
       <SectionTitle>
-        <WordsMask text={t.t1} step={60} />{' '}
+        <WordsMask text={t.title1} step={60} />{' '}
         <em style={{ color: 'var(--accent)' }}>
-          <WordsMask text={t.t2} italic step={60} delay={400} />
+          <WordsMask text={t.title2} italic step={60} delay={400} />
         </em>.
       </SectionTitle>
 
@@ -538,8 +525,8 @@ export function ProjectsV3({ data, lang }: { data: CVData; lang: 'es' | 'en' }) 
           {D.projects.map((p, i) => {
             const isActive = active === i;
             return (
-              <Reveal key={i} delay={i * 80}>
-                <div data-cursor="ver"
+              <Reveal key={p.id} delay={i * 80}>
+                <div data-cursor={cursor.view}
                   onClick={() => setActive(i)}
                   onMouseEnter={() => setActive(i)}
                   style={{
@@ -579,7 +566,7 @@ export function ProjectsV3({ data, lang }: { data: CVData; lang: 'es' | 'en' }) 
           padding: 48, minHeight: 520, overflow: 'hidden',
         }}>
           {D.projects.map((p, i) => (
-            <div key={i} style={{
+            <div key={p.id} style={{
               position: active === i ? 'relative' : 'absolute',
               inset: active === i ? 'auto' : 48 as never,
               opacity: active === i ? 1 : 0,
@@ -603,11 +590,11 @@ export function ProjectsV3({ data, lang }: { data: CVData; lang: 'es' | 'en' }) 
                 marginBottom: 24, color: p.color, fontStyle: 'italic',
               }}>{p.name}</h3>
               <p style={{ fontSize: 16.5, lineHeight: 1.65, color: 'var(--fg)', marginBottom: 32 }}>
-                {p.desc}
+                {p.description}
               </p>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-                {p.tags.map((tg, j) => (
-                  <span key={j} style={{
+                {p.tech.map((tg) => (
+                  <span key={tg} style={{
                     fontFamily: 'var(--font-mono)', fontSize: 11,
                     padding: '7px 14px', border: `1px solid ${p.color}`,
                     color: p.color, letterSpacing: 0.6,
@@ -620,7 +607,7 @@ export function ProjectsV3({ data, lang }: { data: CVData; lang: 'es' | 'en' }) 
                 <button
                   onClick={() => setOpenId(p.id)}
                   aria-haspopup="dialog"
-                  aria-label={(lang === 'es' ? 'Ver case study: ' : 'View case study: ') + p.name}
+                  aria-label={t.viewCaseStudyOf(p.name)}
                   style={{
                     padding: '12px 24px', cursor: 'pointer',
                     background: p.color, color: 'var(--bg)',
@@ -629,24 +616,34 @@ export function ProjectsV3({ data, lang }: { data: CVData; lang: 'es' | 'en' }) 
                     border: 'none',
                   }}
                 >
-                  {lang === 'es' ? 'Ver case study →' : 'View case study →'}
+                  {t.viewCaseStudy}
                 </button>
-                <span style={{
-                  padding: '8px 14px',
-                  fontFamily: 'var(--font-mono)', fontSize: 10,
-                  letterSpacing: 1.4, textTransform: 'uppercase',
-                  color: 'var(--fg-muted)',
-                  border: '1px dashed var(--line-strong)',
-                }}>
-                  <span aria-hidden="true">🚧 </span>{lang === 'es' ? 'Demo en construcción' : 'Demo in construction'}
-                </span>
+                {p.demo.status === 'live' ? (
+                  <a href={p.demo.url} target="_blank" rel="noopener noreferrer" data-cursor={cursor.open} style={{
+                    padding: '8px 14px',
+                    fontFamily: 'var(--font-mono)', fontSize: 10,
+                    letterSpacing: 1.4, textTransform: 'uppercase',
+                    color: p.color,
+                    border: `1px solid ${p.color}`,
+                  }}>{t.viewDemo}</a>
+                ) : (
+                  <span style={{
+                    padding: '8px 14px',
+                    fontFamily: 'var(--font-mono)', fontSize: 10,
+                    letterSpacing: 1.4, textTransform: 'uppercase',
+                    color: 'var(--fg-muted)',
+                    border: '1px dashed var(--line-strong)',
+                  }}>
+                    <span aria-hidden="true">🚧 </span>{t.demoInConstruction}
+                  </span>
+                )}
               </div>
             </div>
           ))}
           <div style={{
             position: 'absolute', right: -100, bottom: -100,
             width: 400, height: 400, borderRadius: '50%',
-            background: `radial-gradient(circle, ${D.projects[active].color}35 0%, transparent 70%)`,
+            background: `radial-gradient(circle, ${activeColor}35 0%, transparent 70%)`,
             transition: 'background 0.7s', pointerEvents: 'none', filter: 'blur(10px)',
           }} />
         </div>
@@ -665,17 +662,17 @@ export function ProjectsV3({ data, lang }: { data: CVData; lang: 'es' | 'en' }) 
 }
 
 // ═══ CONTACT ══════════════════════════════════════════════════════════════
-export function ContactV3({ data, lang }: { data: CVData; lang: 'es' | 'en' }) {
-  const D = data;
-  const t = lang === 'es'
-    ? { label: 'Contacto', hint: 'Construyamos algo juntos', t1: '¿Tienes un', t2: 'proyecto', t3: 'en mente?',
-        directo: '— Directo', edu: '— Educación', red: '— En la red', phone: 'TELÉFONO', loc: 'UBICACIÓN' }
-    : { label: 'Contact', hint: 'Let’s build something', t1: 'Got a', t2: 'project', t3: 'in mind?',
-        directo: '— Direct', edu: '— Education', red: '— Online', phone: 'PHONE', loc: 'LOCATION' };
+export function ContactV3({ data: D, lang, num }: SectionProps) {
+  const t = translations[lang].contact;
+  const cursor = translations[lang].cursor;
+  const links = [
+    { label: 'GitHub', ...D.contact.github },
+    { label: 'LinkedIn', ...D.contact.linkedin },
+  ];
 
   return (
     <section id="contact" style={{ padding: '180px 5vw 80px', position: 'relative' }}>
-      <SectionHead num="07" label={t.label} hint={t.hint} />
+      <SectionHead num={num} label={t.label} hint={t.hint} />
 
       <Reveal>
         <h2 style={{
@@ -684,15 +681,15 @@ export function ContactV3({ data, lang }: { data: CVData; lang: 'es' | 'en' }) {
           lineHeight: 0.85, letterSpacing: '-0.05em',
           fontWeight: 300, marginBottom: 50,
         }}>
-          <WordsMask text={t.t1} step={60} />{' '}
-          <em style={{ color: 'var(--accent)' }}><WordsMask text={t.t2} italic step={60} delay={300} /></em><br />
-          <WordsMask text={t.t3} step={60} delay={600} />
+          <WordsMask text={t.title1} step={60} />{' '}
+          <em style={{ color: 'var(--accent)' }}><WordsMask text={t.title2} italic step={60} delay={300} /></em><br />
+          <WordsMask text={t.title3} step={60} delay={600} />
         </h2>
       </Reveal>
 
       <Reveal delay={500}>
         <Magnetic strength={0.2}>
-          <a href={`mailto:${D.email}`} data-cursor={lang === 'es' ? 'enviar' : 'send'} style={{
+          <a href={`mailto:${D.contact.email}`} data-cursor={cursor.send} style={{
             display: 'inline-block', fontFamily: 'var(--font-display)',
             fontSize: 'clamp(30px, 5vw, 70px)', fontWeight: 300, fontStyle: 'italic',
             letterSpacing: '-0.025em',
@@ -701,7 +698,7 @@ export function ContactV3({ data, lang }: { data: CVData; lang: 'es' | 'en' }) {
           }}
             onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--accent)'; }}
             onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--fg)'; }}>
-            {D.email} <span style={{ display: 'inline-block', marginLeft: 10 }}>↗</span>
+            {D.contact.email} <span style={{ display: 'inline-block', marginLeft: 10 }}>↗</span>
           </a>
         </Magnetic>
       </Reveal>
@@ -712,25 +709,25 @@ export function ContactV3({ data, lang }: { data: CVData; lang: 'es' | 'en' }) {
       }}>
         <Reveal>
           <div>
-            <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: 1.6, textTransform: 'uppercase', color: 'var(--fg-muted)', marginBottom: 20 }}>{t.directo}</div>
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: 1.6, textTransform: 'uppercase', color: 'var(--fg-muted)', marginBottom: 20 }}>{t.direct}</div>
             <div style={{ marginBottom: 22 }}>
               <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--fg-muted)', marginBottom: 4, letterSpacing: 1.4 }}>{t.phone}</div>
-              <a href={`tel:${D.phone}`} data-cursor={lang === 'es' ? 'llamar' : 'call'} style={{ fontFamily: 'var(--font-display)', fontSize: 22, fontStyle: 'italic' }}>{D.phone}</a>
+              <a href={D.contact.phoneHref} data-cursor={cursor.call} style={{ fontFamily: 'var(--font-display)', fontSize: 22, fontStyle: 'italic' }}>{D.contact.phone}</a>
             </div>
             <div style={{ marginBottom: 22 }}>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--fg-muted)', marginBottom: 4, letterSpacing: 1.4 }}>{t.loc}</div>
-              <div style={{ fontFamily: 'var(--font-display)', fontSize: 22, fontStyle: 'italic' }}>{D.location}</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--fg-muted)', marginBottom: 4, letterSpacing: 1.4 }}>{t.location}</div>
+              <div style={{ fontFamily: 'var(--font-display)', fontSize: 22, fontStyle: 'italic' }}>{D.contact.location}</div>
             </div>
           </div>
         </Reveal>
 
         <Reveal delay={100}>
           <div>
-            <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: 1.6, textTransform: 'uppercase', color: 'var(--fg-muted)', marginBottom: 20 }}>{t.edu}</div>
-            {D.education.map((e, i) => (
-              <div key={i} style={{ marginBottom: 22 }}>
-                <div style={{ fontFamily: 'var(--font-display)', fontSize: 20, fontStyle: 'italic', lineHeight: 1.2 }}>{e.title}</div>
-                {e.place && <div style={{ fontSize: 13, color: 'var(--fg-muted)', marginTop: 4 }}>{e.place}</div>}
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: 1.6, textTransform: 'uppercase', color: 'var(--fg-muted)', marginBottom: 20 }}>{t.education}</div>
+            {D.education.map((e) => (
+              <div key={e.degree} style={{ marginBottom: 22 }}>
+                <div style={{ fontFamily: 'var(--font-display)', fontSize: 20, fontStyle: 'italic', lineHeight: 1.2 }}>{e.degree}</div>
+                <div style={{ fontSize: 13, color: 'var(--fg-muted)', marginTop: 4 }}>{e.school}</div>
                 <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--fg-muted)', marginTop: 4, letterSpacing: 1.2 }}>{e.period}</div>
               </div>
             ))}
@@ -739,12 +736,9 @@ export function ContactV3({ data, lang }: { data: CVData; lang: 'es' | 'en' }) {
 
         <Reveal delay={200}>
           <div>
-            <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: 1.6, textTransform: 'uppercase', color: 'var(--fg-muted)', marginBottom: 20 }}>{t.red}</div>
-            {[
-              { label: 'GitHub', url: `https://${D.github}`, hint: '@ErickuchoSan' },
-              { label: 'LinkedIn', url: `https://${D.linkedin}`, hint: 'in/erick-rodriguez-bores-isaias' },
-            ].map((l, i) => (
-              <a key={i} href={l.url} target="_blank" rel="noopener" data-cursor={lang === 'es' ? 'abrir' : 'open'} style={{
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: 1.6, textTransform: 'uppercase', color: 'var(--fg-muted)', marginBottom: 20 }}>{t.online}</div>
+            {links.map((l) => (
+              <a key={l.label} href={l.url} target="_blank" rel="noopener noreferrer" data-cursor={cursor.open} style={{
                 display: 'flex', justifyContent: 'space-between', alignItems: 'baseline',
                 padding: '14px 0', borderBottom: '1px dashed var(--line)',
                 transition: 'color 0.3s, padding 0.3s',
@@ -752,7 +746,7 @@ export function ContactV3({ data, lang }: { data: CVData; lang: 'es' | 'en' }) {
                 onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--accent)'; e.currentTarget.style.paddingLeft = '8px'; }}
                 onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--fg)'; e.currentTarget.style.paddingLeft = '0'; }}>
                 <span style={{ fontFamily: 'var(--font-display)', fontSize: 22, fontStyle: 'italic' }}>{l.label}</span>
-                <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--fg-muted)' }}>{l.hint} ↗</span>
+                <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--fg-muted)' }}>{l.handle} ↗</span>
               </a>
             ))}
           </div>
@@ -765,8 +759,8 @@ export function ContactV3({ data, lang }: { data: CVData; lang: 'es' | 'en' }) {
         fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: 1.6,
         textTransform: 'uppercase', color: 'var(--fg-muted)', flexWrap: 'wrap', gap: 16,
       }}>
-        <span>© MMXXVI — Erick Rodríguez Bores</span>
-        <span>Full Stack Senior · CDMX</span>
+        <span>© {toRoman(new Date().getFullYear())} — {D.name.full}</span>
+        <span>{t.footerRole} · {D.contact.city}</span>
         <span>v3.0 · eboresi.dev</span>
       </div>
 
@@ -776,7 +770,6 @@ export function ContactV3({ data, lang }: { data: CVData; lang: 'es' | 'en' }) {
           .footer-row { flex-direction: column; text-align: center; }
         }
       `}</style>
-
     </section>
   );
 }

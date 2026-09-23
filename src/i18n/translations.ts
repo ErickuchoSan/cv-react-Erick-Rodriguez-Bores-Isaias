@@ -1,680 +1,328 @@
-export const translations = {
-    es: {
-        nav: {
-            home: 'Inicio',
-            about: 'Sobre Mí',
-            experience: 'Experiencia',
-            skills: 'Habilidades',
-            projects: 'Proyectos',
-            contact: 'Contacto'
-        },
-        hero: {
-            title: 'Erick Rodríguez',
-            subtitle: 'Bores Isaías',
-            // intentional: brand strings, kept identical in ES and EN — do not translate
-            subtitle1: 'Full Stack Developer · .NET & React',
-            subtitle2: 'Claude Code Power User',
-            role: 'Desarrollador Full Stack .NET & React',
-            description: 'Especialista en C#/.NET Core 10, React 19, SQL Server y Azure. 3 años desarrollando arquitecturas escalables y soluciones empresariales.',
-            contactBtn: 'Contáctame',
-            projectsBtn: 'Ver Proyectos',
-            generating: 'Generando...'
-        },
-        download: {
-            cta: 'Descargar CV',
-            groupVisual: 'Diseño visual',
-            groupAts: 'Formato ATS',
-            visualEs: 'Español',
-            visualEn: 'Inglés',
-            atsEs: 'ATS Español',
-            atsEn: 'ATS Inglés',
-        },
-        about: {
-            title: 'Sobre Mí',
-            subtitle: 'Transformando ideas en soluciones empresariales de alto impacto',
-            roleTitle: 'Desarrollador Full Stack .NET & React',
-            description1: 'Con 3 años de experiencia en desarrollo de software empresarial, diseño e implemento arquitecturas escalables con C#/.NET Core 6/8/10 (3 años), React 19 / Next.js 15 (2 años), SQL Server / PostgreSQL (3 años), y Node.js / NestJS 11 (3 años). Experiencia sólida en REST APIs, Entity Framework, OAuth2/JWT, cifrado AES/RSA, Docker y Python.',
-            description2: 'Actualmente como Programador de Auditoría Senior en Grupo Salinas, lidero el desarrollo de sistemas críticos de auditoría interna (ADA/HONESTEL) con .NET Core 6, C#, SQL Server y OAuth2/JWT. Paralelamente desarrollo la plataforma Align Designs (freelance) con NestJS 11, Next.js 16, PostgreSQL y Docker. Trabajo con un flujo AI-assisted estructurado: fases de proyecto con skills especializadas por tecnología, seguimiento en ClickUp, pruebas manuales + unitarias por fase, y CI/CD con SonarCloud, health checks y backups automáticos.',
-            stats: {
-                experience: 'Años de Experiencia',
-                technologies: 'Tecnologías Dominadas',
-                projects: 'Proyectos Completados',
-                optimization: 'Optimización SQL'
-            },
-            education: {
-                title: 'Educación',
-                degree1: 'Ing. Sistemas Computacionales',
-                school1: 'UTEL Universidad • 2019 - 2023',
-                degree2: 'Maestría en Inteligencia Artificial',
-                school2: 'UNIR (Universidad Internacional de La Rioja)',
-                status2: 'En curso • 2025 - Actual'
-            },
-            availability: {
-                title: 'Disponibilidad',
-                status: 'Tiempo completo • Híbrido/Remoto',
-                note: 'Abierto a oportunidades internacionales'
-            },
-            location: {
-                title: 'Ubicación',
-                city: 'Cuajimalpa de Morelos, CDMX, México'
-            },
-            interests: {
-                title: 'Intereses Profesionales',
-                list: [
-                    'Inteligencia Artificial aplicada al desarrollo',
-                    'Arquitecturas cloud-native y microservicios',
-                    'Productos SaaS escalables de alto rendimiento',
-                    'Oportunidades remotas e internacionales'
-                ]
-            }
-        },
-        experience: {
-            title: 'Experiencia Profesional',
-            subtitle: '3 años de trayectoria en desarrollo de software empresarial',
-            responsibilities: 'Responsabilidades:',
-            achievements: 'Logros Destacados:',
-            stack: 'Stack Tecnológico:',
-            jobs: [
-                {
-                    role: "Programador de Auditoría Senior",
-                    company: "Grupo Salinas",
-                    period: "Mayo 2024 - Actual",
-                    duration: "~2 años",
-                    description: "Líder técnico responsable de la arquitectura, desarrollo y evolución de sistemas críticos de auditoría interna (ADA/HONESTEL) y aplicaciones de atención a fraudes. Stack: .NET Core 6, C#, Tauri 2.x, Rust, React 19, SQL Server, OAuth2/JWT, Entity Framework, Python 3.10+.",
-                    functions: [
-                        "Desarrollo de pipelines de automatización con Python 3.10+ (pandas, pywin32/COM, pyodbc, Selenium): ingesta desde Outlook, extracción Excel, generación SQL transaccional y automatización de portales web internos.",
-                        "Desarrollo de API REST con .NET Core 6 integrando OAuth2 y tokenización JWT para autenticación segura.",
-                        "Diseñé y desarrollé aplicación de escritorio Windows (Tauri 2.x + React 19 + TypeScript) para el área de fraudes: reconocimiento facial contra tres bases internas (general, listas rojas, empleados) vía API BAZ de Identidad Digital.",
-                        "Implementé cifrado AES-256-GCM en Rust para protección de imágenes biométricas en tránsito y descifrado RSA-OAEP SHA-256 de IDs retornados, cumpliendo estándares de seguridad corporativos.",
-                        "Optimización de consultas SQL Server con T-SQL, procedimientos almacenados y funciones.",
-                        "Implementación de algoritmos de cifrado (AES, RSA, SHA-256) para protección de datos sensibles.",
-                        "Arquitectura Backend basada en SOLID, Clean Architecture y principios DDD.",
-                        "Refactorización de arquitectura legacy hacia proyecto con Entity Framework y principios limpios.",
-                        "Documentación técnica con Swagger y pruebas de API con Postman/Insomnia.",
-                        "Desarrollo Frontend con HTML, JavaScript y Bootstrap aplicando diseño responsivo."
-                    ],
-                    achievements: [
-                        "Creación de API v2 de Honestel desde cero (6 endpoints principales) con documentación Swagger.",
-                        "Reducción del 40% en tiempo de ejecución de consultas críticas mediante optimización de procedimientos almacenados.",
-                        "Automatización de 5+ procesos críticos con Python (alta SAP, reportes, extracción de datos) — pipelines modulares con pywin32, pandas, pyodbc y Selenium, eliminando ~8 hrs/semana de trabajo manual.",
-                        "Desarrollo de aplicación de escritorio con Tauri 2.x + Rust para reconocimiento facial biométrico — único proyecto con Rust en el área, cubriendo cifrado end-to-end de datos biométricos."
-                    ]
-                },
-                {
-                    role: "Desarrollador Full Stack",
-                    company: "Digital Solutions",
-                    period: "Mayo 2023 - Mayo 2024",
-                    duration: "1 año",
-                    description: "Desarrollo integral de sistemas empresariales para gestión de RH y reclutamiento. Stack: .NET Framework, C#, Entity Framework, SQL Server, JavaScript, jQuery, Bootstrap.",
-                    functions: [
-                        "Desarrollo de APIs REST con .NET Framework y Entity Framework para gestión de candidatos.",
-                        "Implementación de módulo de carga masiva desde Excel y TXT procesando miles de registros.",
-                        "Diseño de interfaces responsivas con JavaScript, jQuery y Bootstrap.",
-                        "Optimización de consultas SQL Server con procedimientos almacenados y funciones.",
-                        "Control de versiones con GitHub y gestión de ramas para trabajo colaborativo."
-                    ],
-                    achievements: [
-                        "Entrega de sistema de gestión de reclutamiento completo (12 módulos) en 8 meses.",
-                        "Módulo de carga masiva procesando +5,000 registros en <10 segundos desde Excel/TXT.",
-                        "Reducción del 50% en tiempo de onboarding mediante automatización de procesos de alta."
-                    ]
-                },
-                {
-                    role: "Desarrollador Full Stack",
-                    company: "Freelance · Align Designs Platform",
-                    period: "Oct. 2025 - Actual",
-                    duration: "~6 meses",
-                    description: "Plataforma B2B/B2C cloud con arquitectura monorepo profesional. Stack: NestJS 11, Next.js 16, PostgreSQL 15, Prisma ORM, Docker, GitHub Actions, Redis, DigitalOcean Spaces, Prometheus.",
-                    functions: [
-                        "Arquitectura modular monorepo (pnpm workspaces) con NestJS 11 + Next.js 16 + PostgreSQL/Prisma aplicando SOLID y Clean Architecture.",
-                        "Sistema de autenticación dual: JWT con refresh token rotation para admins y OTP con bcrypt para clientes. RBAC con 3 roles (Admin, Client, Employee).",
-                        "Seguridad HTTP completa: CSRF (HMAC-SHA256), Helmet (CSP, HSTS), rate limiting por IP, account lockout tras 5 intentos, validación con Zod.",
-                        "Almacenamiento de archivos en DigitalOcean Spaces (S3-compatible) con presigned URLs de 15 min y validación por magic numbers.",
-                        "CI/CD con GitHub Actions + SonarCloud + Codecov + Lighthouse. Deploy automatizado con Docker en servidor DigitalOcean con backups automáticos a Spaces.",
-                        "Sistema de facturación con auto-numeración, versionado de archivos, notificaciones in-app, métricas Prometheus y logging estructurado con Pino.",
-                        "57 archivos de pruebas unitarias (Jest + Vitest) y suite E2E con Playwright."
-                    ],
-                    achievements: [
-                        "Plataforma productiva con +16 módulos y 8 etapas de workflow: autenticación, facturación, pagos a empleados, almacenamiento y notificaciones.",
-                        "Pipeline CI/CD completo: lint → tests → SonarCloud → build → deploy → health checks → backup automático en cada push.",
-                        "Arquitectura de seguridad en capas: CSRF + Helmet + rate limiting + JWT rotation + OTP + AES/RSA + SSH hardening + fail2ban."
-                    ]
-                }
-            ]
-        },
-        skills: {
-            title: 'Habilidades Técnicas',
-            subtitle: 'Stack tecnológico y competencias profesionales',
-            mainTech: 'Tecnologías Principales',
-            categories: {
-                backend: 'Backend',
-                frontend: 'Frontend',
-                devops: 'DevOps & Herramientas',
-                ai: 'IA & Productividad'
-            },
-            competencies: {
-                title: 'Competencias Clave',
-                items: [
-                    { title: 'Arquitectura Limpia / DDD', desc: 'Diseño de soluciones con Clean Architecture y Domain-Driven Design (2 años)' },
-                    { title: 'Codificación Segura', desc: 'Implementación de cifrado AES/RSA, OAuth2, JWT y prácticas de seguridad' },
-                    { title: 'Optimización SQL', desc: 'Mejora de tiempos de consulta hasta 40% con procedimientos y funciones' },
-                    { title: 'Metodología SCRUM', desc: 'Experiencia trabajando con metodologías ágiles (10 meses)' },
-                    { title: 'Pruebas y QA', desc: 'Pruebas unitarias, pruebas de usuario y documentación técnica (Swagger)' },
-                    { title: 'Aprendizaje Autodidacta', desc: 'Capacidad demostrada para dominar nuevas tecnologías de forma independiente' },
-                    { title: 'Trabajo en Equipo', desc: 'Comunicación asertiva, adaptabilidad y colaboración efectiva' },
-                    { title: 'Flujo AI-Assisted', desc: 'Proyecto en fases con skills por stack, ClickUp para trazabilidad, pruebas por fase y CI/CD con SonarCloud automatizado' },
-                    { title: 'Disponibilidad Inmediata', desc: 'Disponible para incorporación en 1 semana o 3 días' }
-                ]
-            }
-        },
-        projects: {
-            title: 'Proyectos Destacados',
-            subtitle: 'Soluciones Innovadoras y Aplicaciones Modernas',
-            items: [
-                {
-                    title: 'Align Designs Platform',
-                    description: 'SaaS full-stack para gestión de proyectos de diseño de interiores — pipeline multi-fase, facturación, RBAC 3 roles y CI/CD automatizado.',
-                    tagline: 'SaaS · Interior Design · Multi-role',
-                    problem: 'Estudio de diseño de interiores operaba con procesos fragmentados: seguimiento de proyectos por correo, facturación manual, archivos sin versionar y sin separación de acceso entre staff interno y clientes externos.',
-                    solution: [
-                        'Construí SaaS multi-tenant para gestión del ciclo completo del cliente: brief → entregables → facturación → cierre.',
-                        'Implementé RBAC con 3 roles (Admin / Cliente / Empleado) + sub-cliente invitado con acceso por proyecto, OTP email auth, JWT + Redis blacklist.',
-                        'Diseñé pipeline de proyecto de 5 fases con stage-gating, ciclos de aprobación de archivos en 2 niveles (admin → cliente) y versionado de entregables.',
-                        'Construí sistema de facturación con ítems dinámicos, flujo de aprobación de pagos, entrega automática por email y sync de estado en tiempo real.',
-                        'CI/CD completo: GitHub Actions → auto-deploy a dev, deploys a producción con rollback automático por health check fallido.',
-                    ],
-                    architecturePatterns: ['Clean Architecture', 'DDD', 'SOLID', 'Modular Monorepo', 'Repository Pattern', 'Domain Events'],
-                    highlights: [
-                        { title: 'Auth & RBAC', summary: 'JWT + refresh rotation (admins) y OTP bcrypt (clientes). CSRF HMAC-SHA256, Helmet (CSP/HSTS), rate limiting y account lockout tras 5 intentos.' },
-                        { title: 'Facturación', summary: 'Ítems dinámicos, flujo de aprobación de pagos, entrega automatizada por email y sincronización de estado en tiempo real.' },
-                        { title: 'CI/CD', summary: 'GitHub Actions multi-stage con SonarCloud, Codecov, Lighthouse y Playwright E2E, rollback automático.' },
-                    ],
-                    stack: {
-                        backend: ['NestJS 11', 'Prisma', 'PostgreSQL 15', 'Redis', 'TypeScript 5'],
-                        frontend: ['Next.js 16', 'React 19', 'TanStack Query', 'Tailwind v4', 'Zod'],
-                        infra: ['Docker', 'DigitalOcean', 'GitHub Actions', 'Nginx'],
-                        testing: ['Jest', 'Vitest', 'Playwright'],
-                    },
-                    metrics: [
-                        { value: '57', label: 'Suites de tests' },
-                        { value: '3', label: 'Roles + RBAC' },
-                        { value: '5', label: 'Fases de pipeline' },
-                    ],
-                    role: 'Solo developer · End-to-end · Diseño, arquitectura, implementación, deployment y mantenimiento.',
-                    demoStatus: 'live',
-                    demoUrl: 'https://aligndesignsllc-dev.org/',
-                },
-                {
-                    title: 'Comal POS',
-                    description: 'SaaS POS full-stack para restaurantes — offline-first, multi-tenant con RLS, integración ESC/POS, Kitchen Display System y 237 tests.',
-                    tagline: 'POS · Offline-first · Restaurant',
-                    problem: 'Restaurantes en México dependían de sistemas POS costosos, sin capacidad offline, sin impresión ESC/POS directa ni pantalla de cocina (KDS) dedicada.',
-                    solution: [
-                        'Diseñé arquitectura offline-first: Dexie.js (IndexedDB) como fuente local, motor sync push/pull con Supabase Realtime + polling 30s, resolución de conflictos LWW y patrón outbox.',
-                        'Implementé aislamiento de tenant con RLS de Postgres + JWT claims personalizados (empresa_id + rol) — sin filtros a nivel de aplicación.',
-                        'Integré impresión ESC/POS: paquete @comal/printer (0 deps), agente Hono local (puerto 7788) con auth X-Comal-Secret + fallback WebUSB; cajón abre automáticamente en pago en efectivo.',
-                        'Construí Kitchen Display System (KDS): cola de pedidos en tiempo real por estatus, alertas de tiempo >10 min, sync de badge por mesa y tipos de pedido (local / para llevar / domicilio).',
-                        'Hardening OWASP: 9 vulnerabilidades críticas/altas corregidas; Sentry; benchmarks P95; estrategia de backups GFS con pg_dump.',
-                    ],
-                    architecturePatterns: ['Offline-first', 'Multi-tenant RLS', 'Event-driven sync', 'CQRS-light', 'Outbox Pattern'],
-                    highlights: [
-                        { title: 'Offline-first', summary: 'Dexie.js (IndexedDB) como fuente de verdad local, sync con Supabase Realtime + fallback 30s, resolución LWW e idempotencia con outbox.' },
-                        { title: 'ESC/POS + KDS', summary: 'Impresión directa en cocina y cajón automático. KDS en tiempo real con alertas >10 min.' },
-                        { title: 'Seguridad', summary: '9 vulnerabilidades OWASP corregidas, RLS multi-tenant, Sentry, benchmarks P95, backups GFS.' },
-                    ],
-                    stack: {
-                        backend: ['Hono.js', 'Supabase', 'PostgreSQL', 'TypeScript'],
-                        frontend: ['Next.js 16', 'React 19', 'Dexie.js', 'Tailwind'],
-                        infra: ['Docker Compose (12 contenedores)', 'Nginx', 'Supabase self-hosted'],
-                        testing: ['Jest', 'Vitest', '237 tests'],
-                    },
-                    metrics: [
-                        { value: '237', label: 'Tests unitarios + integración' },
-                        { value: '9', label: 'Vulns OWASP corregidas' },
-                        { value: '12', label: 'Contenedores Docker' },
-                    ],
-                    role: 'Solo developer · End-to-end · Arquitectura, implementación, testing y deployment.',
-                    demoStatus: 'in-construction',
-                },
-                {
-                    title: 'MDG Investment Group',
-                    description: 'Sitio premium de bienes raíces para desarrollador en Texas — mapa de lotes 3D interactivo con disponibilidad en tiempo real, CMS headless y panel admin sin código.',
-                    tagline: 'Real Estate · 3D · Quiet Luxury',
-                    problem: 'Desarrollador inmobiliario de Texas operaba con un sitio Wix lento, sin mapa de disponibilidad de lotes en tiempo real y sin que el cliente pudiera actualizar precios/estatus sin recurrir al desarrollador.',
-                    solution: [
-                        'Diseñé mapa de lotes 3D (Spline embed) con estatus en tiempo real desde Supabase (disponible / pendiente / vendido / reservado) para 6 desarrollos activos y 11 constructores.',
-                        'Autoré sistema de diseño "Quiet Luxury": tokens obsidian + champagne gold en Tailwind v4, tipografía Cormorant Garamond + DM Sans.',
-                        'Construí panel admin sin código: el cliente actualiza precios, estatus, mappings 3D y renders vía Server Actions + service-role writes + revalidación ISR automática.',
-                        'Integré Sanity.io CMS para gestión de copias y fotos, Resend para formularios de captación de leads y tabla de seguimiento (nuevo / contactado / calificado).',
-                        'Entorno local dockerizado: Docker Compose + Supabase self-hosted + Nginx en mdginvestmentgroup.local, espejando la topología de producción.',
-                    ],
-                    architecturePatterns: ['JAMstack', 'Headless CMS', 'Server Components', 'ISR', 'Progressive Enhancement'],
-                    highlights: [
-                        { title: 'Mapa 3D', summary: 'Spline embed con estatus de lotes en tiempo real vía Supabase para 6 desarrollos activos y 11 constructores.' },
-                        { title: 'Admin sin código', summary: 'Panel para actualizar precios, estatus y renders sin intervención del desarrollador, con revalidación ISR automática.' },
-                        { title: 'Design System', summary: '"Quiet Luxury" con tokens obsidian + champagne gold, Cormorant Garamond + DM Sans.' },
-                    ],
-                    stack: {
-                        backend: ['Sanity CMS', 'Supabase', 'Resend'],
-                        frontend: ['Next.js 15', 'React 19', 'GSAP', 'Spline 3D', 'Tailwind v4', 'TanStack Query'],
-                        infra: ['Docker Compose', 'Supabase self-hosted', 'Nginx', 'Vercel'],
-                        testing: ['Manual QA'],
-                    },
-                    metrics: [
-                        { value: '6', label: 'Desarrollos activos' },
-                        { value: '11', label: 'Constructores partners' },
-                        { value: '3D', label: 'Mapa interactivo' },
-                    ],
-                    role: 'Solo developer · End-to-end · Diseño técnico, integración 3D, CMS y deployment.',
-                    demoStatus: 'in-construction',
-                },
-            ],
-        },
-        claudeEngineering: {
-            hint: 'Especialización · AI-assisted engineering',
-            num: '05',
-            label: 'Claude Code Engineering',
-            title1: 'Dominio del ecosistema',
-            title2: 'de ingeniería AI-assisted.',
-            paragraph: 'Diseño y operación de pipelines de desarrollo asistido por Claude Code: skills custom, agents especializados, integración MCP, automatización por hooks, sistemas de memoria persistente y orquestación multi-agente para acelerar entrega sin perder calidad ni control.',
-            capabilities: [
-                { title: 'Skill Engineering', desc: 'Skills reutilizables con eval loops y métricas.' },
-                { title: 'Custom Agents', desc: 'Agents especializados para review, archivo y research.' },
-                { title: 'MCP Integration', desc: 'Conexión con servidores MCP externos y propios.' },
-                { title: 'Hook Automation', desc: 'Hooks PreTool/PostTool para validación y compresión.' },
-                { title: 'Memory Systems', desc: 'Memoria persistente cross-session multi-capa.' },
-                { title: 'Plugin Ecosystem', desc: 'Plugins integrados con flujos productivos completos.' },
-                { title: 'Multi-LLM Orchestration', desc: 'Orquestación de Claude, Codex y Gemini en paralelo.' },
-                { title: 'Eval-driven Optimization', desc: 'Optimización basada en métricas de rendimiento.' },
-            ],
-            stat: '6 SKILLS · 3 AGENTS · 4 PLUGINS · MULTI-LLM',
-        },
-        languages: {
-            title: 'Idiomas',
-            subtitle: 'Competencias Lingüísticas',
-            items: [
-                {
-                    name: 'Español',
-                    level: 'Nativo',
-                    details: ['Lengua materna', 'Comunicación profesional', 'Redacción técnica avanzada']
-                },
-                {
-                    name: 'Inglés',
-                    level: 'A2-B1 Intermedio',
-                    details: ['Lectura y comprensión de documentación técnica', 'Escritura técnica intermedia', 'Conversación básica-intermedia', 'En constante mejora']
-                }
-            ]
-        },
-        contact: {
-            title: 'Contáctame',
-            subtitle: '¿Tienes un proyecto en mente? ¡Me encantaría escuchar sobre él!',
-            infoTitle: 'Información de Contacto',
-            followMe: 'Sígueme',
-            messageTitle: 'Envíame un Mensaje',
-            form: {
-                name: 'Nombre completo',
-                email: 'Email',
-                subject: 'Asunto',
-                message: 'Mensaje',
-                send: 'Enviar Mensaje',
-                sent: 'Mensaje enviado (simulación)'
-            },
-            errors: {
-                name: 'El nombre es requerido',
-                subject: 'El asunto es requerido',
-                message: 'El mensaje es requerido'
-            },
-            success: {
-                title: '¡Mensaje Preparado!',
-                text: 'Se abrirá WhatsApp para enviar tu mensaje de manera exitosa.'
-            }
-        },
-        footer: {
-            brand: 'Erick Rodríguez',
-            description: 'Desarrollador Full Stack especializado en .NET Core/C#, React 19 y Azure. 3 años de experiencia en desarrollo empresarial.',
-            navigation: 'Navegación',
-            contact: 'Contacto',
-            rights: 'Todos los derechos reservados.',
-            madeWith: 'Hecho con'
-        }
+/**
+ * UI copy only: section titles, labels, buttons, PDF headings. CV content (jobs,
+ * projects, skills, education…) lives in `src/data/`. `en` is typed against `es`,
+ * so a key missing in either language fails the build.
+ */
+import type { Lang } from './lang';
+
+const es = {
+  meta: {
+    title: 'Erick Rodríguez Bores Isaías | Desarrollador Full Stack Senior',
+  },
+  time: {
+    present: 'Actual',
+    inProgress: 'En curso',
+    years: { one: 'año', other: 'años' },
+    months: { one: 'mes', other: 'meses' },
+  },
+  nav: {
+    label: 'Secciones',
+    sections: {
+      hero: '00',
+      about: 'Sobre',
+      experience: 'Exp',
+      skills: 'Stack',
+      claudeEngineering: 'Claude',
+      projects: 'Obra',
+      contact: 'Contacto',
     },
-    en: {
-        nav: {
-            home: 'Home',
-            about: 'About Me',
-            experience: 'Experience',
-            skills: 'Skills',
-            projects: 'Projects',
-            contact: 'Contact'
-        },
-        hero: {
-            title: 'Erick Rodríguez',
-            subtitle: 'Bores Isaías',
-            // intentional: brand strings, kept identical in ES and EN — do not translate
-            subtitle1: 'Full Stack Developer · .NET & React',
-            subtitle2: 'Claude Code Power User',
-            role: 'Full Stack Developer .NET & React',
-            description: 'Specialist in C#/.NET Core 10/10, React 19, SQL Server and Azure. 3 years building scalable architectures and enterprise solutions.',
-            contactBtn: 'Contact Me',
-            projectsBtn: 'View Projects',
-            generating: 'Generating...'
-        },
-        download: {
-            cta: 'Download CV',
-            groupVisual: 'Visual design',
-            groupAts: 'ATS format',
-            visualEs: 'Spanish',
-            visualEn: 'English',
-            atsEs: 'ATS Spanish',
-            atsEn: 'ATS English',
-        },
-        about: {
-            title: 'About Me',
-            subtitle: 'Transforming ideas into high-impact business solutions',
-            roleTitle: 'Full Stack Developer .NET & React',
-            description1: 'With 3 years of experience in enterprise software development, I design and implement scalable architectures with C#/.NET Core 6/8/10 (3 years), React 19 / Next.js 15 (2 years), SQL Server / PostgreSQL (3 years), and Node.js / NestJS 11 (3 years). Solid experience in REST APIs, Entity Framework, OAuth2/JWT, AES/RSA encryption, Docker and Python.',
-            description2: 'Currently as a Senior Audit Programmer at Grupo Salinas, I lead the development of critical internal audit systems (ADA/HONESTEL) with .NET Core 6, C#, SQL Server and OAuth2/JWT. In parallel, I develop the Align Designs platform (freelance) with NestJS 11, Next.js 16, PostgreSQL and Docker. I work with a structured AI-assisted workflow: project phases with tech-specific skills, ClickUp for task tracking, manual + unit testing per phase, and CI/CD with SonarCloud, health checks and automated backups.',
-            stats: {
-                experience: 'Years of Experience',
-                technologies: 'Technologies Mastered',
-                projects: 'Completed Projects',
-                optimization: 'SQL Optimization'
-            },
-            education: {
-                title: 'Education',
-                degree1: 'B.S. Computer Systems Engineering',
-                school1: 'UTEL University • 2019 - 2023',
-                degree2: 'Master in Artificial Intelligence',
-                school2: 'UNIR (International University of La Rioja)',
-                status2: 'In progress • 2025 - Present'
-            },
-            availability: {
-                title: 'Availability',
-                status: 'Full time • Hybrid/Remote',
-                note: 'Open to international opportunities'
-            },
-            location: {
-                title: 'Location',
-                city: 'Cuajimalpa de Morelos, CDMX, Mexico'
-            },
-            interests: {
-                title: 'Professional Interests',
-                list: [
-                    'AI applied to development',
-                    'Cloud-native architectures and microservices',
-                    'High-performance scalable SaaS products',
-                    'Remote and international opportunities'
-                ]
-            }
-        },
-        experience: {
-            title: 'Professional Experience',
-            subtitle: '3 years of experience in enterprise software development',
-            responsibilities: 'Responsibilities:',
-            achievements: 'Key Achievements:',
-            stack: 'Tech Stack:',
-            jobs: [
-                {
-                    role: "Senior Audit Programmer",
-                    company: "Grupo Salinas",
-                    period: "May 2024 - Present",
-                    duration: "~2 years",
-                    description: "Technical lead responsible for architecture, development and evolution of critical internal audit systems (ADA/HONESTEL) and fraud-response applications. Stack: .NET Core 6, C#, Tauri 2.x, Rust, React 19, SQL Server, OAuth2/JWT, Entity Framework, Python 3.10+.",
-                    functions: [
-                        "Built automation pipelines with Python 3.10+ (pandas, pywin32/COM, pyodbc, Selenium): Outlook ingestion, Excel extraction, transactional SQL generation and internal web portal automation.",
-                        "REST API development with .NET Core 6 integrating OAuth2 and JWT tokenization for secure authentication.",
-                        "Designed and developed a Windows desktop application (Tauri 2.x + React 19 + TypeScript) for the fraud team: facial recognition against three internal databases (general, blacklists, employees) via the BAZ Digital Identity API.",
-                        "Implemented AES-256-GCM encryption in Rust to protect biometric images in transit and RSA-OAEP SHA-256 decryption of returned IDs, meeting corporate security standards.",
-                        "SQL Server query optimization with T-SQL, stored procedures and functions.",
-                        "Implementation of encryption algorithms (AES, RSA, SHA-256) for sensitive data protection.",
-                        "Backend architecture based on SOLID, Clean Architecture and DDD principles.",
-                        "Legacy architecture refactoring towards project with Entity Framework and clean principles.",
-                        "Technical documentation with Swagger and API testing with Postman/Insomnia.",
-                        "Frontend development with HTML, JavaScript and Bootstrap applying responsive design."
-                    ],
-                    achievements: [
-                        "Creation of Honestel v2 API from scratch (6 core endpoints) with Swagger documentation.",
-                        "40% reduction in critical query execution time through stored procedure optimization.",
-                        "Automated 5+ critical processes with Python (SAP onboarding, reports, data extraction) — modular pipelines with pywin32, pandas, pyodbc and Selenium, eliminating ~8 hrs/week of manual work.",
-                        "Built desktop app with Tauri 2.x + Rust for biometric facial recognition — only Rust project in the department, covering end-to-end encryption of biometric data."
-                    ]
-                },
-                {
-                    role: "Full Stack Developer",
-                    company: "Digital Solutions",
-                    period: "May 2023 - May 2024",
-                    duration: "1 year",
-                    description: "Integral development of enterprise systems for HR and recruitment management. Stack: .NET Framework, C#, Entity Framework, SQL Server, JavaScript, jQuery, Bootstrap.",
-                    functions: [
-                        "REST API development with .NET Framework and Entity Framework for candidate management.",
-                        "Implementation of bulk upload module from Excel and TXT processing thousands of records.",
-                        "Responsive interface design with JavaScript, jQuery and Bootstrap.",
-                        "SQL Server query optimization with stored procedures and functions.",
-                        "Version control with GitHub and branch management for collaborative work."
-                    ],
-                    achievements: [
-                        "Delivery of complete recruitment management system (12 modules) in 8 months.",
-                        "Bulk upload module processing +5,000 records in <10 seconds from Excel/TXT.",
-                        "50% reduction in onboarding time through employee registration automation."
-                    ]
-                },
-                {
-                    role: "Full Stack Developer",
-                    company: "Freelance · Align Designs Platform",
-                    period: "Oct. 2025 - Present",
-                    duration: "~6 months",
-                    description: "Cloud B2B/B2C platform with professional monorepo architecture. Stack: NestJS 11, Next.js 16, PostgreSQL 15, Prisma ORM, Docker, GitHub Actions, Redis, DigitalOcean Spaces, Prometheus.",
-                    functions: [
-                        "Modular monorepo architecture (pnpm workspaces) with NestJS 11 + Next.js 16 + PostgreSQL/Prisma applying SOLID and Clean Architecture.",
-                        "Dual auth system: JWT with refresh token rotation for admins and OTP with bcrypt for clients. RBAC with 3 roles (Admin, Client, Employee).",
-                        "Full HTTP security: CSRF (HMAC-SHA256), Helmet (CSP, HSTS), IP rate limiting, account lockout after 5 attempts, Zod schema validation.",
-                        "File storage on DigitalOcean Spaces (S3-compatible) with 15-min presigned URLs and magic number validation to prevent MIME spoofing.",
-                        "CI/CD with GitHub Actions + SonarCloud + Codecov + Lighthouse. Automated deploy with Docker on DigitalOcean with automatic backups to Spaces.",
-                        "Billing with auto-numbering, file versioning, in-app notifications, Prometheus metrics and structured logging with Pino.",
-                        "57 unit test files (Jest + Vitest) and full E2E test suite with Playwright."
-                    ],
-                    achievements: [
-                        "Production platform with 16+ modules and 8 workflow stages: auth, billing, employee payments, file storage and notifications.",
-                        "Complete CI/CD pipeline: lint → tests → SonarCloud → build → deploy → health checks → automatic backup on every push.",
-                        "Layered security architecture: CSRF + Helmet + rate limiting + JWT rotation + OTP + AES/RSA + SSH hardening + fail2ban."
-                    ]
-                }
-            ]
-        },
-        skills: {
-            title: 'Technical Skills',
-            subtitle: 'Tech stack and professional competencies',
-            mainTech: 'Main Technologies',
-            categories: {
-                backend: 'Backend',
-                frontend: 'Frontend',
-                devops: 'DevOps & Tools',
-                ai: 'AI & Productivity'
-            },
-            competencies: {
-                title: 'Key Competencies',
-                items: [
-                    { title: 'Clean Architecture / DDD', desc: 'Solution design with Clean Architecture and Domain-Driven Design (2 years)' },
-                    { title: 'Secure Coding', desc: 'Implementation of AES/RSA encryption, OAuth2, JWT and security practices' },
-                    { title: 'SQL Optimization', desc: 'Query time improvement up to 40% with procedures and functions' },
-                    { title: 'SCRUM Methodology', desc: 'Experience working with agile methodologies (10 months)' },
-                    { title: 'Testing & QA', desc: 'Unit testing, user testing and technical documentation (Swagger)' },
-                    { title: 'Self-Taught Learning', desc: 'Demonstrated ability to master new technologies independently' },
-                    { title: 'Teamwork', desc: 'Assertive communication, adaptability and effective collaboration' },
-                    { title: 'AI-Assisted Workflow', desc: 'Project phases with tech-specific skills, ClickUp tracking, per-phase testing and automated CI/CD with SonarCloud' },
-                    { title: 'Immediate Availability', desc: 'Available for onboarding in 1 week or 3 days' }
-                ]
-            }
-        },
-        projects: {
-            title: 'Featured Projects',
-            subtitle: 'Innovative Solutions and Modern Applications',
-            items: [
-                {
-                    title: 'Align Designs Platform',
-                    description: 'Full-stack SaaS for interior design project management — multi-phase pipeline, billing, 3-role RBAC and automated CI/CD.',
-                    tagline: 'SaaS · Interior Design · Multi-role',
-                    problem: 'An interior design studio operated with fragmented processes: project tracking via email, manual billing, unversioned files and no access separation between internal staff and external clients.',
-                    solution: [
-                        'Built multi-tenant SaaS managing the full client lifecycle: brief → deliverables → billing → close.',
-                        'Implemented RBAC with 3 roles (Admin / Client / Employee) + guest sub-client access scoped per project, OTP email auth, JWT + Redis blacklist.',
-                        'Designed 5-phase project pipeline with stage-gating, 2-level file approval cycles (admin → client) and deliverable versioning.',
-                        'Built invoice system with dynamic line items, payment approval flow, automated email delivery and real-time status sync.',
-                        'Full CI/CD: GitHub Actions → auto-deploy to dev, gated production deploys with automatic rollback on health check failure.',
-                    ],
-                    architecturePatterns: ['Clean Architecture', 'DDD', 'SOLID', 'Modular Monorepo', 'Repository Pattern', 'Domain Events'],
-                    highlights: [
-                        { title: 'Auth & RBAC', summary: 'JWT + refresh rotation (admins) and OTP bcrypt (clients). CSRF HMAC-SHA256, Helmet (CSP/HSTS), rate limiting and account lockout after 5 attempts.' },
-                        { title: 'Billing', summary: 'Dynamic line items, payment approval flow, automated email delivery and real-time status sync.' },
-                        { title: 'CI/CD', summary: 'Multi-stage GitHub Actions with SonarCloud, Codecov, Lighthouse and Playwright E2E, automatic rollback.' },
-                    ],
-                    stack: {
-                        backend: ['NestJS 11', 'Prisma', 'PostgreSQL 15', 'Redis', 'TypeScript 5'],
-                        frontend: ['Next.js 16', 'React 19', 'TanStack Query', 'Tailwind v4', 'Zod'],
-                        infra: ['Docker', 'DigitalOcean', 'GitHub Actions', 'Nginx'],
-                        testing: ['Jest', 'Vitest', 'Playwright'],
-                    },
-                    metrics: [
-                        { value: '57', label: 'Test suites' },
-                        { value: '3', label: 'Roles + RBAC' },
-                        { value: '5', label: 'Pipeline phases' },
-                    ],
-                    role: 'Solo developer · End-to-end · Design, architecture, implementation, deployment and maintenance.',
-                    demoStatus: 'live',
-                    demoUrl: 'https://aligndesignsllc-dev.org/',
-                },
-                {
-                    title: 'Comal POS',
-                    description: 'Full-stack POS SaaS for restaurants — offline-first, multi-tenant with RLS, ESC/POS hardware integration, Kitchen Display System and 237 tests.',
-                    tagline: 'POS · Offline-first · Restaurant',
-                    problem: 'Restaurants in Mexico relied on expensive POS systems unable to operate offline, lacking direct ESC/POS hardware integration or a dedicated Kitchen Display System.',
-                    solution: [
-                        'Designed offline-first architecture: Dexie.js (IndexedDB) as local source of truth, custom push/pull sync engine with Supabase Realtime + 30s polling fallback, LWW conflict resolution and outbox idempotency.',
-                        'Implemented tenant isolation via Postgres RLS policies with custom JWT claims (empresa_id + rol) — zero cross-tenant leakage enforced at DB level.',
-                        'Integrated ESC/POS printing: @comal/printer package (0 deps), local Hono agent (port 7788) with X-Comal-Secret auth + WebUSB fallback; cash drawer auto-opens on cash payment.',
-                        'Built Kitchen Display System (KDS): real-time order queue by status, >10 min elapsed-time alerts, mesa badge sync and takeout/delivery order types.',
-                        'Hardened to OWASP: 9 critical/high vulnerabilities fixed; Sentry error tracking; P95 benchmark scripts; GFS backup strategy with pg_dump.',
-                    ],
-                    architecturePatterns: ['Offline-first', 'Multi-tenant RLS', 'Event-driven sync', 'CQRS-light', 'Outbox Pattern'],
-                    highlights: [
-                        { title: 'Offline-first', summary: 'Dexie.js (IndexedDB) as local source of truth, sync with Supabase Realtime + 30s fallback, LWW resolution and outbox idempotency.' },
-                        { title: 'ESC/POS + KDS', summary: 'Direct kitchen printing and automatic cash drawer. Real-time KDS with elapsed-time alerts.' },
-                        { title: 'Security', summary: '9 OWASP vulnerabilities fixed, multi-tenant RLS, Sentry, P95 benchmarks, GFS backups.' },
-                    ],
-                    stack: {
-                        backend: ['Hono.js', 'Supabase', 'PostgreSQL', 'TypeScript'],
-                        frontend: ['Next.js 16', 'React 19', 'Dexie.js', 'Tailwind'],
-                        infra: ['Docker Compose (12 containers)', 'Nginx', 'Supabase self-hosted'],
-                        testing: ['Jest', 'Vitest', '237 tests'],
-                    },
-                    metrics: [
-                        { value: '237', label: 'Unit + integration tests' },
-                        { value: '9', label: 'OWASP vulns fixed' },
-                        { value: '12', label: 'Docker containers' },
-                    ],
-                    role: 'Solo developer · End-to-end · Architecture, implementation, testing and deployment.',
-                    demoStatus: 'in-construction',
-                },
-                {
-                    title: 'MDG Investment Group',
-                    description: 'Premium real-estate website for a Texas land developer — interactive 3D lot map with real-time availability, headless CMS and no-code admin panel.',
-                    tagline: 'Real Estate · 3D · Quiet Luxury',
-                    problem: 'A Texas residential subdivision developer operated with a slow Wix site, no real-time lot availability map and no way to update prices or status without developer involvement.',
-                    solution: [
-                        'Built interactive 3D lot map (Spline embed) with real-time lot status (available / pending / sold / reserved) synced from Supabase, supporting 6 active developments and 11 builder partners.',
-                        'Authored bespoke "Quiet Luxury" design system — obsidian + champagne gold tokens in Tailwind v4, Cormorant Garamond display + DM Sans functional type pairing.',
-                        'Built no-code admin panel: client updates lot prices, status, 3D model mappings and renders via Server Actions + service-role writes + ISR cache revalidation.',
-                        'Integrated Sanity.io headless CMS for copy and photo management, Resend for lead capture forms and a lead tracking table (new / contacted / qualified).',
-                        'Full local dev environment: Docker Compose + Supabase self-hosted + Nginx at mdginvestmentgroup.local, mirroring production topology.',
-                    ],
-                    architecturePatterns: ['JAMstack', 'Headless CMS', 'Server Components', 'ISR', 'Progressive Enhancement'],
-                    highlights: [
-                        { title: '3D Map', summary: 'Spline embed with real-time lot status via Supabase for 6 active developments and 11 builder partners.' },
-                        { title: 'No-code Admin', summary: 'Client updates prices, status and renders without developer involvement, with automatic ISR revalidation.' },
-                        { title: 'Design System', summary: '"Quiet Luxury" with obsidian + champagne gold tokens, Cormorant Garamond + DM Sans.' },
-                    ],
-                    stack: {
-                        backend: ['Sanity CMS', 'Supabase', 'Resend'],
-                        frontend: ['Next.js 15', 'React 19', 'GSAP', 'Spline 3D', 'Tailwind v4', 'TanStack Query'],
-                        infra: ['Docker Compose', 'Supabase self-hosted', 'Nginx', 'Vercel'],
-                        testing: ['Manual QA'],
-                    },
-                    metrics: [
-                        { value: '6', label: 'Active developments' },
-                        { value: '11', label: 'Builder partners' },
-                        { value: '3D', label: 'Interactive map' },
-                    ],
-                    role: 'Solo developer · End-to-end · Technical design, 3D integration, CMS and deployment.',
-                    demoStatus: 'in-construction',
-                },
-            ],
-        },
-        claudeEngineering: {
-            hint: 'Specialization · AI-assisted engineering',
-            num: '05',
-            label: 'Claude Code Engineering',
-            title1: 'Mastery of the ecosystem',
-            title2: 'of AI-assisted engineering.',
-            paragraph: 'Design and operation of Claude-Code-assisted development pipelines: custom skills, specialized agents, MCP integration, hook automation, persistent memory systems and multi-agent orchestration to accelerate delivery without losing quality or control.',
-            capabilities: [
-                { title: 'Skill Engineering', desc: 'Reusable skills with eval loops and metrics.' },
-                { title: 'Custom Agents', desc: 'Specialized agents for review, archiving and research.' },
-                { title: 'MCP Integration', desc: 'Connecting external and custom MCP servers.' },
-                { title: 'Hook Automation', desc: 'PreTool/PostTool hooks for validation and compression.' },
-                { title: 'Memory Systems', desc: 'Multi-layer cross-session persistent memory.' },
-                { title: 'Plugin Ecosystem', desc: 'Plugins integrated with full productive flows.' },
-                { title: 'Multi-LLM Orchestration', desc: 'Orchestrating Claude, Codex and Gemini in parallel.' },
-                { title: 'Eval-driven Optimization', desc: 'Optimization based on performance metrics.' },
-            ],
-            stat: '6 SKILLS · 3 AGENTS · 4 PLUGINS · MULTI-LLM',
-        },
-        languages: {
-            title: 'Languages',
-            subtitle: 'Linguistic Competencies',
-            items: [
-                {
-                    name: 'Spanish',
-                    level: 'Native',
-                    details: ['Mother tongue', 'Professional communication', 'Advanced technical writing']
-                },
-                {
-                    name: 'English',
-                    level: 'A2-B1 Intermediate',
-                    details: ['Reading and understanding technical documentation', 'Intermediate technical writing', 'Basic-intermediate conversation', 'Constantly improving']
-                }
-            ]
-        },
-        contact: {
-            title: 'Contact Me',
-            subtitle: 'Have a project in mind? I would love to hear about it!',
-            infoTitle: 'Contact Information',
-            followMe: 'Follow Me',
-            messageTitle: 'Send Me a Message',
-            form: {
-                name: 'Name',
-                email: 'Email',
-                subject: 'Subject',
-                message: 'Message',
-                send: 'Send Message',
-                sent: 'Message sent (simulation)'
-            },
-            errors: {
-                name: 'Name is required',
-                subject: 'Subject is required',
-                message: 'Message is required'
-            },
-            success: {
-                title: 'Message Ready!',
-                text: 'WhatsApp will open to send your message successfully.'
-            }
-        },
-        footer: {
-            brand: 'Erick Rodríguez',
-            description: 'Full Stack Developer specializing in .NET Core/C#, React 19 and Azure. 3 years of experience in enterprise development.',
-            navigation: 'Navigation',
-            contact: 'Contact',
-            rights: 'All rights reserved.',
-            madeWith: 'Made with'
-        }
-    }
+  },
+  cursor: {
+    go: 'ir', open: 'abrir', close: 'cerrar', view: 'ver', write: 'escribir',
+    send: 'enviar', call: 'llamar', accent: 'acento', theme: 'tema',
+  },
+  controls: {
+    switchLang: 'Cambiar idioma a inglés',
+    accent: 'Cambiar color de acento',
+    theme: 'Cambiar tema',
+  },
+  accents: {
+    terracotta: 'Terracota', rust: 'Óxido', mustard: 'Mostaza', lime: 'Lima', cyan: 'Cian', violet: 'Violeta',
+  },
+  marquee: {
+    primary: ['Full Stack Senior', '.NET · React', 'CDMX · {year}', 'Clean Architecture', 'AI-Assisted Dev', 'Cloud Native'],
+    secondary: ['Disponible', 'Remoto / Híbrido', 'Internacional', 'Full-time'],
+  },
+  hero: {
+    portfolio: 'portfolio / curriculum / {year}',
+    bio: '— Bio',
+    bioText: 'Desarrollador Full Stack con {years} construyendo arquitecturas empresariales críticas. Actualmente en {company}.',
+    cta1: 'Trabajemos juntos →',
+    cta2: 'Ver obra →',
+    terminalStatus: '● disponible · full-time / remote / hybrid',
+  },
+  download: {
+    cta: 'Descargar CV',
+    visual: 'Diseño visual',
+    ats: 'Formato ATS',
+    es: 'Español',
+    en: 'Inglés',
+    atsEs: 'ATS Español',
+    atsEn: 'ATS Inglés',
+    generating: 'Generando…',
+    failed: 'No se pudo generar · reintentar',
+    themeNote: 'El visual hereda el tema activo:',
+    atsNote: 'Formato neutro · Helvetica · sin colores',
+  },
+  about: {
+    label: 'Sobre mí',
+    hint: 'Background · filosofía · enfoque',
+    title1: 'Transformando ideas en',
+    title2: 'soluciones empresariales',
+    title3: 'de alto impacto.',
+    para1: 'Con {years} construyendo arquitecturas con C#/.NET Core 6/8/10, React 19/Next.js 16, SQL Server/PostgreSQL y NestJS 11. Actualmente lidero el desarrollo de sistemas críticos en {company} y paralelo desarrollo la plataforma {project}.',
+    para2: 'Me distingo por aplicar Clean Architecture, DDD, principios SOLID y desarrollo asistido por IA — optimizando cada línea con buenas prácticas de seguridad y performance.',
+    project: 'Align Designs',
+    statusLabel: 'Estado actual',
+    available: 'Disponible',
+    location: 'UBICACIÓN',
+    joinLabel: 'INCORPORACIÓN',
+    joinValue: '3 – 7 días',
+    yearsStat: 'Años exp.',
+  },
+  experience: {
+    label: 'Experiencia',
+    hint: (years: string, companies: number) => `${years} · ${companies} ${companies === 1 ? 'empresa' : 'empresas'}`,
+    title1: 'Trayectoria construyendo',
+    title2: 'sistemas críticos',
+    responsibilities: '— Responsabilidades',
+    achievements: '★ Logros destacados',
+  },
+  skills: {
+    label: 'Stack técnico',
+    hint: 'Tecnologías · Competencias · Idiomas',
+    title1: 'Arsenal',
+    title2: 'full stack',
+    title3: 'completo.',
+    categoriesLabel: 'Categorías de tecnologías',
+    categories: { backend: 'Backend', frontend: 'Frontend', devops: 'DevOps', ai: 'IA' },
+    competencies: '— Competencias clave',
+    languages: '— Idiomas',
+  },
+  claudeEngineering: {
+    label: 'Claude Code Engineering',
+    hint: 'Especialización · AI-assisted engineering',
+    title1: 'Dominio del ecosistema',
+    title2: 'de ingeniería AI-assisted.',
+    paragraph: 'Diseño y operación de pipelines de desarrollo asistido por Claude Code: skills custom, agents especializados, integración MCP, automatización por hooks, sistemas de memoria persistente y orquestación multi-agente para acelerar entrega sin perder calidad ni control.',
+  },
+  projects: {
+    label: 'Obra seleccionada',
+    hint: (count: number) => `${count} case studies`,
+    title1: 'Proyectos que',
+    title2: 'mueven números',
+    listLabel: 'Proyectos',
+    viewCaseStudy: 'Ver case study →',
+    viewCaseStudyOf: (name: string) => `Ver case study: ${name}`,
+    demoInConstruction: 'Demo en construcción',
+    viewDemo: 'Ver demo ↗',
+  },
+  caseStudy: {
+    close: 'Cerrar',
+    loading: '// cargando case study…',
+    problem: 'problema',
+    solution: 'solución',
+    architecture: 'arquitectura',
+    stack: 'stack',
+    metrics: 'métricas',
+    role: 'mi rol',
+    demo: 'demo',
+    demoMsg: 'Demo interactiva próximamente. Estoy preparando una versión genérica navegable para mostrar el flujo completo.',
+    live: 'Demo en vivo',
+    openDemo: 'Abrir demo →',
+    stackGroups: { backend: 'Backend', frontend: 'Frontend', infra: 'Infra', testing: 'Testing' },
+  },
+  contact: {
+    label: 'Contacto',
+    hint: 'Construyamos algo juntos',
+    title1: '¿Tienes un',
+    title2: 'proyecto',
+    title3: 'en mente?',
+    direct: '— Directo',
+    education: '— Educación',
+    online: '— En la red',
+    phone: 'TELÉFONO',
+    location: 'UBICACIÓN',
+    footerRole: 'Full Stack Senior',
+  },
+  pdf: {
+    contact: 'Contacto',
+    coreSkills: 'Skills Core',
+    education: 'Educación',
+    languages: 'Idiomas',
+    profile: 'Perfil Profesional',
+    experience: 'Experiencia Profesional',
+    featuredProject: 'Proyecto Destacado',
+    page: 'Página',
+    atsSummary: 'Perfil Profesional',
+    atsSkills: 'Habilidades Técnicas',
+    atsCompetencies: 'Competencias Clave',
+    atsAchievements: 'Logros Destacados:',
+    atsProjects: 'Proyectos Destacados',
+    atsTechnologies: 'Tecnologías:',
+    atsFormat: 'Formato ATS',
+  },
 };
+
+export type Translations = typeof es;
+
+const en: Translations = {
+  meta: {
+    title: 'Erick Rodríguez Bores Isaías | Senior Full Stack Developer',
+  },
+  time: {
+    present: 'Present',
+    inProgress: 'In progress',
+    years: { one: 'year', other: 'years' },
+    months: { one: 'month', other: 'months' },
+  },
+  nav: {
+    label: 'Sections',
+    sections: {
+      hero: '00',
+      about: 'About',
+      experience: 'Exp',
+      skills: 'Stack',
+      claudeEngineering: 'Claude',
+      projects: 'Work',
+      contact: 'Contact',
+    },
+  },
+  cursor: {
+    go: 'go', open: 'open', close: 'close', view: 'view', write: 'write',
+    send: 'send', call: 'call', accent: 'accent', theme: 'theme',
+  },
+  controls: {
+    switchLang: 'Switch language to Spanish',
+    accent: 'Change accent color',
+    theme: 'Change theme',
+  },
+  accents: {
+    terracotta: 'Terracotta', rust: 'Rust', mustard: 'Mustard', lime: 'Lime', cyan: 'Cyan', violet: 'Violet',
+  },
+  marquee: {
+    primary: ['Senior Full Stack', '.NET · React', 'CDMX · {year}', 'Clean Architecture', 'AI-Assisted Dev', 'Cloud Native'],
+    secondary: ['Available', 'Remote / Hybrid', 'International', 'Full-time'],
+  },
+  hero: {
+    portfolio: 'portfolio / résumé / {year}',
+    bio: '— Bio',
+    bioText: 'Full Stack developer with {years} building critical enterprise architectures. Currently at {company}.',
+    cta1: 'Let’s work together →',
+    cta2: 'See work →',
+    terminalStatus: '● available · full-time / remote / hybrid',
+  },
+  download: {
+    cta: 'Download CV',
+    visual: 'Visual design',
+    ats: 'ATS format',
+    es: 'Spanish',
+    en: 'English',
+    atsEs: 'ATS Spanish',
+    atsEn: 'ATS English',
+    generating: 'Generating…',
+    failed: 'Could not generate · retry',
+    themeNote: 'Visual inherits active theme:',
+    atsNote: 'Neutral format · Helvetica · no colors',
+  },
+  about: {
+    label: 'About',
+    hint: 'Background · philosophy · approach',
+    title1: 'Turning ideas into',
+    title2: 'high-impact enterprise',
+    title3: 'solutions.',
+    para1: 'With {years} building architectures with C#/.NET Core 6/8/10, React 19/Next.js 16, SQL Server/PostgreSQL and NestJS 11. Currently leading critical system development at {company} while building the {project}.',
+    para2: 'I stand out for applying Clean Architecture, DDD, SOLID principles and AI-assisted development — optimizing every line with security and performance best practices.',
+    project: 'Align Designs',
+    statusLabel: 'Current status',
+    available: 'Available',
+    location: 'LOCATION',
+    joinLabel: 'JOIN-IN',
+    joinValue: '3 – 7 days',
+    yearsStat: 'Years exp.',
+  },
+  experience: {
+    label: 'Experience',
+    hint: (years: string, companies: number) => `${years} · ${companies} ${companies === 1 ? 'company' : 'companies'}`,
+    title1: 'Career building',
+    title2: 'critical systems',
+    responsibilities: '— Responsibilities',
+    achievements: '★ Key achievements',
+  },
+  skills: {
+    label: 'Tech stack',
+    hint: 'Tech · Competencies · Languages',
+    title1: 'Full',
+    title2: 'stack',
+    title3: 'arsenal.',
+    categoriesLabel: 'Technology categories',
+    categories: { backend: 'Backend', frontend: 'Frontend', devops: 'DevOps', ai: 'AI' },
+    competencies: '— Key competencies',
+    languages: '— Languages',
+  },
+  claudeEngineering: {
+    label: 'Claude Code Engineering',
+    hint: 'Specialization · AI-assisted engineering',
+    title1: 'Mastery of the ecosystem',
+    title2: 'of AI-assisted engineering.',
+    paragraph: 'Design and operation of Claude-Code-assisted development pipelines: custom skills, specialized agents, MCP integration, hook automation, persistent memory systems and multi-agent orchestration to accelerate delivery without losing quality or control.',
+  },
+  projects: {
+    label: 'Selected work',
+    hint: (count: number) => `${count} case studies`,
+    title1: 'Projects that',
+    title2: 'move numbers',
+    listLabel: 'Projects',
+    viewCaseStudy: 'View case study →',
+    viewCaseStudyOf: (name: string) => `View case study: ${name}`,
+    demoInConstruction: 'Demo in construction',
+    viewDemo: 'View demo ↗',
+  },
+  caseStudy: {
+    close: 'Close',
+    loading: '// loading case study…',
+    problem: 'problem',
+    solution: 'solution',
+    architecture: 'architecture',
+    stack: 'stack',
+    metrics: 'metrics',
+    role: 'my role',
+    demo: 'demo',
+    demoMsg: 'Interactive demo coming soon. Preparing a generic navigable version to showcase the full flow.',
+    live: 'Live demo',
+    openDemo: 'Open demo →',
+    stackGroups: { backend: 'Backend', frontend: 'Frontend', infra: 'Infra', testing: 'Testing' },
+  },
+  contact: {
+    label: 'Contact',
+    hint: 'Let’s build something',
+    title1: 'Got a',
+    title2: 'project',
+    title3: 'in mind?',
+    direct: '— Direct',
+    education: '— Education',
+    online: '— Online',
+    phone: 'PHONE',
+    location: 'LOCATION',
+    footerRole: 'Senior Full Stack',
+  },
+  pdf: {
+    contact: 'Contact',
+    coreSkills: 'Core Skills',
+    education: 'Education',
+    languages: 'Languages',
+    profile: 'Professional Profile',
+    experience: 'Professional Experience',
+    featuredProject: 'Featured Project',
+    page: 'Page',
+    atsSummary: 'Professional Summary',
+    atsSkills: 'Technical Skills',
+    atsCompetencies: 'Key Competencies',
+    atsAchievements: 'Key Achievements:',
+    atsProjects: 'Featured Projects',
+    atsTechnologies: 'Technologies:',
+    atsFormat: 'ATS Format',
+  },
+};
+
+export const translations: Record<Lang, Translations> = { es, en };

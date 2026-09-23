@@ -1,8 +1,9 @@
 /* eslint-disable react-refresh/only-export-components */
 import React, { createContext, useContext, useState } from 'react';
 import type { ReactNode } from 'react';
+import type { Lang } from '../i18n/lang';
 
-type Language = 'es' | 'en';
+type Language = Lang;
 
 interface LanguageContextType {
     language: Language;

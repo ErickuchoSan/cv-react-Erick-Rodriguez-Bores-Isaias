@@ -1,33 +1,16 @@
-import type { ProjectV3 } from '../data';
 import { CaseStudySection } from './CaseStudySection';
+import { STACK_GROUPS, type Project } from '../../data/model';
+import type { Lang } from '../../i18n/lang';
+import { translations } from '../../i18n/translations';
 
 interface Props {
-  project: ProjectV3;
-  lang: 'es' | 'en';
+  project: Project;
+  lang: Lang;
 }
 
-const COPY = {
-  es: {
-    problem: 'problema', solution: 'solución', architecture: 'arquitectura',
-    stack: 'stack', metrics: 'métricas', role: 'mi rol', demo: 'demo',
-    demoMsg: 'Demo interactiva próximamente. Estoy preparando una versión genérica navegable para mostrar el flujo completo.',
-    badge: 'Demo en construcción',
-    backend: 'Backend', frontend: 'Frontend', infra: 'Infra', testing: 'Testing',
-    openDemo: 'Abrir demo →',
-  },
-  en: {
-    problem: 'problem', solution: 'solution', architecture: 'architecture',
-    stack: 'stack', metrics: 'metrics', role: 'my role', demo: 'demo',
-    demoMsg: 'Interactive demo coming soon. Preparing a generic navigable version to showcase the full flow.',
-    badge: 'Demo in construction',
-    backend: 'Backend', frontend: 'Frontend', infra: 'Infra', testing: 'Testing',
-    openDemo: 'Open demo →',
-  },
-} as const;
-
 export function CaseStudyContent({ project: p, lang }: Props) {
-  const c = COPY[lang];
-  const stackCats = ['backend', 'frontend', 'infra', 'testing'] as const;
+  const c = translations[lang].caseStudy;
+  const isLive = p.demo.status === 'live';
 
   return (
     <div style={{ color: 'var(--fg)', maxWidth: 880, margin: '0 auto' }}>
@@ -51,12 +34,13 @@ export function CaseStudyContent({ project: p, lang }: Props) {
           display: 'inline-flex', alignItems: 'center', gap: 8,
           padding: '6px 12px',
           background: 'var(--bg-2)',
-          border: `1px dashed ${p.color}`,
+          border: `1px ${isLive ? 'solid' : 'dashed'} ${p.color}`,
           color: p.color,
           fontFamily: 'var(--font-mono)', fontSize: 11,
           letterSpacing: 1.2, textTransform: 'uppercase',
         }}>
-          🚧 {c.badge}
+          <span aria-hidden="true">{isLive ? '●' : '🚧'}</span>
+          {isLive ? c.live : translations[lang].projects.demoInConstruction}
         </div>
       </header>
 
@@ -108,15 +92,15 @@ export function CaseStudyContent({ project: p, lang }: Props) {
 
       <CaseStudySection prefix={c.stack} accent={p.color}>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 18 }}>
-          {stackCats.map((cat) => {
+          {STACK_GROUPS.map((cat) => {
             const items = p.stack[cat];
-            if (!items || items.length === 0) return null;
+            if (items.length === 0) return null;
             return (
               <div key={cat}>
                 <div style={{
                   fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: 1.4,
                   textTransform: 'uppercase', color: 'var(--fg-muted)', marginBottom: 10,
-                }}>{c[cat]}</div>
+                }}>{c.stackGroups[cat]}</div>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
                   {items.map((it, i) => (
                     <span key={i} style={{
@@ -163,8 +147,8 @@ export function CaseStudyContent({ project: p, lang }: Props) {
       </CaseStudySection>
 
       <CaseStudySection prefix={c.demo} accent={p.color}>
-        {p.demoStatus === 'live' && p.demoUrl ? (
-          <a href={p.demoUrl} target="_blank" rel="noreferrer" style={{
+        {p.demo.status === 'live' ? (
+          <a href={p.demo.url} target="_blank" rel="noopener noreferrer" style={{
             display: 'inline-block', padding: '14px 28px',
             background: p.color, color: 'var(--bg)',
             fontFamily: 'var(--font-mono)', fontSize: 12,
@@ -173,7 +157,7 @@ export function CaseStudyContent({ project: p, lang }: Props) {
           }}>{c.openDemo}</a>
         ) : (
           <p style={{ fontSize: 14.5, lineHeight: 1.7, color: 'var(--fg-muted)', margin: 0 }}>
-            🚧 {c.demoMsg}
+            <span aria-hidden="true">🚧 </span>{c.demoMsg}
           </p>
         )}
       </CaseStudySection>

@@ -1,12 +1,16 @@
 import { Reveal, WordsMask } from '../primitives';
 import { SectionHead, SectionTitle } from '../chrome';
+import type { CV } from '../../data/model';
+import type { Lang } from '../../i18n/lang';
 import { translations } from '../../i18n/translations';
 
 interface Props {
-  lang: 'es' | 'en';
+  data: CV;
+  lang: Lang;
+  num: string;
 }
 
-export function ClaudeEngineeringV3({ lang }: Props) {
+export function ClaudeEngineeringV3({ data, lang, num }: Props) {
   const t = translations[lang].claudeEngineering;
 
   return (
@@ -14,7 +18,7 @@ export function ClaudeEngineeringV3({ lang }: Props) {
       padding: '180px 5vw', position: 'relative',
       background: 'var(--bg)',
     }}>
-      <SectionHead num={t.num} label={t.label} hint={t.hint} />
+      <SectionHead num={num} label={t.label} hint={t.hint} />
       <SectionTitle>
         <WordsMask text={t.title1} step={60} />{' '}
         <em style={{ color: 'var(--accent)' }}>
@@ -36,7 +40,7 @@ export function ClaudeEngineeringV3({ lang }: Props) {
         gridTemplateColumns: 'repeat(4, 1fr)',
         gap: 16, marginBottom: 60,
       }}>
-        {t.capabilities.map((c, i) => (
+        {data.claude.capabilities.map((c, i) => (
           <Reveal key={c.title} delay={i * 60}>
             <div style={{
               padding: 24, background: 'var(--bg-2)',
@@ -66,7 +70,7 @@ export function ClaudeEngineeringV3({ lang }: Props) {
           letterSpacing: 1.6, textTransform: 'uppercase',
           color: 'var(--accent)', fontWeight: 500,
         }}>
-          {t.stat}
+          {data.claude.stat}
         </div>
       </Reveal>
 

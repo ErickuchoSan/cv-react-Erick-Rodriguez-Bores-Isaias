@@ -2,9 +2,12 @@ import { useEffect, useRef, useState } from 'react';
 import { Reveal, MaskReveal, Magnetic, Parallax, Tilt } from './primitives';
 import { TechIcon } from './TechIcon';
 import { DownloadV3 } from './Download';
-import type { CVData } from './data';
 import type { ThemeName } from './theme';
+import type { CV } from '../data/model';
+import type { Lang } from '../i18n/lang';
 import { translations } from '../i18n/translations';
+import { fill } from '../lib/format';
+import { richText } from '../lib/richText';
 
 function ShaderBG() {
   const ref = useRef<HTMLCanvasElement>(null);
@@ -130,7 +133,15 @@ function ShaderBG() {
   }} />;
 }
 
-function Terminal({ name, role }: { name: string; role: string }) {
+interface TerminalProps {
+  name: string;
+  role: string;
+  stack: readonly string[];
+  log: readonly string[];
+  status: string;
+}
+
+function Terminal({ name, role, stack, log, status }: TerminalProps) {
   const [lines, setLines] = useState<{ t: 'cmd' | 'out'; x: string }[]>([]);
   const [typing, setTyping] = useState('');
   const [blink, setBlink] = useState(true);
@@ -139,14 +150,9 @@ function Terminal({ name, role }: { name: string; role: string }) {
     if (window.innerWidth < 768) return;
     const script: { cmd: string; out: string[] }[] = [
       { cmd: 'whoami', out: [name, role] },
-      { cmd: 'stack --json', out: ['[', '  ".NET Core 10",', '  "React 19 · Next.js 16",', '  "PostgreSQL · SQL Server",', '  "NestJS 11 · Docker"', ']'] },
-      { cmd: 'git log --oneline -4', out: [
-        'a8f2c10 feat: Align Designs Platform → prod',
-        '9d7e453 perf: -40% SQL query time',
-        '3b2a891 feat: API Honestel v2 (8 endpoints)',
-        '7c4f912 chore: 57 test suites · CI/CD',
-      ] },
-      { cmd: 'echo $STATUS', out: ['● disponible · full-time / remote / hybrid'] },
+      { cmd: 'stack --json', out: ['[', ...stack.map((s, i) => `  "${s}"${i < stack.length - 1 ? ',' : ''}`), ']'] },
+      { cmd: `git log --oneline -${log.length}`, out: [...log] },
+      { cmd: 'echo $STATUS', out: [status] },
     ];
     let mounted = true, idx = 0;
     const history: { t: 'cmd' | 'out'; x: string }[] = [];
@@ -171,7 +177,7 @@ function Terminal({ name, role }: { name: string; role: string }) {
     run();
     const b = setInterval(() => setBlink((v) => !v), 530);
     return () => { mounted = false; clearInterval(b); };
-  }, [name, role]);
+  }, [name, role, stack, log, status]);
 
   return (
     <div style={{
@@ -213,16 +219,19 @@ function Terminal({ name, role }: { name: string; role: string }) {
   );
 }
 
-export function HeroV3({ data, lang, themeName, accent, onNav }: { data: CVData; lang: 'es' | 'en'; themeName: ThemeName; accent: string; onNav?: (id: string) => void }) {
-  const D = data;
-  const heroT = translations[lang].hero;
-  const labels = lang === 'es'
-    ? { portfolio: 'portfolio / curriculum / 2026', bio: '— Bio',
-        bioText: ['años', 'construyendo arquitecturas empresariales críticas. Actualmente en'],
-        cta1: 'Trabajemos juntos →', cta2: 'Ver obra →' }
-    : { portfolio: 'portfolio / résumé / 2026', bio: '— Bio',
-        bioText: ['years', 'building critical enterprise architectures. Currently at'],
-        cta1: 'Let’s work together →', cta2: 'See work →' };
+interface HeroProps {
+  data: CV;
+  lang: Lang;
+  themeName: ThemeName;
+  accent: string;
+  onNav: (id: string) => void;
+}
+
+export function HeroV3({ data: D, lang, themeName, accent, onNav }: HeroProps) {
+  const t = translations[lang].hero;
+  const cursor = translations[lang].cursor;
+  const [firstName, ...lastNames] = D.name.display.split(' ');
+  const highlight = { color: 'var(--accent)', fontWeight: 500 };
 
   return (
     <section id="hero" style={{
@@ -249,8 +258,8 @@ export function HeroV3({ data, lang, themeName, accent, onNav }: { data: CVData;
             textTransform: 'uppercase', color: 'var(--accent)', flexWrap: 'wrap',
           }}>
             <span style={{ width: 50, height: 1, background: 'var(--accent)' }} />
-            <span>{D.role} · México</span>
-            <span style={{ color: 'var(--fg)', opacity: 0.75, marginLeft: 6 }}>— {labels.portfolio}</span>
+            <span>{D.role} · {D.contact.country}</span>
+            <span style={{ color: 'var(--fg)', opacity: 0.75, marginLeft: 6 }}>— {fill(t.portfolio, { year: new Date().getFullYear() })}</span>
           </div>
         </Reveal>
 
@@ -260,9 +269,9 @@ export function HeroV3({ data, lang, themeName, accent, onNav }: { data: CVData;
           lineHeight: 0.82, letterSpacing: '-0.055em', fontWeight: 300,
           marginBottom: 20,
         }}>
-          <div><MaskReveal delay={200}>Erick</MaskReveal></div>
+          <div><MaskReveal delay={200}>{firstName}</MaskReveal></div>
           <div style={{ color: 'var(--accent)', fontStyle: 'italic' }}>
-            <MaskReveal delay={420}>Bores.</MaskReveal>
+            <MaskReveal delay={420}>{lastNames.join(' ')}.</MaskReveal>
           </div>
         </h1>
 
@@ -280,7 +289,7 @@ export function HeroV3({ data, lang, themeName, accent, onNav }: { data: CVData;
               color: 'var(--accent)',
               fontWeight: 500,
             }}>
-              {heroT.subtitle1}
+              {D.taglines[0]}
             </p>
             <p style={{
               margin: 0,
@@ -291,7 +300,7 @@ export function HeroV3({ data, lang, themeName, accent, onNav }: { data: CVData;
               color: 'var(--fg-muted)',
               fontWeight: 400,
             }}>
-              {heroT.subtitle2}
+              {D.taglines[1]}
             </p>
           </div>
         </Reveal>
@@ -340,7 +349,7 @@ export function HeroV3({ data, lang, themeName, accent, onNav }: { data: CVData;
                   border: '1px solid var(--line-strong)',
                   boxShadow: '0 40px 90px rgba(0,0,0,0.65)',
                 }}>
-                  <img src={D.photo} alt={D.name} style={{
+                  <img src={D.photo} alt={D.name.display} style={{
                     width: '100%', height: '100%', objectFit: 'cover',
                     filter: 'grayscale(0.2) contrast(1.08)',
                   }} />
@@ -356,7 +365,7 @@ export function HeroV3({ data, lang, themeName, accent, onNav }: { data: CVData;
                     color: '#fff',
                   }}>
                     <span>#eb / 01</span>
-                    <span>CDMX</span>
+                    <span>{D.contact.city}</span>
                   </div>
                 </div>
               </Tilt>
@@ -374,30 +383,30 @@ export function HeroV3({ data, lang, themeName, accent, onNav }: { data: CVData;
                 fontFamily: 'var(--font-mono)', fontSize: 10,
                 letterSpacing: 1.6, textTransform: 'uppercase',
                 color: 'var(--accent)', marginBottom: 16,
-              }}>{labels.bio}</div>
+              }}>{t.bio}</div>
               <p style={{
                 fontFamily: 'var(--font-display)', fontStyle: 'italic',
                 fontSize: 'clamp(20px, 2vw, 26px)',
                 lineHeight: 1.35, fontWeight: 400, color: 'var(--fg)',
               }}>
-                {lang === 'es' ? 'Desarrollador Full Stack con ' : 'Full Stack developer with '}
-                <em style={{ color: 'var(--accent)', fontWeight: 500 }}>{D.years} {labels.bioText[0]}</em>
-                {' '}{labels.bioText[1]}{' '}
-                <em style={{ color: 'var(--accent)', fontWeight: 500 }}>Grupo Salinas</em>.
+                {richText(t.bioText, {
+                  years: <em style={highlight}>{D.yearsText}</em>,
+                  company: <em style={highlight}>{D.employer}</em>,
+                })}
               </p>
 
               <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginTop: 28 }}>
                 <Magnetic strength={0.25}>
-                  <button onClick={() => onNav?.('contact')} data-cursor={lang === 'es' ? 'escribir' : 'write'} style={{
+                  <button onClick={() => onNav('contact')} data-cursor={cursor.write} style={{
                     display: 'inline-flex', alignItems: 'center', gap: 10,
                     padding: '14px 24px', background: 'var(--accent)', color: 'var(--bg)',
                     fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: 1.6,
                     textTransform: 'uppercase', fontWeight: 700, border: '1px solid var(--accent)',
                     cursor: 'pointer',
-                  }}>{labels.cta1}</button>
+                  }}>{t.cta1}</button>
                 </Magnetic>
                 <Magnetic strength={0.2}>
-                  <button onClick={() => onNav?.('projects')} data-cursor={lang === 'es' ? 'ver' : 'view'} style={{
+                  <button onClick={() => onNav('projects')} data-cursor={cursor.view} style={{
                     display: 'inline-flex', alignItems: 'center', gap: 10,
                     padding: '14px 24px',
                     background: 'var(--bg)', color: 'var(--fg)',
@@ -405,7 +414,7 @@ export function HeroV3({ data, lang, themeName, accent, onNav }: { data: CVData;
                     textTransform: 'uppercase', fontWeight: 700,
                     border: '1px solid var(--fg)',
                     cursor: 'pointer',
-                  }}>{labels.cta2}</button>
+                  }}>{t.cta2}</button>
                 </Magnetic>
                 <DownloadV3 lang={lang} themeName={themeName} accent={accent} />
               </div>
@@ -414,7 +423,7 @@ export function HeroV3({ data, lang, themeName, accent, onNav }: { data: CVData;
 
           <Reveal delay={1100} y={60}>
             <div className="hero-terminal-wrap">
-              <Terminal name={D.name} role={D.role} />
+              <Terminal name={D.name.display} role={D.role} stack={D.terminal.stack} log={D.terminal.log} status={t.terminalStatus} />
             </div>
           </Reveal>
         </div>

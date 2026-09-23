@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState, type ReactNode, type CSSProperties } from 'react';
 import type { ThemeName } from './theme';
+import type { Lang } from '../i18n/lang';
+import { translations } from '../i18n/translations';
 
 // ─── Cursor ──────────────────────────────────────────────────────────────
 export function CursorV3() {
@@ -79,8 +81,10 @@ export function CursorV3() {
 }
 
 // ─── Nav ─────────────────────────────────────────────────────────────────
-interface Section { id: string; label: string }
-export function NavV3({ active, sections, onNav }: { active: string; sections: Section[]; onNav: (id: string) => void }) {
+export interface NavSection { id: string; label: string }
+
+export function NavV3({ active, sections, onNav, lang }: { active: string; sections: NavSection[]; onNav: (id: string) => void; lang: Lang }) {
+  const cursor = translations[lang].cursor;
   const navRef = useRef<HTMLDivElement>(null);
   const [indicator, setIndicator] = useState({ left: 0, width: 0 });
 
@@ -114,7 +118,7 @@ export function NavV3({ active, sections, onNav }: { active: string; sections: S
           zIndex: 0,
         }} />
         {sections.map((s) => (
-          <button key={s.id} data-sid={s.id} data-cursor="ir"
+          <button key={s.id} data-sid={s.id} data-cursor={cursor.go}
             onClick={() => onNav(s.id)}
             className="nav-v3-btn"
             style={{
@@ -159,8 +163,9 @@ export function CornerTools({ theme, onCycleTheme, onCycleAccent, onToggleLang, 
   onCycleTheme: () => void;
   onCycleAccent: () => void;
   onToggleLang: () => void;
-  lang: 'es' | 'en';
+  lang: Lang;
 }) {
+  const cursor = translations[lang].cursor;
   const [clock, setClock] = useState('');
   useEffect(() => {
     const t = () => {
@@ -198,13 +203,13 @@ export function CornerTools({ theme, onCycleTheme, onCycleAccent, onToggleLang, 
         ...pillStyle, padding: 0, width: 38, height: 38, borderRadius: '50%',
         justifyContent: 'center', fontWeight: 700,
       }}>{lang.toUpperCase()}</button>
-      <button onClick={onCycleAccent} data-cursor="acento" style={{
+      <button onClick={onCycleAccent} data-cursor={cursor.accent} style={{
         ...pillStyle, padding: 0, width: 38, height: 38, borderRadius: '50%',
         justifyContent: 'center',
       }}>
         <span style={{ width: 14, height: 14, borderRadius: '50%', background: 'var(--accent)' }} />
       </button>
-      <button onClick={onCycleTheme} data-cursor="tema" style={{
+      <button onClick={onCycleTheme} data-cursor={cursor.theme} style={{
         ...pillStyle, padding: 0, width: 38, height: 38, borderRadius: '50%',
         justifyContent: 'center',
       }}>
@@ -223,7 +228,7 @@ export function CornerTools({ theme, onCycleTheme, onCycleAccent, onToggleLang, 
 }
 
 // ─── Bottom HUD ──────────────────────────────────────────────────────────
-export function BottomHUD({ progress, active, sections }: { progress: number; active: string; sections: Section[] }) {
+export function BottomHUD({ progress, active, sections }: { progress: number; active: string; sections: NavSection[] }) {
   const idx = sections.findIndex((s) => s.id === active);
   return (
     <div style={{

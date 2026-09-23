@@ -1,95 +1,106 @@
-// Skills for the ATS PDF
-export const PDF_SKILLS = {
-    es: [
-        "C# / .NET Core 6/8/10 (3 años)",
-        "SQL Server / T-SQL (3 años)",
-        "Procedimientos Almacenados (3 años)",
-        "PostgreSQL 15/16 (1 año)",
-        "Redis — Cache (6 meses)",
-        "Python 3.x (1 año)",
-        "Expresiones Lambda / LINQ (3 años)",
-        "React 19 / Next.js 16 (2 años)",
-        "TanStack Query (6 meses)",
-        "React Hook Form + Zod (6 meses)",
-        "Tailwind CSS v4 (3 años)",
-        "Framer Motion (6 meses)",
-        "jQuery (2 años)",
-        "Vue.js 3 (1 año)",
-        "Angular 17+ (1 año)",
-        "TypeScript 5 (1 año)",
-        "JavaScript ES2024 (3 años)",
-        "Node.js 18/20 (3 años)",
-        "NestJS 11 (1 año)",
-        "REST API (3 años)",
-        "Swagger / OpenAPI (2 años)",
-        "Entity Framework (3 años)",
-        "Prisma ORM (6 meses)",
-        "OAuth2 / JWT + Refresh Token Rotation (2 años)",
-        "OTP (bcrypt + SHA-256) (6 meses)",
-        "Cifrado AES/RSA (3.5 años)",
-        "CSRF (HMAC-SHA256) (6 meses)",
-        "Helmet / Security Headers (6 meses)",
-        "OWASP Top 10 (aplicado en proyectos)",
-        "Pruebas Unitarias — Jest + Vitest (6 meses)",
-        "SonarCloud (6 meses)",
-        "SCRUM (10 meses)",
-        "Docker (1 año)",
-        "GitHub Actions / CI/CD (1 año)",
-        "DigitalOcean — VPS + Spaces (S3) (6 meses)",
-        "Git / GitHub (3 años)",
-        "SOLID (2 años)",
-        "Arquitectura Limpia / DDD (2 años)",
-        "Event-Driven Architecture (6 meses)",
-        "Microservicios (1 año)",
-        "pnpm Workspaces — Monorepo (6 meses)",
-        "ApiDog / Postman / Insomnia",
-        "Claude Code + MCP (Model Context Protocol)",
-        "Desarrollo asistido por IA (Claude, Gemini)"
-    ],
-    en: [
-        "C# / .NET Core 6/8/10 (3 years)",
-        "SQL Server / T-SQL (3 years)",
-        "Stored Procedures (3 years)",
-        "PostgreSQL 15/16 (1 year)",
-        "Redis — Cache (6 months)",
-        "Python 3.x (1 year)",
-        "Lambda Expressions / LINQ (3 years)",
-        "React 19 / Next.js 16 (2 years)",
-        "TanStack Query (6 months)",
-        "React Hook Form + Zod (6 months)",
-        "Tailwind CSS (1 year)",
-        "Framer Motion (6 months)",
-        "jQuery (2 years)",
-        "Vue.js 3 (1 year)",
-        "Angular 17+ (1 year)",
-        "TypeScript 5 (1 year)",
-        "JavaScript ES2024 (3 years)",
-        "Node.js 18/20 (3 years)",
-        "NestJS 11 (1 year)",
-        "REST API (3 years)",
-        "Swagger / OpenAPI (2 years)",
-        "Entity Framework (3 years)",
-        "Prisma ORM (6 months)",
-        "OAuth2 / JWT + Refresh Token Rotation (2 years)",
-        "OTP (bcrypt + SHA-256) (6 months)",
-        "AES/RSA Encryption (3.5 years)",
-        "CSRF (HMAC-SHA256) (6 months)",
-        "Helmet / Security Headers (6 months)",
-        "OWASP Top 10 (applied in projects)",
-        "Unit Testing — Jest + Vitest (6 months)",
-        "SonarCloud (6 months)",
-        "SCRUM (10 months)",
-        "Docker (1 year)",
-        "GitHub Actions / CI/CD (1 year)",
-        "DigitalOcean — VPS + Spaces (S3) (6 months)",
-        "Git / GitHub (3 years)",
-        "SOLID (2 years)",
-        "Clean Architecture / DDD (2 years)",
-        "Event-Driven Architecture (6 months)",
-        "Microservices (1 year)",
-        "pnpm Workspaces — Monorepo (6 months)",
-        "ApiDog / Postman / Insomnia",
-        "Claude Code + MCP (Model Context Protocol)",
-        "AI-assisted development (Claude, Gemini)"
-    ]
+/**
+ * Skills, one list per output. Each output needs a different granularity (web chips,
+ * ATS keywords with years, 12 pills that must fit the one-page PDF), so the lists are
+ * separate on purpose — but each is defined once for both languages, and years of
+ * experience live only in ATS_SKILLS.
+ *
+ * Adding a skill: put it in ATS_SKILLS with its experience; add it to WEB_SKILLS if it
+ * deserves a chip on the site, and to CORE_SKILLS only if it is top-12 material.
+ */
+import type { Localizable, Localized } from '../i18n/lang';
+
+export type SkillCategory = 'backend' | 'frontend' | 'devops' | 'ai';
+
+/** "Stack" section of the web, one tab per category (tab order = key order). */
+export const WEB_SKILLS: Record<SkillCategory, readonly string[]> = {
+  backend: [
+    '.NET Core 6/8/10', 'C#', 'SQL Server', 'PostgreSQL', 'Python',
+    'Entity Framework', 'Stored Procedures', 'REST API', 'Swagger',
+    'Lambda / LINQ', 'Redis', 'Microservices', 'Event-Driven',
+  ],
+  frontend: [
+    'React 19', 'Next.js 16', 'TanStack Query', 'React Hook Form', 'Zod',
+    'Framer Motion', 'Vue.js 3', 'Angular 17+', 'JavaScript ES2024',
+    'TypeScript 5', 'NestJS 11', 'Tailwind CSS v4', 'Bootstrap 5',
+  ],
+  devops: [
+    'GitHub Actions', 'CI/CD', 'SonarCloud', 'Docker', 'DigitalOcean',
+    'Git / GitHub', 'OWASP', 'SCRUM',
+  ],
+  ai: [
+    'Claude (Anthropic)', 'MCP', 'Claude Code / AI Agents',
+    'Gemini', 'AI Integration',
+  ],
 };
+
+export interface AtsSkill {
+  name: Localizable;
+  /** Experience in months; rendered as "3 años" / "6 months". */
+  months?: number;
+  /** Shown in place of a duration, e.g. "(applied in projects)". */
+  note?: Localized;
+}
+
+/** "Technical skills" line of the ATS PDF — the only place that states years per skill. */
+export const ATS_SKILLS: readonly AtsSkill[] = [
+  { name: 'C# / .NET Core 6/8/10', months: 36 },
+  { name: 'SQL Server / T-SQL', months: 36 },
+  { name: { es: 'Procedimientos Almacenados', en: 'Stored Procedures' }, months: 36 },
+  { name: 'PostgreSQL 15/16', months: 12 },
+  { name: 'Redis — Cache', months: 6 },
+  { name: 'Python 3.x', months: 12 },
+  { name: { es: 'Expresiones Lambda / LINQ', en: 'Lambda Expressions / LINQ' }, months: 36 },
+  { name: 'React 19 / Next.js 16', months: 24 },
+  { name: 'TanStack Query', months: 6 },
+  { name: 'React Hook Form + Zod', months: 6 },
+  { name: 'Tailwind CSS v4', months: 36 },
+  { name: 'Framer Motion', months: 6 },
+  { name: 'jQuery', months: 24 },
+  { name: 'Vue.js 3', months: 12 },
+  { name: 'Angular 17+', months: 12 },
+  { name: 'TypeScript 5', months: 12 },
+  { name: 'JavaScript ES2024', months: 36 },
+  { name: 'Node.js 18/20', months: 36 },
+  { name: 'NestJS 11', months: 12 },
+  { name: 'REST API', months: 36 },
+  { name: 'Swagger / OpenAPI', months: 24 },
+  { name: 'Entity Framework', months: 36 },
+  { name: 'Prisma ORM', months: 6 },
+  { name: 'OAuth2 / JWT + Refresh Token Rotation', months: 24 },
+  { name: 'OTP (bcrypt + SHA-256)', months: 6 },
+  { name: { es: 'Cifrado AES/RSA', en: 'AES/RSA Encryption' }, months: 42 },
+  { name: 'CSRF (HMAC-SHA256)', months: 6 },
+  { name: 'Helmet / Security Headers', months: 6 },
+  { name: 'OWASP Top 10', note: { es: 'aplicado en proyectos', en: 'applied in projects' } },
+  { name: { es: 'Pruebas Unitarias — Jest + Vitest', en: 'Unit Testing — Jest + Vitest' }, months: 6 },
+  { name: 'SonarCloud', months: 6 },
+  { name: 'SCRUM', months: 10 },
+  { name: 'Docker', months: 12 },
+  { name: 'GitHub Actions / CI/CD', months: 12 },
+  { name: 'DigitalOcean — VPS + Spaces (S3)', months: 6 },
+  { name: 'Git / GitHub', months: 36 },
+  { name: 'SOLID', months: 24 },
+  { name: { es: 'Arquitectura Limpia / DDD', en: 'Clean Architecture / DDD' }, months: 24 },
+  { name: 'Event-Driven Architecture', months: 6 },
+  { name: { es: 'Microservicios', en: 'Microservices' }, months: 12 },
+  { name: 'pnpm Workspaces — Monorepo', months: 6 },
+  { name: 'ApiDog / Postman / Insomnia' },
+  { name: 'Claude Code + MCP (Model Context Protocol)' },
+  { name: { es: 'Desarrollo asistido por IA (Claude, Gemini)', en: 'AI-assisted development (Claude, Gemini)' } },
+];
+
+/** Sidebar pills of the one-page visual PDF. Keep it at 12 so the page doesn't overflow. */
+export const CORE_SKILLS: readonly Localizable[] = [
+  'C# / .NET Core 6/8/10',
+  'React 19 / Next.js 16',
+  'SQL Server / T-SQL',
+  'Node.js / NestJS 11',
+  'TypeScript 5',
+  'Entity Framework',
+  'OAuth2 / JWT',
+  { es: 'Cifrado AES / RSA', en: 'AES / RSA Encryption' },
+  'Docker',
+  'SOLID / Clean Arch',
+  'Git / GitHub',
+  'PostgreSQL 15/16',
+];

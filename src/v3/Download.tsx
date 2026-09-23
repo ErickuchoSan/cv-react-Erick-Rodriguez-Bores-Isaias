@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { lazy, Suspense, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { THEMES, ACCENT_OPTIONS, type ThemeName } from './theme';
 import type { PdfTheme } from '../components/PDF/leafStyles';
@@ -37,10 +37,11 @@ export function DownloadV3({ lang, themeName, accent }: Props) {
   };
 
   useLayoutEffect(() => {
-    if (!open || !btnRef.current) return;
+    const btn = btnRef.current;
+    if (!open || !btn) return;
     let raf = 0;
     const measure = () => {
-      const r = btnRef.current!.getBoundingClientRect();
+      const r = btn.getBoundingClientRect();
       const width = Math.min(Math.max(r.width, 280), window.innerWidth - 24);
       const left = Math.max(12, Math.min(r.left, window.innerWidth - width - 12));
       setPos({ left, top: r.bottom + 8, width });
@@ -86,6 +87,8 @@ export function DownloadV3({ lang, themeName, accent }: Props) {
   const accentKey = ACCENT_OPTIONS.find((a) => a.value === accent)?.key;
   const accentLabel = accentKey ? translations[lang].accents[accentKey] : accent;
   const theme = THEMES[themeName];
+  // Stable identity: a new object would make every open PDF regenerate on each re-render.
+  const pdfTheme = useMemo(() => toPdfTheme(themeName), [themeName]);
   const fontLabel = theme.display === theme.sans
     ? `${theme.display} (sans)`
     : `${theme.display} + ${theme.sans}`;
@@ -128,7 +131,7 @@ export function DownloadV3({ lang, themeName, accent }: Props) {
               lang={lang}
               onClose={close}
               themeName={theme.label}
-              theme={toPdfTheme(themeName)}
+              theme={pdfTheme}
               accent={accent}
               accentLabel={accentLabel}
               fontLabel={fontLabel}

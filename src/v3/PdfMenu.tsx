@@ -1,4 +1,4 @@
-import { useEffect, useRef, type KeyboardEvent, type ReactElement } from 'react';
+import { useEffect, useMemo, useRef, type KeyboardEvent, type ReactElement } from 'react';
 import { usePDF, type DocumentProps } from '@react-pdf/renderer';
 import { CVDocumentLeaf } from '../components/PDF/CVDocumentLeaf';
 import { CVDocumentATS } from '../components/PDF/CVDocumentATS';
@@ -115,6 +115,15 @@ export default function PdfMenu({ lang, onClose, themeName, theme, accent, accen
 
   const onDownloaded = () => { setTimeout(() => onClose(true), CLOSE_AFTER_DOWNLOAD_MS); };
 
+  // Each PDF re-renders whenever its document element changes identity, so the elements
+  // are rebuilt only when the theme or the accent actually change.
+  const docs = useMemo(() => ({
+    leafEs: <CVDocumentLeaf lang="es" theme={theme} accent={accent} />,
+    leafEn: <CVDocumentLeaf lang="en" theme={theme} accent={accent} />,
+    atsEs: <CVDocumentATS lang="es" />,
+    atsEn: <CVDocumentATS lang="en" />,
+  }), [theme, accent]);
+
   return (
     <div ref={rootRef} role="group" aria-label={t.cta} tabIndex={-1} onKeyDown={onKeyDown} style={{ ...wrapStyle, outline: 'none' }}>
       <div style={headerStyle}>{t.visual}</div>
@@ -129,16 +138,16 @@ export default function PdfMenu({ lang, onClose, themeName, theme, accent, accen
           <span style={{ fontStyle: 'italic' }}>{fontLabel}</span>
         </div>
       </div>
-      <PdfLink doc={<CVDocumentLeaf lang="es" theme={theme} accent={accent} />} fileName="CV_Erick_Rodriguez_ES.pdf"
+      <PdfLink doc={docs.leafEs} fileName="CV_Erick_Rodriguez_ES.pdf"
         label={t.es} flag="🇲🇽" cursor="ES" t={t} onDownloaded={onDownloaded} />
-      <PdfLink doc={<CVDocumentLeaf lang="en" theme={theme} accent={accent} />} fileName="CV_Erick_Rodriguez_EN.pdf"
+      <PdfLink doc={docs.leafEn} fileName="CV_Erick_Rodriguez_EN.pdf"
         label={t.en} flag="🇺🇸" cursor="EN" t={t} onDownloaded={onDownloaded} />
 
       <div style={headerStyle}>{t.ats}</div>
       <div style={noteStyle}>{t.atsNote}</div>
-      <PdfLink doc={<CVDocumentATS lang="es" />} fileName="CV_Erick_Rodriguez_ATS_ES.pdf"
+      <PdfLink doc={docs.atsEs} fileName="CV_Erick_Rodriguez_ATS_ES.pdf"
         label={t.atsEs} flag="🇲🇽" cursor="ATS" t={t} onDownloaded={onDownloaded} />
-      <PdfLink doc={<CVDocumentATS lang="en" />} fileName="CV_Erick_Rodriguez_ATS_EN.pdf"
+      <PdfLink doc={docs.atsEn} fileName="CV_Erick_Rodriguez_ATS_EN.pdf"
         label={t.atsEn} flag="🇺🇸" cursor="ATS" t={t} onDownloaded={onDownloaded} />
     </div>
   );

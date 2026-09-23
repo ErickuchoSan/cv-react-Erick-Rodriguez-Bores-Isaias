@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Reveal, WordsMask, Counter, Magnetic, Tilt, useInView } from './primitives';
+import { Reveal, WordsMask, Counter, Magnetic, Tilt } from './primitives';
+import { useInView } from './hooks';
 import { SectionHead, SectionTitle } from './chrome';
 import { TechIcon } from './TechIcon';
 import { ProjectModal } from './projects/ProjectModal';
@@ -355,9 +356,9 @@ export function ExperienceV3({ data: D, lang, num }: SectionProps) {
 
 // ═══ SKILLS ═══════════════════════════════════════════════════════════════
 function LangBar({ pct }: { pct: number }) {
-  const [ref, inView] = useInView({ threshold: 0.4 });
+  const [ref, inView] = useInView<HTMLDivElement>({ threshold: 0.4 });
   return (
-    <div ref={ref as never} style={{ height: 4, background: 'var(--line)', position: 'relative' }}>
+    <div ref={ref} style={{ height: 4, background: 'var(--line)', position: 'relative' }}>
       <div style={{
         position: 'absolute', left: 0, top: 0, bottom: 0,
         width: inView ? `${pct}%` : '0%',
@@ -596,7 +597,7 @@ export function ProjectsV3({ data: D, lang, num }: SectionProps) {
           {D.projects.map((p, i) => (
             <div key={p.id} inert={active !== i} aria-hidden={active !== i} style={{
               position: active === i ? 'relative' : 'absolute',
-              inset: active === i ? 'auto' : 48 as never,
+              inset: active === i ? 'auto' : 48,
               opacity: active === i ? 1 : 0,
               transform: active === i ? 'translateY(0)' : 'translateY(30px)',
               transition: 'opacity 0.6s, transform 0.6s',

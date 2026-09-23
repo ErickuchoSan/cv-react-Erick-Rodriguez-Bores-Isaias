@@ -5,7 +5,7 @@ import { CursorV3, NavV3, CornerTools, BottomHUD, MarqueeV3 } from './chrome';
 import { HeroV3 } from './Hero';
 import { AboutV3, ExperienceV3, SkillsV3, ProjectsV3, ContactV3 } from './sections';
 import { ClaudeEngineeringV3 } from './sections/ClaudeEngineering';
-import { useScrollProgress } from './primitives';
+import { onScrollFrame } from './hooks';
 import { useLanguage } from '../context/LanguageContext';
 import { buildCV } from '../data/model';
 import { PROJECTS } from '../data/projects';
@@ -54,7 +54,6 @@ export function AppV3() {
   const { language, setLanguage } = useLanguage();
   const [tweaks, setTweaks] = useState<Tweaks>(loadTweaks);
   const [active, setActive] = useState<SectionId>('hero');
-  const progress = useScrollProgress();
   const t = translations[language];
 
   const data = useMemo(() => buildCV(language), [language]);
@@ -99,9 +98,9 @@ export function AppV3() {
       }
       setActive(cur);
     };
-    window.addEventListener('scroll', on, { passive: true });
+    const off = onScrollFrame(on);
     on();
-    return () => window.removeEventListener('scroll', on);
+    return off;
   }, []);
 
   const sectionTitles: Record<SectionId, string> = {
@@ -177,7 +176,7 @@ export function AppV3() {
         onToggleLang={toggleLang}
         lang={language}
       />
-      <BottomHUD progress={progress} active={active} sections={navSections} />
+      <BottomHUD active={active} sections={navSections} />
 
       <main>
         {SECTION_ORDER.map((id) => <Fragment key={id}>{sections[id]}</Fragment>)}

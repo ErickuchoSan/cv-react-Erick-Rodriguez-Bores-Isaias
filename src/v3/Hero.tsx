@@ -1,61 +1,85 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { Reveal, MaskReveal, Magnetic, Parallax, Tilt } from './primitives';
 import { TechIcon } from './TechIcon';
 import { DownloadV3 } from './Download';
-import type { ThemeName } from './theme';
+import { THEMES, type ThemeName } from './theme';
+import { useMediaQuery, useReducedMotion } from './hooks';
 import type { CV } from '../data/model';
 import type { Lang } from '../i18n/lang';
 import { translations } from '../i18n/translations';
 import { fill } from '../lib/format';
 import { richText } from '../lib/richText';
 
-function ShaderBG() {
+const FRAGMENT_SHADER = `
+  precision highp float;
+  uniform vec2 u_res; uniform float u_t; uniform vec2 u_m; uniform vec3 u_accent; uniform vec3 u_base;
+  vec2 hash(vec2 p){ p=vec2(dot(p,vec2(127.1,311.7)), dot(p,vec2(269.5,183.3))); return -1.+2.*fract(sin(p)*43758.5453123); }
+  float noise(vec2 p){
+    vec2 i=floor(p), f=fract(p);
+    vec2 u=f*f*(3.-2.*f);
+    return mix(mix(dot(hash(i),f),dot(hash(i+vec2(1,0)),f-vec2(1,0)),u.x),
+               mix(dot(hash(i+vec2(0,1)),f-vec2(0,1)),dot(hash(i+vec2(1,1)),f-vec2(1,1)),u.x),u.y);
+  }
+  float fbm(vec2 p){ float v=0., a=0.5; for(int i=0;i<5;i++){ v+=a*noise(p); p*=2.; a*=0.5;} return v; }
+  void main(){
+    vec2 uv = (gl_FragCoord.xy - 0.5*u_res) / u_res.y;
+    vec2 m = u_m * 0.5;
+    float t = u_t * 0.08;
+    vec2 q = vec2(fbm(uv + t + m), fbm(uv + vec2(1.) - t));
+    vec2 r = vec2(fbm(uv + q + vec2(1.7,9.2) + t*1.5), fbm(uv + q + vec2(8.3,2.8) - t));
+    float f = fbm(uv + r);
+    vec3 col = mix(u_base, u_accent, smoothstep(0.2,0.9,f) * 0.35);
+    float vig = smoothstep(1.3, 0.3, length(uv));
+    col = mix(u_base, col, vig);
+    gl_FragColor = vec4(col, 1.);
+  }
+`;
+
+const VERTEX_SHADER = `attribute vec2 p; void main(){ gl_Position = vec4(p,0.,1.); }`;
+
+function hexToVec3(hex: string): [number, number, number] {
+  const n = parseInt(hex.replace('#', ''), 16);
+  return [(n >> 16 & 255) / 255, (n >> 8 & 255) / 255, (n & 255) / 255];
+}
+
+/** Animated WebGL background. Static gradient on touch, small screens and reduced motion. */
+function ShaderBG({ accent, base }: { accent: string; base: string }) {
   const ref = useRef<HTMLCanvasElement>(null);
-  const isMobile = typeof window !== 'undefined'
-    && (matchMedia('(pointer: coarse)').matches || window.innerWidth < 768);
+  const coarse = useMediaQuery('(pointer: coarse)');
+  const wide = useMediaQuery('(min-width: 768px)');
+  const reduce = useReducedMotion();
+  const animated = !coarse && wide && !reduce;
+  const colors = useRef({ accent: hexToVec3(accent), base: hexToVec3(base) });
+
   useEffect(() => {
-    if (isMobile) return;
+    colors.current = { accent: hexToVec3(accent), base: hexToVec3(base) };
+  }, [accent, base]);
+
+  useEffect(() => {
+    if (!animated) return;
     const canvas = ref.current;
     if (!canvas) return;
-    // Pause shader when hero is offscreen — saves GPU + battery.
-    let paused = false;
-    const io = new IntersectionObserver(([e]) => { paused = !e.isIntersecting; }, { threshold: 0 });
-    io.observe(canvas);
     const gl = (canvas.getContext('webgl') || canvas.getContext('experimental-webgl')) as WebGLRenderingContext | null;
     if (!gl) return;
 
-    const vs = `attribute vec2 p; void main(){ gl_Position = vec4(p,0.,1.); }`;
-    const fs = `
-      precision highp float;
-      uniform vec2 u_res; uniform float u_t; uniform vec2 u_m; uniform vec3 u_accent; uniform vec3 u_base;
-      vec2 hash(vec2 p){ p=vec2(dot(p,vec2(127.1,311.7)), dot(p,vec2(269.5,183.3))); return -1.+2.*fract(sin(p)*43758.5453123); }
-      float noise(vec2 p){
-        vec2 i=floor(p), f=fract(p);
-        vec2 u=f*f*(3.-2.*f);
-        return mix(mix(dot(hash(i),f),dot(hash(i+vec2(1,0)),f-vec2(1,0)),u.x),
-                   mix(dot(hash(i+vec2(0,1)),f-vec2(0,1)),dot(hash(i+vec2(1,1)),f-vec2(1,1)),u.x),u.y);
-      }
-      float fbm(vec2 p){ float v=0., a=0.5; for(int i=0;i<5;i++){ v+=a*noise(p); p*=2.; a*=0.5;} return v; }
-      void main(){
-        vec2 uv = (gl_FragCoord.xy - 0.5*u_res) / u_res.y;
-        vec2 m = u_m * 0.5;
-        float t = u_t * 0.08;
-        vec2 q = vec2(fbm(uv + t + m), fbm(uv + vec2(1.) - t));
-        vec2 r = vec2(fbm(uv + q + vec2(1.7,9.2) + t*1.5), fbm(uv + q + vec2(8.3,2.8) - t));
-        float f = fbm(uv + r);
-        vec3 col = mix(u_base, u_accent, smoothstep(0.2,0.9,f) * 0.35);
-        float vig = smoothstep(1.3, 0.3, length(uv));
-        col = mix(u_base, col, vig);
-        gl_FragColor = vec4(col, 1.);
-      }
-    `;
     const mkShader = (type: number, src: string) => {
-      const s = gl.createShader(type)!;
-      gl.shaderSource(s, src); gl.compileShader(s); return s;
+      const sh = gl.createShader(type);
+      if (!sh) throw new Error('WebGL: createShader failed');
+      gl.shaderSource(sh, src);
+      gl.compileShader(sh);
+      if (!gl.getShaderParameter(sh, gl.COMPILE_STATUS)) throw new Error(`WebGL shader: ${gl.getShaderInfoLog(sh)}`);
+      return sh;
     };
-    const prog = gl.createProgram()!;
-    gl.attachShader(prog, mkShader(gl.VERTEX_SHADER, vs));
-    gl.attachShader(prog, mkShader(gl.FRAGMENT_SHADER, fs));
+    const prog = gl.createProgram();
+    if (!prog) return;
+    try {
+      gl.attachShader(prog, mkShader(gl.VERTEX_SHADER, VERTEX_SHADER));
+      gl.attachShader(prog, mkShader(gl.FRAGMENT_SHADER, FRAGMENT_SHADER));
+    } catch (err) {
+      // Decorative only: without the shader the hero keeps its plain background.
+      console.warn(err);
+      return;
+    }
     gl.linkProgram(prog); gl.useProgram(prog);
 
     const buf = gl.createBuffer();
@@ -85,39 +109,40 @@ function ShaderBG() {
     };
     window.addEventListener('resize', resize); resize();
 
-    const hex = (h: string): [number, number, number] => {
-      const c = h.startsWith('#') ? h : '#0a0a0a';
-      const n = parseInt(c.replace('#', ''), 16);
-      return [(n >> 16 & 255) / 255, (n >> 8 & 255) / 255, (n & 255) / 255];
-    };
-
-    let raf = 0; const t0 = performance.now();
+    let raf = 0;
+    let visible = true;
+    const t0 = performance.now();
     const tick = () => {
-      if (!paused && document.visibilityState !== 'hidden') {
-        const cs = getComputedStyle(document.documentElement);
-        const accent = cs.getPropertyValue('--accent').trim() || '#ff5b2e';
-        const bg = cs.getPropertyValue('--bg').trim() || '#0a0a0a';
-        const [r, g, b] = hex(accent);
-        const [br, bg_, bb] = hex(bg);
-        gl.uniform2f(u_res, canvas.width, canvas.height);
-        gl.uniform1f(u_t, (performance.now() - t0) / 1000);
-        gl.uniform2f(u_m, mx, my);
-        gl.uniform3f(u_accent, r, g, b);
-        gl.uniform3f(u_base, br, bg_, bb);
-        gl.drawArrays(gl.TRIANGLES, 0, 6);
-      }
+      const { accent: a, base: b } = colors.current;
+      gl.uniform2f(u_res, canvas.width, canvas.height);
+      gl.uniform1f(u_t, (performance.now() - t0) / 1000);
+      gl.uniform2f(u_m, mx, my);
+      gl.uniform3f(u_accent, a[0], a[1], a[2]);
+      gl.uniform3f(u_base, b[0], b[1], b[2]);
+      gl.drawArrays(gl.TRIANGLES, 0, 6);
       raf = requestAnimationFrame(tick);
     };
-    tick();
+    // The loop runs only while the hero is on screen and the tab is visible.
+    const sync = () => {
+      const run = visible && document.visibilityState !== 'hidden';
+      if (run && !raf) raf = requestAnimationFrame(tick);
+      if (!run && raf) { cancelAnimationFrame(raf); raf = 0; }
+    };
+    const io = new IntersectionObserver(([entry]) => { visible = Boolean(entry?.isIntersecting); sync(); }, { threshold: 0 });
+    io.observe(canvas);
+    document.addEventListener('visibilitychange', sync);
+    sync();
+
     return () => {
       cancelAnimationFrame(raf);
       io.disconnect();
+      document.removeEventListener('visibilitychange', sync);
       window.removeEventListener('mousemove', onMove);
       window.removeEventListener('resize', resize);
     };
-  }, [isMobile]);
+  }, [animated]);
 
-  if (isMobile) {
+  if (!animated) {
     return (
       <div aria-hidden="true" style={{
         position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none',
@@ -141,24 +166,33 @@ interface TerminalProps {
   status: string;
 }
 
+type TerminalLine = { t: 'cmd' | 'out'; x: string };
+
+/** Types a short shell session. With reduced motion it shows the finished session at once. */
 function Terminal({ name, role, stack, log, status }: TerminalProps) {
-  const [lines, setLines] = useState<{ t: 'cmd' | 'out'; x: string }[]>([]);
+  const reduce = useReducedMotion();
+  const script = useMemo(() => [
+    { cmd: 'whoami', out: [name, role] },
+    { cmd: 'stack --json', out: ['[', ...stack.map((s, i) => `  "${s}"${i < stack.length - 1 ? ',' : ''}`), ']'] },
+    { cmd: `git log --oneline -${log.length}`, out: [...log] },
+    { cmd: 'echo $STATUS', out: [status] },
+  ], [name, role, stack, log, status]);
+  const finished = useMemo(
+    () => script.flatMap((step): TerminalLine[] => [{ t: 'cmd', x: step.cmd }, ...step.out.map((x): TerminalLine => ({ t: 'out', x }))]),
+    [script],
+  );
+  const [typed, setTyped] = useState<TerminalLine[]>([]);
   const [typing, setTyping] = useState('');
   const [blink, setBlink] = useState(true);
 
   useEffect(() => {
-    if (window.innerWidth < 768) return;
-    const script: { cmd: string; out: string[] }[] = [
-      { cmd: 'whoami', out: [name, role] },
-      { cmd: 'stack --json', out: ['[', ...stack.map((s, i) => `  "${s}"${i < stack.length - 1 ? ',' : ''}`), ']'] },
-      { cmd: `git log --oneline -${log.length}`, out: [...log] },
-      { cmd: 'echo $STATUS', out: [status] },
-    ];
+    if (reduce || window.innerWidth < 768) return;
     let mounted = true, idx = 0;
-    const history: { t: 'cmd' | 'out'; x: string }[] = [];
+    const history: TerminalLine[] = [];
     const run = async () => {
       while (mounted && idx < script.length) {
         const step = script[idx];
+        if (!step) break;
         for (let i = 0; i <= step.cmd.length; i++) {
           if (!mounted) return;
           setTyping(step.cmd.slice(0, i));
@@ -168,7 +202,7 @@ function Terminal({ name, role, stack, log, status }: TerminalProps) {
         history.push({ t: 'cmd', x: step.cmd });
         step.out.forEach((o) => history.push({ t: 'out', x: o }));
         if (!mounted) return;
-        setLines([...history]);
+        setTyped([...history]);
         setTyping('');
         await new Promise((r) => setTimeout(r, 700));
         idx++;
@@ -177,7 +211,9 @@ function Terminal({ name, role, stack, log, status }: TerminalProps) {
     run();
     const b = setInterval(() => setBlink((v) => !v), 530);
     return () => { mounted = false; clearInterval(b); };
-  }, [name, role, stack, log, status]);
+  }, [script, reduce]);
+
+  const lines = reduce ? finished : typed;
 
   return (
     <div style={{
@@ -210,7 +246,7 @@ function Terminal({ name, role, stack, log, status }: TerminalProps) {
           <span style={{ color: 'var(--accent-ink)' }}>❯ </span>{typing}
           <span style={{
             display: 'inline-block', width: 8, height: 14,
-            background: blink ? 'var(--accent)' : 'transparent',
+            background: blink && !reduce ? 'var(--accent)' : 'transparent',
             marginLeft: 2, verticalAlign: 'text-top',
           }} />
         </div>
@@ -239,7 +275,7 @@ export function HeroV3({ data: D, lang, themeName, accent, onNav }: HeroProps) {
       padding: '120px 5vw 40px',
       display: 'flex', flexDirection: 'column', justifyContent: 'space-between',
     }}>
-      <ShaderBG />
+      <ShaderBG accent={accent} base={THEMES[themeName].bg} />
 
       <div style={{
         position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none',

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type ReactNode, type CSSProperties } from 'react';
 import type { ThemeName } from './theme';
+import { useMediaQuery, usePointerEffects, useScrollProgress } from './hooks';
 import type { Lang } from '../i18n/lang';
 import { translations } from '../i18n/translations';
 
@@ -8,20 +9,23 @@ export function CursorV3() {
   const dotRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
   const [state, setState] = useState({ hover: false, label: '' });
-  const [enabled, setEnabled] = useState(false);
+  const pointerEffects = usePointerEffects();
+  const wide = useMediaQuery('(min-width: 768px)');
+  const enabled = pointerEffects && wide;
 
+  // The native cursor is hidden only while this one is mounted (see index.css).
   useEffect(() => {
-    setEnabled(!matchMedia('(pointer: coarse)').matches && window.innerWidth >= 768);
-  }, []);
+    document.documentElement.classList.toggle('has-custom-cursor', enabled);
+    return () => document.documentElement.classList.remove('has-custom-cursor');
+  }, [enabled]);
 
   useEffect(() => {
     if (!enabled) return;
     const dot = dotRef.current, ring = ringRef.current;
     let mx = window.innerWidth / 2, my = window.innerHeight / 2;
     let rx = mx, ry = my, dx = mx, dy = my;
-    const onMove = (e: MouseEvent) => { mx = e.clientX; my = e.clientY; };
-    window.addEventListener('mousemove', onMove);
     let raf = 0;
+    // Runs while the dot/ring are catching up with the pointer, then sleeps.
     const tick = () => {
       dx += (mx - dx) * 0.5;
       dy += (my - dy) * 0.5;
@@ -29,18 +33,22 @@ export function CursorV3() {
       ry += (my - ry) * 0.12;
       if (dot) dot.style.transform = `translate(${dx}px,${dy}px) translate(-50%,-50%)`;
       if (ring) ring.style.transform = `translate(${rx}px,${ry}px) translate(-50%,-50%)`;
-      raf = requestAnimationFrame(tick);
+      const settled = Math.abs(mx - rx) < 0.1 && Math.abs(my - ry) < 0.1;
+      raf = settled ? 0 : requestAnimationFrame(tick);
     };
-    tick();
+    const onMove = (e: MouseEvent) => {
+      mx = e.clientX; my = e.clientY;
+      if (!raf) raf = requestAnimationFrame(tick);
+    };
     const onOver = (e: MouseEvent) => {
-      const t = (e.target as HTMLElement)?.closest?.('[data-cursor]');
-      if (t) {
-        setState({ hover: true, label: t.getAttribute('data-cursor') || '' });
-      } else {
-        setState({ hover: false, label: '' });
-      }
+      const t = (e.target as HTMLElement | null)?.closest?.('[data-cursor]');
+      const hover = Boolean(t);
+      const label = t?.getAttribute('data-cursor') ?? '';
+      setState((prev) => (prev.hover === hover && prev.label === label ? prev : { hover, label }));
     };
+    window.addEventListener('mousemove', onMove);
     document.addEventListener('mouseover', onOver);
+    tick();
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener('mousemove', onMove);
@@ -63,7 +71,7 @@ export function CursorV3() {
         width: big ? 56 : (state.hover ? 30 : 24),
         height: big ? 56 : (state.hover ? 30 : 24),
         borderRadius: '50%',
-        border: `1px solid ${big ? 'var(--accent-ink)' : 'var(--fg)'}`,
+        border: `1px solid ${big ? 'var(--accent)' : 'var(--fg)'}`,
         background: big ? 'var(--accent)' : 'transparent',
         color: big ? 'var(--on-accent)' : 'var(--fg)',
         opacity: state.hover ? 1 : 0.35,
@@ -242,7 +250,8 @@ export function CornerTools({ theme, themeLabel, accentLabel, city, onCycleTheme
 }
 
 // ─── Bottom HUD ──────────────────────────────────────────────────────────
-export function BottomHUD({ progress, active, sections }: { progress: number; active: string; sections: NavSection[] }) {
+export function BottomHUD({ active, sections }: { active: string; sections: NavSection[] }) {
+  const progress = useScrollProgress();
   const idx = sections.findIndex((s) => s.id === active);
   return (
     <div aria-hidden="true" style={{

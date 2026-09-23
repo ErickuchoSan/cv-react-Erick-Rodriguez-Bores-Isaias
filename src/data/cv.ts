@@ -42,12 +42,12 @@ export const CONTACT = {
 /** `{years}` is replaced with the computed experience, unit included ("3 años" / "3 years"). */
 export const PROFILE = {
   summary: {
-    es: 'Con {years} de experiencia en desarrollo de software empresarial, diseño e implemento arquitecturas escalables con C#/.NET Core 6/8/10, SQL Server y Node.js (3 años), React 19 (2 años), y Next.js 16, PostgreSQL y NestJS 11 (1 año). Experiencia sólida en REST APIs, Entity Framework, OAuth2/JWT, cifrado AES/RSA, Docker y Python. Trabajo con Claude Code y reviso el código contra un marco de 133 principios de diseño (OWASP Top 10, WCAG 2.2, Core Web Vitals).',
-    en: 'With {years} of experience in enterprise software development, I design and implement scalable architectures with C#/.NET Core 6/8/10, SQL Server and Node.js (3 years), React 19 (2 years), and Next.js 16, PostgreSQL and NestJS 11 (1 year). Solid experience in REST APIs, Entity Framework, OAuth2/JWT, AES/RSA encryption, Docker and Python. I work with Claude Code and review code against a 133-principle design framework (OWASP Top 10, WCAG 2.2, Core Web Vitals).',
+    es: 'Con {years} de experiencia en desarrollo de software empresarial, diseño e implemento arquitecturas escalables con C#/.NET Core 6/8/10, SQL Server y Node.js (3 años), React 19 (2 años), y Next.js 16, Angular, PostgreSQL y NestJS 11 (1 año). Experiencia sólida en REST APIs, Entity Framework, OAuth2/JWT, cifrado AES/RSA, Docker y Python. Trabajo con Claude Code y reviso el código contra un marco de 133 principios de diseño (OWASP Top 10, WCAG 2.2, Core Web Vitals).',
+    en: 'With {years} of experience in enterprise software development, I design and implement scalable architectures with C#/.NET Core 6/8/10, SQL Server and Node.js (3 years), React 19 (2 years), and Next.js 16, Angular, PostgreSQL and NestJS 11 (1 year). Solid experience in REST APIs, Entity Framework, OAuth2/JWT, AES/RSA encryption, Docker and Python. I work with Claude Code and review code against a 133-principle design framework (OWASP Top 10, WCAG 2.2, Core Web Vitals).',
   },
   current: {
-    es: 'Actualmente como Programador de Auditoría Senior en Grupo Salinas, lidero el desarrollo de sistemas críticos de auditoría interna (ADA/HONESTEL) con .NET Core 6, C#, SQL Server y OAuth2/JWT. Paralelamente desarrollo la plataforma Align Designs (freelance) con NestJS 11, Next.js 16, PostgreSQL y Docker. Trabajo por fases con skills por tecnología, seguimiento en ClickUp, pruebas por fase y CI/CD con SonarCloud, health checks y backups automáticos. Además opero un homelab self-hosted (Docker, Forgejo Actions, SonarQube, Trivy, Cloudflare).',
-    en: 'Currently as a Senior Audit Programmer at Grupo Salinas, I lead the development of critical internal audit systems (ADA/HONESTEL) with .NET Core 6, C#, SQL Server and OAuth2/JWT. In parallel, I develop the Align Designs platform (freelance) with NestJS 11, Next.js 16, PostgreSQL and Docker. I work in phases with tech-specific skills, ClickUp tracking, per-phase testing and CI/CD with SonarCloud, health checks and automated backups. I also run a self-hosted homelab (Docker, Forgejo Actions, SonarQube, Trivy, Cloudflare).',
+    es: 'Actualmente como Programador de Auditoría Senior en Grupo Salinas, lidero el desarrollo de sistemas críticos de auditoría interna y gestión de denuncias; desde julio de 2026 reconstruyo, como único desarrollador, el portal del área con .NET 10, Angular 22 y SQL Server. Paralelamente desarrollo la plataforma Align Designs (freelance) con NestJS 11, Next.js 16, PostgreSQL y Docker. Trabajo por fases con skills por tecnología, seguimiento en ClickUp, pruebas por fase y CI/CD con SonarCloud, health checks y backups automáticos. Además opero un homelab self-hosted (Docker, Forgejo Actions, SonarQube, Trivy, Cloudflare).',
+    en: 'Currently as a Senior Audit Programmer at Grupo Salinas, I lead the development of critical internal audit and complaint-management systems; since July 2026 I have been rebuilding the department’s portal as its sole developer with .NET 10, Angular 22 and SQL Server. In parallel, I develop the Align Designs platform (freelance) with NestJS 11, Next.js 16, PostgreSQL and Docker. I work in phases with tech-specific skills, ClickUp tracking, per-phase testing and CI/CD with SonarCloud, health checks and automated backups. I also run a self-hosted homelab (Docker, Forgejo Actions, SonarQube, Trivy, Cloudflare).',
   },
   availability: {
     es: 'Tiempo completo · Híbrido / Remoto · Abierto a oportunidades internacionales',
@@ -60,7 +60,7 @@ export const METRICS = {
   sqlOptimization: '40%',
   testSuites: '66',
   weeklyHoursSaved: '8h',
-  honestelEndpoints: 6,
+  complaintsApiEndpoints: 6,
 } as const;
 
 export interface Bullet extends Localized {
@@ -97,41 +97,45 @@ export const JOBS = [
     end: null,
     role: { es: 'Programador de Auditoría Senior', en: 'Senior Audit Programmer' },
     summary: {
-      es: 'Líder técnico responsable de la arquitectura, desarrollo y evolución de sistemas críticos de auditoría interna (ADA/HONESTEL) y aplicaciones de atención a fraudes.',
-      en: 'Technical lead responsible for architecture, development and evolution of critical internal audit systems (ADA/HONESTEL) and fraud-response applications.',
+      es: 'Líder técnico responsable de la arquitectura, desarrollo y evolución de sistemas críticos de auditoría interna y gestión de denuncias, y de aplicaciones de atención a fraudes.',
+      en: 'Technical lead responsible for the architecture, development and evolution of critical internal audit and complaint-management systems and fraud-response applications.',
     },
-    stack: ['.NET Core 6', 'C#', 'Tauri 2.x', 'Rust', 'React 19', 'SQL Server', 'OAuth2/JWT', 'Entity Framework', 'Python 3.10+', 'HTML/Bootstrap', 'Git'],
+    stack: ['.NET 10', 'ASP.NET Core', 'Angular 22', 'SQL Server', 'Dapper', 'C#', '.NET Core 6', 'Entity Framework', 'OAuth2/JWT', 'xUnit', 'Playwright', 'Python 3.10+', 'Tauri 2.x', 'Rust', 'React 19', 'HTML/Bootstrap'],
     functions: [
       {
         highlight: true,
+        es: 'Reconstruyo de punta a punta, como único desarrollador, el portal de auditoría y gestión de denuncias del área (en desarrollo desde julio de 2026): de .NET Framework 4.8 + WCF + jQuery a .NET 10 + Angular 22 + SQL Server, con modelo de datos, API y frontend nuevos (Clean Architecture, CQRS, Dapper).',
+        en: 'Rebuilding end to end, as the sole developer, the department’s audit and complaint-management portal (in development since July 2026): from .NET Framework 4.8 + WCF + jQuery to .NET 10 + Angular 22 + SQL Server, with a new data model, API and frontend (Clean Architecture, CQRS, Dapper).',
+      },
+      {
+        highlight: true,
+        es: 'Diseñé el nuevo esquema en SQL Server y la migración de ~4.8 millones de filas de 201 tablas con 108 procedimientos; el ensayo completo corre en ~7 minutos sin tocar el sistema actual.',
+        en: 'Designed the new SQL Server schema and the migration of ~4.8 million rows from 201 tables with 108 procedures; the full rehearsal runs in ~7 minutes without touching the current system.',
+      },
+      {
+        highlight: true,
+        es: 'Desarrollé la API en .NET 10 que integra el portal con el sistema de denuncias del grupo financiero a través de su API gateway (JWT RS256, OAuth2), y reimplementé su cifrado híbrido RSA-OAEP + AES-256 + HMAC-SHA256, compatible byte a byte con el componente anterior.',
+        en: 'Built the .NET 10 API that connects the portal to the financial group’s complaint system through its API gateway (JWT RS256, OAuth2), and reimplemented its hybrid RSA-OAEP + AES-256 + HMAC-SHA256 encryption, byte-for-byte compatible with the legacy component.',
+      },
+      {
+        es: 'Implementé autorización por expediente validada en el servidor en cada petición: solo el equipo del caso accede, con 5 roles, JWT, límite de peticiones, HSTS/CSP y bitácora de cada escritura.',
+        en: 'Implemented per-case authorization checked on the server on every request: only the case team gets access, with 5 roles, JWT, rate limiting, HSTS/CSP and an audit log of every write.',
+      },
+      {
         es: 'Desarrollo de pipelines de automatización con Python 3.10+ (pandas, pywin32/COM, pyodbc, Selenium): ingesta desde Outlook, extracción Excel, generación SQL transaccional y automatización de portales web internos.',
         en: 'Built automation pipelines with Python 3.10+ (pandas, pywin32/COM, pyodbc, Selenium): Outlook ingestion, Excel extraction, transactional SQL generation and internal web portal automation.',
       },
       {
-        highlight: true,
-        es: 'Desarrollo de API REST con .NET Core 6 integrando OAuth2 y tokenización JWT para autenticación segura.',
-        en: 'REST API development with .NET Core 6 integrating OAuth2 and JWT tokenization for secure authentication.',
+        es: 'Desarrollo de API REST con .NET Core 6 integrando OAuth2 y tokenización JWT, documentadas con Swagger y probadas con Postman/Insomnia.',
+        en: 'REST API development with .NET Core 6 integrating OAuth2 and JWT tokenization, documented with Swagger and tested with Postman/Insomnia.',
       },
       {
-        highlight: true,
-        es: 'Diseñé y desarrollé aplicación de escritorio Windows (Tauri 2.x + React 19 + TypeScript) para el área de fraudes: reconocimiento facial contra tres bases internas (general, listas rojas, empleados) vía API BAZ de Identidad Digital.',
-        en: 'Designed and developed a Windows desktop application (Tauri 2.x + React 19 + TypeScript) for the fraud team: facial recognition against three internal databases (general, blacklists, employees) via the BAZ Digital Identity API.',
+        es: 'Diseñé y desarrollé aplicación de escritorio Windows (Tauri 2.x + React 19 + TypeScript) para el área de fraudes: reconocimiento facial contra tres bases internas (general, listas rojas, empleados) vía la API de identidad digital del grupo.',
+        en: 'Designed and developed a Windows desktop application (Tauri 2.x + React 19 + TypeScript) for the fraud team: facial recognition against three internal databases (general, blacklists, employees) via the group’s digital identity API.',
       },
       {
         es: 'Implementé cifrado AES-256-GCM en Rust para protección de imágenes biométricas en tránsito y descifrado RSA-OAEP SHA-256 de IDs retornados, cumpliendo estándares de seguridad corporativos.',
         en: 'Implemented AES-256-GCM encryption in Rust to protect biometric images in transit and RSA-OAEP SHA-256 decryption of returned IDs, meeting corporate security standards.',
-      },
-      {
-        es: 'Arquitectura Backend basada en SOLID, Clean Architecture y principios DDD.',
-        en: 'Backend architecture based on SOLID, Clean Architecture and DDD principles.',
-      },
-      {
-        es: 'Refactorización de arquitectura legacy hacia proyecto con Entity Framework y principios limpios.',
-        en: 'Legacy architecture refactoring towards project with Entity Framework and clean principles.',
-      },
-      {
-        es: 'Documentación técnica con Swagger y pruebas de API con Postman/Insomnia.',
-        en: 'Technical documentation with Swagger and API testing with Postman/Insomnia.',
       },
       {
         es: 'Desarrollo Frontend con HTML, JavaScript y Bootstrap aplicando diseño responsivo.',
@@ -141,21 +145,25 @@ export const JOBS = [
     achievements: [
       {
         highlight: true,
-        es: 'Creación de API v2 de Honestel desde cero (6 endpoints principales) con documentación Swagger.',
-        en: 'Creation of Honestel v2 API from scratch (6 core endpoints) with Swagger documentation.',
+        es: 'Subí las pruebas automatizadas del portal de 34 a 1,068 (xUnit, Vitest, Playwright + axe), con pruebas de integración contra SQL Server real (Testcontainers).',
+        en: 'Grew the portal’s automated tests from 34 to 1,068 (xUnit, Vitest, Playwright + axe), including integration tests against a real SQL Server (Testcontainers).',
       },
       {
         highlight: true,
+        es: 'Bajé la consulta principal de la API de 9.9 s a 1.95 s (95% menos lecturas lógicas, salida idéntica) y eliminé un N+1 de ~110 viajes a la base dentro de una transacción.',
+        en: 'Cut the API’s main query from 9.9 s to 1.95 s (95% fewer logical reads, identical output) and removed an N+1 of ~110 database round trips inside a transaction.',
+      },
+      {
+        es: 'Creación desde cero de la API v2 del sistema de denuncias (6 endpoints principales) con documentación Swagger.',
+        en: 'Built the complaint system’s v2 API from scratch (6 core endpoints) with Swagger documentation.',
+      },
+      {
         es: 'Reducción del 40% en tiempo de ejecución de consultas críticas mediante optimización de procedimientos almacenados.',
         en: '40% reduction in critical query execution time through stored procedure optimization.',
       },
       {
         es: 'Automatización de 5+ procesos críticos con Python (alta SAP, reportes, extracción de datos) — pipelines modulares con pywin32, pandas, pyodbc y Selenium, eliminando ~8 hrs/semana de trabajo manual.',
         en: 'Automated 5+ critical processes with Python (SAP onboarding, reports, data extraction) — modular pipelines with pywin32, pandas, pyodbc and Selenium, eliminating ~8 hrs/week of manual work.',
-      },
-      {
-        es: 'Desarrollo de aplicación de escritorio con Tauri 2.x + Rust para reconocimiento facial biométrico — único proyecto con Rust en el área, cubriendo cifrado end-to-end de datos biométricos.',
-        en: 'Built desktop app with Tauri 2.x + Rust for biometric facial recognition — only Rust project in the department, covering end-to-end encryption of biometric data.',
       },
     ],
   },

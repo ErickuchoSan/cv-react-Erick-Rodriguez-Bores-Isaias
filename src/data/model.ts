@@ -187,7 +187,7 @@ export function buildCV(lang: Lang, now = new Date()): CV {
       log: [
         `a8f2c10 feat: ${align.name} → prod`,
         `9d7e453 perf: -${METRICS.sqlOptimization} SQL query time`,
-        `3b2a891 feat: API Honestel v2 (${METRICS.honestelEndpoints} endpoints)`,
+        `3b2a891 feat: complaints API v2 (${METRICS.complaintsApiEndpoints} endpoints)`,
         `7c4f912 chore: ${METRICS.testSuites} test suites · CI/CD`,
       ],
     },

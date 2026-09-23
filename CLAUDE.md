@@ -35,7 +35,7 @@ Publicado en **<https://eboresi.com>** (dominio en Vercel; cada push a `master` 
 | Resumen del perfil (PDFs) y disponibilidad | `src/data/cv.ts` → `PROFILE` |
 | Trabajos: fechas, stack, rol, bullets, logros | `src/data/cv.ts` → `JOBS` |
 | Educación, idiomas, competencias | `src/data/cv.ts` → `EDUCATION`, `LANGUAGES`, `COMPETENCIES` |
-| Números destacados (40%, 57, 8h, endpoints) | `src/data/cv.ts` → `METRICS`, `STATS` |
+| Números destacados (40%, 66, 8h, endpoints) | `src/data/cv.ts` → `METRICS`, `STATS` |
 | Stack del hero y de la terminal | `src/data/cv.ts` → `HERO_STACK`, `TERMINAL_STACK` |
 | Proyectos del showcase + case studies | `src/data/projects.ts` → `PROJECTS` |
 | Skills (web, ATS con años, 12 del PDF visual) | `src/data/skills.ts` → `WEB_SKILLS`, `ATS_SKILLS`, `CORE_SKILLS` |

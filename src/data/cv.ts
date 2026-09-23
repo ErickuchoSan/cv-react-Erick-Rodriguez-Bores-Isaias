@@ -42,8 +42,8 @@ export const CONTACT = {
 /** `{years}` is replaced with the computed experience, unit included ("3 años" / "3 years"). */
 export const PROFILE = {
   summary: {
-    es: 'Con {years} de experiencia en desarrollo de software empresarial, diseño e implemento arquitecturas escalables con C#/.NET Core 6/8/10 (3 años), React 19 / Next.js 16 (2 años), SQL Server / PostgreSQL (3 años), y Node.js / NestJS 11 (3 años). Experiencia sólida en REST APIs, Entity Framework, OAuth2/JWT, cifrado AES/RSA, Docker y Python.',
-    en: 'With {years} of experience in enterprise software development, I design and implement scalable architectures with C#/.NET Core 6/8/10 (3 years), React 19 / Next.js 16 (2 years), SQL Server / PostgreSQL (3 years), and Node.js / NestJS 11 (3 years). Solid experience in REST APIs, Entity Framework, OAuth2/JWT, AES/RSA encryption, Docker and Python.',
+    es: 'Con {years} de experiencia en desarrollo de software empresarial, diseño e implemento arquitecturas escalables con C#/.NET Core 6/8/10, SQL Server y Node.js (3 años), React 19 (2 años), y Next.js 16, PostgreSQL y NestJS 11 (1 año). Experiencia sólida en REST APIs, Entity Framework, OAuth2/JWT, cifrado AES/RSA, Docker y Python.',
+    en: 'With {years} of experience in enterprise software development, I design and implement scalable architectures with C#/.NET Core 6/8/10, SQL Server and Node.js (3 years), React 19 (2 years), and Next.js 16, PostgreSQL and NestJS 11 (1 year). Solid experience in REST APIs, Entity Framework, OAuth2/JWT, AES/RSA encryption, Docker and Python.',
   },
   current: {
     es: 'Actualmente como Programador de Auditoría Senior en Grupo Salinas, lidero el desarrollo de sistemas críticos de auditoría interna (ADA/HONESTEL) con .NET Core 6, C#, SQL Server y OAuth2/JWT. Paralelamente desarrollo la plataforma Align Designs (freelance) con NestJS 11, Next.js 16, PostgreSQL y Docker. Trabajo con un flujo AI-assisted estructurado: fases de proyecto con skills especializadas por tecnología, seguimiento en ClickUp, pruebas manuales + unitarias por fase, y CI/CD con SonarCloud, health checks y backups automáticos. Además opero un homelab self-hosted (Docker, Forgejo Actions, SonarQube, Trivy, Cloudflare) y reviso código con un marco de 133 principios de diseño (OWASP Top 10, WCAG 2.2, Core Web Vitals).',
@@ -58,7 +58,7 @@ export const PROFILE = {
 /** Headline numbers reused by the stats strip, the hero terminal and the Align Designs case study. */
 export const METRICS = {
   sqlOptimization: '40%',
-  testSuites: '57',
+  testSuites: '66',
   weeklyHoursSaved: '8h',
   honestelEndpoints: 6,
 } as const;
@@ -207,8 +207,8 @@ export const JOBS = [
         en: 'Billing with auto-numbering, file versioning, in-app notifications, Prometheus metrics and structured logging with Pino.',
       },
       {
-        es: '57 archivos de pruebas unitarias (Jest + Vitest) y suite E2E con Playwright.',
-        en: '57 unit test files (Jest + Vitest) and full E2E test suite with Playwright.',
+        es: '47 archivos de pruebas unitarias (Jest + Vitest) y 19 specs E2E con Playwright.',
+        en: '47 unit test files (Jest + Vitest) and 19 Playwright E2E specs.',
       },
     ],
     achievements: [

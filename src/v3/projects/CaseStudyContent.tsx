@@ -1,4 +1,5 @@
 import { CaseStudySection } from './CaseStudySection';
+import { demoCopy } from './demoCopy';
 import { STACK_GROUPS, type Project } from '../../data/model';
 import type { Lang } from '../../i18n/lang';
 import { translations } from '../../i18n/translations';
@@ -11,6 +12,7 @@ interface Props {
 export function CaseStudyContent({ project: p, lang }: Props) {
   const c = translations[lang].caseStudy;
   const isLive = p.demo.status === 'live';
+  const demo = demoCopy(p.demo, lang);
 
   return (
     <div style={{ color: 'var(--fg)', maxWidth: 880, margin: '0 auto' }}>
@@ -39,8 +41,8 @@ export function CaseStudyContent({ project: p, lang }: Props) {
           fontFamily: 'var(--font-mono)', fontSize: 11,
           letterSpacing: 1.2, textTransform: 'uppercase',
         }}>
-          <span aria-hidden="true">{isLive ? '●' : '🚧'}</span>
-          {isLive ? c.live : translations[lang].projects.demoInConstruction}
+          <span aria-hidden="true">{demo.icon}</span>
+          {demo.label}
         </div>
       </header>
 
@@ -154,10 +156,10 @@ export function CaseStudyContent({ project: p, lang }: Props) {
             fontFamily: 'var(--font-mono)', fontSize: 12,
             letterSpacing: 1.4, textTransform: 'uppercase',
             textDecoration: 'none',
-          }}>{c.openDemo}</a>
+          }}>{demo.note}</a>
         ) : (
           <p style={{ fontSize: 14.5, lineHeight: 1.7, color: 'var(--fg-muted)', margin: 0 }}>
-            <span aria-hidden="true">🚧 </span>{c.demoMsg}
+            <span aria-hidden="true">{demo.icon} </span>{demo.note}
           </p>
         )}
       </CaseStudySection>

@@ -177,7 +177,8 @@ export function TechIcon({ name, size = 20 }: Props) {
       </svg>
     );
   }
-  if (key.includes('owasp') || key.includes('security') || key.includes('jwt') || key.includes('oauth')) {
+  // Before the AI check: "tailscale" contains "ai".
+  if (['owasp', 'security', 'jwt', 'oauth', 'tailscale', 'trivy'].some((k) => key.includes(k))) {
     return (
       <svg {...common}>
         <path d="M12 2 4 5v7c0 5 3.5 8 8 10 4.5-2 8-5 8-10V5z" />

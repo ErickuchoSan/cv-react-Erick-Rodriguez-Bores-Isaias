@@ -24,8 +24,9 @@ export const WEB_SKILLS: Record<SkillCategory, readonly string[]> = {
     'TypeScript 5', 'NestJS 11', 'Tailwind CSS v4', 'Bootstrap 5',
   ],
   devops: [
-    'GitHub Actions', 'CI/CD', 'SonarCloud', 'Docker', 'DigitalOcean',
-    'Git / GitHub', 'OWASP', 'SCRUM',
+    'GitHub / Forgejo Actions', 'CI/CD', 'SonarQube / SonarCloud', 'Docker',
+    'Linux / Ubuntu Server', 'Nginx', 'Cloudflare', 'Tailscale', 'Trivy',
+    'DigitalOcean', 'Git / GitHub', 'OWASP', 'SCRUM',
   ],
   ai: [
     'Claude (Anthropic)', 'MCP', 'Claude Code / AI Agents',
@@ -40,6 +41,9 @@ export interface AtsSkill {
   /** Shown in place of a duration, e.g. "(applied in projects)". */
   note?: Localized;
 }
+
+/** Skills practiced on the self-hosted server (see the homelab case study) rather than at a job. */
+const HOMELAB: Localized = { es: 'homelab propio', en: 'own homelab' };
 
 /** "Technical skills" line of the ATS PDF — the only place that states years per skill. */
 export const ATS_SKILLS: readonly AtsSkill[] = [
@@ -78,6 +82,10 @@ export const ATS_SKILLS: readonly AtsSkill[] = [
   { name: 'Docker', months: 12 },
   { name: 'GitHub Actions / CI/CD', months: 12 },
   { name: 'DigitalOcean — VPS + Spaces (S3)', months: 6 },
+  { name: 'Linux — Ubuntu Server 24.04 LTS', note: HOMELAB },
+  { name: 'SonarQube + Forgejo Actions (self-hosted)', note: HOMELAB },
+  { name: 'Nginx Proxy Manager / Cloudflare / Tailscale', note: HOMELAB },
+  { name: { es: 'Trivy — Escaneo de CVEs', en: 'Trivy — CVE Scanning' }, note: HOMELAB },
   { name: 'Git / GitHub', months: 36 },
   { name: 'SOLID', months: 24 },
   { name: { es: 'Arquitectura Limpia / DDD', en: 'Clean Architecture / DDD' }, months: 24 },

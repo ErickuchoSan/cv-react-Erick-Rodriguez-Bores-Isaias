@@ -2,18 +2,17 @@
  * Resolves the CV content for one language. The web and both PDFs render from this
  * model, so they can't disagree about a fact.
  */
-import { pick, type Lang, type Localized } from '../i18n/lang';
+import { pick, type Lang, type Localizable, type Localized } from '../i18n/lang';
 import { translations } from '../i18n/translations';
 import { fill, formatExperience, formatJobDuration, formatPeriod, formatYearRange, monthsBetween, plural } from '../lib/format';
 import {
   CLAUDE_ENGINEERING, COMPETENCIES, CONTACT, EDUCATION, HERO_STACK, JOBS, LANGUAGES,
   METRICS, PERSON, PROFILE, STATS, TERMINAL_STACK, type Bullet, type JobId,
 } from './cv';
-import { PROJECTS, type DemoState, type ProjectId } from './projects';
+import { PROJECTS, STACK_GROUPS, type DemoState, type ProjectId, type StackGroup } from './projects';
 import { ATS_SKILLS, CORE_SKILLS, WEB_SKILLS, type SkillCategory } from './skills';
 
-export type StackGroup = 'backend' | 'frontend' | 'infra' | 'testing';
-export const STACK_GROUPS: readonly StackGroup[] = ['backend', 'frontend', 'infra', 'testing'];
+export { STACK_GROUPS, type StackGroup };
 
 export interface Job {
   id: JobId;
@@ -42,6 +41,7 @@ export interface Project {
   solution: string[];
   architecturePatterns: readonly string[];
   highlights: { title: string; summary: string }[];
+  /** Every group is present; the ones a project doesn't use are empty. */
   stack: Record<StackGroup, string[]>;
   metrics: { value: string; label: string }[];
   role: string;
@@ -103,6 +103,22 @@ const FEATURED_FUNCTIONS = 2;
 function featured(bullets: readonly Bullet[], count: number): readonly Bullet[] {
   const flagged = bullets.filter((b) => b.highlight);
   return (flagged.length > 0 ? flagged : bullets).slice(0, count);
+}
+
+function stackOf(
+  stack: Partial<Record<StackGroup, readonly Localizable[]>>,
+  lang: Lang,
+): Record<StackGroup, string[]> {
+  const list = (group: StackGroup) => (stack[group] ?? []).map((s) => pick(s, lang));
+  return {
+    backend: list('backend'),
+    frontend: list('frontend'),
+    infra: list('infra'),
+    cicd: list('cicd'),
+    security: list('security'),
+    observability: list('observability'),
+    testing: list('testing'),
+  };
 }
 
 function profileLink(url: string, handle: (path: string) => string): ProfileLink {
@@ -225,12 +241,7 @@ export function buildCV(lang: Lang, now = new Date()): CV {
       solution: p.solution.map(tr),
       architecturePatterns: p.architecturePatterns,
       highlights: p.highlights.map((h) => ({ title: pick(h.title, lang), summary: tr(h.summary) })),
-      stack: {
-        backend: p.stack.backend.map((s) => pick(s, lang)),
-        frontend: p.stack.frontend.map((s) => pick(s, lang)),
-        infra: p.stack.infra.map((s) => pick(s, lang)),
-        testing: p.stack.testing.map((s) => pick(s, lang)),
-      },
+      stack: stackOf(p.stack, lang),
       metrics: p.metrics.map((m) => ({ value: m.value, label: tr(m.label) })),
       role: tr(p.role),
       demo: p.demo,

@@ -2,12 +2,22 @@
  * Showcase projects — everything about a project lives in its entry, in display order.
  * `tech` is the headline list (web preview chips + both PDFs); `stack` is the full
  * breakdown shown in the case study. To publish a demo, set `demo` to
- * `{ status: 'live', url }` and every badge updates.
+ * `{ status: 'live', url }` and every badge updates; `private` is for work that is
+ * never exposed publicly (infrastructure), so it gets no "coming soon" promise.
  */
 import type { Localizable, Localized } from '../i18n/lang';
 import { METRICS } from './cv';
 
-export type DemoState = { status: 'live'; url: string } | { status: 'in-construction' };
+export type DemoState =
+  | { status: 'live'; url: string }
+  | { status: 'in-construction' }
+  | { status: 'private' };
+
+/** Case-study stack columns, in display order. A project lists only the ones it uses. */
+export type StackGroup = 'backend' | 'frontend' | 'infra' | 'cicd' | 'security' | 'observability' | 'testing';
+export const STACK_GROUPS: readonly StackGroup[] = [
+  'backend', 'frontend', 'infra', 'cicd', 'security', 'observability', 'testing',
+];
 
 export interface ProjectFacts {
   id: string;
@@ -22,12 +32,7 @@ export interface ProjectFacts {
   solution: readonly Localized[];
   architecturePatterns: readonly string[];
   highlights: readonly { title: Localizable; summary: Localized }[];
-  stack: {
-    backend: readonly Localizable[];
-    frontend: readonly Localizable[];
-    infra: readonly Localizable[];
-    testing: readonly Localizable[];
-  };
+  stack: Partial<Record<StackGroup, readonly Localizable[]>>;
   metrics: readonly { value: string; label: Localized }[];
   role: Localized;
   demo: DemoState;
@@ -274,6 +279,90 @@ export const PROJECTS = [
     },
     demo: { status: 'in-construction' },
     tech: ['Next.js 15', 'Sanity CMS', 'GSAP', 'Spline 3D', 'Supabase', 'Resend', 'Tailwind v4', 'Docker'],
+  },
+  {
+    id: 'homelab-devsecops',
+    name: 'Homelab DevSecOps',
+    color: '#34d399',
+    icon: '▣',
+    year: '2026—',
+    kind: { es: 'Infraestructura · DevSecOps', en: 'Infrastructure · DevSecOps' },
+    tagline: 'Self-hosted · CI/CD · DevSecOps',
+    description: {
+      es: 'Servidor self-hosted que diseñé y opero — Git y CI/CD propios, escaneo de CVEs, alertas y respaldos off-site — y base de una propuesta de pipeline DevSecOps corporativo.',
+      en: 'Self-hosted server I designed and run — own Git and CI/CD, CVE scanning, alerting and off-site backups — and the groundwork for a corporate DevSecOps pipeline proposal.',
+    },
+    problem: {
+      es: 'Quería dominar el ciclo completo de entrega —del git push a producción— sin servicios gestionados que lo resolvieran por mí: CI/CD, análisis de calidad, seguridad de red, monitoreo y recuperación ante fallos, sobre hardware propio.',
+      en: 'I wanted to master the full delivery cycle —from git push to production— without managed services doing it for me: CI/CD, quality analysis, network security, monitoring and failure recovery, on my own hardware.',
+    },
+    solution: [
+      {
+        es: 'Monté un servidor Ubuntu Server 24.04 LTS sobre una laptop reutilizada: 16 contenedores con Docker Compose, en producción desde junio de 2026, con la configuración versionada en Git.',
+        en: 'Set up an Ubuntu Server 24.04 LTS host on a repurposed laptop: 16 containers on Docker Compose, in production since June 2026, with its configuration versioned in Git.',
+      },
+      {
+        es: 'Git self-hosted con Forgejo y runner propio de Forgejo Actions: 166 ejecuciones de pipeline con análisis en SonarQube, despliegue por SSH, health check y rollback automático con git revert.',
+        en: 'Self-hosted Git with Forgejo and my own Forgejo Actions runner: 166 pipeline runs with SonarQube analysis, SSH deploys, health checks and automatic rollback via git revert.',
+      },
+      {
+        es: 'Seguridad por capas: Cloudflare como proxy y DNS, Nginx Proxy Manager con TLS, Tailscale para administración y UFW. Como Docker publica puertos por encima de UFW, los servicios internos escuchan solo en loopback.',
+        en: 'Defense in depth: Cloudflare as proxy and DNS, Nginx Proxy Manager with TLS, Tailscale for administration and UFW. Since Docker publishes ports ahead of UFW, internal services listen on loopback only.',
+      },
+      {
+        es: 'Operación automatizada con alertas a Telegram: health checks cada 5 min, disco, temperatura, SMART y escaneo diario de CVEs con Trivy; respaldos diarios, semanales y off-site.',
+        en: 'Automated operations with Telegram alerts: health checks every 5 min, disk, temperature, SMART and daily Trivy CVE scans; daily, weekly and off-site backups.',
+      },
+      {
+        es: 'Reglas de cadena de suministro: imágenes con versión fijada (sin :latest), secretos fuera del YAML y tres vigilantes complementarios — Watchtower (digest), Diun (versiones mayores) y Trivy (CVEs).',
+        en: 'Supply-chain rules: pinned image versions (no :latest), secrets kept out of YAML and three complementary watchers — Watchtower (digests), Diun (new majors) and Trivy (CVEs).',
+      },
+      {
+        es: 'Llevé esos patrones a una propuesta de pipeline DevSecOps corporativo 100% open source: GitLab CE, 11 pasos con 4 capas de escaneo (SonarQube, GitLeaks, SCA, Trivy), imágenes inmutables en Harbor, migraciones con DbUp/Flyway tras un respaldo y approval gate a producción.',
+        en: 'Scaled those patterns into a 100% open-source corporate DevSecOps pipeline proposal: GitLab CE, 11 steps with 4 scanning layers (SonarQube, GitLeaks, SCA, Trivy), immutable images in Harbor, DbUp/Flyway migrations after a snapshot and a production approval gate.',
+      },
+    ],
+    architecturePatterns: ['DevSecOps', 'Shift-left Security', 'Defense in Depth', 'Configuration as Code', 'Least Privilege', 'Immutable Artifacts'],
+    highlights: [
+      {
+        title: 'CI/CD self-hosted',
+        summary: {
+          es: 'Forgejo + runner propio: análisis en SonarQube, despliegue por SSH, health check y rollback automático. 166 ejecuciones de pipeline.',
+          en: 'Forgejo + own runner: SonarQube analysis, SSH deploys, health checks and automatic rollback. 166 pipeline runs.',
+        },
+      },
+      {
+        title: { es: 'Seguridad y operación', en: 'Security & operations' },
+        summary: {
+          es: 'Cloudflare, TLS, Tailscale, UFW y servicios internos en loopback. Alertas a Telegram, escaneo diario de CVEs y respaldos off-site.',
+          en: 'Cloudflare, TLS, Tailscale, UFW and internal services on loopback. Telegram alerts, daily CVE scans and off-site backups.',
+        },
+      },
+      {
+        title: { es: 'Propuesta DevSecOps', en: 'DevSecOps proposal' },
+        summary: {
+          es: 'Approval gate con evidencia, matriz de accesos por perfil federada por LDAP/OIDC y 12 pruebas de control destructivas. Implementación por fases, sin costo de licencias.',
+          en: 'Evidence-based approval gate, per-profile access matrix federated via LDAP/OIDC and 12 destructive control tests. Phased rollout, zero license cost.',
+        },
+      },
+    ],
+    stack: {
+      infra: ['Ubuntu Server 24.04 LTS', 'Docker Compose', 'Nginx Proxy Manager', 'Cloudflare'],
+      cicd: ['Forgejo', 'Forgejo Actions', 'SonarQube'],
+      security: ['Tailscale', 'UFW', 'Trivy'],
+      observability: ['Uptime Kuma', 'Dozzle', 'Diun', 'Watchtower', 'Bash + cron → Telegram'],
+    },
+    metrics: [
+      { value: '16', label: { es: 'Contenedores en producción', en: 'Containers in production' } },
+      { value: '166', label: { es: 'Ejecuciones de CI/CD', en: 'CI/CD runs' } },
+      { value: '12', label: { es: 'Pruebas de control (propuesta)', en: 'Control tests (proposal)' } },
+    ],
+    role: {
+      es: 'Solo · End-to-end · Arquitectura, instalación, hardening y operación del servidor; autor de la propuesta DevSecOps.',
+      en: 'Solo · End-to-end · Server architecture, setup, hardening and operations; author of the DevSecOps proposal.',
+    },
+    demo: { status: 'private' },
+    tech: ['Docker Compose', 'Forgejo Actions', 'SonarQube', 'Trivy', 'Nginx', 'Cloudflare', 'Tailscale', 'Ubuntu Server'],
   },
 ] as const satisfies readonly ProjectFacts[];
 

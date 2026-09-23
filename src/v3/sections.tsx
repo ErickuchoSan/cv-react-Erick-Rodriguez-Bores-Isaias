@@ -4,8 +4,9 @@ import { useInView } from './hooks';
 import { SectionHead, SectionTitle } from './chrome';
 import { TechIcon } from './TechIcon';
 import { ProjectModal } from './projects/ProjectModal';
+import { demoCopy } from './projects/demoCopy';
 import type { CV } from '../data/model';
-import type { ProjectId } from '../data/projects';
+import type { DemoState, ProjectId } from '../data/projects';
 import type { Lang } from '../i18n/lang';
 import { translations } from '../i18n/translations';
 import { richText } from '../lib/richText';
@@ -656,15 +657,7 @@ export function ProjectsV3({ data: D, lang, num }: SectionProps) {
                     border: `1px solid ${p.color}`,
                   }}>{t.viewDemo}</a>
                 ) : (
-                  <span style={{
-                    padding: '8px 14px',
-                    fontFamily: 'var(--font-mono)', fontSize: 10,
-                    letterSpacing: 1.4, textTransform: 'uppercase',
-                    color: 'var(--fg-muted)',
-                    border: '1px dashed var(--line-strong)',
-                  }}>
-                    <span aria-hidden="true">🚧 </span>{t.demoInConstruction}
-                  </span>
+                  <DemoBadge demo={p.demo} lang={lang} />
                 )}
               </div>
             </div>
@@ -687,6 +680,22 @@ export function ProjectsV3({ data: D, lang, num }: SectionProps) {
 
       <ProjectModal project={openProject} lang={lang} onClose={() => setOpenId(null)} />
     </section>
+  );
+}
+
+/** Demo state of a project without a public demo (in construction or private). */
+function DemoBadge({ demo, lang }: { demo: DemoState; lang: Lang }) {
+  const { icon, label } = demoCopy(demo, lang);
+  return (
+    <span style={{
+      padding: '8px 14px',
+      fontFamily: 'var(--font-mono)', fontSize: 10,
+      letterSpacing: 1.4, textTransform: 'uppercase',
+      color: 'var(--fg-muted)',
+      border: '1px dashed var(--line-strong)',
+    }}>
+      <span aria-hidden="true">{icon} </span>{label}
+    </span>
   );
 }
 

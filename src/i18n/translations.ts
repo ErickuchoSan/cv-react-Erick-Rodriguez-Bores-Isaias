@@ -116,6 +116,7 @@ const es = {
     viewCaseStudy: 'Ver case study →',
     viewCaseStudyOf: (name: string) => `Ver case study: ${name}`,
     demoInConstruction: 'Demo en construcción',
+    privateInfra: 'Infraestructura privada',
     viewDemo: 'Ver demo ↗',
   },
   caseStudy: {
@@ -129,9 +130,13 @@ const es = {
     role: 'mi rol',
     demo: 'demo',
     demoMsg: 'Demo interactiva próximamente. Estoy preparando una versión genérica navegable para mostrar el flujo completo.',
+    privateMsg: 'Infraestructura privada: sus paneles y endpoints no se exponen públicamente. Con gusto la muestro en vivo durante una entrevista.',
     live: 'Demo en vivo',
     openDemo: 'Abrir demo →',
-    stackGroups: { backend: 'Backend', frontend: 'Frontend', infra: 'Infra', testing: 'Testing' },
+    stackGroups: {
+      backend: 'Backend', frontend: 'Frontend', infra: 'Infra', cicd: 'CI/CD',
+      security: 'Seguridad', observability: 'Observabilidad', testing: 'Testing',
+    },
   },
   contact: {
     label: 'Contacto',
@@ -278,6 +283,7 @@ const en: Translations = {
     viewCaseStudy: 'View case study →',
     viewCaseStudyOf: (name: string) => `View case study: ${name}`,
     demoInConstruction: 'Demo in construction',
+    privateInfra: 'Private infrastructure',
     viewDemo: 'View demo ↗',
   },
   caseStudy: {
@@ -291,9 +297,13 @@ const en: Translations = {
     role: 'my role',
     demo: 'demo',
     demoMsg: 'Interactive demo coming soon. Preparing a generic navigable version to showcase the full flow.',
+    privateMsg: 'Private infrastructure: its panels and endpoints are not publicly exposed. Happy to walk through it live in an interview.',
     live: 'Live demo',
     openDemo: 'Open demo →',
-    stackGroups: { backend: 'Backend', frontend: 'Frontend', infra: 'Infra', testing: 'Testing' },
+    stackGroups: {
+      backend: 'Backend', frontend: 'Frontend', infra: 'Infra', cicd: 'CI/CD',
+      security: 'Security', observability: 'Observability', testing: 'Testing',
+    },
   },
   contact: {
     label: 'Contact',

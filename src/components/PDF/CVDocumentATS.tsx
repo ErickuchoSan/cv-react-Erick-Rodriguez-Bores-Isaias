@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, type ReactNode } from 'react';
 import { Document, Page, Text, View, StyleSheet, Link } from '@react-pdf/renderer';
 import { buildCV } from '../../data/model';
 import type { Lang } from '../../i18n/lang';
@@ -69,7 +69,6 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         borderBottomColor: '#000000',
         paddingBottom: 2,
-        minPresenceAhead: 80,
     },
     // Body text
     bodyText: {
@@ -202,6 +201,27 @@ const styles = StyleSheet.create({
     },
 });
 
+/**
+ * Points of following content a section heading needs on its page, or it moves to the
+ * next one. react-pdf reads `minPresenceAhead` as a prop (inside a StyleSheet it is
+ * ignored) and it only works on a direct child of the page, which headings are.
+ */
+const TITLE_KEEP = 80;
+
+function SectionTitle({ children }: { children: ReactNode }) {
+    return <Text style={styles.sectionTitle} minPresenceAhead={TITLE_KEEP}>{children}</Text>;
+}
+
+/** One bullet; it never splits across pages. */
+function Bullet({ children }: { children: string }) {
+    return (
+        <View style={styles.bulletRow} wrap={false}>
+            <Text style={styles.bulletChar}>-</Text>
+            <Text style={styles.bulletText}>{children}</Text>
+        </View>
+    );
+}
+
 interface Props {
     lang: Lang;
 }
@@ -246,55 +266,55 @@ export function CVDocumentATS({ lang }: Props) {
                 <View style={styles.divider} />
 
                 {/* ===== PROFESSIONAL SUMMARY ===== */}
-                <Text style={styles.sectionTitle}>{t.atsSummary}</Text>
+                <SectionTitle>{t.atsSummary}</SectionTitle>
                 <Text style={styles.bodyText}>{cv.summary}</Text>
                 <Text style={styles.bodyText}>{cv.current}</Text>
 
                 {/* ===== TECHNICAL SKILLS ===== */}
-                <Text style={styles.sectionTitle}>{t.atsSkills}</Text>
+                <SectionTitle>{t.atsSkills}</SectionTitle>
                 <Text style={styles.skillsText}>{cv.skills.ats.join('  |  ')}</Text>
 
                 {/* ===== KEY COMPETENCIES ===== */}
-                <Text style={styles.sectionTitle}>{t.atsCompetencies}</Text>
+                <SectionTitle>{t.atsCompetencies}</SectionTitle>
                 <Text style={styles.skillsText}>
                     {cv.competencies.map((c) => c.title).join('  |  ')}
                 </Text>
 
                 {/* ===== PROFESSIONAL EXPERIENCE ===== */}
-                <Text style={styles.sectionTitle}>{t.experience}</Text>
+                <SectionTitle>{t.experience}</SectionTitle>
 
-                {cv.experience.map((job) => (
-                    <View key={job.id} style={styles.experienceItem} wrap={false}>
-                        <View style={styles.jobHeader}>
-                            <Text style={styles.jobTitle}>{job.role}</Text>
-                            <Text style={styles.period}>{job.period}</Text>
+                {/* A job may continue on the next page (an unbreakable job left a quarter of
+                    each page blank). Its header and the achievements label are kept together
+                    with their first bullet, so neither can end a page alone. */}
+                {cv.experience.map((job) => {
+                    const [firstFunction, ...functions] = job.functions;
+                    const [firstAchievement, ...achievements] = job.achievements;
+                    return (
+                        <View key={job.id} style={styles.experienceItem}>
+                            <View wrap={false}>
+                                <View style={styles.jobHeader}>
+                                    <Text style={styles.jobTitle}>{job.role}</Text>
+                                    <Text style={styles.period}>{job.period}</Text>
+                                </View>
+                                <Text style={styles.company}>{job.company}</Text>
+                                <Text style={styles.jobDescription}>{`${job.summary} Stack: ${job.stack.join(', ')}.`}</Text>
+                                {firstFunction && <Bullet>{firstFunction}</Bullet>}
+                            </View>
+                            {functions.map((func) => <Bullet key={func}>{func}</Bullet>)}
+
+                            {firstAchievement && (
+                                <View wrap={false}>
+                                    <Text style={styles.achievementsLabel}>{t.atsAchievements}</Text>
+                                    <Bullet>{firstAchievement}</Bullet>
+                                </View>
+                            )}
+                            {achievements.map((achievement) => <Bullet key={achievement}>{achievement}</Bullet>)}
                         </View>
-                        <Text style={styles.company}>{job.company}</Text>
-                        <Text style={styles.jobDescription}>{`${job.summary} Stack: ${job.stack.join(', ')}.`}</Text>
-
-                        {job.functions.map((func) => (
-                            <View key={func} style={styles.bulletRow}>
-                                <Text style={styles.bulletChar}>-</Text>
-                                <Text style={styles.bulletText}>{func}</Text>
-                            </View>
-                        ))}
-
-                        {job.achievements.length > 0 && (
-                            <View>
-                                <Text style={styles.achievementsLabel}>{t.atsAchievements}</Text>
-                                {job.achievements.map((achievement) => (
-                                    <View key={achievement} style={styles.bulletRow}>
-                                        <Text style={styles.bulletChar}>-</Text>
-                                        <Text style={styles.bulletText}>{achievement}</Text>
-                                    </View>
-                                ))}
-                            </View>
-                        )}
-                    </View>
-                ))}
+                    );
+                })}
 
                 {/* ===== EDUCATION ===== */}
-                <Text style={styles.sectionTitle}>{t.education}</Text>
+                <SectionTitle>{t.education}</SectionTitle>
                 {cv.education.map((e) => (
                     <View key={e.degree} style={styles.eduItem}>
                         <Text style={styles.eduDegree}>{e.degree}</Text>
@@ -303,7 +323,7 @@ export function CVDocumentATS({ lang }: Props) {
                 ))}
 
                 {/* ===== LANGUAGES ===== */}
-                <Text style={styles.sectionTitle}>{t.languages}</Text>
+                <SectionTitle>{t.languages}</SectionTitle>
                 {cv.languages.map((l) => (
                     <View key={l.name} style={styles.langItem}>
                         <Text style={styles.langText}>
@@ -313,7 +333,7 @@ export function CVDocumentATS({ lang }: Props) {
                 ))}
 
                 {/* ===== FEATURED PROJECTS ===== */}
-                <Text style={styles.sectionTitle}>{t.atsProjects}</Text>
+                <SectionTitle>{t.atsProjects}</SectionTitle>
                 {cv.projects.map((project) => (
                     <View key={project.id} style={styles.projectItem} wrap={false}>
                         <Text style={styles.projectTitle}>{project.name}</Text>

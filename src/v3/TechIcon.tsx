@@ -144,7 +144,7 @@ export function TechIcon({ name, size = 20 }: Props) {
       </svg>
     );
   }
-  if (key.includes('git')) {
+  if (/\bgit/.test(key)) { // word start: "digitalocean" also contains "git"
     return (
       <svg {...common}>
         <circle cx="6" cy="6" r="2" />

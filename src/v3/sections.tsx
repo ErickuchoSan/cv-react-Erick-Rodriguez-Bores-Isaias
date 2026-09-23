@@ -790,7 +790,7 @@ export function ContactV3({ data: D, lang, num }: SectionProps) {
       }}>
         <span>© {toRoman(new Date().getFullYear())} — {D.name.full}</span>
         <span>{t.footerRole} · {D.contact.city}</span>
-        <span>v3.0 · eboresi.dev</span>
+        <span>v3.0 · {D.contact.website.display}</span>
       </div>
 
       <style>{`

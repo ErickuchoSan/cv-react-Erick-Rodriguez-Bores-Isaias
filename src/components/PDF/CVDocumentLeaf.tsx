@@ -50,6 +50,7 @@ export function CVDocumentLeaf({ lang, theme, accent }: Props) {
           <Link src={`mailto:${cv.contact.email}`} style={s.contactLink}>{cv.contact.email}</Link>
           <Link src={cv.contact.linkedin.url} style={s.contactLink}>LinkedIn</Link>
           <Link src={cv.contact.github.url} style={s.contactLink}>GitHub</Link>
+          <Link src={cv.contact.website.url} style={s.contactLink}>{cv.contact.website.display}</Link>
 
           <View style={[s.sidebarDivider, { marginTop: 6 }]} />
           <Text style={s.sidebarSectionLabel}>{t.coreSkills}</Text>

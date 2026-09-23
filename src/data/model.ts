@@ -77,6 +77,7 @@ export interface CV {
     country: string;
     linkedin: ProfileLink;
     github: ProfileLink;
+    website: { url: string; display: string };
   };
   availability: string;
   summary: string;
@@ -151,6 +152,7 @@ export function buildCV(lang: Lang, now = new Date()): CV {
       country: tr(CONTACT.country),
       linkedin: profileLink(CONTACT.linkedin, (path) => path),
       github: profileLink(CONTACT.github, (path) => `@${path}`),
+      website: { url: CONTACT.website, display: new URL(CONTACT.website).host },
     },
     availability: tr(PROFILE.availability),
     summary: fill(tr(PROFILE.summary), { years: yearsText }),

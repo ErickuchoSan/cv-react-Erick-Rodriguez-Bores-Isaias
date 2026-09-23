@@ -35,6 +35,8 @@ export const CONTACT = {
   country: { es: 'México', en: 'Mexico' } satisfies Localized,
   linkedin: 'https://www.linkedin.com/in/erick-rodriguez-bores-isaias',
   github: 'https://github.com/ErickuchoSan',
+  /** Where this CV is published (index.html's og:url repeats it: keep both in sync). */
+  website: 'https://eboresi.com',
 } as const;
 
 /** `{years}` is replaced with the computed experience, unit included ("3 años" / "3 years"). */

@@ -237,6 +237,10 @@ export function CVDocumentATS({ lang }: Props) {
                     <Link src={contact.github.url} style={styles.contactLink}>
                         {contact.github.display}
                     </Link>
+                    <Text style={styles.contactText}>  |  </Text>
+                    <Link src={contact.website.url} style={styles.contactLink}>
+                        {contact.website.display}
+                    </Link>
                 </View>
 
                 <View style={styles.divider} />

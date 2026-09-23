@@ -41,4 +41,4 @@ Las duraciones de cada trabajo y los años de experiencia se calculan a partir d
 ## Stack
 
 React 19 · TypeScript 5.9 (strict) · Vite 7 · @react-pdf/renderer 4 · Vercel Analytics.
-Despliegue en Vercel.
+Publicado en <https://eboresi.com> (Vercel): cada push a `master` despliega.

@@ -8,6 +8,8 @@
 
 Las tres salidas se generan desde **el mismo modelo** (`buildCV(lang)` en `src/data/model.ts`), así que no pueden contradecirse.
 
+Publicado en **<https://eboresi.com>** (dominio en Vercel; cada push a `master` despliega). `CONTACT.website` en `cv.ts` y el `og:url`/`canonical` de `index.html` deben coincidir.
+
 | Salida | Idiomas | Componente |
 | --- | --- | --- |
 | **Web** | ES/EN (`?lang=en`) | `src/v3/` (React 19 + Vite) |
@@ -46,7 +48,8 @@ Reglas del modelo:
 - **PDF de 1 página**: muestra las funciones y el logro marcados con `highlight: true` (2 funciones + 1 logro por trabajo). El orden de los bullets ya no importa.
 - **Años por skill**: viven solo en `ATS_SKILLS` (`months`). No se calculan: actualízalos a mano.
 - **`CORE_SKILLS` debe quedar en 12** o el PDF visual se pasa a 2 páginas.
-- **Demo de un proyecto**: `demo: { status: 'live', url }` actualiza todos los badges y links.
+- **Demo de un proyecto**: `demo: { status: 'live', url }` actualiza todos los badges y links; `{ status: 'private' }` es para lo que nunca se publica (infraestructura), sin promesa de demo.
+- **Stack del case study**: cada proyecto lista solo los grupos que usa (`backend`, `frontend`, `infra`, `cicd`, `security`, `observability`, `testing`).
 
 ## Estructura del Proyecto
 
@@ -107,7 +110,9 @@ src/
 - **Experiencia**: Grupo Salinas (Mayo 2024 – actual), Digital Solutions (Mayo 2023 – Mayo 2024), Freelance Align Designs (Oct 2025 – actual). Las duraciones se calculan.
 - ⚠️ **Grupo Salinas: NO incluir Azure Functions, Azure Service Bus ni CI/CD** (apenas usados). Sí: .NET Core 6, C#, HTML/Bootstrap, SQL Server, OAuth2/JWT, Entity Framework.
 - **Taglines del hero**: `Full Stack Developer · .NET & React` / `Claude Code Power User` son marca: idénticas en ES y EN, no se traducen.
-- **Showcase**: nombres reales (`align-designs`, `comal-pos`, `mdg-investment`); cada card abre un modal con el case study completo.
+- **Showcase**: nombres reales (`align-designs`, `comal-pos`, `mdg-investment`) más `homelab-devsecops`; cada card abre un modal con el case study completo. `align-designs` va primero: el PDF visual y la terminal del hero usan `PROJECTS[0]`.
+- **Homelab DevSecOps**: las cifras (16 contenedores, 166 ejecuciones de CI) se midieron en el servidor el 2026-09-22; se actualizan a mano. La propuesta DevSecOps es para un empleador: publicar solo el diseño genérico (herramientas y flujo), **nunca** nombres de empresa o personas, costos, topología interna ni nada de la carpeta "NO compartir". No presentarla como implementada.
+- **Marco de buenas prácticas** (sección Claude): se menciona el marco (133 principios de diseño + 40 de proceso) sin atribuir autoría.
 
 ## Flujo de Trabajo
 
@@ -143,6 +148,7 @@ src/
 - Keywords del job description
 - Secciones claramente etiquetadas y con acentos correctos ("HABILIDADES TÉCNICAS", "EDUCACIÓN")
 - Fechas como `Mayo 2024 - Actual` / `May 2024 - Present` (las genera `formatPeriod`)
+- Ocupa 3 páginas: un empleo puede seguir en la página siguiente, pero su encabezado y la etiqueta de logros van pegados a su primera viñeta, y ninguna viñeta se parte. En react-pdf, `minPresenceAhead` es prop (en un `StyleSheet` se ignora) y solo funciona en hijos directos de `Page`
 
 ## Comandos Útiles
 

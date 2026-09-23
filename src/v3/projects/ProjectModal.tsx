@@ -33,9 +33,9 @@ export function ProjectModal({ project, lang, onClose }: Props) {
         const focusables = sheetRef.current.querySelectorAll<HTMLElement>(
           'button:not([disabled]), a[href], [tabindex]:not([tabindex="-1"]), input, select, textarea'
         );
-        if (focusables.length === 0) return;
         const first = focusables[0];
         const last = focusables[focusables.length - 1];
+        if (!first || !last) return;
         const active = document.activeElement;
         if (e.shiftKey && active === first) {
           e.preventDefault(); last.focus();

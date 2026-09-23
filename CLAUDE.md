@@ -112,6 +112,8 @@ src/
 
 - **Experiencia**: Grupo Salinas (Mayo 2024 – actual) y Freelance Align Designs (Oct 2025 – actual). Digital Solutions (May 2023 – May 2024) ya no se lista, pero cuenta para los 3 años (`CAREER_START`). Las duraciones se calculan.
 - ⚠️ **Grupo Salinas: NO incluir Azure Functions, Azure Service Bus ni CI/CD** (apenas usados). Sí: .NET Core 6, C#, HTML/Bootstrap, SQL Server, OAuth2/JWT, Entity Framework.
+- ⚠️ **Sistemas del empleador, siempre genéricos**: el CV y este repo son públicos. Nada de nombres internos de sistemas, APIs o bancos del grupo: "sistema de denuncias", "grupo financiero", "API gateway". Tampoco cifras que expongan debilidades o volúmenes internos de sus sistemas.
+- **Portal de auditoría (Grupo Salinas, desde julio de 2026)**: va como "en desarrollo" hasta que salga a producción; las cifras se midieron el 2026-09-22/23.
 - **Taglines del hero**: `Full Stack Developer · .NET & React` / `Claude Code Power User` son marca: idénticas en ES y EN, no se traducen.
 - **Showcase**: `align-designs` y `homelab-devsecops` (Comal POS y MDG se quitaron el 2026-09-23); cada card abre un modal con el case study completo. `align-designs` va primero: la terminal del hero usa `PROJECTS[0]`.
 - **Homelab DevSecOps**: las cifras (16 contenedores, 166 ejecuciones de CI) se midieron en el servidor el 2026-09-22; se actualizan a mano. La propuesta DevSecOps es para un empleador: publicar solo el diseño genérico (herramientas y flujo), **nunca** nombres de empresa o personas, costos, topología interna ni nada de la carpeta "NO compartir". No presentarla como implementada.
@@ -151,7 +153,7 @@ src/
 - Keywords del job description
 - Secciones claramente etiquetadas y con acentos correctos ("HABILIDADES TÉCNICAS", "EDUCACIÓN")
 - Fechas como `Mayo 2024 - Actual` / `May 2024 - Present` (las genera `formatPeriod`)
-- Ocupa 2 páginas (lo que pide `/cv-ats`), justas: si agregas contenido, revisa que no pase a 3. Un empleo puede seguir en la página siguiente, pero su encabezado y la etiqueta de logros van pegados a su primera viñeta, y ninguna viñeta se parte. En react-pdf, `minPresenceAhead` es prop (en un `StyleSheet` se ignora) y solo funciona en hijos directos de `Page`
+- Ocupa 3 páginas desde que entró el portal de auditoría (`/cv-ats` pide 2; volver a 2 exige recortar viñetas de experiencia). Un empleo puede seguir en la página siguiente, pero su encabezado y la etiqueta de logros van pegados a su primera viñeta, y ninguna viñeta se parte. En react-pdf, `minPresenceAhead` es prop (en un `StyleSheet` se ignora) y solo funciona en hijos directos de `Page`
 
 ## Comandos Útiles
 

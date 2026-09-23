@@ -17,13 +17,13 @@ export function CaseStudyContent({ project: p, lang }: Props) {
       <header style={{ paddingBottom: 24 }}>
         <div style={{
           fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: 1.6,
-          textTransform: 'uppercase', color: p.color, marginBottom: 14,
+          textTransform: 'uppercase', color: `var(--ink-${p.id})`, marginBottom: 14,
         }}>// case-study</div>
         <h2 id={`cs-title-${p.id}`} style={{
           fontFamily: 'var(--font-display)',
           fontSize: 'clamp(32px, 4.5vw, 56px)',
           lineHeight: 1.0, fontWeight: 300, fontStyle: 'italic',
-          letterSpacing: '-0.03em', color: p.color, marginBottom: 14, marginTop: 0,
+          letterSpacing: '-0.03em', color: `var(--ink-${p.id})`, marginBottom: 14, marginTop: 0,
         }}>{p.name}</h2>
         <div style={{
           fontFamily: 'var(--font-mono)', fontSize: 12,
@@ -35,7 +35,7 @@ export function CaseStudyContent({ project: p, lang }: Props) {
           padding: '6px 12px',
           background: 'var(--bg-2)',
           border: `1px ${isLive ? 'solid' : 'dashed'} ${p.color}`,
-          color: p.color,
+          color: `var(--ink-${p.id})`,
           fontFamily: 'var(--font-mono)', fontSize: 11,
           letterSpacing: 1.2, textTransform: 'uppercase',
         }}>
@@ -44,31 +44,31 @@ export function CaseStudyContent({ project: p, lang }: Props) {
         </div>
       </header>
 
-      <CaseStudySection prefix={c.problem} accent={p.color}>
+      <CaseStudySection prefix={c.problem} accent={`var(--ink-${p.id})`}>
         <p style={{ fontSize: 16, lineHeight: 1.7, color: 'var(--fg)', margin: 0 }}>{p.problem}</p>
       </CaseStudySection>
 
-      <CaseStudySection prefix={c.solution} accent={p.color}>
+      <CaseStudySection prefix={c.solution} accent={`var(--ink-${p.id})`}>
         <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 12 }}>
           {p.solution.map((s, i) => (
             <li key={i} style={{
               display: 'flex', gap: 14, fontSize: 15.5, lineHeight: 1.6,
               paddingLeft: 8, borderLeft: `2px solid ${p.color}`,
             }}>
-              <span style={{ color: p.color, fontFamily: 'var(--font-mono)', fontSize: 12 }}>→</span>
+              <span style={{ color: `var(--ink-${p.id})`, fontFamily: 'var(--font-mono)', fontSize: 12 }}>→</span>
               <span>{s}</span>
             </li>
           ))}
         </ul>
       </CaseStudySection>
 
-      <CaseStudySection prefix={c.architecture} accent={p.color}>
+      <CaseStudySection prefix={c.architecture} accent={`var(--ink-${p.id})`}>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 24 }}>
           {p.architecturePatterns.map((pat, i) => (
             <span key={i} style={{
               fontFamily: 'var(--font-mono)', fontSize: 11,
               padding: '6px 12px', border: `1px solid ${p.color}`,
-              color: p.color, letterSpacing: 0.6,
+              color: `var(--ink-${p.id})`, letterSpacing: 0.6,
             }}>{pat}</span>
           ))}
         </div>
@@ -82,7 +82,7 @@ export function CaseStudyContent({ project: p, lang }: Props) {
             }}>
               <div style={{
                 fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: 1.4,
-                textTransform: 'uppercase', color: p.color, marginBottom: 8,
+                textTransform: 'uppercase', color: `var(--ink-${p.id})`, marginBottom: 8,
               }}>{h.title}</div>
               <div style={{ fontSize: 13.5, lineHeight: 1.55, color: 'var(--fg)' }}>{h.summary}</div>
             </div>
@@ -90,7 +90,7 @@ export function CaseStudyContent({ project: p, lang }: Props) {
         </div>
       </CaseStudySection>
 
-      <CaseStudySection prefix={c.stack} accent={p.color}>
+      <CaseStudySection prefix={c.stack} accent={`var(--ink-${p.id})`}>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 18 }}>
           {STACK_GROUPS.map((cat) => {
             const items = p.stack[cat];
@@ -117,7 +117,7 @@ export function CaseStudyContent({ project: p, lang }: Props) {
       </CaseStudySection>
 
       {p.metrics.length > 0 && (
-        <CaseStudySection prefix={c.metrics} accent={p.color}>
+        <CaseStudySection prefix={c.metrics} accent={`var(--ink-${p.id})`}>
           <div style={{
             display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))',
             gap: 14, paddingTop: 8,
@@ -126,7 +126,7 @@ export function CaseStudyContent({ project: p, lang }: Props) {
               <div key={i}>
                 <div style={{
                   fontFamily: 'var(--font-display)', fontSize: 'clamp(36px, 5vw, 64px)',
-                  fontWeight: 300, fontStyle: 'italic', color: p.color,
+                  fontWeight: 300, fontStyle: 'italic', color: `var(--ink-${p.id})`,
                   letterSpacing: '-0.02em', lineHeight: 1, marginBottom: 6,
                 }}>{m.value}</div>
                 <div style={{
@@ -139,18 +139,18 @@ export function CaseStudyContent({ project: p, lang }: Props) {
         </CaseStudySection>
       )}
 
-      <CaseStudySection prefix={c.role} accent={p.color}>
+      <CaseStudySection prefix={c.role} accent={`var(--ink-${p.id})`}>
         <p style={{
           fontFamily: 'var(--font-display)', fontSize: 'clamp(18px, 2vw, 22px)',
           fontWeight: 300, fontStyle: 'italic', lineHeight: 1.5, color: 'var(--fg)', margin: 0,
         }}>{p.role}</p>
       </CaseStudySection>
 
-      <CaseStudySection prefix={c.demo} accent={p.color}>
+      <CaseStudySection prefix={c.demo} accent={`var(--ink-${p.id})`}>
         {p.demo.status === 'live' ? (
           <a href={p.demo.url} target="_blank" rel="noopener noreferrer" style={{
             display: 'inline-block', padding: '14px 28px',
-            background: p.color, color: 'var(--bg)',
+            background: p.color, color: `var(--on-${p.id})`,
             fontFamily: 'var(--font-mono)', fontSize: 12,
             letterSpacing: 1.4, textTransform: 'uppercase',
             textDecoration: 'none',

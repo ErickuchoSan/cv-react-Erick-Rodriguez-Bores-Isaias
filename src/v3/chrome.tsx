@@ -63,9 +63,9 @@ export function CursorV3() {
         width: big ? 56 : (state.hover ? 30 : 24),
         height: big ? 56 : (state.hover ? 30 : 24),
         borderRadius: '50%',
-        border: `1px solid ${big ? 'var(--accent)' : 'var(--fg)'}`,
+        border: `1px solid ${big ? 'var(--accent-ink)' : 'var(--fg)'}`,
         background: big ? 'var(--accent)' : 'transparent',
-        color: big ? 'var(--bg)' : 'var(--fg)',
+        color: big ? 'var(--on-accent)' : 'var(--fg)',
         opacity: state.hover ? 1 : 0.35,
         mixBlendMode: big ? 'normal' : 'difference',
         transition: 'width 0.3s cubic-bezier(.2,.8,.2,1), height 0.3s cubic-bezier(.2,.8,.2,1), background 0.25s, opacity 0.25s',
@@ -132,7 +132,7 @@ export function NavV3({ active, sections, onNav, lang }: { active: string; secti
             style={{
               position: 'relative', zIndex: 1, padding: '9px 14px',
               background: 'transparent', border: 'none',
-              color: active === s.id ? 'var(--bg)' : 'var(--fg)',
+              color: active === s.id ? 'var(--on-accent)' : 'var(--fg)',
               fontFamily: 'inherit', fontSize: 11, letterSpacing: 1.2,
               textTransform: 'uppercase', fontWeight: 600,
               transition: 'color 0.3s', whiteSpace: 'nowrap',
@@ -252,7 +252,7 @@ export function BottomHUD({ progress, active, sections }: { progress: number; ac
       textTransform: 'uppercase', color: 'var(--fg-muted)',
       pointerEvents: 'none', flexWrap: 'wrap',
     }}>
-      <span style={{ color: 'var(--accent)' }}>● eboresi</span>
+      <span style={{ color: 'var(--accent-ink)' }}>● eboresi</span>
       <span style={{ color: 'var(--fg)' }}>
         {String(idx + 1).padStart(2, '0')} / {String(sections.length).padStart(2, '0')}
         <span style={{ color: 'var(--fg-muted)', marginLeft: 8 }}>
@@ -293,7 +293,7 @@ export function MarqueeV3({ items, reverse = false, speed = 50 }: { items: strin
           <span key={i} style={{ display: 'inline-flex', alignItems: 'center', gap: 60 }}>
             <span style={{
               fontStyle: i % 2 === 0 ? 'italic' : 'normal',
-              color: i % 3 === 0 ? 'var(--accent)' : 'var(--fg)',
+              color: i % 3 === 0 ? 'var(--accent-ink)' : 'var(--fg)',
             }}>{it}</span>
             <span style={{ width: 14, height: 14, background: 'var(--accent)', borderRadius: '50%', display: 'inline-block' }} />
           </span>
@@ -311,7 +311,7 @@ export function SectionHead({ num, label, hint }: { num: string; label: string; 
       flexWrap: 'wrap', fontFamily: 'var(--font-mono)', fontSize: 11,
       letterSpacing: 1.6, textTransform: 'uppercase',
     }}>
-      <span style={{ color: 'var(--accent)' }}>
+      <span style={{ color: 'var(--accent-ink)' }}>
         <span style={{
           display: 'inline-block', width: 6, height: 6,
           background: 'var(--accent)', borderRadius: '50%',

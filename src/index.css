@@ -13,6 +13,9 @@
   --line: rgba(250, 250, 247, 0.08);
   --line-strong: rgba(250, 250, 247, 0.18);
   --accent: #ff5b2e;
+  /* Readable variants, recomputed per theme by AppV3 */
+  --accent-ink: #ff5b2e;
+  --on-accent: #000000;
   --success: #4ade80;
 
   --font-display: 'Fraunces', serif;
@@ -80,7 +83,7 @@ button {
 
 ::selection {
   background: var(--accent);
-  color: var(--bg);
+  color: var(--on-accent);
 }
 
 /* Custom scrollbar */

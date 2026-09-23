@@ -32,7 +32,7 @@ const headerStyle = {
   padding: '10px 18px',
   fontFamily: 'var(--font-mono)', fontSize: 9,
   letterSpacing: 2, textTransform: 'uppercase' as const,
-  color: 'var(--accent)',
+  color: 'var(--accent-ink)',
   borderTop: '1px solid var(--line-strong)',
   background: 'color-mix(in oklab, var(--accent) 8%, transparent)',
 };
@@ -70,7 +70,7 @@ function PdfLink({ doc, fileName, label, flag, cursor, t, onDownloaded }: PdfLin
   const icon = instance.loading ? '◐' : instance.error ? '⚠' : flag;
   const content = (text: string) => (
     <span style={{ display: 'flex', alignItems: 'center', gap: 10, pointerEvents: 'none' }}>
-      <span aria-hidden="true" style={{ color: 'var(--accent)', minWidth: 18 }}>{icon}</span>
+      <span aria-hidden="true" style={{ color: 'var(--accent-ink)', minWidth: 18 }}>{icon}</span>
       <span>{text}</span>
     </span>
   );

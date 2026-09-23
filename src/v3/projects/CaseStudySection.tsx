@@ -17,7 +17,7 @@ export function CaseStudySection({ prefix, children, accent }: Props) {
         fontSize: 11,
         letterSpacing: 1.6,
         textTransform: 'uppercase',
-        color: accent ?? 'var(--accent)',
+        color: accent ?? 'var(--accent-ink)',
         marginBottom: 16,
       }}>
         // {prefix}

@@ -40,7 +40,8 @@ export const THEMES: Record<ThemeName, Theme> = {
   ivory: {
     label: 'Ivory',
     bg: '#efe1bf', bg2: '#e3d4a8', bg3: '#d6c590',
-    fg: '#2a1d09', fgMuted: '#6e5a37', fgDim: '#9a865d',
+    // fgMuted darkened from #6e5a37 so muted text passes WCAG AA on bg3 (open cards).
+    fg: '#2a1d09', fgMuted: '#614f30', fgDim: '#9a865d',
     line: 'rgba(42,29,9,0.13)', lineStrong: 'rgba(42,29,9,0.30)',
     mode: 'light',
     display: 'Instrument Serif', sans: 'Inter', mono: 'IBM Plex Mono',

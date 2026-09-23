@@ -21,7 +21,7 @@ export function ClaudeEngineeringV3({ data, lang, num }: Props) {
       <SectionHead num={num} label={t.label} hint={t.hint} />
       <SectionTitle>
         <WordsMask text={t.title1} step={60} />{' '}
-        <em style={{ color: 'var(--accent)' }}>
+        <em style={{ color: 'var(--accent-ink)' }}>
           <WordsMask text={t.title2} italic step={60} delay={400} />
         </em>
       </SectionTitle>
@@ -68,7 +68,7 @@ export function ClaudeEngineeringV3({ data, lang, num }: Props) {
           borderBottom: '1px solid var(--line)',
           fontFamily: 'var(--font-mono)', fontSize: 'clamp(12px, 1.2vw, 16px)',
           letterSpacing: 1.6, textTransform: 'uppercase',
-          color: 'var(--accent)', fontWeight: 500,
+          color: 'var(--accent-ink)', fontWeight: 500,
         }}>
           {data.claude.stat}
         </div>

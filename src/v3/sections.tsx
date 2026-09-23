@@ -20,7 +20,7 @@ interface SectionProps {
 // ═══ ABOUT ════════════════════════════════════════════════════════════════
 export function AboutV3({ data: D, lang, num }: SectionProps) {
   const t = translations[lang].about;
-  const accent = { color: 'var(--accent)' };
+  const accent = { color: 'var(--accent-ink)' };
   const [lead, ...rest] = t.para1;
   const para1Rest = richText(rest.join(''), {
     years: D.yearsText,
@@ -38,7 +38,7 @@ export function AboutV3({ data: D, lang, num }: SectionProps) {
         <div>
           <SectionTitle>
             <WordsMask text={t.title1} step={60} />{' '}
-            <em style={{ color: 'var(--accent)' }}>
+            <em style={{ color: 'var(--accent-ink)' }}>
               <WordsMask text={t.title2} step={60} delay={400} italic />
             </em>{' '}
             <WordsMask text={t.title3} step={60} delay={800} />
@@ -51,7 +51,7 @@ export function AboutV3({ data: D, lang, num }: SectionProps) {
             }}>
               <span style={{
                 fontFamily: 'var(--font-display)', fontSize: 72,
-                fontStyle: 'italic', fontWeight: 300, color: 'var(--accent)',
+                fontStyle: 'italic', fontWeight: 300, color: 'var(--accent-ink)',
                 float: 'left', lineHeight: 0.85, marginRight: 14, marginTop: 6,
               }}>{lead}</span>
               {para1Rest}
@@ -75,7 +75,7 @@ export function AboutV3({ data: D, lang, num }: SectionProps) {
               <div style={{
                 fontFamily: 'var(--font-mono)', fontSize: 10,
                 letterSpacing: 1.6, textTransform: 'uppercase',
-                color: 'var(--accent)', marginBottom: 14,
+                color: 'var(--accent-ink)', marginBottom: 14,
                 display: 'flex', alignItems: 'center', gap: 10,
               }}>
                 <span style={{
@@ -126,13 +126,13 @@ export function AboutV3({ data: D, lang, num }: SectionProps) {
                 borderRight: i < D.stats.length - 1 ? '1px solid var(--line-strong)' : 'none',
                 transition: 'background 0.4s',
               }}
-                onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(255,91,46,0.06)'; }}
+                onMouseEnter={(e) => { e.currentTarget.style.background = 'color-mix(in oklab, var(--accent) 6%, transparent)'; }}
                 onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; }}>
                 <div style={{
                   fontFamily: 'var(--font-display)',
                   fontSize: 'clamp(56px, 7vw, 120px)',
                   lineHeight: 1, fontWeight: 300, letterSpacing: '-0.04em',
-                  color: 'var(--accent)', marginBottom: 12,
+                  color: 'var(--accent-ink)', marginBottom: 12,
                 }}>
                   <Counter value={value} suffix={suffix} duration={2200} />
                 </div>
@@ -170,7 +170,7 @@ export function ExperienceV3({ data: D, lang, num }: SectionProps) {
       <SectionHead num={num} label={t.label} hint={t.hint(D.yearsText, D.experience.length)} />
       <SectionTitle>
         <WordsMask text={t.title1} step={60} />{' '}
-        <em style={{ color: 'var(--accent)' }}>
+        <em style={{ color: 'var(--accent-ink)' }}>
           <WordsMask text={t.title2} italic step={60} delay={400} />
         </em>.
       </SectionTitle>
@@ -198,7 +198,7 @@ export function ExperienceV3({ data: D, lang, num }: SectionProps) {
                     border: `2px solid ${isOpen ? 'var(--accent)' : 'var(--line-strong)'}`,
                     marginLeft: 27, marginTop: 26,
                     transition: 'all 0.3s',
-                    boxShadow: isOpen ? '0 0 0 6px rgba(255,91,46,0.2)' : 'none',
+                    boxShadow: isOpen ? '0 0 0 6px color-mix(in oklab, var(--accent) 20%, transparent)' : 'none',
                     position: 'relative',
                   }}>
                     {isOpen && (
@@ -242,7 +242,7 @@ export function ExperienceV3({ data: D, lang, num }: SectionProps) {
                       fontSize: 'clamp(26px, 2.8vw, 42px)',
                       lineHeight: 1.05, fontWeight: 300, letterSpacing: '-0.025em',
                       fontStyle: isOpen ? 'italic' : 'normal',
-                      color: isOpen ? 'var(--accent)' : 'var(--fg)',
+                      color: isOpen ? 'var(--accent-ink)' : 'var(--fg)',
                       transition: 'color 0.3s, font-style 0.3s',
                     }}>{job.role}</span>
                     <span style={{ display: 'block', fontSize: 15, color: 'var(--fg-muted)' }}>
@@ -254,12 +254,12 @@ export function ExperienceV3({ data: D, lang, num }: SectionProps) {
                       letterSpacing: 1.4, color: 'var(--fg-muted)', textAlign: 'right',
                     }}>
                       {job.period}<br />
-                      <span style={{ color: 'var(--accent)', fontWeight: 600 }}>{job.duration}</span>
+                      <span style={{ color: 'var(--accent-ink)', fontWeight: 600 }}>{job.duration}</span>
                     </span>
                     <span aria-hidden="true" style={{
                       display: 'block',
                       fontFamily: 'var(--font-mono)', fontSize: 26,
-                      textAlign: 'right', color: 'var(--accent)',
+                      textAlign: 'right', color: 'var(--accent-ink)',
                       transform: isOpen ? 'rotate(45deg)' : 'rotate(0deg)',
                       transition: 'transform 0.5s cubic-bezier(.2,.8,.2,1)',
                       lineHeight: 1,
@@ -292,7 +292,7 @@ export function ExperienceV3({ data: D, lang, num }: SectionProps) {
                       <ul style={{ listStyle: 'none', marginBottom: 28, paddingLeft: 0 }}>
                         {job.functions.map((b) => (
                           <li key={b} style={{ display: 'flex', gap: 14, fontSize: 14.5, lineHeight: 1.6, marginBottom: 10 }}>
-                            <span style={{ color: 'var(--accent)', fontFamily: 'var(--font-mono)', fontSize: 12, marginTop: 3 }}>→</span>
+                            <span style={{ color: 'var(--accent-ink)', fontFamily: 'var(--font-mono)', fontSize: 12, marginTop: 3 }}>→</span>
                             <span>{b}</span>
                           </li>
                         ))}
@@ -303,17 +303,17 @@ export function ExperienceV3({ data: D, lang, num }: SectionProps) {
                           <div style={{
                             fontFamily: 'var(--font-mono)', fontSize: 10,
                             letterSpacing: 1.6, textTransform: 'uppercase',
-                            color: 'var(--accent)', marginBottom: 12,
+                            color: 'var(--accent-ink)', marginBottom: 12,
                           }}>{t.achievements}</div>
                           <ul style={{ listStyle: 'none', marginBottom: 28, paddingLeft: 0 }}>
                             {job.achievements.map((a) => (
                               <li key={a} style={{
                                 display: 'flex', gap: 14, fontSize: 14.5, lineHeight: 1.55,
                                 marginBottom: 10, padding: '12px 16px',
-                                background: 'rgba(255,91,46,0.08)',
-                                border: '1px solid rgba(255,91,46,0.25)',
+                                background: 'color-mix(in oklab, var(--accent) 8%, transparent)',
+                                border: '1px solid color-mix(in oklab, var(--accent) 25%, transparent)',
                               }}>
-                                <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, marginTop: 2, color: 'var(--accent)' }}>★</span>
+                                <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, marginTop: 2, color: 'var(--accent-ink)' }}>★</span>
                                 <span>{a}</span>
                               </li>
                             ))}
@@ -380,7 +380,7 @@ export function SkillsV3({ data: D, lang, num }: SectionProps) {
       <SectionHead num={num} label={t.label} hint={t.hint} />
       <SectionTitle>
         <WordsMask text={t.title1} step={60} />{' '}
-        <em style={{ color: 'var(--accent)' }}>
+        <em style={{ color: 'var(--accent-ink)' }}>
           <WordsMask text={t.title2} italic step={60} delay={250} />
         </em>{' '}
         <WordsMask text={t.title3} step={60} delay={500} />
@@ -399,7 +399,7 @@ export function SkillsV3({ data: D, lang, num }: SectionProps) {
               padding: '18px 26px', background: 'transparent', border: 'none',
               fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: 1.6,
               textTransform: 'uppercase',
-              color: active === i ? 'var(--accent)' : 'var(--fg-muted)',
+              color: active === i ? 'var(--accent-ink)' : 'var(--fg-muted)',
               borderBottom: active === i ? '2px solid var(--accent)' : '2px solid transparent',
               marginBottom: -1, transition: 'all 0.3s',
               display: 'flex', alignItems: 'center', gap: 10,
@@ -409,7 +409,7 @@ export function SkillsV3({ data: D, lang, num }: SectionProps) {
             <span style={{
               fontSize: 10, padding: '2px 8px',
               background: active === i ? 'var(--accent)' : 'var(--line)',
-              color: active === i ? 'var(--bg)' : 'var(--fg-muted)',
+              color: active === i ? 'var(--on-accent)' : 'var(--fg-muted)',
             }}>{cat.items.length}</span>
           </button>
         ))}
@@ -428,9 +428,9 @@ export function SkillsV3({ data: D, lang, num }: SectionProps) {
                 color: 'var(--fg)',
                 transition: 'all 0.3s',
               }}
-                onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--accent)'; e.currentTarget.style.color = 'var(--bg)'; e.currentTarget.style.borderColor = 'var(--accent)'; }}
+                onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--accent)'; e.currentTarget.style.color = 'var(--on-accent)'; e.currentTarget.style.borderColor = 'var(--accent)'; }}
                 onMouseLeave={(e) => { e.currentTarget.style.background = 'var(--bg-2)'; e.currentTarget.style.color = 'var(--fg)'; e.currentTarget.style.borderColor = 'var(--line-strong)'; }}>
-                <span style={{ display: 'inline-flex', color: 'var(--accent)' }}>
+                <span style={{ display: 'inline-flex', color: 'var(--accent-ink)' }}>
                   <TechIcon name={s} size={16} />
                 </span>
                 {s}
@@ -459,7 +459,7 @@ export function SkillsV3({ data: D, lang, num }: SectionProps) {
               transition: 'background 0.3s', height: '100%',
               position: 'relative', overflow: 'hidden',
             }}
-              onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--accent)'; e.currentTarget.style.color = 'var(--bg)'; }}
+              onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--accent)'; e.currentTarget.style.color = 'var(--on-accent)'; }}
               onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'inherit'; }}>
               <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: 1.4, marginBottom: 14, opacity: 0.6 }}>0{i + 1}</div>
               <h4 style={{
@@ -489,7 +489,7 @@ export function SkillsV3({ data: D, lang, num }: SectionProps) {
               }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 10 }}>
                   <h4 style={{ fontFamily: 'var(--font-display)', fontSize: 44, fontWeight: 300, fontStyle: 'italic' }}>{l.name}</h4>
-                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--accent)', letterSpacing: 1.4 }}>{l.pct}%</span>
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--accent-ink)', letterSpacing: 1.4 }}>{l.pct}%</span>
                 </div>
                 <div style={{
                   fontFamily: 'var(--font-mono)', fontSize: 11,
@@ -500,7 +500,7 @@ export function SkillsV3({ data: D, lang, num }: SectionProps) {
                 <ul style={{ listStyle: 'none', marginTop: 20, paddingLeft: 0 }}>
                   {l.details.map((d) => (
                     <li key={d} style={{ display: 'flex', gap: 10, fontSize: 13, color: 'var(--fg-muted)', marginBottom: 6 }}>
-                      <span style={{ color: 'var(--accent)' }}>·</span>{d}
+                      <span style={{ color: 'var(--accent-ink)' }}>·</span>{d}
                     </li>
                   ))}
                 </ul>
@@ -536,7 +536,7 @@ export function ProjectsV3({ data: D, lang, num }: SectionProps) {
       <SectionHead num={num} label={t.label} hint={t.hint(D.projects.length)} />
       <SectionTitle>
         <WordsMask text={t.title1} step={60} />{' '}
-        <em style={{ color: 'var(--accent)' }}>
+        <em style={{ color: 'var(--accent-ink)' }}>
           <WordsMask text={t.title2} italic step={60} delay={400} />
         </em>.
       </SectionTitle>
@@ -564,7 +564,7 @@ export function ProjectsV3({ data: D, lang, num }: SectionProps) {
                     boxShadow: isActive ? `0 20px 60px ${p.color}40` : 'none',
                   }}>
                   <span aria-hidden="true" style={{ display: 'flex', alignItems: 'baseline', gap: 14, marginBottom: 12 }}>
-                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: p.color, letterSpacing: 1.4 }}>◆ 0{i + 1}</span>
+                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: `var(--ink-${p.id})`, letterSpacing: 1.4 }}>◆ 0{i + 1}</span>
                     <span style={{ fontSize: 28, lineHeight: 1 }}>{p.icon}</span>
                     <span style={{ marginLeft: 'auto', fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--fg-muted)', letterSpacing: 1.4 }}>{p.year}</span>
                   </span>
@@ -574,7 +574,7 @@ export function ProjectsV3({ data: D, lang, num }: SectionProps) {
                     fontSize: 'clamp(22px, 2.2vw, 30px)',
                     lineHeight: 1.12, fontWeight: 300, letterSpacing: '-0.02em',
                     fontStyle: isActive ? 'italic' : 'normal',
-                    color: isActive ? p.color : 'var(--fg)',
+                    color: isActive ? `var(--ink-${p.id})` : 'var(--fg)',
                     transition: 'all 0.4s', marginBottom: 6,
                   }}>{p.name}</span>
                   <span style={{
@@ -608,14 +608,14 @@ export function ProjectsV3({ data: D, lang, num }: SectionProps) {
               }}>{p.icon}</div>
               <div style={{
                 fontFamily: 'var(--font-mono)', fontSize: 11,
-                color: p.color, letterSpacing: 1.6,
+                color: `var(--ink-${p.id})`, letterSpacing: 1.6,
                 textTransform: 'uppercase', marginBottom: 14,
               }}>{p.kind} · {p.year}</div>
               <h3 style={{
                 fontFamily: 'var(--font-display)',
                 fontSize: 'clamp(36px, 4.5vw, 64px)',
                 lineHeight: 0.95, fontWeight: 300, letterSpacing: '-0.03em',
-                marginBottom: 24, color: p.color, fontStyle: 'italic',
+                marginBottom: 24, color: `var(--ink-${p.id})`, fontStyle: 'italic',
               }}>{p.name}</h3>
               <p style={{ fontSize: 16.5, lineHeight: 1.65, color: 'var(--fg)', marginBottom: 32 }}>
                 {p.description}
@@ -625,7 +625,7 @@ export function ProjectsV3({ data: D, lang, num }: SectionProps) {
                   <span key={tg} style={{
                     fontFamily: 'var(--font-mono)', fontSize: 11,
                     padding: '7px 14px', border: `1px solid ${p.color}`,
-                    color: p.color, letterSpacing: 0.6,
+                    color: `var(--ink-${p.id})`, letterSpacing: 0.6,
                   }}>{tg}</span>
                 ))}
               </div>
@@ -638,7 +638,7 @@ export function ProjectsV3({ data: D, lang, num }: SectionProps) {
                   aria-label={t.viewCaseStudyOf(p.name)}
                   style={{
                     padding: '12px 24px', cursor: 'pointer',
-                    background: p.color, color: 'var(--bg)',
+                    background: p.color, color: `var(--on-${p.id})`,
                     fontFamily: 'var(--font-mono)', fontSize: 11,
                     letterSpacing: 1.4, textTransform: 'uppercase',
                     border: 'none',
@@ -651,7 +651,7 @@ export function ProjectsV3({ data: D, lang, num }: SectionProps) {
                     padding: '8px 14px',
                     fontFamily: 'var(--font-mono)', fontSize: 10,
                     letterSpacing: 1.4, textTransform: 'uppercase',
-                    color: p.color,
+                    color: `var(--ink-${p.id})`,
                     border: `1px solid ${p.color}`,
                   }}>{t.viewDemo}</a>
                 ) : (
@@ -710,7 +710,7 @@ export function ContactV3({ data: D, lang, num }: SectionProps) {
           fontWeight: 300, marginBottom: 50,
         }}>
           <WordsMask text={t.title1} step={60} />{' '}
-          <em style={{ color: 'var(--accent)' }}><WordsMask text={t.title2} italic step={60} delay={300} /></em><br />
+          <em style={{ color: 'var(--accent-ink)' }}><WordsMask text={t.title2} italic step={60} delay={300} /></em><br />
           <WordsMask text={t.title3} step={60} delay={600} />
         </h2>
       </Reveal>
@@ -724,7 +724,7 @@ export function ContactV3({ data: D, lang, num }: SectionProps) {
             borderBottom: '1px solid var(--fg)', paddingBottom: 10, marginBottom: 100,
             transition: 'color 0.3s',
           }}
-            onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--accent)'; }}
+            onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--accent-ink)'; }}
             onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--fg)'; }}>
             {D.contact.email} <span style={{ display: 'inline-block', marginLeft: 10 }}>↗</span>
           </a>
@@ -771,7 +771,7 @@ export function ContactV3({ data: D, lang, num }: SectionProps) {
                 padding: '14px 0', borderBottom: '1px dashed var(--line)',
                 transition: 'color 0.3s, padding 0.3s',
               }}
-                onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--accent)'; e.currentTarget.style.paddingLeft = '8px'; }}
+                onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--accent-ink)'; e.currentTarget.style.paddingLeft = '8px'; }}
                 onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--fg)'; e.currentTarget.style.paddingLeft = '0'; }}>
                 <span style={{ fontFamily: 'var(--font-display)', fontSize: 22, fontStyle: 'italic' }}>{l.label}</span>
                 <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--fg-muted)' }}>{l.handle} ↗</span>

@@ -8,8 +8,10 @@ import { ClaudeEngineeringV3 } from './sections/ClaudeEngineering';
 import { useScrollProgress } from './primitives';
 import { useLanguage } from '../context/LanguageContext';
 import { buildCV } from '../data/model';
+import { PROJECTS } from '../data/projects';
 import { translations, type Translations } from '../i18n/translations';
 import { fill } from '../lib/format';
+import { readableOn, textOn } from '../lib/color';
 
 const STORAGE_KEY = 'cv-v3-tweaks';
 
@@ -40,7 +42,8 @@ function loadTweaks(): Tweaks {
     if (raw) {
       const parsed = JSON.parse(raw);
       if (parsed.theme && THEMES[parsed.theme as ThemeName]) {
-        return { theme: parsed.theme, accent: parsed.accent || DEFAULTS.accent };
+        const knownAccent = ACCENT_OPTIONS.some((a) => a.value === parsed.accent);
+        return { theme: parsed.theme, accent: knownAccent ? parsed.accent : DEFAULTS.accent };
       }
     }
   } catch { /* storage unavailable or corrupt: fall back to defaults */ }
@@ -70,6 +73,15 @@ export function AppV3() {
     r.style.setProperty('--line', th.line);
     r.style.setProperty('--line-strong', th.lineStrong);
     r.style.setProperty('--accent', tweaks.accent);
+    // Text in accent/project colors must stay readable on every surface of the theme (WCAG AA).
+    const surfaces = [th.bg, th.bg2, th.bg3];
+    r.style.setProperty('--accent-ink', readableOn(tweaks.accent, surfaces));
+    r.style.setProperty('--on-accent', textOn(tweaks.accent));
+    for (const p of PROJECTS) {
+      r.style.setProperty(`--ink-${p.id}`, readableOn(p.color, surfaces));
+      r.style.setProperty(`--on-${p.id}`, textOn(p.color));
+    }
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', th.bg);
     r.style.setProperty('--font-display', `'${th.display}', serif`);
     r.style.setProperty('--font-sans', `'${th.sans}', sans-serif`);
     r.style.setProperty('--font-mono', `'${th.mono}', monospace`);

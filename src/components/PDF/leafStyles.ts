@@ -1,4 +1,5 @@
 import { StyleSheet } from '@react-pdf/renderer';
+import { mix, readableOn } from '../../lib/color';
 
 export interface PdfTheme {
   bg: string;
@@ -14,25 +15,42 @@ export interface PdfTheme {
 
 export const SIDEBAR_W = 179;
 
+/** Neutral inks for the white "paper" body of light themes — the page must print well. */
+const PAPER = {
+  bg: '#ffffff',
+  ink: '#1a1a18',
+  muted: '#374151',
+  mutedSoft: '#4b5563',
+  dot: '#9ca3af',
+  border: 'rgba(0,0,0,0.10)',
+};
+const DARK_SIDEBAR_BORDER = '#27272a';
+/** How far the badge background is pulled from the accent toward the paper (light themes). */
+const BADGE_TINT = 0.88;
+
 // Build theme-aware StyleSheet for the Leaf PDF
 export function makeLeafStyles(theme: PdfTheme, accent: string) {
   const isDark = theme.mode === 'dark';
 
-  // For PDF readability, body uses theme.bg (themed but always paper-friendly)
-  // Sidebar uses a deeper variant for contrast
+  // Dark themes keep their palette; light themes print on white paper with a themed sidebar.
   const sidebarBg = isDark ? theme.bg : theme.bg3;
-  const sidebarFg = isDark ? theme.fg : theme.fg;
+  const sidebarFg = theme.fg;
   const sidebarMuted = theme.fgMuted;
   const sidebarDim = theme.fgDim;
-  const skillBg = isDark ? theme.bg2 : theme.bg2;
+  const skillBg = theme.bg2;
   const skillFg = isDark ? theme.fgMuted : theme.fg;
-  const sidebarBorder = isDark ? '#27272a' : 'rgba(0,0,0,0.10)';
+  const sidebarBorder = isDark ? DARK_SIDEBAR_BORDER : PAPER.border;
 
-  const bodyBg = isDark ? theme.bg2 : '#ffffff';
-  const bodyFg = isDark ? theme.fg : '#1a1a18';
-  const bodyMuted = isDark ? theme.fgMuted : '#374151';
-  const bodyMutedSoft = isDark ? theme.fgMuted : '#4b5563';
-  const dotColor = isDark ? theme.fgDim : '#9ca3af';
+  const bodyBg = isDark ? theme.bg2 : PAPER.bg;
+  const bodyFg = isDark ? theme.fg : PAPER.ink;
+  const bodyMuted = isDark ? theme.fgMuted : PAPER.muted;
+  const bodyMutedSoft = isDark ? theme.fgMuted : PAPER.mutedSoft;
+  const dotColor = isDark ? theme.fgDim : PAPER.dot;
+
+  // Accent as text must stay readable (WCAG AA) on every surface it lands on.
+  const accentInk = readableOn(accent, [sidebarBg, bodyBg]);
+  const badgeBg = isDark ? skillBg : mix(accent, PAPER.bg, BADGE_TINT);
+  const badgeInk = readableOn(accent, [badgeBg]);
 
   return StyleSheet.create({
     page: {
@@ -65,7 +83,7 @@ export function makeLeafStyles(theme: PdfTheme, accent: string) {
     },
     jobTitle: {
       fontSize: 8,
-      color: accent,
+      color: accentInk,
       fontWeight: 500,
       letterSpacing: 0.3,
       marginBottom: 10,
@@ -78,7 +96,7 @@ export function makeLeafStyles(theme: PdfTheme, accent: string) {
     sidebarSectionLabel: {
       fontSize: 7,
       fontWeight: 700,
-      color: accent,
+      color: accentInk,
       textTransform: 'uppercase' as const,
       letterSpacing: 1,
       marginBottom: 5,
@@ -164,7 +182,7 @@ export function makeLeafStyles(theme: PdfTheme, accent: string) {
     },
     jobCompany: {
       fontSize: 9,
-      color: accent,
+      color: accentInk,
       fontWeight: 500,
       marginTop: 1,
     },
@@ -235,8 +253,8 @@ export function makeLeafStyles(theme: PdfTheme, accent: string) {
     },
     techBadge: {
       fontSize: 7,
-      backgroundColor: isDark ? skillBg : '#fff1f2',
-      color: accent,
+      backgroundColor: badgeBg,
+      color: badgeInk,
       paddingHorizontal: 4,
       paddingVertical: 2,
       borderRadius: 2,
@@ -249,7 +267,7 @@ export function makeLeafStyles(theme: PdfTheme, accent: string) {
       right: 10,
       textAlign: 'center' as const,
       fontSize: 7.5,
-      color: isDark ? theme.fgDim : '#9ca3af',
+      color: dotColor,
     },
   });
 }

@@ -201,13 +201,13 @@ function Terminal({ name, role, stack, log, status }: TerminalProps) {
       <div style={{ padding: 20, minHeight: 340, maxHeight: 420, overflow: 'hidden', lineHeight: 1.55 }}>
         {lines.map((l, i) => l.t === 'cmd' ? (
           <div key={i} style={{ marginBottom: 2 }}>
-            <span style={{ color: 'var(--accent)' }}>❯ </span>{l.x}
+            <span style={{ color: 'var(--accent-ink)' }}>❯ </span>{l.x}
           </div>
         ) : (
           <div key={i} style={{ color: 'var(--fg-muted)', paddingLeft: 14, marginBottom: 2 }}>{l.x}</div>
         ))}
         <div>
-          <span style={{ color: 'var(--accent)' }}>❯ </span>{typing}
+          <span style={{ color: 'var(--accent-ink)' }}>❯ </span>{typing}
           <span style={{
             display: 'inline-block', width: 8, height: 14,
             background: blink ? 'var(--accent)' : 'transparent',
@@ -231,7 +231,7 @@ export function HeroV3({ data: D, lang, themeName, accent, onNav }: HeroProps) {
   const t = translations[lang].hero;
   const cursor = translations[lang].cursor;
   const [firstName, ...lastNames] = D.name.display.split(' ');
-  const highlight = { color: 'var(--accent)', fontWeight: 500 };
+  const highlight = { color: 'var(--accent-ink)', fontWeight: 500 };
 
   return (
     <section id="hero" style={{
@@ -255,7 +255,7 @@ export function HeroV3({ data: D, lang, themeName, accent, onNav }: HeroProps) {
           <div style={{
             display: 'flex', alignItems: 'center', gap: 16, marginBottom: 20,
             fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: 2,
-            textTransform: 'uppercase', color: 'var(--accent)', flexWrap: 'wrap',
+            textTransform: 'uppercase', color: 'var(--accent-ink)', flexWrap: 'wrap',
           }}>
             <span style={{ width: 50, height: 1, background: 'var(--accent)' }} />
             <span>{D.role} · {D.contact.country}</span>
@@ -270,7 +270,7 @@ export function HeroV3({ data: D, lang, themeName, accent, onNav }: HeroProps) {
           marginBottom: 20,
         }}>
           <div><MaskReveal delay={200}>{firstName}</MaskReveal></div>
-          <div style={{ color: 'var(--accent)', fontStyle: 'italic' }}>
+          <div style={{ color: 'var(--accent-ink)', fontStyle: 'italic' }}>
             <MaskReveal delay={420}>{lastNames.join(' ')}.</MaskReveal>
           </div>
         </h1>
@@ -286,7 +286,7 @@ export function HeroV3({ data: D, lang, themeName, accent, onNav }: HeroProps) {
               fontSize: 'clamp(13px, 1.1vw, 15px)',
               letterSpacing: 1.2,
               textTransform: 'uppercase',
-              color: 'var(--accent)',
+              color: 'var(--accent-ink)',
               fontWeight: 500,
             }}>
               {D.taglines[0]}
@@ -324,10 +324,10 @@ export function HeroV3({ data: D, lang, themeName, accent, onNav }: HeroProps) {
                 color: 'var(--fg)',
                 transition: 'background 0.3s, color 0.3s',
               }}
-                onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--accent)'; e.currentTarget.style.color = 'var(--bg)'; }}
+                onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--accent)'; e.currentTarget.style.color = 'var(--on-accent)'; }}
                 onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'var(--fg)'; }}>
                 <span style={{ opacity: 0.55, fontSize: 10 }}>0{i + 1}</span>
-                <span style={{ display: 'inline-flex', color: 'var(--accent)' }}>
+                <span style={{ display: 'inline-flex', color: 'var(--accent-ink)' }}>
                   <TechIcon name={s} size={18} />
                 </span>
                 <span>{s}</span>
@@ -382,7 +382,7 @@ export function HeroV3({ data: D, lang, themeName, accent, onNav }: HeroProps) {
               <div style={{
                 fontFamily: 'var(--font-mono)', fontSize: 10,
                 letterSpacing: 1.6, textTransform: 'uppercase',
-                color: 'var(--accent)', marginBottom: 16,
+                color: 'var(--accent-ink)', marginBottom: 16,
               }}>{t.bio}</div>
               <p style={{
                 fontFamily: 'var(--font-display)', fontStyle: 'italic',
@@ -399,7 +399,7 @@ export function HeroV3({ data: D, lang, themeName, accent, onNav }: HeroProps) {
                 <Magnetic strength={0.25}>
                   <button onClick={() => onNav('contact')} data-cursor={cursor.write} style={{
                     display: 'inline-flex', alignItems: 'center', gap: 10,
-                    padding: '14px 24px', background: 'var(--accent)', color: 'var(--bg)',
+                    padding: '14px 24px', background: 'var(--accent)', color: 'var(--on-accent)',
                     fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: 1.6,
                     textTransform: 'uppercase', fontWeight: 700, border: '1px solid var(--accent)',
                     cursor: 'pointer',

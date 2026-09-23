@@ -46,8 +46,8 @@ export const PROFILE = {
     en: 'With {years} of experience in enterprise software development, I design and implement scalable architectures with C#/.NET Core 6/8/10, SQL Server and Node.js (3 years), React 19 (2 years), and Next.js 16, Angular, PostgreSQL and NestJS 11 (1 year). Solid experience in REST APIs, Entity Framework, OAuth2/JWT, AES/RSA encryption, Docker and Python. I work with Claude Code and review code against a 133-principle design framework (OWASP Top 10, WCAG 2.2, Core Web Vitals).',
   },
   current: {
-    es: 'Actualmente como Programador de Auditoría Senior en Grupo Salinas, lidero el desarrollo de sistemas críticos de auditoría interna y gestión de denuncias; desde julio de 2026 reconstruyo, como único desarrollador, el portal del área con .NET 10, Angular 22 y SQL Server. Paralelamente desarrollo la plataforma Align Designs (freelance) con NestJS 11, Next.js 16, PostgreSQL y Docker. Trabajo por fases con skills por tecnología, seguimiento en ClickUp, pruebas por fase y CI/CD con SonarCloud, health checks y backups automáticos. Además opero un homelab self-hosted (Docker, Forgejo Actions, SonarQube, Trivy, Cloudflare).',
-    en: 'Currently as a Senior Audit Programmer at Grupo Salinas, I lead the development of critical internal audit and complaint-management systems; since July 2026 I have been rebuilding the department’s portal as its sole developer with .NET 10, Angular 22 and SQL Server. In parallel, I develop the Align Designs platform (freelance) with NestJS 11, Next.js 16, PostgreSQL and Docker. I work in phases with tech-specific skills, ClickUp tracking, per-phase testing and CI/CD with SonarCloud, health checks and automated backups. I also run a self-hosted homelab (Docker, Forgejo Actions, SonarQube, Trivy, Cloudflare).',
+    es: 'Actualmente como Programador de Auditoría Senior en Grupo Salinas, lidero el desarrollo de sistemas críticos de auditoría interna y gestión de denuncias; desde julio de 2026 reconstruyo, como único desarrollador, el portal del área con .NET 10, Angular 22 y SQL Server, y creé la extensión de Chrome con integración MCP para Claude Code que usa el equipo de TI para gestionar su trabajo en Jira. Paralelamente desarrollo la plataforma Align Designs (freelance) con NestJS 11, Next.js 16, PostgreSQL y Docker. Trabajo por fases con skills por tecnología, seguimiento en ClickUp, pruebas por fase y CI/CD con SonarCloud, health checks y backups automáticos. Además opero un homelab self-hosted (Docker, Forgejo Actions, SonarQube, Trivy, Cloudflare).',
+    en: 'Currently as a Senior Audit Programmer at Grupo Salinas, I lead the development of critical internal audit and complaint-management systems; since July 2026 I have been rebuilding the department’s portal as its sole developer with .NET 10, Angular 22 and SQL Server, and I created the Chrome extension with Claude Code MCP integration that the IT team uses to manage its work in Jira. In parallel, I develop the Align Designs platform (freelance) with NestJS 11, Next.js 16, PostgreSQL and Docker. I work in phases with tech-specific skills, ClickUp tracking, per-phase testing and CI/CD with SonarCloud, health checks and automated backups. I also run a self-hosted homelab (Docker, Forgejo Actions, SonarQube, Trivy, Cloudflare).',
   },
   availability: {
     es: 'Tiempo completo · Híbrido / Remoto · Abierto a oportunidades internacionales',
@@ -113,13 +113,25 @@ export const JOBS = [
         en: 'Designed the new SQL Server schema and the migration of ~4.8 million rows from 201 tables with 108 procedures; the full rehearsal runs in ~7 minutes without touching the current system.',
       },
       {
-        highlight: true,
         es: 'Desarrollé la API en .NET 10 que integra el portal con el sistema de denuncias del grupo financiero a través de su API gateway (JWT RS256, OAuth2), y reimplementé su cifrado híbrido RSA-OAEP + AES-256 + HMAC-SHA256, compatible byte a byte con el componente anterior.',
         en: 'Built the .NET 10 API that connects the portal to the financial group’s complaint system through its API gateway (JWT RS256, OAuth2), and reimplemented its hybrid RSA-OAEP + AES-256 + HMAC-SHA256 encryption, byte-for-byte compatible with the legacy component.',
       },
       {
         es: 'Implementé autorización por expediente validada en el servidor en cada petición: solo el equipo del caso accede, con 5 roles, JWT, límite de peticiones, HSTS/CSP y bitácora de cada escritura.',
         en: 'Implemented per-case authorization checked on the server on every request: only the case team gets access, with 5 roles, JWT, rate limiting, HSTS/CSP and an audit log of every write.',
+      },
+      {
+        highlight: true,
+        es: 'Creé una extensión de Chrome/Edge (JavaScript, Manifest V3) para el trabajo diario en Jira Server: empezó como herramienta personal y el equipo de TI la adoptó formalmente en julio de 2026 (en producción desde agosto). Reúne consulta, edición en línea, creación en tanda, paso al sprint y recordatorios de higiene del trabajo.',
+        en: 'Created a Chrome/Edge extension (JavaScript, Manifest V3) for daily work in Jira Server: it started as a personal tool and the IT team formally adopted it in July 2026 (in production since August). It brings together search, inline editing, batch creation, sprint planning and work-hygiene reminders.',
+      },
+      {
+        es: 'Construí un servidor MCP en Node.js con 20 herramientas para que Claude Code consulte y actualice Jira usando la sesión SSO (Okta) del navegador como proxy, sin credenciales adicionales, y otro en Python con 14 herramientas para Outlook.',
+        en: 'Built a Node.js MCP server with 20 tools that lets Claude Code query and update Jira through the browser’s SSO (Okta) session as a proxy, with no extra credentials, plus a 14-tool Python MCP server for Outlook.',
+      },
+      {
+        es: 'Desarrollo el portal y la extensión con Claude Code como asistente de IA, con skills, agentes y hooks propios y el MCP de Jira para llevar las historias de usuario; el flujo impide editar por accidente el sistema en operación y verifica cada cifra contra la base antes de darla por buena.',
+        en: 'I build the portal and the extension with Claude Code as an AI assistant, with my own skills, agents and hooks plus the Jira MCP to track user stories; the workflow blocks accidental edits to the live system and checks every figure against the database before accepting it.',
       },
       {
         es: 'Desarrollo de pipelines de automatización con Python 3.10+ (pandas, pywin32/COM, pyodbc, Selenium): ingesta desde Outlook, extracción Excel, generación SQL transaccional y automatización de portales web internos.',
@@ -152,6 +164,10 @@ export const JOBS = [
         highlight: true,
         es: 'Bajé la consulta principal de la API de 9.9 s a 1.95 s (95% menos lecturas lógicas, salida idéntica) y eliminé un N+1 de ~110 viajes a la base dentro de una transacción.',
         en: 'Cut the API’s main query from 9.9 s to 1.95 s (95% fewer logical reads, identical output) and removed an N+1 of ~110 database round trips inside a transaction.',
+      },
+      {
+        es: 'Publiqué 51 versiones de la extensión en unas cuatro semanas, con un actualizador de un doble clic y 614 pruebas automatizadas que frenan la compilación si fallan; el guardado en Jira bajó de 10–20 s a ~1–2 s.',
+        en: 'Shipped 51 versions of the extension in about four weeks, with a one-double-click updater and 614 automated tests that stop the build when they fail; saving to Jira dropped from 10–20 s to ~1–2 s.',
       },
       {
         es: 'Creación desde cero de la API v2 del sistema de denuncias (6 endpoints principales) con documentación Swagger.',
@@ -327,7 +343,7 @@ export const CLAUDE_ENGINEERING = {
   capabilities: [
     { title: 'Skill Engineering', desc: { es: 'Skills reutilizables con eval loops y métricas.', en: 'Reusable skills with eval loops and metrics.' } },
     { title: 'Custom Agents', desc: { es: 'Agents para code review, seguridad, migraciones, research y ADRs.', en: 'Agents for code review, security, migrations, research and ADRs.' } },
-    { title: 'MCP Integration', desc: { es: 'Conexión con servidores MCP externos y propios.', en: 'Connecting external and custom MCP servers.' } },
+    { title: 'MCP Integration', desc: { es: 'Servidores MCP propios para Jira (20 herramientas) y Outlook (14), además de externos.', en: 'Own MCP servers for Jira (20 tools) and Outlook (14), plus external ones.' } },
     { title: 'Hook Automation', desc: { es: 'Hooks PreToolUse y Stop: bloqueo de comandos, compresión y verificación obligatoria.', en: 'PreToolUse and Stop hooks: command blocking, compression and enforced verification.' } },
     { title: 'Memory Systems', desc: { es: 'Memoria persistente cross-session multi-capa.', en: 'Multi-layer cross-session persistent memory.' } },
     { title: 'Plugin Ecosystem', desc: { es: 'Plugins integrados con flujos productivos completos.', en: 'Plugins integrated with full productive flows.' } },

@@ -21,7 +21,7 @@ export const WEB_SKILLS: Record<SkillCategory, readonly string[]> = {
   frontend: [
     'React 19', 'Next.js 16', 'TanStack Query', 'React Hook Form', 'Zod',
     'Framer Motion', 'Vue.js 3', 'Angular 17+', 'JavaScript ES2024',
-    'TypeScript 5', 'NestJS 11', 'Tailwind CSS v4', 'Bootstrap 5',
+    'TypeScript 5', 'NestJS 11', 'Tailwind CSS v4', 'Bootstrap 5', 'Chrome Extensions (MV3)',
   ],
   devops: [
     'GitHub / Forgejo Actions', 'CI/CD', 'SonarQube / SonarCloud', 'Docker',
@@ -96,7 +96,8 @@ export const ATS_SKILLS: readonly AtsSkill[] = [
   { name: { es: 'Microservicios', en: 'Microservices' }, months: 12 },
   { name: 'pnpm Workspaces — Monorepo', months: 6 },
   { name: 'ApiDog / Postman / Insomnia' },
-  { name: 'Claude Code + MCP (Model Context Protocol)' },
+  { name: 'Claude Code + MCP (Model Context Protocol) — servidores propios para Jira y Outlook' },
+  { name: 'Chrome Extensions (Manifest V3) · Service Workers · Jira Server REST API · JQL · Okta SSO/MFA', note: { es: 'extensión interna en producción', en: 'internal extension in production' } },
   { name: { es: 'Desarrollo asistido por IA (Claude, Gemini)', en: 'AI-assisted development (Claude, Gemini)' } },
 ];
 

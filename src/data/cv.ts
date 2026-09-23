@@ -59,7 +59,7 @@ export const PROFILE = {
 export const METRICS = {
   sqlOptimization: '40%',
   testSuites: '57',
-  bulkRecords: '5K+',
+  weeklyHoursSaved: '8h',
   honestelEndpoints: 6,
 } as const;
 
@@ -81,6 +81,12 @@ export interface JobFacts {
   functions: readonly Bullet[];
   achievements: readonly Bullet[];
 }
+
+/**
+ * Start of professional experience: total years count from here, so a job can leave the
+ * CV without lowering them. The model uses the earliest of this and every listed job.
+ */
+export const CAREER_START: YearMonth = '2023-05';
 
 /** Display order on the web and in both PDFs. */
 export const JOBS = [
@@ -156,57 +162,6 @@ export const JOBS = [
       {
         es: 'Desarrollo de aplicación de escritorio con Tauri 2.x + Rust para reconocimiento facial biométrico — único proyecto con Rust en el área, cubriendo cifrado end-to-end de datos biométricos.',
         en: 'Built desktop app with Tauri 2.x + Rust for biometric facial recognition — only Rust project in the department, covering end-to-end encryption of biometric data.',
-      },
-    ],
-  },
-  {
-    id: 'digital-solutions',
-    company: 'Digital Solutions',
-    start: '2023-05',
-    end: '2024-05',
-    role: { es: 'Desarrollador Full Stack', en: 'Full Stack Developer' },
-    summary: {
-      es: 'Desarrollo integral de sistemas empresariales para gestión de RH y reclutamiento.',
-      en: 'Integral development of enterprise systems for HR and recruitment management.',
-    },
-    stack: ['.NET Framework', 'C#', 'Entity Framework', 'SQL Server', 'JavaScript', 'jQuery', 'Bootstrap', 'GitHub'],
-    functions: [
-      {
-        highlight: true,
-        es: 'Desarrollo de APIs REST con .NET Framework y Entity Framework para gestión de candidatos.',
-        en: 'REST API development with .NET Framework and Entity Framework for candidate management.',
-      },
-      {
-        highlight: true,
-        es: 'Implementación de módulo de carga masiva desde Excel y TXT procesando miles de registros.',
-        en: 'Implementation of bulk upload module from Excel and TXT processing thousands of records.',
-      },
-      {
-        es: 'Diseño de interfaces responsivas con JavaScript, jQuery y Bootstrap.',
-        en: 'Responsive interface design with JavaScript, jQuery and Bootstrap.',
-      },
-      {
-        es: 'Optimización de consultas SQL Server con procedimientos almacenados y funciones.',
-        en: 'SQL Server query optimization with stored procedures and functions.',
-      },
-      {
-        es: 'Control de versiones con GitHub y gestión de ramas para trabajo colaborativo.',
-        en: 'Version control with GitHub and branch management for collaborative work.',
-      },
-    ],
-    achievements: [
-      {
-        highlight: true,
-        es: 'Entrega de sistema de gestión de reclutamiento completo (12 módulos) en 8 meses.',
-        en: 'Delivery of complete recruitment management system (12 modules) in 8 months.',
-      },
-      {
-        es: 'Módulo de carga masiva procesando +5,000 registros en <10 segundos desde Excel/TXT.',
-        en: 'Bulk upload module processing +5,000 records in <10 seconds from Excel/TXT.',
-      },
-      {
-        es: 'Reducción del 50% en tiempo de onboarding mediante automatización de procesos de alta.',
-        en: '50% reduction in onboarding time through employee registration automation.',
       },
     ],
   },
@@ -355,7 +310,7 @@ export const COMPETENCIES = [
 export const STATS = [
   { value: METRICS.sqlOptimization, label: { es: 'Optimización SQL', en: 'SQL Optimization' } },
   { value: METRICS.testSuites, label: { es: 'Suites de tests', en: 'Test suites' } },
-  { value: METRICS.bulkRecords, label: { es: 'Registros / 10s', en: 'Records / 10s' } },
+  { value: METRICS.weeklyHoursSaved, label: { es: 'Horas/semana ahorradas', en: 'Hours/week saved' } },
 ] as const satisfies readonly { value: string; label: Localized }[];
 
 /** Tech strip in the hero. */

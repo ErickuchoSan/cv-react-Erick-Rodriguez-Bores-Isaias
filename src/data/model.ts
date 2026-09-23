@@ -6,7 +6,7 @@ import { pick, type Lang, type Localizable, type Localized } from '../i18n/lang'
 import { translations } from '../i18n/translations';
 import { fill, formatExperience, formatJobDuration, formatPeriod, formatYearRange, monthsBetween, plural } from '../lib/format';
 import {
-  CLAUDE_ENGINEERING, COMPETENCIES, CONTACT, EDUCATION, HERO_STACK, JOBS, LANGUAGES,
+  CAREER_START, CLAUDE_ENGINEERING, COMPETENCIES, CONTACT, EDUCATION, HERO_STACK, JOBS, LANGUAGES,
   METRICS, PERSON, PROFILE, STATS, TERMINAL_STACK, type Bullet, type JobId,
 } from './cv';
 import { PROJECTS, STACK_GROUPS, type DemoState, type ProjectId, type StackGroup } from './projects';
@@ -131,9 +131,10 @@ function profileLink(url: string, handle: (path: string) => string): ProfileLink
   return { url, handle: handle(path), display: url.replace(/^https?:\/\//, '') };
 }
 
-/** Whole years since the first job started. */
+/** Whole years since the career started (CAREER_START, or a listed job that began earlier). */
 export function yearsOfExperience(now = new Date()): number {
-  const months = Math.max(...JOBS.map((job) => monthsBetween(job.start, null, now)));
+  const starts = [CAREER_START, ...JOBS.map((job) => job.start)];
+  const months = Math.max(...starts.map((start) => monthsBetween(start, null, now)));
   return Math.floor(months / 12);
 }
 

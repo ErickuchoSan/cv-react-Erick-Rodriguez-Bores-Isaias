@@ -267,12 +267,14 @@ export function ExperienceV3({ data: D, lang, num }: SectionProps) {
                     aria-labelledby={headId}
                     inert={!isOpen}
                     style={{
-                    maxHeight: isOpen ? 1800 : 0,
-                    overflow: 'hidden',
-                    transition: 'max-height 0.9s cubic-bezier(.2,.8,.2,1), margin-top 0.4s',
+                    // 0fr → 1fr animates to the content's real height; a fixed max-height
+                    // cut the longest job off on phones.
+                    display: 'grid',
+                    gridTemplateRows: isOpen ? '1fr' : '0fr',
+                    transition: 'grid-template-rows 0.9s cubic-bezier(.2,.8,.2,1), margin-top 0.4s',
                     marginTop: isOpen ? 32 : 0,
                   }}>
-                    <div style={{ maxWidth: 900 }}>
+                    <div style={{ maxWidth: 900, minHeight: 0, overflow: 'hidden' }}>
                       <p style={{
                         fontFamily: 'var(--font-display)', fontStyle: 'italic',
                         fontSize: 22, lineHeight: 1.4, marginBottom: 28,

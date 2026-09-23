@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Reveal, MaskReveal, WordsMask, Counter, Magnetic, Tilt, useInView } from './primitives';
+import { Reveal, WordsMask, Counter, Magnetic, Tilt, useInView } from './primitives';
 import { SectionHead, SectionTitle } from './chrome';
 import { TechIcon } from './TechIcon';
 import type { CVData } from './data';
@@ -669,11 +669,9 @@ export function ContactV3({ data, lang }: { data: CVData; lang: 'es' | 'en' }) {
   const D = data;
   const t = lang === 'es'
     ? { label: 'Contacto', hint: 'Construyamos algo juntos', t1: '¿Tienes un', t2: 'proyecto', t3: 'en mente?',
-        directo: '— Directo', edu: '— Educación', red: '— En la red', phone: 'TELÉFONO', loc: 'UBICACIÓN',
-        site: 'Sitio' }
+        directo: '— Directo', edu: '— Educación', red: '— En la red', phone: 'TELÉFONO', loc: 'UBICACIÓN' }
     : { label: 'Contact', hint: 'Let’s build something', t1: 'Got a', t2: 'project', t3: 'in mind?',
-        directo: '— Direct', edu: '— Education', red: '— Online', phone: 'PHONE', loc: 'LOCATION',
-        site: 'Site' };
+        directo: '— Direct', edu: '— Education', red: '— Online', phone: 'PHONE', loc: 'LOCATION' };
 
   return (
     <section id="contact" style={{ padding: '180px 5vw 80px', position: 'relative' }}>
@@ -779,8 +777,6 @@ export function ContactV3({ data, lang }: { data: CVData; lang: 'es' | 'en' }) {
         }
       `}</style>
 
-      {/* Anchor for hidden MaskReveal */}
-      <span style={{ display: 'none' }}><MaskReveal>x</MaskReveal></span>
     </section>
   );
 }

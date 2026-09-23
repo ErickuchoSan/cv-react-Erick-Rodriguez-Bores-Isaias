@@ -38,3 +38,9 @@ dist-ssr
 # Local CV exports
 Erick Bores CV.html
 
+# Local build/lint dumps and browser-automation output
+/build_*.txt
+/errors*.txt
+/lint*.txt
+.playwright-mcp/
+

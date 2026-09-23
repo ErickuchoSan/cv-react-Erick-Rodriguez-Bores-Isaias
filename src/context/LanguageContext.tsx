@@ -1,14 +1,12 @@
 /* eslint-disable react-refresh/only-export-components */
 import React, { createContext, useContext, useState } from 'react';
 import type { ReactNode } from 'react';
-import { translations } from '../i18n/translations';
 
 type Language = 'es' | 'en';
 
 interface LanguageContextType {
     language: Language;
     setLanguage: (lang: Language) => void;
-    t: typeof translations['es'];
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
@@ -19,7 +17,6 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
     const value = {
         language,
         setLanguage,
-        t: translations[language]
     };
 
     return (

@@ -68,7 +68,6 @@ export interface CVData {
   location: string;
   github: string;
   linkedin: string;
-  site: string;
   photo: string;
   availability: string;
   heroStack: string[];
@@ -229,7 +228,6 @@ export function buildData(lang: Lang): CVData {
     location: CONTACT_INFO.location,
     github: 'github.com/ErickuchoSan',
     linkedin: 'www.linkedin.com/in/erick-rodriguez-bores-isaias',
-    site: 'eboresi.dev',
     photo: '/assets/images/profile.jpg',
     availability: lang === 'es'
       ? 'Tiempo completo · Híbrido / Remoto · Abierto a oportunidades internacionales'

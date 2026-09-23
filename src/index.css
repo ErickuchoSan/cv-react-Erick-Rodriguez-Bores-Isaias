@@ -56,16 +56,6 @@ main {
   z-index: 1;
 }
 
-/* Browser-native virtualization: skip painting offscreen sections */
-main > section {
-  content-visibility: auto;
-  contain-intrinsic-size: 1px 1200px;
-}
-/* Hero stays painted always — it's the LCP target */
-main > section:first-child {
-  content-visibility: visible;
-}
-
 /* Read by screen readers, not shown (e.g. the plain text of an animated headline). */
 .sr-only {
   position: absolute;

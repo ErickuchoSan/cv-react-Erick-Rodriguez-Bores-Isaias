@@ -5,7 +5,7 @@ import { CursorV3, NavV3, CornerTools, BottomHUD, MarqueeV3 } from './chrome';
 import { HeroV3 } from './Hero';
 import { AboutV3, ExperienceV3, SkillsV3, ProjectsV3, ContactV3 } from './sections';
 import { ClaudeEngineeringV3 } from './sections/ClaudeEngineering';
-import { onScrollFrame } from './hooks';
+import { onScrollFrame, useReducedMotion } from './hooks';
 import { useLanguage } from '../context/LanguageContext';
 import { buildCV } from '../data/model';
 import { PROJECTS } from '../data/projects';
@@ -120,9 +120,13 @@ export function AppV3() {
   });
   const year = new Date().getFullYear();
 
+  const reduceMotion = useReducedMotion();
   const onNav = (id: string) => {
     const el = document.getElementById(id);
-    if (el) window.scrollTo({ top: el.offsetTop, behavior: 'smooth' });
+    if (!el) return;
+    // An explicit behavior overrides the CSS scroll-behavior, so honor reduced motion here too.
+    const top = el.getBoundingClientRect().top + window.scrollY;
+    window.scrollTo({ top, behavior: reduceMotion ? 'auto' : 'smooth' });
   };
 
   const cycleTheme = () => {

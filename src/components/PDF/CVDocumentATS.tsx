@@ -10,8 +10,8 @@ const styles = StyleSheet.create({
     page: {
         backgroundColor: '#FFFFFF',
         fontFamily: 'Helvetica',
-        paddingTop: 36,
-        paddingBottom: 50,
+        paddingTop: 30,
+        paddingBottom: 42,
         paddingHorizontal: 48,
     },
     // Header - plain text, no background colors
@@ -48,8 +48,8 @@ const styles = StyleSheet.create({
     divider: {
         borderBottomWidth: 1,
         borderBottomColor: '#000000',
-        marginTop: 8,
-        marginBottom: 12,
+        marginTop: 6,
+        marginBottom: 10,
     },
     thinDivider: {
         borderBottomWidth: 0.5,
@@ -63,8 +63,8 @@ const styles = StyleSheet.create({
         fontFamily: 'Helvetica-Bold',
         color: '#000000',
         textTransform: 'uppercase',
-        marginBottom: 6,
-        marginTop: 12,
+        marginBottom: 5,
+        marginTop: 10,
         letterSpacing: 0.5,
         borderBottomWidth: 1,
         borderBottomColor: '#000000',
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
         fontSize: 9.5,
         fontFamily: 'Helvetica',
         color: '#000000',
-        lineHeight: 1.5,
+        lineHeight: 1.42,
         marginBottom: 4,
     },
     // Skills - plain comma-separated or simple list
@@ -83,12 +83,12 @@ const styles = StyleSheet.create({
         fontSize: 9.5,
         fontFamily: 'Helvetica',
         color: '#000000',
-        lineHeight: 1.6,
+        lineHeight: 1.45,
         marginBottom: 4,
     },
     // Experience item
     experienceItem: {
-        marginBottom: 10,
+        marginBottom: 8,
     },
     jobHeader: {
         flexDirection: 'row',
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
     },
     bulletRow: {
         flexDirection: 'row',
-        marginBottom: 2,
+        marginBottom: 1,
         paddingLeft: 8,
     },
     bulletChar: {
@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
     },
     // Education
     eduItem: {
-        marginBottom: 6,
+        marginBottom: 4,
     },
     eduDegree: {
         fontSize: 10,
@@ -169,7 +169,7 @@ const styles = StyleSheet.create({
     },
     // Projects
     projectItem: {
-        marginBottom: 8,
+        marginBottom: 6,
     },
     projectTitle: {
         fontSize: 10.5,

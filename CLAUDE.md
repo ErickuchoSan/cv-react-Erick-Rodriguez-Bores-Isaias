@@ -151,7 +151,7 @@ src/
 - Keywords del job description
 - Secciones claramente etiquetadas y con acentos correctos ("HABILIDADES TÉCNICAS", "EDUCACIÓN")
 - Fechas como `Mayo 2024 - Actual` / `May 2024 - Present` (las genera `formatPeriod`)
-- Ocupa 3 páginas: un empleo puede seguir en la página siguiente, pero su encabezado y la etiqueta de logros van pegados a su primera viñeta, y ninguna viñeta se parte. En react-pdf, `minPresenceAhead` es prop (en un `StyleSheet` se ignora) y solo funciona en hijos directos de `Page`
+- Ocupa 2 páginas (lo que pide `/cv-ats`), justas: si agregas contenido, revisa que no pase a 3. Un empleo puede seguir en la página siguiente, pero su encabezado y la etiqueta de logros van pegados a su primera viñeta, y ninguna viñeta se parte. En react-pdf, `minPresenceAhead` es prop (en un `StyleSheet` se ignora) y solo funciona en hijos directos de `Page`
 
 ## Comandos Útiles
 

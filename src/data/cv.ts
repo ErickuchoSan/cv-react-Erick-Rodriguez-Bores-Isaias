@@ -122,14 +122,6 @@ export const JOBS = [
         en: 'Implemented AES-256-GCM encryption in Rust to protect biometric images in transit and RSA-OAEP SHA-256 decryption of returned IDs, meeting corporate security standards.',
       },
       {
-        es: 'Optimización de consultas SQL Server con T-SQL, procedimientos almacenados y funciones.',
-        en: 'SQL Server query optimization with T-SQL, stored procedures and functions.',
-      },
-      {
-        es: 'Implementación de algoritmos de cifrado (AES, RSA, SHA-256) para protección de datos sensibles.',
-        en: 'Implementation of encryption algorithms (AES, RSA, SHA-256) for sensitive data protection.',
-      },
-      {
         es: 'Arquitectura Backend basada en SOLID, Clean Architecture y principios DDD.',
         en: 'Backend architecture based on SOLID, Clean Architecture and DDD principles.',
       },

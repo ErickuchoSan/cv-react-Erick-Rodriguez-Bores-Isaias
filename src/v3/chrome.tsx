@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type ReactNode, type CSSProperties } from 'react';
 import type { ThemeName } from './theme';
 import { useMediaQuery, usePointerEffects, useScrollProgress } from './hooks';
+import { LAYER } from './layers';
 import type { Lang } from '../i18n/lang';
 import { translations } from '../i18n/translations';
 
@@ -62,12 +63,12 @@ export function CursorV3() {
   return (
     <>
       <div ref={dotRef} aria-hidden="true" style={{
-        position: 'fixed', top: 0, left: 0, zIndex: 10000, pointerEvents: 'none',
+        position: 'fixed', top: 0, left: 0, zIndex: LAYER.cursorDot, pointerEvents: 'none',
         width: big ? 0 : 6, height: big ? 0 : 6, borderRadius: '50%',
         background: 'var(--accent)', transition: 'width 0.2s, height 0.2s',
       }} />
       <div ref={ringRef} aria-hidden="true" style={{
-        position: 'fixed', top: 0, left: 0, zIndex: 9998, pointerEvents: 'none',
+        position: 'fixed', top: 0, left: 0, zIndex: LAYER.cursorRing, pointerEvents: 'none',
         width: big ? 56 : (state.hover ? 30 : 24),
         height: big ? 56 : (state.hover ? 30 : 24),
         borderRadius: '50%',

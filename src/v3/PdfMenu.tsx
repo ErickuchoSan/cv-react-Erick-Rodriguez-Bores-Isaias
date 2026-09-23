@@ -9,6 +9,9 @@ import { translations, type Translations } from '../i18n/translations';
 /** Keeps the menu open long enough for the browser to start the download. */
 const CLOSE_AFTER_DOWNLOAD_MS = 600;
 
+/** Hover state of the custom cursor without a label: a label circle would cover the option text. */
+const HOVER = '';
+
 interface Props {
   lang: Lang;
   /** `returnFocus`: move focus back to the trigger (keyboard close / after a download). */
@@ -57,13 +60,12 @@ interface PdfLinkProps {
   fileName: string;
   label: string;
   flag: string;
-  cursor: string;
   t: Translations['download'];
   onDownloaded: () => void;
 }
 
 /** Generates one PDF on mount; a failed generation turns into a retry button. */
-function PdfLink({ doc, fileName, label, flag, cursor, t, onDownloaded }: PdfLinkProps) {
+function PdfLink({ doc, fileName, label, flag, t, onDownloaded }: PdfLinkProps) {
   const [instance, update] = usePDF();
   useEffect(() => { update(doc); }, [doc, update]);
 
@@ -77,7 +79,7 @@ function PdfLink({ doc, fileName, label, flag, cursor, t, onDownloaded }: PdfLin
 
   if (instance.error) {
     return (
-      <button type="button" style={{ ...itemStyle, cursor: 'pointer' }} data-cursor={cursor} onClick={() => update(doc)}>
+      <button type="button" style={{ ...itemStyle, cursor: 'pointer' }} data-cursor={HOVER} onClick={() => update(doc)}>
         {content(`${label} · ${t.failed}`)}
       </button>
     );
@@ -86,7 +88,7 @@ function PdfLink({ doc, fileName, label, flag, cursor, t, onDownloaded }: PdfLin
     return <span style={{ ...itemStyle, opacity: 0.7 }}>{content(`${label} · ${t.generating}`)}</span>;
   }
   return (
-    <a href={instance.url} download={fileName} style={itemStyle} data-cursor={cursor} onClick={onDownloaded}>
+    <a href={instance.url} download={fileName} style={itemStyle} data-cursor={HOVER} onClick={onDownloaded}>
       {content(label)}
     </a>
   );
@@ -139,16 +141,16 @@ export default function PdfMenu({ lang, onClose, themeName, theme, accent, accen
         </div>
       </div>
       <PdfLink doc={docs.leafEs} fileName="CV_Erick_Rodriguez_ES.pdf"
-        label={t.es} flag="🇲🇽" cursor="ES" t={t} onDownloaded={onDownloaded} />
+        label={t.es} flag="🇲🇽" t={t} onDownloaded={onDownloaded} />
       <PdfLink doc={docs.leafEn} fileName="CV_Erick_Rodriguez_EN.pdf"
-        label={t.en} flag="🇺🇸" cursor="EN" t={t} onDownloaded={onDownloaded} />
+        label={t.en} flag="🇺🇸" t={t} onDownloaded={onDownloaded} />
 
       <div style={headerStyle}>{t.ats}</div>
       <div style={noteStyle}>{t.atsNote}</div>
       <PdfLink doc={docs.atsEs} fileName="CV_Erick_Rodriguez_ATS_ES.pdf"
-        label={t.atsEs} flag="🇲🇽" cursor="ATS" t={t} onDownloaded={onDownloaded} />
+        label={t.atsEs} flag="🇲🇽" t={t} onDownloaded={onDownloaded} />
       <PdfLink doc={docs.atsEn} fileName="CV_Erick_Rodriguez_ATS_EN.pdf"
-        label={t.atsEn} flag="🇺🇸" cursor="ATS" t={t} onDownloaded={onDownloaded} />
+        label={t.atsEn} flag="🇺🇸" t={t} onDownloaded={onDownloaded} />
     </div>
   );
 }

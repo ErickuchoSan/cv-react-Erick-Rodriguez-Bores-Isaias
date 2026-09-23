@@ -1,5 +1,6 @@
 import { lazy, Suspense, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
+import { LAYER } from './layers';
 import { THEMES, ACCENT_OPTIONS, type ThemeName } from './theme';
 import type { PdfTheme } from '../components/PDF/leafStyles';
 import type { Lang } from '../i18n/lang';
@@ -123,7 +124,7 @@ export function DownloadV3({ lang, themeName, accent }: Props) {
           style={{
             position: 'fixed',
             left: pos.left, top: pos.top, minWidth: pos.width,
-            zIndex: 9999,
+            zIndex: LAYER.overlay,
           }}
         >
           <Suspense fallback={null}>

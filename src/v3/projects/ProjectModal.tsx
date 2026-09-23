@@ -1,5 +1,6 @@
 import { useEffect, useRef, lazy, Suspense } from 'react';
 import { createPortal } from 'react-dom';
+import { LAYER } from '../layers';
 import type { Project } from '../../data/model';
 import type { Lang } from '../../i18n/lang';
 import { translations } from '../../i18n/translations';
@@ -84,7 +85,7 @@ export function ProjectModal({ project, lang, onClose }: Props) {
       aria-modal="true"
       aria-labelledby={`cs-title-${project.id}`}
       style={{
-        position: 'fixed', inset: 0, zIndex: 9999,
+        position: 'fixed', inset: 0, zIndex: LAYER.overlay,
         background: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(8px)',
         display: 'flex', alignItems: 'flex-start', justifyContent: 'center',
         padding: 'clamp(20px, 5vw, 60px)',
